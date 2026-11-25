@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinPy Academy | أكاديمية MinPy</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --paper: #ffffff;
+      --border: #dce3ec;
+      --navy: #1e3a5f;
+      --navy-hover: #152a45;
+      --accent: #2563eb;
+      --text: #1f2937;
+      --heading: #0f172a;
+      --subtext: #334155;
+      --muted: #64748b;
+      --tag-bg: #e0e7ff;
+      --code-bg: #f8fafc;
+      --code-border: #cbd5e1;
+      --inline-code-bg: #f1f5f9;
+      --input-bg: #ffffff;
+      --success: #15803d;
+      --success-bg: #f0fdf4;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fef2f2;
+      --error-border: #fca5a5;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --paper: #1e293b;
+      --border: #334155;
+      --navy: #172554;
+      --navy-hover: #1e3a8a;
+      --accent: #60a5fa;
+      --text: #e2e8f0;
+      --heading: #f8fafc;
+      --subtext: #cbd5e1;
+      --muted: #94a3b8;
+      --tag-bg: rgba(96, 165, 250, 0.18);
+      --code-bg: #0b1120;
+      --code-border: #334155;
+      --inline-code-bg: #0f172a;
+      --input-bg: #0f172a;
+      --success: #4ade80;
+      --success-bg: rgba(21, 128, 61, 0.2);
+      --success-border: #166534;
+      --error: #f87171;
+      --error-bg: rgba(185, 28, 28, 0.2);
+      --error-border: #991b1b;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.9;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* الشريط العلوي الدراسي */
+    header {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand span {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #cbd5e1;
+      padding-inline-start: 10px;
+      border-inline-start: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    .page-indicator {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 4px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* حاوية عرض الدرس */
+    main {
+      flex: 1;
+      max-width: 840px;
+      width: 100%;
+      margin: 32px auto;
+      padding: 0 20px;
+    }
+
+    #lesson-container {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 44px 48px;
+      min-height: 460px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.2s ease;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--accent);
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+
+    #lesson-container h1 {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: var(--heading);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+      font-weight: 800;
+    }
+
+    #lesson-container h2 {
+      font-size: 1.25rem;
+      margin: 26px 0 12px;
+      color: var(--heading);
+      font-weight: 700;
+    }
+
+    #lesson-container p {
+      margin-bottom: 16px;
+      font-size: 1.08rem;
+      color: var(--subtext);
+    }
+
+    #lesson-container code {
+      background: var(--inline-code-bg);
+      color: var(--heading);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.92em;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    pre, .code-box {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-inline-start: 4px solid var(--accent);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin: 18px 0;
+      direction: ltr;
+      text-align: left;
+      font-family: "Consolas", "Courier New", monospace;
+      color: var(--heading);
+      overflow-x: auto;
+      font-size: 0.98rem;
+      line-height: 1.65;
+    }
+
+    /* حقول الاختبارات العملية */
+    .quiz-input {
+      background: var(--input-bg);
+      border: 1.5px solid var(--accent);
+      color: var(--heading);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.95rem;
+      width: 145px;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .quiz-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+
+    .run-btn {
+      background: var(--navy);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 12px;
+      font-size: 0.95rem;
+      transition: background 0.15s;
+    }
+
+    .run-btn:hover { background: var(--navy-hover); }
+
+    .feedback {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback.ok {
+      display: block;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success);
+    }
+
+    .feedback.err {
+      display: block;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error);
+    }
+
+    /* شريط التنقل السفلي */
+    footer {
+      max-width: 840px;
+      width: 100%;
+      margin: 0 auto 36px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      background: var(--paper);
+      color: var(--heading);
+      border: 1px solid var(--border);
+      padding: 11px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.15s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+    }
+
+    .nav-btn.next {
+      background: var(--navy);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .nav-btn.next:hover:not(:disabled) {
+      background: var(--navy-hover);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+      #lesson-container { padding: 26px 20px; }
+      .brand span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand" id="brand-title">
+      أكاديمية MinPy
+      <span id="brand-sub">المسار التأسيسي التطبيقي</span>
+    </div>
+    <div class="header-controls">
+      <button class="ctrl-btn" id="theme-toggle" onclick="toggleTheme()">داكن</button>
+      <button class="ctrl-btn" id="lang-toggle" onclick="toggleLanguage()">English</button>
+      <div class="page-indicator" id="page-badge">صفحة 1</div>
+    </div>
+  </header>
+
+  <main>
+    <div id="lesson-container">جاري تحميل الدرس...</div>
+  </main>
+
+  <footer>
+    <button class="nav-btn" id="prev-btn" onclick="changePage(-1)">→ الدرس السابق</button>
+    <button class="nav-btn next" id="next-btn" onclick="changePage(1)">الدرس التالي ←</button>
+  </footer>
+
+  <script>
+    let currentLang = localStorage.getItem('minpy_lang') || 'ar';
+    let currentTheme = localStorage.getItem('minpy_theme') || 'light';
+    let currentPage = parseInt(localStorage.getItem('minpy_page')) || 1;
+
+    const uiText = {
+      ar: {
+        dir: 'rtl',
+        brand: 'أكاديمية MinPy',
+        sub: 'المسار التأسيسي التطبيقي',
+        toggleLang: 'English',
+        toDark: 'داكن',
+        toLight: 'فاتح',
+        page: (n) => `صفحة ${n}`,
+        prev: '→ الدرس السابق',
+        next: 'الدرس التالي ←',
+        endTag: 'نهاية الدروس المتاحة حالياً',
+        endTitle: (last) => `أحسنت! وصلت لآخر درس مضاف (${last})`,
+        endDesc: (nextNum) => `بمجرد رفع ملف <strong>${nextNum}.html</strong> داخل مجلد <code>lessons/ar</code> على GitHub، سيظهر هنا تلقائياً.`,
+        backFirst: 'العودة للدرس الأول',
+        errTitle: 'تعذر تحميل الصفحة',
+        errDesc: 'تأكد من وجود مجلد <code>lessons/ar</code> وبداخله <code>1.html</code> على مستودع GitHub.'
+      },
+      en: {
+        dir: 'ltr',
+        brand: 'MinPy Academy',
+        sub: 'Interactive Python Curriculum',
+        toggleLang: 'العربية',
+        toDark: 'Dark',
+        toLight: 'Light',
+        page: (n) => `Page ${n}`,
+        prev: '← Previous Lesson',
+        next: 'Next Lesson →',
+        endTag: 'End of Available Lessons',
+        endTitle: (last) => `Well done! You reached the latest lesson (${last})`,
+        endDesc: (nextNum) => `Once you upload <strong>${nextNum}.html</strong> inside <code>lessons/en</code> on GitHub, it will appear here automatically.`,
+        backFirst: 'Back to First Lesson',
+        errTitle: 'Failed to Load Lesson',
+        errDesc: 'Make sure the folder <code>lessons/en</code> contains <code>1.html</code> in your GitHub repository.'
+      }
+    };
+
+    const container = document.getElementById('lesson-container');
+    const pageBadge = document.getElementById('page-badge');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const themeBtn = document.getElementById('theme-toggle');
+    const langBtn = document.getElementById('lang-toggle');
+
+    function applyThemeUI() {
+      const t = uiText[currentLang];
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      themeBtn.textContent = currentTheme === 'light' ? t.toDark : t.toLight;
+    }
+
+    function toggleTheme() {
+      currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+      localStorage.setItem('minpy_theme', currentTheme);
+      applyThemeUI();
+    }
+
+    function applyLanguageUI() {
+      const t = uiText[currentLang];
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = t.dir;
+
+      document.getElementById('brand-title').innerHTML = `${t.brand} <span id="brand-sub">${t.sub}</span>`;
+      langBtn.textContent = t.toggleLang;
+      prevBtn.textContent = t.prev;
+      nextBtn.textContent = t.next;
+      pageBadge.textContent = t.page(currentPage);
+      applyThemeUI();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      localStorage.setItem('minpy_lang', currentLang);
+      applyLanguageUI();
+      loadLesson(currentPage);
+    }
+
+    async function loadLesson(pageNumber) {
+      const t = uiText[currentLang];
+      try {
+        const response = await fetch(`lessons/${currentLang}/${pageNumber}.html`);
+
+        if (!response.ok) {
+          if (pageNumber > 1) {
+            container.innerHTML = `
+              <span class="tag">${t.endTag}</span>
+              <h1>${t.endTitle(pageNumber - 1)}</h1>
+              <p>${t.endDesc(pageNumber)}</p>
+              <button class="run-btn" onclick="goToPage(1)">${t.backFirst}</button>
+            `;
+            nextBtn.disabled = true;
+            pageBadge.textContent = t.page(pageNumber);
+            return;
+          }
+          throw new Error('Lesson 1 not found');
+        }
+
+        const htmlContent = await response.text();
+        container.innerHTML = htmlContent;
+
+        currentPage = pageNumber;
+        localStorage.setItem('minpy_page', currentPage);
+        pageBadge.textContent = t.page(currentPage);
+        prevBtn.disabled = currentPage <= 1;
+        nextBtn.disabled = false;
+
+        executeInnerScripts(container);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      } catch (err) {
+        container.innerHTML = `
+          <h1>${t.errTitle}</h1>
+          <p>${t.errDesc}</p>
+        `;
+      }
+    }
+
+    function executeInnerScripts(element) {
+      const scripts = element.querySelectorAll('script');
+      scripts.forEach(oldScript => {
+        const newScript = document.createElement('script');
+        newScript.textContent = oldScript.textContent;
+        document.body.appendChild(newScript);
+        oldScript.remove();
+      });
+    }
+
+    function changePage(step) {
+      const target = currentPage + step;
+      if (target >= 1) loadLesson(target);
+    }
+
+    function goToPage(num) {
+      loadLesson(num);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      if (currentLang === 'ar') {
+        if (e.key === 'ArrowLeft') changePage(1);
+        if (e.key === 'ArrowRight' && currentPage > 1) changePage(-1);
+      } else {
+        if (e.key === 'ArrowRight') changePage(1);
+        if (e.key === 'ArrowLeft' && currentPage > 1) changePage(-1);
+      }
+    });
+
+    applyLanguageUI();
+    loadLesson(currentPage);
+  </script>
+</body>
+</html>
