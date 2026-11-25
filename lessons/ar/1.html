@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MinPy Academy | أكاديمية MinPy — المنهج التأسيسي الكامل</title>
+  <title>MinPy Academy | أكاديمية MinPy — المنهج التأسيسي العميق (5 دروس)</title>
   <style>
     :root {
       --bg: #f4f6f9;
@@ -33,9 +33,16 @@
       --warn: #b45309;
       --warn-bg: #fffbeb;
       --warn-border: #fcd34d;
+      --analogy-bg: #f0f9ff;
+      --analogy-border: #7dd3fc;
+      --analogy-title: #0369a1;
+      --step-bg: #faf5ff;
+      --step-border: #d8b4fe;
+      --step-title: #6b21a8;
       --shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
       --radius-sm: 6px;
       --radius-md: 8px;
+      --radius-lg: 12px;
     }
 
     [data-theme="dark"] {
@@ -66,11 +73,24 @@
       --warn: #fbbf24;
       --warn-bg: rgba(180, 83, 9, 0.22);
       --warn-border: #92400e;
+      --analogy-bg: rgba(3, 105, 161, 0.18);
+      --analogy-border: #0284c7;
+      --analogy-title: #38bdf8;
+      --step-bg: rgba(107, 33, 168, 0.18);
+      --step-border: #7e22ce;
+      --step-title: #c084fc;
       --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: "Segoe UI", Tahoma, Arial, sans-serif;
@@ -79,7 +99,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.9;
+      line-height: 1.95;
       transition: background-color 0.2s ease, color 0.2s ease;
     }
 
@@ -142,7 +162,9 @@
       transition: background 0.15s ease;
     }
 
-    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.24); }
+    .ctrl-btn:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
 
     .course-tag {
       background: rgba(255, 255, 255, 0.16);
@@ -155,7 +177,7 @@
 
     main {
       flex: 1;
-      max-width: 980px;
+      max-width: 1020px;
       width: 100%;
       margin: 28px auto 40px;
       padding: 0 20px;
@@ -197,45 +219,72 @@
     }
 
     h1.lecture-title {
-      font-size: 1.9rem;
+      font-size: 1.95rem;
       color: var(--heading);
       border-bottom: 2px solid var(--border);
       padding-bottom: 14px;
       margin-bottom: 22px;
       font-weight: 800;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .lecture-abstract {
       background: var(--surface-soft);
       border: 1px solid var(--border);
       border-inline-start: 4px solid var(--navy);
-      padding: 16px 20px;
+      padding: 18px 22px;
       border-radius: var(--radius-sm);
       margin-bottom: 26px;
       color: var(--subtext);
-      font-size: 1.02rem;
+      font-size: 1.04rem;
+    }
+
+    .roadmap-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .roadmap-pill {
+      background: var(--surface-tint);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .roadmap-pill strong {
+      display: block;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .roadmap-pill span {
+      font-size: 0.9rem;
+      color: var(--heading);
+      font-weight: 700;
     }
 
     .toc-box {
       background: var(--surface-soft);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 18px 22px;
-      margin-bottom: 32px;
+      padding: 20px 24px;
+      margin-bottom: 34px;
     }
 
     .toc-title {
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 800;
       color: var(--heading);
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .toc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 10px;
     }
 
     .toc-link {
@@ -244,85 +293,145 @@
       color: var(--accent);
       background: var(--paper);
       border: 1px solid var(--border);
-      padding: 7px 12px;
+      padding: 10px 14px;
       border-radius: var(--radius-sm);
-      font-size: 0.89rem;
-      font-weight: 600;
-      transition: border-color 0.15s ease, background 0.15s ease;
+      font-size: 0.92rem;
+      font-weight: 700;
+      transition: border-color 0.15s ease, background 0.15s ease, transform 0.15s ease;
     }
 
     .toc-link:hover {
       border-color: var(--accent);
       background: var(--surface-tint);
+      transform: translateY(-1px);
     }
 
     section.unit-section {
-      margin-top: 42px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border);
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 2px solid var(--border);
+    }
+
+    .unit-kicker {
+      display: inline-block;
+      background: var(--navy);
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
     }
 
     h2.unit-heading {
-      font-size: 1.42rem;
+      font-size: 1.52rem;
       color: var(--heading);
       font-weight: 800;
-      margin-bottom: 14px;
-      line-height: 1.4;
+      margin-bottom: 16px;
+      line-height: 1.45;
+    }
+
+    h3.sub-heading {
+      font-size: 1.18rem;
+      color: var(--navy);
+      font-weight: 800;
+      margin: 26px 0 10px;
+      padding-inline-start: 10px;
+      border-inline-start: 3px solid var(--accent);
+    }
+
+    [data-theme="dark"] h3.sub-heading {
+      color: var(--accent);
     }
 
     p.body-para {
-      margin-bottom: 15px;
-      font-size: 1.05rem;
+      margin-bottom: 16px;
+      font-size: 1.06rem;
       color: var(--subtext);
     }
 
-    .kid-card {
-      background: var(--warn-bg);
-      border: 1px solid var(--warn-border);
-      border-radius: var(--radius-md);
-      padding: 18px 22px;
-      margin: 18px 0;
+    ul.detail-list {
+      margin: 12px 0 20px 0;
+      padding-inline-start: 24px;
+      color: var(--subtext);
     }
 
-    .kid-card-title {
+    ul.detail-list li {
+      margin-bottom: 10px;
+      font-size: 1.03rem;
+    }
+
+    .analogy-card {
+      background: var(--analogy-bg);
+      border: 1px solid var(--analogy-border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin: 20px 0;
+    }
+
+    .analogy-card-title {
       font-weight: 800;
-      color: var(--warn);
-      font-size: 0.98rem;
-      margin-bottom: 6px;
+      color: var(--analogy-title);
+      font-size: 1rem;
+      margin-bottom: 8px;
       display: block;
     }
 
-    .kid-card p {
+    .analogy-card p {
       color: var(--text);
-      font-size: 1.02rem;
-      margin-bottom: 6px;
+      font-size: 1.03rem;
+      margin-bottom: 8px;
     }
 
-    .kid-card p:last-child { margin-bottom: 0; }
+    .analogy-card p:last-child {
+      margin-bottom: 0;
+    }
 
-    .formal-note {
-      background: var(--surface-soft);
-      border: 1px solid var(--border);
-      border-inline-start: 4px solid var(--accent);
-      border-radius: var(--radius-sm);
-      padding: 15px 18px;
-      margin: 18px 0;
+    .trace-card {
+      background: var(--step-bg);
+      border: 1px solid var(--step-border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin: 18px 0 24px;
+    }
+
+    .trace-card-title {
+      font-weight: 800;
+      color: var(--step-title);
       font-size: 0.98rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .trace-step {
+      padding: 8px 12px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      font-size: 0.97rem;
       color: var(--subtext);
     }
 
-    .formal-note strong { color: var(--heading); }
+    .trace-step:last-child {
+      margin-bottom: 0;
+    }
 
-    code.inline-code {
-      background: var(--inline-code-bg);
-      color: var(--heading);
-      padding: 2px 7px;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      font-family: "Consolas", "Courier New", monospace;
-      font-size: 0.92em;
-      direction: ltr;
-      display: inline-block;
+    .mistake-box {
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin: 20px 0;
+      color: var(--text);
+    }
+
+    .mistake-box-title {
+      font-weight: 800;
+      color: var(--error);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
     }
 
     pre.code-block {
@@ -338,7 +447,7 @@
       color: var(--heading);
       overflow-x: auto;
       font-size: 0.96rem;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .output-box {
@@ -350,7 +459,7 @@
       direction: ltr;
       text-align: left;
       font-family: "Consolas", "Courier New", monospace;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       color: var(--muted);
     }
 
@@ -393,7 +502,25 @@
       vertical-align: top;
     }
 
-    table.acad-table tr:nth-child(even) td { background: var(--surface-soft); }
+    table.acad-table tr:nth-child(even) td {
+      background: var(--surface-soft);
+    }
+
+    .summary-box {
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-top: 24px;
+    }
+
+    .summary-box-title {
+      font-weight: 800;
+      color: var(--success);
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
 
     .lab-card {
       background: var(--surface-soft);
@@ -438,7 +565,7 @@
       text-align: left;
       font-family: "Consolas", "Courier New", monospace;
       font-size: 0.96rem;
-      line-height: 1.85;
+      line-height: 1.95;
       color: var(--heading);
       overflow-x: auto;
     }
@@ -451,7 +578,7 @@
       border-radius: 4px;
       font-family: "Consolas", "Courier New", monospace;
       font-size: 0.94rem;
-      width: 145px;
+      width: 120px;
       text-align: center;
       font-weight: 700;
       margin: 2px 3px;
@@ -480,7 +607,9 @@
       font-size: 0.93rem;
     }
 
-    .action-btn:hover { background: var(--navy-hover); }
+    .action-btn:hover {
+      background: var(--navy-hover);
+    }
 
     .secondary-btn {
       background: var(--paper);
@@ -493,7 +622,9 @@
       font-size: 0.9rem;
     }
 
-    .secondary-btn:hover { border-color: var(--accent); }
+    .secondary-btn:hover {
+      border-color: var(--accent);
+    }
 
     .feedback {
       margin-top: 14px;
@@ -525,22 +656,35 @@
       color: var(--warn);
     }
 
-    .mcq-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .progress-bar-wrap {
       background: var(--paper);
       border: 1px solid var(--border);
-      padding: 10px 14px;
-      border-radius: var(--radius-sm);
-      margin-bottom: 8px;
-      cursor: pointer;
-      font-size: 0.98rem;
-      color: var(--text);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
-    .mcq-option:hover { border-color: var(--accent); }
-    .mcq-option input { accent-color: var(--accent); width: 17px; height: 17px; cursor: pointer; }
+    .progress-track {
+      flex: 1;
+      min-width: 200px;
+      height: 12px;
+      background: var(--inline-code-bg);
+      border-radius: 99px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
 
     footer {
       background: var(--paper);
@@ -552,10 +696,18 @@
     }
 
     @media (max-width: 680px) {
-      .lecture-sheet { padding: 26px 18px; }
-      h1.lecture-title { font-size: 1.5rem; }
-      .brand-sub { display: none; }
-      .quiz-input { width: 118px; }
+      .lecture-sheet {
+        padding: 26px 18px;
+      }
+      h1.lecture-title {
+        font-size: 1.5rem;
+      }
+      .brand-sub {
+        display: none;
+      }
+      .quiz-input {
+        width: 96px;
+      }
     }
   </style>
 </head>
@@ -564,12 +716,12 @@
     <div class="brand">
       <span id="brand-name">أكاديمية MinPy</span>
       <span class="brand-badge">CS-101</span>
-      <span class="brand-sub" id="brand-sub">المنهج الشامل لأساسيات بايثون</span>
+      <span class="brand-sub" id="brand-sub">المنهج التأسيسي العميق لأساسيات بايثون</span>
     </div>
     <div class="header-controls">
       <button type="button" class="ctrl-btn" id="theme-btn" onclick="toggleTheme()">الوضع الداكن</button>
       <button type="button" class="ctrl-btn" id="lang-btn" onclick="toggleLanguage()">English</button>
-      <div class="course-tag" id="lecture-tag">المحاضرة 01</div>
+      <div class="course-tag" id="lecture-tag">5 دروس عميقة</div>
     </div>
   </header>
 
@@ -578,7 +730,7 @@
   </main>
 
   <footer>
-    <p id="footer-text">MinPy Academy — Complete Python Foundations (Arabic / English • Light / Dark)</p>
+    <p id="footer-text">MinPy Academy — Deep Step-by-Step Python Foundations (Arabic / English • Light / Dark)</p>
   </footer>
 
   <script>
@@ -586,916 +738,830 @@
       ar: {
         dir: "rtl",
         brandName: "أكاديمية MinPy",
-        brandSub: "المنهج الشامل لأساسيات بايثون",
+        brandSub: "المنهج التأسيسي العميق لأساسيات بايثون",
         themeToDark: "الوضع الداكن",
         themeToLight: "الوضع الفاتح",
         langToEn: "English",
-        lectureTag: "المحاضرة 01",
-        footerText: "أكاديمية MinPy — منهج أساسيات بايثون الكامل من الصفر إلى الاحتراف",
-        badgeText: "المقرر التأسيسي الشامل • 15 وحدة دراسية متكاملة",
-        metaText: "المستوى: صفر إلى متمكن في الأساسيات • يتضمن 6 اختبارات عملية داخل المختبر",
-        title: "أساسيات البرمجة بلغة بايثون (Python): المرجع الشامل بأسلوب مبسّط",
+        lectureTag: "5 دروس عميقة",
+        footerText: "أكاديمية MinPy — المرجع التأسيسي العميق للبرمجة بلغة بايثون من الصفر المطلق",
+        badgeText: "المنهج المركّز العميق • 5 دروس شاملة + مختبر تفاعلي",
+        metaText: "المستوى: من الصفر المطلق • شرح سطر بسطر مع أمثلة وتتبع الذاكرة",
+        title: "تعلم البرمجة بلغة بايثون (Python) من الصفر المطلق: 5 دروس عميقة تفهمها مهما كان مستواك",
         abstract:
-          "يغطي هذا المرجع كل أساسيات لغة بايثون الحقيقية من النقطة صفر حتى بناء الدوال وهياكل البيانات ومعالجة الأخطاء والملفات. كل درس يجمع بين الدقة الأكاديمية وبين شرح بسيط جداً يسهّل الفهم.",
-        tocTitle: "فهرس الوحدات الدراسية الكاملة (15 وحدة + مختبر عملي)",
-        toc: [
-          { href: "#sec-1", label: "1. الحاسوب والخوارزميات والبرمجة" },
-          { href: "#sec-2", label: "2. لغة بايثون وكيف يعمل المفسّر" },
-          { href: "#sec-3", label: "3. الطباعة print() والتعليقات" },
-          { href: "#sec-4", label: "4. المتغيرات وصناديق الذاكرة" },
-          { href: "#sec-5", label: "5. أنواع البيانات والتحويل النوعي" },
-          { href: "#sec-6", label: "6. النصوص String ودوالها وتقطيعها" },
-          { href: "#sec-7", label: "7. العمليات الحسابية والمقارنة والمنطق" },
-          { href: "#sec-8", label: "8. المدخلات input() وتنسيق f-strings" },
-          { href: "#sec-9", label: "9. الجمل الشرطية if / elif / else" },
-          { href: "#sec-10", label: "10. الحلقات التكرارية while و for" },
-          { href: "#sec-11", label: "11. القوائم Lists والصفوف Tuples" },
-          { href: "#sec-12", label: "12. القواميس Dictionaries والمجموعات Sets" },
-          { href: "#sec-13", label: "13. الدوال Functions و return والنطاق" },
-          { href: "#sec-14", label: "14. معالجة الأخطاء try / except" },
-          { href: "#sec-15", label: "15. الملفات Files والمكتبات القياسية" },
-          { href: "#sec-16", label: "16. المختبر التطبيقي الشامل (6 تحديات)" }
+          "اهلا بطالبنا العبقري",
+        roadmap: [
+          { step: "الدرس 01", name: "عقل الحاسوب وأول كود" },
+          { step: "الدرس 02", name: "المتغيرات وأنواع البيانات" },
+          { step: "الدرس 03", name: "الحساب والمنطق والمدخلات" },
+          { step: "الدرس 04", name: "اتخاذ القرار والحلقات" },
+          { step: "الدرس 05", name: "القوائم والقواميس والدوال" }
         ],
-        sections: [
+        tocTitle: "خريطة الدروس الخمسة والمختبر التطبيقي",
+        toc: [
+          { href: "#lesson-1", label: "الدرس 1: كيف يفكر الحاسوب؟ لغة بايثون، الطباعة print()، والتعليقات" },
+          { href: "#lesson-2", label: "الدرس 2: ذاكرة الحاسوب، المتغيرات، أنواع البيانات، والتعامل مع النصوص" },
+          { href: "#lesson-3", label: "الدرس 3: العمليات الحسابية، المنطق، قراءة المدخلات input()، والتنسيق" },
+          { href: "#lesson-4", label: "الدرس 4: جعل البرنامج ذكياً: الجمل الشرطية if والحلقات التكرارية Loops" },
+          { href: "#lesson-5", label: "الدرس 5: تنظيم البيانات وبناء الأدوات: القوائم، القواميس، والدوال Functions" },
+          { href: "#lab-section", label: "المختبر التطبيقي الشامل: 6 تحديات برمجية تفاعلية مع التصحيح الفوري" }
+        ],
+        lessons: [
           {
-            id: "sec-1",
-            heading: "1. ما هي البرمجة وما هو الحاسوب والخوارزمية؟",
-            paragraphs: [
-              "الحاسوب معالج إلكتروني فائق السرعة ينفّذ تعليمات مخزّنة في الذاكرة اعتماداً على النظام الثنائي (0 و 1). لا يملك الحاسوب فهماً ذاتياً؛ بل ينفّذ التسلسل المنطقي الذي نكتبه له بدقة صارمة.",
-              "الخوارزمية (Algorithm) هي خطة حل المشكلة كخطوات متسلسلة ومحددة، والبرنامج (Program) هو ترجمة هذه الخوارزمية إلى لغة برمجة يفهمها الحاسوب."
+            id: "lesson-1",
+            kicker: "الدرس الأول من 5 • الأساس الفكري والتشغيل",
+            heading: "الدرس 1: كيف يفكر الحاسوب؟ وما هي البرمجة ولغة بايثون وكيف نكتب أول برنامج؟",
+            intro: [
+              "قبل أن تكتب حرفاً واحداً من الكود، يجب أن تزيل أكبر وهم يخيف المبتدئين: الحاسوب ليس ذكياً ولا يفهم المعاني مثل البشر! الحاسوب عبارة عن آلة إلكترونية سريعة جداً، لكنها تنفّذ التعليمات حرفياً بالترتيب الذي تعطيه لها دون أي اجتهاد منها.",
+              "عندما نقول إننا نبرمج، فنحن ببساطة نكتب قائمة أوامر مرتبة ومحددة لحل مشكلة معينة. هذه القائمة المرتبة من الخطوات تُسمى خوارزمية (Algorithm)، وعندما نكتبها بلغة يفهمها الحاسوب مثل بايثون فإنها تصبح برنامجاً (Program)."
             ],
-            kid: {
-              title: "شرح مبسّط: الروبوت المطيع ووصفة الكعك",
+            analogy: {
+              title: "تشبيه من الحياة اليومية: الروبوت المطيع ووصفة تحضير الشاي",
               lines: [
-                "تخيّل عندك روبوت لعبة سريع جداً، لكنه ما يعرف يسوي شي لحاله إلا إذا قلت له كل خطوة بالترتيب: 'امشِ خطوتين، التفت يمين، خذ المكعب الأزرق'.",
-                "الخوارزمية تشبه وصفة تحضير الكعك خطوة بخطوة، والبرنامج هو كتابة الوصفة بلغة يفهمها الروبوت!"
+                "تخيّل أن لديك روبوتاً منزلياً سريعاً لكنه لا يعرف شيئاً عن الحياة. إذا قلت له: اصنع لي شاياً فلن يفهم! يجب أن تعطيه خطوات دقيقة ومرتبة: أمسك الإبريق، املأه بالماء، ضعه على النار، انتظر حتى يغلي، أضف الشاي والسكر.",
+                "لاحظ أن ترتيب الخطوات حاسم: لو وضعت السكر والماء على الطاولة بدون إبريق فستفشل العملية! البرمجة هي تماماً كتابة هذه الوصفة الدقيقة للحاسوب."
               ]
             },
-            note: {
-              strong: "قاعدة ذهبية في علوم الحاسوب:",
-              text: "ترتيب التعليمات يغيّر النتيجة كلياً؛ ارتداء الجوارب ثم الحذاء ينجح، أما عكس الترتيب فيفشل رغم أن الخطوتين نفسهما."
-            }
+            subsections: [
+              {
+                title: "1.1 لماذا نختار لغة بايثون وكيف يترجمها الحاسوب؟",
+                paragraphs: [
+                  "الحاسوب في داخله لا يفهم العربية ولا الإنجليزية؛ هو يفهم فقط إشارات كهربائية نمثّلها بالرقمين 0 و 1 (النظام الثنائي Binary). كتابة البرامج بالأصفار والآحاد أمر شبه مستحيل على البشر.",
+                  "لذلك اخترع العلماء لغات برمجة عالية المستوى قريبة من الإنجليزية البسيطة، وأشهرها وأسهلها للمبتدئين والمحترفين هي لغة بايثون (Python). وهنا يأتي دور برنامج وسيط يُسمى المفسّر (Interpreter)."
+                ],
+                bullets: [
+                  "أنت تكتب الكود بلغة بايثون الواضحة والسهلة.",
+                  "يقوم مفسّر بايثون بقراءة الكود سطراً تلو الآخر من الأعلى إلى الأسفل.",
+                  "يترجم كل سطر فوراً إلى لغة الآلة (0 و 1) وينفذه على المعالج ويعرض النتيجة."
+                ]
+              },
+              {
+                title: "1.2 أول أمر حقيقي في بايثون: دالة الطباعة print()",
+                paragraphs: [
+                  "لكي يخبرنا البرنامج بما توصل إليه، نحتاج إلى وسيلة لإظهار الكلام أو الأرقام على الشاشة. في بايثون نستخدم أمراً جاهزاً (دالة Function) اسمه print وتعني اطبع.",
+                  "الصيغة الدقيقة لاستخدامها هي كتابة كلمة print بحروف صغيرة، ثم فتح قوسين ()، ووضع ما نريد طباعته داخل القوسين. إذا أردت طباعة نص، يجب وضعه بين علامتي تنصيص مزدوجة أو مفردة حتى يميّز الحاسوب بين الكلام العادي وبين أوامر اللغة نفسها."
+                ],
+                code: "# هذا السطر تعليق توضيحي ولن ينفذه الحاسوب\nprint(\"مرحباً بك في عالم البرمجة!\")\nprint(\"Hello, Python World!\")\nprint(2026)\nprint(10 + 15)",
+                output: "مرحباً بك في عالم البرمجة!\nHello, Python World!\n2026\n25",
+                trace: [
+                  "السطر 1: يبدأ بالرمز #، فيتجاهله المفسّر تماماً لأنه مجرد ملاحظة للمبرمج.",
+                  "السطر 2: يرى المفسّر print وداخلها نص بين علامتي تنصيص، فيطبعه حرفياً على الشاشة.",
+                  "السطر 3: يطبع النص الإنجليزي في سطر جديد تلقائياً.",
+                  "السطر 4: الرقم 2026 ليس نصاً بل رقماً، لذلك لا نحتاج لوضع علامتي تنصيص حوله.",
+                  "السطر 5: يرى المفسّر عملية حسابية 10 + 15 داخل القوسين، فيحسبها أولاً (25) ثم يطبع الناتج 25."
+                ]
+              },
+              {
+                title: "1.3 أسرار إضافية في print() والتعليقات (Comments)",
+                paragraphs: [
+                  "يمكنك طباعة أكثر من عنصر في أمر print() واحد بوضع فاصلة (,) بينها، وستقوم بايثون تلقائياً بوضع مسافة بين كل عنصر وآخر. كما يمكنك التحكم في الفاصل عبر الخاصية sep وفي نهاية السطر عبر الخاصية end.",
+                  "أما التعليقات (Comments) التي تبدأ بالرمز # فهي من أهم عادات المبرمج المحترف؛ لأنها تشرح سبب كتابتك لكل خطوة عندما تعود إلى الكود لاحقاً."
+                ],
+                code: "# طباعة عدة عناصر مفصولة بفاصلة\nprint(\"العمر:\", 25, \"سنة\")\n\n# تغيير الفاصل بين العناصر باستخدام sep\nprint(\"2026\", \"11\", \"25\", sep=\"/\")\n\n# منع النزول لسطر جديد باستخدام end\nprint(\"جاري التحميل\", end=\"... \")\nprint(\"تم بنجاح!\")",
+                output: "العمر: 25 سنة\n2026/11/25\nجاري التحميل... تم بنجاح!"
+              }
+            ],
+            mistake: {
+              title: "احذر من هذه الأخطاء الثلاثة الشائعة في الدرس الأول:",
+              text: "1) كتابة Print بحرف P كبير: بايثون حساسة لحالة الأحرف فتعتبر Print مختلفة عن print. 2) نسيان علامات التنصيص حول النصوص: كتابة print(Hello) تجعل بايثون تظن أن Hello اسم متغير وليس نصاً. 3) نسيان إغلاق أحد القوسين أو علامات التنصيص."
+            },
+            summary: "ملخص الدرس 1: الحاسوب ينفذ أوامرك بالترتيب من الأعلى للأسفل، ومفسّر بايثون يترجمها سطراً بسطر. نستخدم print() لإظهار النتائج على الشاشة، ونستخدم # لكتابة ملاحظات تشرح الكود."
           },
-          {
-            id: "sec-2",
-            heading: "2. لماذا بايثون (Python) وكيف يعمل المفسّر (Interpreter)؟",
-            paragraphs: [
-              "بايثون لغة برمجة عالية المستوى (High-Level) ابتكرها غيدو فان روسوم عام 1991. صُممت لتكون واضحة القراءة وقريبة من اللغة البشرية المنظمة، وتدعم البرمجة الإجرائية والكائنية والوظيفية.",
-              "يعتمد تنفيذ بايثون قياسياً (CPython) على مفسّر يترجم الكود المصدري إلى بايت كود (Bytecode) ثم ينفّذه سطراً بسطر عبر الآلة الافتراضية لبايثون (PVM)."
-            ],
-            kid: {
-              title: "شرح مبسّط: المترجم الفوري الشاطر",
-              lines: [
-                "أنت تكتب أوامر مرتبة بلغة بايثون السهلة، والكمبيوتر يفهم فقط لغة الأرقام (صفر وواحد).",
-                "المفسّر يشبه المترجم الشاطر اللي يقرأ كلامك سطر بسطر ويترجمه فوراً للكمبيوتر عشان ينفّذه قدام عينك!"
-              ]
-            },
-            code: `# أول برنامج رسمي في بايثون
-print("Welcome to MinPy Academy!")
-print("2 + 3 =", 2 + 3)`,
-            output: "Welcome to MinPy Academy!\n2 + 3 = 5"
-          },
-          {
-            id: "sec-3",
-            heading: "3. دالة الإخراج print() والتعليقات (Comments)",
-            paragraphs: [
-              "تُستخدم الدالة المدمجة print() لطباعة النصوص والأرقام ونتائج العمليات على الشاشة. تقبل عدة معاملات مفصولة بفواصل، وتدعم معاملين اختياريين مهمين هما sep (الفاصل بين العناصر) و end (ما يُطبع في نهاية السطر).",
-              "التعليقات تبدأ بالرمز # ويتجاهلها المفسّر كلياً؛ تُستخدم لشرح منطق الكود وتوثيقه."
-            ],
-            kid: {
-              title: "شرح مبسّط: الميكروفون وملاحظات القلم الرصاص",
-              lines: [
-                "دالة print() تشبه الميكروفون: أي كلام تحطه جوا القوسين يطلع على الشاشة.",
-                "والعلامة # تشبه ملاحظة تكتبها بقلم رصاص على دفتر الملاحظات لنفسك، والكمبيوتر ما يقرأها."
-              ]
-            },
-            code: `# تخصيص الفاصل ونهاية السطر في print
-print("2026", "11", "25", sep="-")
-print("Loading", end="... ")
-print("Done!")`,
-            output: "2026-11-25\nLoading... Done!"
-          },
-          {
-            id: "sec-4",
-            heading: "4. المتغيرات (Variables) وقواعد التسمية وإدارة المراجع",
-            paragraphs: [
-              "المتغير اسم رمزي يشير إلى كائن مخزّن في الذاكرة عبر عامل الإسناد (=). بايثون لغة ذات تنميط ديناميكي (Dynamic Typing)، أي أن نوع المتغير يُستنتج من القيمة المسندة ويمكن إعادة إسناد قيمة من نوع آخر له.",
-              "قواعد التسمية: يبدأ بحرف أو شرطة سفلية (_)، لا يبدأ برقم، لا يحوي مسافات أو رموزاً خاصة، حساس لحالة الأحرف (total ≠ Total)، ويُفضّل أسلوب snake_case."
-            ],
-            kid: {
-              title: "شرح مبسّط: صناديق الألعاب وعليها ملصقات أسماء",
-              lines: [
-                "تخيّل عندك صناديق مرتبة على الرف، وكل صندوق عليه ملصق اسم: صندوق اسمه 'نقاط' وصندوق اسمه 'مستوى'.",
-                "لما تكتب score = 10 كأنك حطيت 10 نجوم جوا صندوق النقاط. ولو كتبت بعدها score = 20 كأنك بدّلت محتوى الصندوق إلى 20 نجمة!"
-              ]
-            },
-            code: `player_name = "Ziad"
-level = 1
-score = 100
-score += 50          # اختصار لـ score = score + 50
-x, y = 10, 20        # إسناد متعدد في سطر واحد
 
-print(player_name, level, score)
-print(x, y)`,
-            output: "Ziad 1 150\n10 20"
-          },
           {
-            id: "sec-5",
-            heading: "5. أنواع البيانات الأساسية (Data Types) والتحويل النوعي (Casting)",
-            paragraphs: [
-              "الأنواع الأولية الأساسية في بايثون هي: int للأعداد الصحيحة غير محدودة الدقة، float للأعداد العشرية ذات الفاصلة العائمة، str للسلاسل النصية غير القابلة للتعديل، و bool للقيم المنطقية True و False.",
-              "نستخدم type() لمعرفة النوع، و int() و float() و str() و bool() للتحويل الصريح بين الأنواع."
+            id: "lesson-2",
+            kicker: "الدرس الثاني من 5 • الذاكرة والبيانات والنصوص",
+            heading: "الدرس 2: كيف يحفظ الحاسوب المعلومات؟ المتغيرات، أنواع البيانات، والتعامل مع النصوص",
+            intro: [
+              "تخيّل برنامجاً يحسب نتائج الطلاب أو رصيدك البنكي؛ أين يحتفظ الحاسوب بالاسم والدرجة والرصيد أثناء عمل البرنامج؟ يحتفظ بها في الذاكرة العشوائية (RAM). ولكي لا نضيع في عناوين الذاكرة المعقدة، وفّرت لنا لغات البرمجة فكرة المتغيرات (Variables).",
+              "في هذا الدرس سنتعلم كيف ننشئ متغيرات لتخزين البيانات، وما هي الأنواع الأربعة الأساسية للبيانات في بايثون، وكيف نتحكم في النصوص ونقطعها ونعدّلها."
             ],
-            kid: {
-              title: "شرح مبسّط: فرق بين عدّ التفاح وقياس الحليب",
+            analogy: {
+              title: "تشبيه الصناديق المرقّمة والملصقات في المستودع",
               lines: [
-                "العدد الصحيح (int) مثل عدد الكرات: 1، 2، 3.",
-                "العدد العشري (float) مثل كوب ونص حليب: 1.5.",
-                "النص (str) مثل كلمة 'أهلاً' جوا علامات تنصيص.",
-                "والمنطقي (bool) مثل زر النور: شغّال (True) أو طافي (False)."
+                "تخيّل ذاكرة الحاسوب كمستودع ضخم مليء بالصناديق الفارغة. عندما تكتب في بايثون: score = 100، فأنت تطلب من الحاسوب: أحضر صندوقاً فارغاً، ضع بداخله الرقم 100، وألصق عليه ورقة مكتوب عليها score.",
+                "علامة يساوي (=) في البرمجة لا تعني التساوي الرياضي، بل تعني التخزين والإسناد: خذ القيمة الموجودة على اليمين وضعها داخل الصندوق المسمى على اليسار!"
               ]
             },
-            table: {
-              headers: ["النوع", "الكلمة في بايثون", "أمثلة", "دالة التحويل"],
-              rows: [
-                ["عدد صحيح", "int", "0, 17, -45", "int(\"17\") -> 17"],
-                ["عدد عشري", "float", "3.14, -2.5, 8.0", "float(\"3.5\") -> 3.5"],
-                ["نص", "str", "\"MinPy\", 'Hi'", "str(99) -> \"99\""],
-                ["منطقي", "bool", "True, False", "bool(1) -> True, bool(0) -> False"]
-              ]
+            subsections: [
+              {
+                title: "2.1 قواعد تسمية المتغيرات وتحديث قيمتها",
+                paragraphs: [
+                  "يمكنك تسمية المتغير بأي اسم يعبّر عن محتواه (مثل user_name أو total_price)، لكن بايثون تفرض 4 قواعد صارمة لقبول اسم المتغير:"
+                ],
+                bullets: [
+                  "يجب أن يبدأ الاسم بحرف إنجليزي (a-z أو A-Z) أو شرطة سفلية (_) فقط.",
+                  "ممنوع أن يبدأ الاسم برقم (مثلاً 1player خطأ، بينما player1 صحيح).",
+                  "ممنوع وجود مسافات أو رموز خاصة داخل الاسم (نستخدم الشرطة السفلية _ بدلاً من المسافة: student_age).",
+                  "ممنوع استخدام الكلمات المحجوزة للغة بايثون نفسها كاسم متغير (مثل print أو if أو for)."
+                ],
+                code: "player_name = \"Sami\"\npoints = 50\nprint(\"النقاط في البداية:\", points)\n\n# تحديث قيمة المتغير: نحسب 50 + 30 أولاً ثم نخزن 80\npoints = points + 30\nprint(\"النقاط بعد الفوز:\", points)\n\n# اختصار احترافي لنفس السطر السابق:\npoints += 20\nprint(\"النقاط النهائية:\", points)",
+                output: "النقاط في البداية: 50\nالنقاط بعد الفوز: 80\nالنقاط النهائية: 100",
+                trace: [
+                  "السطر 1: إنشاء صندوق اسمه player_name وبداخله النص \"Sami\".",
+                  "السطر 2: إنشاء صندوق اسمه points وبداخله الرقم 50.",
+                  "السطر 6: الحاسوب يحسب الطرف الأيمن أولاً (50 + 30 = 80)، ثم يمسح 50 من صندوق points ويضع 80 مكانه.",
+                  "السطر 9: الرمز += هو اختصار شائع جداً يعني: أضف 20 إلى القيمة الموجودة أصلاً في points."
+                ]
+              },
+              {
+                title: "2.2 الأنواع الأربعة الأساسية للبيانات والتحويل بينها",
+                paragraphs: [
+                  "الحاسوب يتعامل مع كل نوع من البيانات بطريقة مختلفة؛ فالأرقام تُجمع وتُطرح، بينما النصوص تُدمج وتُنسّق. لذلك تصنّف بايثون البيانات إلى 4 أنواع رئيسية يجب أن تتقنها تماماً:"
+                ],
+                table: {
+                  headers: ["النوع", "اسمه في بايثون", "متى نستخدمه؟", "أمثلة حقيقية", "كيف نحوّل إليه؟"],
+                  rows: [
+                    ["عدد صحيح", "int", "للأعداد الكاملة بدون فواصل (العمر، عدد المنتجات)", "0, 7, 150, -12", "int(\"25\") -> 25"],
+                    ["عدد عشري", "float", "للأرقام التي تحتوي على فاصلة عشرية (الأسعار، المعدل)", "19.99, 3.14, -0.5", "float(\"19.5\") -> 19.5"],
+                    ["سلسلة نصية", "str", "لأي كلام أو حروف أو رموز محاطة بعلامتي تنصيص", "\"أحمد\", 'Python', \"123\"", "str(500) -> \"500\""],
+                    ["قيمة منطقية", "bool", "للحالات التي تحتمل إجابتين فقط: صح أو خطأ", "True, False", "bool(1) -> True"]
+                  ]
+                },
+                code: "# لماذا التحويل النوعي مهم جداً؟\nprice_text = \"45\"\ntax_text = \"5\"\n\n# لو جمعناهما كنصوص سيحدث دمج نصي: \"45\" + \"5\" = \"455\"\nprint(\"دمج كنصوص:\", price_text + tax_text)\n\n# الحل الصحيح: نحولهما إلى أعداد صحيحة باستخدام int() أولاً\ntotal_price = int(price_text) + int(tax_text)\nprint(\"جمع كأرقام:\", total_price)\n\n# معرفة نوع أي متغير باستخدام دالة type()\nprint(\"نوع total_price هو:\", type(total_price))",
+                output: "دمج كنصوص: 455\nجمع كأرقام: 50\nنوع total_price هو: <class 'int'>"
+              },
+              {
+                title: "2.3 الغوص في السلاسل النصية: الفهرسة والتقطيع والدوال الجاهزة",
+                paragraphs: [
+                  "النص في بايثون سلسلة مرتبة من الحروف، وكل حرف له رقم مقعد (Index). القاعدة الذهبية في البرمجة: العدّ يبدأ دائماً من الصفر (0) وليس من الواحد!",
+                  "كما يمكنك الوصول إلى الحروف من نهاية الكلمة باستخدام الأرقام السالبة: -1 هو الحرف الأخير، و -2 هو الحرف قبل الأخير. وتوفّر بايثون أدوات جاهزة لتنظيف النصوص وتعديلها."
+                ],
+                code: "course = \"  Python Programming  \"\n\n# 1. تنظيف المسافات الزائدة من البداية والنهاية\nclean_course = course.strip()\nprint(\"النص النظيف:\", clean_course)\n\n# 2. حساب عدد الحروف\nprint(\"طول النص:\", len(clean_course))\n\n# 3. الوصول لحرف محدد (الفهرسة)\nprint(\"الحرف الأول (رقم 0):\", clean_course[0])\nprint(\"الحرف الأخير (رقم -1):\", clean_course[-1])\n\n# 4. اقتطاع جزء من النص (التقطيع من 0 إلى 6، والرقم 6 غير مشمول)\nprint(\"أول كلمة:\", clean_course[0:6])\n\n# 5. تحويل لحروف كبيرة أو استبدال كلمة\nprint(\"حروف كبيرة:\", clean_course.upper())\nprint(\"بعد الاستبدال:\", clean_course.replace(\"Python\", \"Modern Python\"))",
+                output: "النص النظيف: Python Programming\nطول النص: 18\nالحرف الأول (رقم 0): P\nالحرف الأخير (رقم -1): g\nأول كلمة: Python\nحروف كبيرة: PYTHON PROGRAMMING\nبعد الاستبدال: Modern Python Programming"
+              }
+            ],
+            mistake: {
+              title: "انتبه لهذا الفخ الشهير للمبتدئين:",
+              text: "في التقطيع clean_course[0:6]، الرقم 6 هو نقطة التوقف ولا يتم تضمينه! أي أن بايثون تأخذ الحروف ذات المواقع: 0، 1، 2، 3، 4، 5 فقط. كذلك تذكر أن النصوص غير قابلة للتعديل المباشر، لذلك الدوال مثل upper() و replace() تُرجع نسخة جديدة ولا تغيّر المتغير الأصلي إلا إذا خزّنت الناتج."
             },
-            code: `raw_price = "19.5"
-price = float(raw_price)
-quantity = int("3")
-total = price * quantity
-
-print(type(total), total)
-print("Receipt: $" + str(total))`,
-            output: "<class 'float'> 58.5\nReceipt: $58.5"
+            summary: "ملخص الدرس 2: المتغيرات صناديق في الذاكرة نخزّن فيها البيانات باستخدام =. الأنواع الأساسية هي int و float و str و bool. النصوص تبدأ فهرستها من 0 ويمكن تنظيفها وتقطيعها بسهولة."
           },
+
           {
-            id: "sec-6",
-            heading: "6. السلاسل النصية (Strings): الفهرسة والتقطيع والدوال الجاهزة",
-            paragraphs: [
-              "السلسلة النصية في بايثون تسلسل مرتب من المحارف يبدأ ترقيمه (Indexing) من الصفر 0 من اليسار، ومن -1 من اليمين. كما يدعم التقطيع (Slicing) بالصيغة text[start:stop:step].",
-              "توفر النصوص دوالاً مدمجة قوية مثل lower() و upper() و strip() لإزالة الفراغات الطرفية، و replace() و split() و len()."
+            id: "lesson-3",
+            kicker: "الدرس الثالث من 5 • الحساب والمنطق والتفاعل",
+            heading: "الدرس 3: العمليات الحسابية والمنطقية، وقراءة المدخلات input()، والتنسيق الاحترافي",
+            intro: [
+              "البرنامج الثابت الذي يطبع نفس النتيجة في كل مرة محدود الفائدة. القوة الحقيقية للبرمجة تظهر عندما يتفاعل البرنامج مع المستخدم، يأخذ منه بيانات، يجري عليها حسابات ومقارنات منطقية، ثم يعرض له نتيجة مخصصة.",
+              "في هذا الدرس سنتقن جميع العمليات الحسابية (بما فيها القسمة الصحيحة وباقي القسمة)، والعمليات المنطقية التي تبني ذكاء البرنامج، وطريقة قراءة مدخلات المستخدم بأمان."
             ],
-            kid: {
-              title: "شرح مبسّط: قطار الحروف المرقّم",
+            analogy: {
+              title: "تشبيه توزيع قطع الحلوى على الأطفال (لإتقان // و %)",
               lines: [
-                "الكلمة في بايثون تشبه قطار صغير كل عربة فيها حرف واحد، وأول عربة رقمها دائماً صفر 0!",
-                "تقدر تقصّ جزء من القطار أو تحوّل كل الحروف لكبيرة أو صغيرة بأمر واحد جاهز."
+                "تخيّل أن معك 17 قطعة حلوى وتريد توزيعها بالتساوي على 5 أطفال بدون كسر أي قطعة:",
+                "كم قطعة كاملة سيأخذ كل طفل؟ الجواب 3 قطع. في بايثون نكتب: 17 // 5 والنتيجة 3 (القسمة الصحيحة).",
+                "كم قطعة ستبقى معك في الصحن بعد التوزيع؟ الجواب قطعتان! في بايثون نكتب: 17 % 5 والنتيجة 2 (باقي القسمة)."
               ]
             },
-            code: `word = "  Python Academy  "
-clean = word.strip()
-print(len(clean))          # طول النص
-print(clean[0], clean[-1]) # أول حرف وآخر حرف
-print(clean[0:6])          # تقطيع أول 6 حروف
-print(clean.upper())
-print(clean.replace("Academy", "Lab"))`,
-            output: "14\nP y\nPython\nPYTHON ACADEMY\nPython Lab"
+            subsections: [
+              {
+                title: "3.1 الجدول الشامل للعمليات الحسابية وأولوية التنفيذ",
+                paragraphs: [
+                  "تتعامل بايثون مع العمليات الحسابية بنفس قواعد الرياضيات المعروفة (الأقواس أولاً، ثم الأسس، ثم الضرب والقسمة، وأخيراً الجمع والطرح). إليك جميع الرموز الحسابية في بايثون:"
+                ],
+                table: {
+                  headers: ["العملية", "الرمز في بايثون", "مثال", "النتيجة", "ملاحظة مهمة للمبتدئ"],
+                  rows: [
+                    ["الجمع", "+", "10 + 4", "14", "يجمع الأرقام، ويدمج النصوص إذا استُخدم مع str"],
+                    ["الطرح", "-", "10 - 4", "6", "يعمل مع الأرقام فقط"],
+                    ["الضرب", "*", "10 * 4", "40", "يضرب الأرقام، ويكرر النص إذا ضُرب برقم صحيح"],
+                    ["القسمة العادية", "/", "10 / 4", "2.5", "تُرجع دائماً عدداً عشرياً float حتى لو كان الناتج 5.0"],
+                    ["القسمة الصحيحة", "//", "10 // 4", "2", "تحذف الجزء العشري وتُرجع الجزء الصحيح فقط"],
+                    ["باقي القسمة", "%", "10 % 4", "2", "ممتازة لمعرفة الزوجي والفردي (num % 2 == 0)"],
+                    ["الأس (القوة)", "**", "2 ** 3", "8", "تعني 2 مرفوعة للأس 3"]
+                  ]
+                },
+                code: "apples = 23\nkids = 4\n\nper_kid = apples // kids\nleftover = apples % kids\nprint(\"كل طفل يأخذ:\", per_kid, \"تفاحات، ويبقى:\", leftover)\n\n# فحص هل الرقم زوجي أم فردي؟\nnumber = 18\nprint(\"هل 18 رقم زوجي؟\", number % 2 == 0)",
+                output: "كل طفل يأخذ: 5 تفاحات، ويبقى: 3\nهل 18 رقم زوجي؟ True"
+              },
+              {
+                title: "3.2 معاملات المقارنة والمنطق (كيف نطرح أسئلة على الحاسوب؟)",
+                paragraphs: [
+                  "لكي يتخذ الحاسوب قرارات، يجب أن نسأله أسئلة إجابتها True (نعم/صحيح) أو False (لا/خطأ). نستخدم لذلك معاملات المقارنة، ثم نربط أكثر من سؤال معاً باستخدام الكلمات المنطقية الثلاث: and و or و not."
+                ],
+                bullets: [
+                  "معاملات المقارنة: == (هل يساوي؟)، != (هل لا يساوي؟)، > (أكبر من)، < (أصغر من)، >= (أكبر أو يساوي)، <= (أصغر أو يساوي).",
+                  "الرابط and: يُعطي True فقط إذا كان الشرطان معاً صحيحين.",
+                  "الرابط or: يُعطي True إذا تحقق شرط واحد على الأقل من الشرطين.",
+                  "النافي not: يقلب النتيجة؛ يحوّل True إلى False والعكس."
+                ],
+                code: "age = 20\nhas_ticket = True\n\ncan_enter = (age >= 18) and has_ticket\nprint(\"هل يُسمح له بالدخول؟\", can_enter)\n\nis_weekend = False\nis_holiday = True\ncan_relax = is_weekend or is_holiday\nprint(\"هل اليوم إجازة؟\", can_relax)\nprint(\"عكس الإجازة:\", not can_relax)",
+                output: "هل يُسمح له بالدخول؟ True\nهل اليوم إجازة؟ True\nعكس الإجازة: False"
+              },
+              {
+                title: "3.3 التفاعل مع المستخدم عبر input() والتنسيق عبر f-strings",
+                paragraphs: [
+                  "الدالة input(\"رسالة للمستخدم: \") توقف البرنامج وتنتظر من المستخدم كتابة شيء ثم الضغط على Enter. القاعدة الذهبية: دالة input() تُرجع المدخلات دائماً كـ نص (str) حتى لو كتب المستخدم رقماً! لذلك إذا أردت إجراء حسابات على ما كتبه المستخدم، يجب تحويله بـ int() أو float().",
+                  "ولطباعة جملة تجمع بين الكلام والمتغيرات بشكل نظيف بدون فواصل مزعجة، نستخدم ميزة f-strings: نضع حرف f قبل علامة التنصيص مباشرة، ونضع أي متغير أو عملية حسابية داخل أقواس معقوفة { }."
+                ],
+                code: "user_name = input(\"اكتب اسمك: \")\nbirth_year = int(input(\"اكتب سنة ميلادك: \"))\n\ncurrent_year = 2026\nage = current_year - birth_year\n\n# الطباعة الاحترافية باستخدام f-string\nprint(f\"أهلاً يا {user_name}! عمرك التقريبي في عام {current_year} هو {age} سنة.\")",
+                output: "اكتب اسمك: طارق\nاكتب سنة ميلادك: 2004\nأهلاً يا طارق! عمرك التقريبي في عام 2026 هو 22 سنة."
+              }
+            ],
+            mistake: {
+              title: "الفرق القاتل بين = و == :",
+              text: "علامة يساوي الواحدة (=) هي أمر تخزين (مثال: x = 5 يعني ضع 5 داخل x). أما علامتا يساوي (==) فهما سؤال مقارنة (مثال: x == 5 يعني هل قيمة x تساوي 5؟). الخلط بينهما هو أشهر خطأ يقع فيه المبرمجون الجدد!"
+            },
+            summary: "ملخص الدرس 3: بايثون تدعم كل العمليات الحسابية بما فيها // و %، وتطرح الأسئلة المنطقية عبر == و and و or. نأخذ بيانات المستخدم بـ input() مع تحويلها لأرقام، وننسق المخرجات بأناقة عبر f-strings."
           },
+
           {
-            id: "sec-7",
-            heading: "7. العمليات الحسابية، المقارنة، والمنطق (Operators)",
-            paragraphs: [
-              "تشمل العمليات الحسابية: الجمع (+)، الطرح (-)، الضرب (*)، القسمة العشرية (/)، القسمة الصحيحة (//)، باقي القسمة (%)، والأس (**). وتخضع لأولوية العمليات الرياضية القياسية (PEMDAS).",
-              "معاملات المقارنة (==، !=، >، <، >=، <=) تُرجع bool، وتربطها المعاملات المنطقية (and، or، not)."
+            id: "lesson-4",
+            kicker: "الدرس الرابع من 5 • الذكاء البرمجي والتكرار",
+            heading: "الدرس 4: جعل البرنامج يتخذ قرارات (if / elif / else) ويكرر المهام (Loops)",
+            intro: [
+              "حتى الآن، برامجنا تسير في خط مستقيم من السطر الأول إلى الأخير. لكن الحياة ليست خطاً مستقيماً! في كل تطبيق تستخدمه، هناك قرارات تتغير حسب الحالة، وهناك مهام تتكرر مئات المرات.",
+              "في هذا الدرس ستتعلم الركيزتين الأساسيتين لمنطق البرمجة: الجمل الشرطية (Conditionals) والحلقات التكرارية (Loops)، مع فهم سر المسافة البادئة في بايثون."
             ],
-            kid: {
-              title: "شرح مبسّط: تقسيم قطع الحلوى والباقي في الصحن",
+            analogy: {
+              title: "تشبيه إشارة المرور ولفّات المضمار الرياضي",
               lines: [
-                "معك 11 قطعة حلوى وتبي توزعها بالتساوي على 3 أطفال: كل طفل ياخذ 3 قطع (11 // 3 = 3)، ويبقى في الصحن قطعتان (11 % 3 = 2).",
-                "باقي القسمة (%) مفيد جداً عشان نعرف إذا الرقم زوجي (رقم % 2 == 0) أو فردي!"
+                "الجملة الشرطية تشبه سائق السيارة أمام إشارة المرور: إذا (if) كانت الإشارة خضراء فانطلق، وإلا إذا (elif) كانت صفراء فاستعد، وإلا (else) فتوقف تماماً!",
+                "أما الحلقة التكرارية فتشبه مدرب الرياضة الذي يقول للاعب: اركض 5 لفات حول الملعب. بدلاً من كتابة الأمر 5 مرات، نكتبه مرة واحدة داخل حلقة من 1 إلى 5."
               ]
             },
-            code: `print(11 // 3)           # قسمة صحيحة: 3
-print(11 % 3)            # باقي القسمة: 2
-print(3 ** 3)            # 3 أس 3: 27
-number = 14
-is_even = (number % 2 == 0)
-print("Is even?", is_even)
-print(is_even and number > 10)`,
-            output: "3\n2\n27\nIs even? True\nTrue"
+            subsections: [
+              {
+                title: "4.1 الجمل الشرطية (if / elif / else) وسر المسافة البادئة",
+                paragraphs: [
+                  "تبدأ الجملة الشرطية بكلمة if متبوعة بالشرط ثم نقطتين رأسيتين (:). الأسطر التي تلي النقطتين وتكون مزاحة لليمين بمقدار 4 مسافات (Indentation) هي التي ستُنفّذ فقط إذا تحقق الشرط.",
+                  "إذا كان لدينا أكثر من احتمال، نستخدم elif لفحص شروط إضافية بالترتيب، ونختم بـ else لتكون الخيار الاحتياطي الأخير إذا لم يتحقق أي شرط مما سبق."
+                ],
+                code: "score = 84\n\nif score >= 90:\n    grade = \"ممتاز (A)\"\n    message = \"أداء استثنائي!\"\nelif score >= 80:\n    grade = \"جيد جداً (B)\"\n    message = \"عمل رائع، واصل التقدم!\"\nelif score >= 60:\n    grade = \"ناجح (C)\"\n    message = \"اجتزت الاختبار بنجاح.\"\nelse:\n    grade = \"راسب (F)\"\n    message = \"تحتاج إلى مراجعة إضافية.\"\n\nprint(f\"الدرجة: {score} | التقدير: {grade}\")\nprint(message)",
+                output: "الدرجة: 84 | التقدير: جيد جداً (B)\nعمل رائع، واصل التقدم!",
+                trace: [
+                  "يفحص الحاسوب الشرط الأول (84 >= 90): النتيجة False، فيتجاهل كتلة الممتاز.",
+                  "ينتقل إلى elif الأولى (84 >= 80): النتيجة True! فينفذ السطرين المزاحين تحتها ويخزّن جيد جداً.",
+                  "بمجرد تحقق أحد الشروط، يتخطى الحاسوب باقي elif و else فوراً وينتقل إلى سطر الطباعة."
+                ]
+              },
+              {
+                title: "4.2 حلقة التكرار المحددة: for مع دالة range()",
+                paragraphs: [
+                  "نستخدم حلقة for عندما نعرف عدد مرات التكرار مسبقاً، أو عندما نريد المرور على عناصر مجموعة واحدة تلو الأخرى. الأداة المرافقة لها دائماً هي range(start, stop, step) التي تولّد سلسلة أرقام.",
+                  "تذكر قاعدة التوقف: range(1, 6) تولّد الأرقام 1، 2، 3، 4، 5 (تتوقف قبل 6 مباشرة)."
+                ],
+                code: "# مثال عملي: حساب مجموع الأرقام من 1 إلى 5\ntotal = 0\n\nfor number in range(1, 6):\n    total = total + number\n    print(f\"أضفنا {number} -> المجموع الآن = {total}\")\n\nprint(\"المجموع النهائي:\", total)",
+                output: "أضفنا 1 -> المجموع الآن = 1\nأضفنا 2 -> المجموع الآن = 3\nأضفنا 3 -> المجموع الآن = 6\nأضفنا 4 -> المجموع الآن = 10\nأضفنا 5 -> المجموع الآن = 15\nالمجموع النهائي: 15"
+              },
+              {
+                title: "4.3 حلقة التكرار الشرطية while وأوامر التحكم break و continue",
+                paragraphs: [
+                  "تعمل حلقة while طالما أن الشرط المرافق لها ما زال صحيحاً (True). وهي مثالية عندما لا نعرف عدد اللفات مسبقاً.",
+                  "وللتحكم الدقيق داخل أي حلقة، لدينا أمران قويان: break (اكسر الحلقة واخرج منها فوراً) و continue (تخطَّ هذه اللفة فقط وانتقل إلى اللفة التالية)."
+                ],
+                code: "# مثال يجمع while مع continue و break\nstep = 0\nwhile step < 6:\n    step += 1\n    if step == 3:\n        print(\"تخطي الرقم 3!\")\n        continue\n    if step == 5:\n        print(\"توقف طارئ عند 5!\")\n        break\n    print(\"الخطوة الحالية:\", step)",
+                output: "الخطوة الحالية: 1\nالخطوة الحالية: 2\nتخطي الرقم 3!\nالخطوة الحالية: 4\nتوقف طارئ عند 5!"
+              }
+            ],
+            mistake: {
+              title: "احذر من الحلقة اللانهائية والمسافة البادئة:",
+              text: "في حلقة while، إذا نسيت تحديث المتغير الذي يغير الشرط (مثل نسيان step += 1)، سيبقى الشرط True إلى الأبد وسيتجمد البرنامج! كما أن نسيان المسافة البادئة (4 مسافات) بعد النقطتين : يسبب خطأ IndentationError فوراً."
+            },
+            summary: "ملخص الدرس 4: نستخدم if / elif / else لاتخاذ القرارات بناءً على الشروط، ونعتمد على المسافة البادئة لتحديد نطاق كل كتلة. ونستخدم for و while لتكرار الأوامر بكفاءة مع break و continue للتحكم في المسار."
           },
+
           {
-            id: "sec-8",
-            heading: "8. قراءة المدخلات input() وتنسيق النصوص f-strings",
-            paragraphs: [
-              "توقف الدالة input() البرنامج لقراءة سطر يكتبه المستخدم وتعيده دائماً كـ str. للعمليات الحسابية نحول الناتج بـ int() أو float().",
-              "لتنسيق النصوص باحترافية، نستخدم سلاسل f-strings بوضع حرف f قبل علامة التنصيص وكتابة المتغيرات أو التعبيرات داخل أقواس معقوفة {expr}."
+            id: "lesson-5",
+            kicker: "الدرس الخامس من 5 • تنظيم البيانات وبناء الدوال",
+            heading: "الدرس 5: تنظيم البيانات الضخمة (القوائم والقواميس) وبناء أدواتك الخاصة (الدوال Functions)",
+            intro: [
+              "تخيّل أنك تبني تطبيقاً لمدرسة فيها 500 طالب؛ هل يعقل أن تنشئ 500 متغير منفصل؟ بالطبع لا! هنا نحتاج إلى هياكل البيانات (Data Structures) التي تجمع عشرات أو آلاف العناصر في مكان واحد منظم.",
+              "وفي الوقت نفسه، بدلاً من نسخ ولصق نفس الكود في كل مكان، نتعلم كيف نصنع دوالنا الخاصة (Functions) لنحوّل الكود إلى قطع نظيفة وقابلة لإعادة الاستخدام مثل المحترفين."
             ],
-            kid: {
-              title: "شرح مبسّط: بطاقة دعوة تكتب اسمك تلقائياً",
+            analogy: {
+              title: "تشبيه قائمة التسوق، ودفتر الهاتف، وآلة صنع القهوة",
               lines: [
-                "أمر input() يخلي الكمبيوتر يسألك سؤال وينتظر جوابك على الكيبورد.",
-                "و f-string يشبه بطاقة دعوة فيها فراغ {name} يمتلئ باسمك فوراً وبشكل مرتب!"
+                "القائمة (List): تشبه ورقة قائمة التسوق المرتبة؛ يمكنك إضافة غرض جديد في آخرها أو تعديل غرض منها.",
+                "القاموس (Dictionary): يشبه دفتر جهات الاتصال في هاتفك؛ تبحث بالاسم (المفتاح Key) فيعطيك رقم الهاتف (القيمة Value) فوراً!",
+                "الدالة (Function): تشبه آلة القهوة الأوتوماتيكية؛ صُممت مرة واحدة، وكلما أردت قهوة تضغط زرها وتعطيها المدخلات فتُخرج لك كوباً جاهزاً عبر return."
               ]
             },
-            code: `student = input("Enter student name: ")
-hours = float(input("Study hours today: "))
-minutes = int(hours * 60)
-
-print(f"Student {student} studied {hours}h ({minutes} mins).")`,
-            output: "Enter student name: Omar\nStudy hours today: 2.5\nStudent Omar studied 2.5h (150 mins)."
-          },
-          {
-            id: "sec-9",
-            heading: "9. الجمل الشرطية (if / elif / else) والمسافة البادئة",
-            paragraphs: [
-              "تتيح الجمل الشرطية تفرّع مسار التنفيذ حسب تحقق الشروط. يفحص المفسّر if أولاً، ثم elif بالترتيب، وينفذ else إذا لم يتحقق أي شرط.",
-              "المسافة البادئة (4 مسافات) إجبارية نحوياً في بايثون لتحديد الكتلة التابعة لكل شرط."
+            subsections: [
+              {
+                title: "5.1 القوائم (Lists): تخزين مجموعات مرتبة وقابلة للتعديل",
+                paragraphs: [
+                  "تُكتب القائمة بين قوسين مربعين [ ] وتُفصل عناصرها بفواصل. يبدأ ترقيم عناصر القائمة من 0 تماماً مثل النصوص، وتتميز بأنها قابلة للتعديل: يمكنك إضافة عناصر جديدة بـ append()، أو تعديل عنصر حسب رقمه، أو المرور على جميع عناصرها بحلقة for."
+                ],
+                code: "shopping_list = [\"خبز\", \"حليب\", \"تفاح\"]\n\n# إضافة عنصر جديد في نهاية القائمة\nshopping_list.append(\"عسل\")\n\n# تعديل العنصر الثاني (رقم 1)\nshopping_list[1] = \"حليب طازج\"\n\nprint(\"عدد العناصر:\", len(shopping_list))\n\n# المرور على كل عنصر في القائمة وطباعته\nfor item in shopping_list:\n    print(\"- يجب شراء:\", item)",
+                output: "عدد العناصر: 4\n- يجب شراء: خبز\n- يجب شراء: حليب طازج\n- يجب شراء: تفاح\n- يجب شراء: عسل"
+              },
+              {
+                title: "5.2 القواميس (Dictionaries): تخزين البيانات الوصفية (مفتاح : قيمة)",
+                paragraphs: [
+                  "عندما تريد وصف شيء له عدة خصائص (مثل طالب له اسم، وعمر، ومعدل)، فإن القاموس (dict) هو الخيار المثالي. يُكتب القاموس بين قوسين معقوفين { } على هيئة أزواج key: value."
+                ],
+                code: "student = {\n    \"name\": \"ليلى\",\n    \"age\": 19,\n    \"grade\": 94.5\n}\n\n# قراءة قيمة عبر المفتاح\nprint(\"اسم الطالبة:\", student[\"name\"])\n\n# إضافة مفتاح جديد أو تحديث قيمة موجودة\nstudent[\"passed\"] = True\nstudent[\"grade\"] = 96.0\n\nprint(\"بيانات الطالبة المحدّثة:\", student)",
+                output: "اسم الطالبة: ليلى\nبيانات الطالبة المحدّثة: {'name': 'ليلى', 'age': 19, 'grade': 96.0, 'passed': True}"
+              },
+              {
+                title: "5.3 الدوال (Functions): كيف تصنع أوامرك الخاصة باستخدام def و return؟",
+                paragraphs: [
+                  "الدالة هي كتلة برمجية تعطيها اسماً وتؤدي مهمة محددة. نعرّف الدالة بالكلمة المحجوزة def ثم اسم الدالة ثم قوسين للمدخلات ثم نقطتين (:).",
+                  "تُستخدم التعليمة return داخل الدالة لإرجاع النتيجة النهائية إلى المكان الذي استدعى الدالة، حتى نتمكن من تخزينها في متغير أو استخدامها في حسابات أخرى."
+                ],
+                code: "# تعريف دالة تحسب السعر النهائي بعد الخصم\ndef calculate_final_price(price, discount_percent):\n    discount_amount = price * (discount_percent / 100)\n    final_price = price - discount_amount\n    return final_price\n\n# استدعاء الدالة وتجربتها على منتجين مختلفين\nlaptop_price = calculate_final_price(1000, 15)\nphone_price = calculate_final_price(600, 10)\n\nprint(f\"سعر اللابتوب بعد الخصم: {laptop_price}$\")\nprint(f\"سعر الهاتف بعد الخصم: {phone_price}$\")",
+                output: "سعر اللابتوب بعد الخصم: 850.0$\nسعر الهاتف بعد الخصم: 540.0$",
+                trace: [
+                  "السطور 2-5: هنا نعلّم بايثون كيف تحسب الخصم، لكن الدالة لا تعمل بعد حتى يتم استدعاؤها.",
+                  "السطر 8: نستدعي الدالة ونمرر لها 1000 و 15، فتحسب الناتج 850.0 وتُرجعه عبر return ليُخزّن في laptop_price.",
+                  "السطر 9: نعيد استخدام نفس الدالة ببيانات جديدة بدون تكرار معادلة الخصم."
+                ]
+              }
             ],
-            kid: {
-              title: "شرح مبسّط: اختيار الملابس حسب الطقس",
-              lines: [
-                "إذا الجو برد (if) البس معطف، وإلا إذا الجو معتدل (elif) البس قميص، وإلا (else) البس ملابس صيفية!",
-                "المسافات الفاضية قبل الأسطر تورّي الكمبيوتر أي أمر يشتغل جوا كل اختيار."
-              ]
+            mistake: {
+              title: "الفرق بين print() و return داخل الدالة:",
+              text: "الكثير من المبتدئين يكتبون print() داخل الدالة بدلاً من return! تذكّر: print() تعرض الرقم على الشاشة فقط ولا تُعطيه للبرنامج ليستخدمه لاحقاً (تُرجع None)، بينما return تُسلّم الناتج الفعلي للكود كي تخزّنه في متغير أو تجمع عليه رقماً آخر."
             },
-            code: `temp = 18
-
-if temp >= 30:
-    status = "Hot"
-elif temp >= 15:
-    status = "Mild"
-else:
-    status = "Cold"
-
-print(f"Temperature {temp}C -> {status}")`,
-            output: "Temperature 18C -> Mild"
-          },
-          {
-            id: "sec-10",
-            heading: "10. الحلقات التكرارية (Loops): while و for و break / continue",
-            paragraphs: [
-              "تُنفّذ حلقة while كتلة الكود طالما الشرط True. وتُكرّر حلقة for عبر عناصر تسلسل أو مجال رقمي range(start, stop, step).",
-              "تُنهي التعليمة break الحلقة فوراً، بينما تتخطى continue الدورة الحالية وتنتقل للدورة التالية."
-            ],
-            kid: {
-              title: "شرح مبسّط: الجري حول الملعب وتخطي الحفر",
-              lines: [
-                "حلقة for تشبه الجري 5 لفات حول الملعب بالعدّ: 1، 2، 3، 4، 5.",
-                "كلمة continue تقول: 'اقفز فوق هاي الخطوة وكمّل'، وكلمة break تقول: 'توقف واطلع من السباق فوراً!'"
-              ]
-            },
-            code: `total = 0
-for n in range(1, 7):
-    if n == 3:
-        continue       # تخطّي الرقم 3
-    if n == 6:
-        break          # إيقاف الحلقة عند 6
-    total += n
-    print("Added:", n)
-
-print("Total:", total)`,
-            output: "Added: 1\nAdded: 2\nAdded: 4\nAdded: 5\nTotal: 12"
-          },
-          {
-            id: "sec-11",
-            heading: "11. القوائم (Lists) والصفوف (Tuples)",
-            paragraphs: [
-              "القائمة (list) بنية بيانات مرتبة وقابلة للتعديل (Mutable) تُكتب بين معقوفتين [...] وتدعم الإضافة append() والحذف pop() والفرز sort() والمرور عليها بحلقة for.",
-              "الصف (tuple) يشبه القائمة لكنه غير قابل للتعديل (Immutable) ويُكتب بين قوسين (...) لحماية البيانات الثابتة."
-            ],
-            kid: {
-              title: "شرح مبسّط: حقيبة الظهر القابلة للتعديل vs الصندوق المقفل",
-              lines: [
-                "القائمة (List) مثل شنطة مدرستك: تقدر تحط فيها كتاب جديد (append) أو تطلّع منها قلم (pop) بأي وقت.",
-                "الصف (Tuple) مثل صندوق زجاجي مقفل بمفتاح: تشوف اللي جواه وتقرأه، بس ما تقدر تبدّل مكانه!"
-              ]
-            },
-            code: `tasks = ["Read", "Code", "Test"]
-tasks.append("Deploy")
-tasks[0] = "Study Python"
-
-for idx, item in enumerate(tasks, start=1):
-    print(f"{idx}. {item}")
-
-dimensions = (1920, 1080)  # Tuple ثابت
-print("Screen:", dimensions[0], "x", dimensions[1])`,
-            output: "1. Study Python\n2. Code\n3. Test\n4. Deploy\nScreen: 1920 x 1080"
-          },
-          {
-            id: "sec-12",
-            heading: "12. القواميس (Dictionaries) والمجموعات (Sets)",
-            paragraphs: [
-              "القاموس (dict) يخزن البيانات على شكل أزواج مفتاح وقيمة {key: value} بوقت وصول فائق السرعة O(1) وسطياً، ويُستخدم لتمثيل السجلات والملفات المهيكلة.",
-              "المجموعة (set) تخزن عناصر فريدة غير مكررة وتدعم عمليات الاتحاد والتقاطع الرياضية."
-            ],
-            kid: {
-              title: "شرح مبسّط: دفتر الهاتف وملصقات الأبطال بدون تكرار",
-              lines: [
-                "القاموس (Dictionary) مثل دفتر أرقام الهاتف: تبحث بالاسم (المفتاح) فيطلع لك الرقم (القيمة) فوراً!",
-                "المجموعة (Set) مثل ألبوم ملصقات: لو جاك ملصق مكرر مرتين، الألبوم يحتفظ بنسخة وحدة فقط!"
-              ]
-            },
-            code: `student = {
-    "name": "Ali",
-    "age": 17,
-    "grade": 96
-}
-student["passed"] = True
-print(student["name"], "->", student.get("grade"))
-
-unique_tags = {"python", "code", "python", "ai"}
-print(unique_tags)`,
-            output: "Ali -> 96\n{'python', 'code', 'ai'}"
-          },
-          {
-            id: "sec-13",
-            heading: "13. الدوال (Functions) وتعليمة return ونطاق المتغيرات",
-            paragraphs: [
-              "الدالة كتلة برمجية مسماة قابلة لإعادة الاستخدام تُعرّف بالكلمة المحجوزة def. تستقبل معاملات (Parameters) وتعيد نتيجة عبر return.",
-              "المتغيرات المعرّفة داخل الدالة تكون محلية (Local Scope) لا تُرى خارجها، مما يحمي البرنامج من التداخل غير المقصود."
-            ],
-            kid: {
-              title: "شرح مبسّط: آلة العصير السحرية",
-              lines: [
-                "الدالة تشبه عصّارة الفواكه: تعطيها برتقال (المدخلات)، تشتغل جواها، وترجع لك كوب عصير جاهز (return)!",
-                "بدل ما تعصر بإيدك كل مرة، تضغط زر الدالة باسمها فتشتغل فوراً."
-              ]
-            },
-            code: `def calc_discount(price, percent=10):
-    saved = price * (percent / 100)
-    return price - saved
-
-final_a = calc_discount(200, 25)
-final_b = calc_discount(100)      # يستخدم النسبة الافتراضية 10%
-print("Final A:", final_a)
-print("Final B:", final_b)`,
-            output: "Final A: 150.0\nFinal B: 90.0"
-          },
-          {
-            id: "sec-14",
-            heading: "14. معالجة الأخطاء والاستثناءات (try / except / finally)",
-            paragraphs: [
-              "عند تشغيل البرامج قد تحدث أخطاء وقت التشغيل (Runtime Exceptions) مثل القسمة على صفر ZeroDivisionError أو إدخال نص بدل رقم ValueError.",
-              "نستخدم كتلة try / except لالتقاط الخطأ بأمان ومنع توقف البرنامج المفاجئ، مع إمكانية إضافة finally لتنفيذ التنظيف دائماً."
-            ],
-            kid: {
-              title: "شرح مبسّط: وسادة الأمان تحت الأرجوحة",
-              lines: [
-                "تخيّل طفل يلعب على الأرجوحة وتحته وسادة إسفنج ناعمة: لو وقع ما يتأذى ويكمل لعب.",
-                "كتلة try / except هي الوسادة اللي تمسك الخطأ بلطف وتقول للمستخدم 'اكتب رقماً صحيحاً' بدل ما ينهار البرنامج!"
-              ]
-            },
-            code: `user_input = "abc"
-try:
-    num = int(user_input)
-    print(100 / num)
-except ValueError:
-    print("Error: Please enter digits only.")
-except ZeroDivisionError:
-    print("Error: Cannot divide by zero.")`,
-            output: "Error: Please enter digits only."
-          },
-          {
-            id: "sec-15",
-            heading: "15. التعامل مع الملفات (with open) واستيراد المكتبات (import)",
-            paragraphs: [
-              "للحفاظ على البيانات بعد إغلاق البرنامج، نكتب ونقرأ من الملفات باستخدام مدير السياق with open(filename, mode, encoding='utf-8') الذي يغلق الملف تلقائياً.",
-              "كما تضم بايثون مكتبة قياسية ضخمة (مثل math و random و datetime) تُستدعى عبر import."
-            ],
-            kid: {
-              title: "شرح مبسّط: دفتر الحفظ الدائم وصندوق الأدوات الجاهز",
-              lines: [
-                "المتغيرات تنمسح لما تطفي الكمبيوتر، أما الملفات تشبه دفتر حقيقي تكتب فيه وتلقاه بكرة موجود!",
-                "وأمر import يشبه استعارة صندوق أدوات جاهز من المكتبة بدل ما تصنع المفكّ بنفسك."
-              ]
-            },
-            code: `import math
-
-with open("notes.txt", "w", encoding="utf-8") as f:
-    f.write("MinPy Lesson 01 Completed!\\n")
-
-with open("notes.txt", "r", encoding="utf-8") as f:
-    print(f.read().strip())
-
-print("Square root of 81:", math.sqrt(81))`,
-            output: "MinPy Lesson 01 Completed!\nSquare root of 81: 9.0"
+            summary: "ملخص الدرس 5: القوائم [ ] تجمع العناصر المرتبة، والقواميس { } تربط كل مفتاح بقيمته، والدوال def ... return تنظّم كودك في وحدات ذكية قابلة لإعادة الاستخدام. بهذا تكون قد امتلكت جميع مفاتيح البرمجة الأساسية في بايثون!"
           }
         ],
         lab: {
-          id: "sec-16",
-          heading: "16. المختبر التطبيقي الشامل (6 اختبارات عملية)",
-          intro: "اختبر إتقانك لجميع مفاهيم المحاضرة في هذا المختبر التفاعلي. أكمل الأكواد البرمجية وأجب عن الأسئلة ثم اضغط زر الفحص.",
-          totalScoreLabel: (earned, total) => `النتيجة الكلية للمختبر: ${earned} / ${total}`,
-
-          ex1Title: "التحدي 1: المتغيرات والتحويل النوعي والطباعة",
-          ex1Desc: "أكمل الفراغات لإسناد الاسم، وتحويل \"40\" إلى عدد صحيح، وطباعة الناتج.",
-          ex1Hint: "استخدم (=) للإسناد، و (int) لتحويل النص إلى رقم، و (print) للطباعة.",
-          ex1CheckBtn: "فحص التحدي 1",
-          ex1HintBtn: "تلميح",
-          ex1Ok: "ممتاز! أتقنت الإسناد والتحويل من نص إلى عدد صحيح.",
-          ex1Err: "تحقق من الفراغات: نحتاج (=) ثم (int) ثم (print).",
-
-          ex2Title: "التحدي 2: الشروط المتعددة (if / elif / else)",
-          ex2Desc: "أكمل الكود لتصنيف الدرجة إلى A أو B أو C.",
-          ex2Hint: "استخدم if للشرط الأول، و elif للشرط الثاني، و else للحالة الأخيرة.",
-          ex2CheckBtn: "فحص التحدي 2",
-          ex2HintBtn: "تلميح",
-          ex2Ok: "رائع! بناء الشروط المتدرجة صحيح 100%.",
-          ex2Err: "راجع الكلمات المحجوزة: if ثم elif ثم else.",
-
-          ex3Title: "التحدي 3: الحلقات التكرارية (for / range)",
-          ex3Desc: "أكمل الحلقة لطباعة الأرقام من 0 إلى 3 باستخدام for و range.",
-          ex3Hint: "الصيغة الصحيحة: for i in range(4): متبوعة بـ print(i).",
-          ex3CheckBtn: "فحص التحدي 3",
-          ex3HintBtn: "تلميح",
-          ex3Ok: "ممتاز! حلقة التكرار تعمل بدقة.",
-          ex3Err: "تأكد من كتابة for ثم range ثم print.",
-
-          ex4Title: "التحدي 4: القوائم والدوال (def / append / return)",
-          ex4Desc: "أكمل الدالة التي تضيف عنصراً للقائمة ثم تُرجع طولها عبر len.",
-          ex4Hint: "عرّف الدالة بـ def، وأضف العنصر بـ append، وأرجع النتيجة بـ return.",
-          ex4CheckBtn: "فحص التحدي 4",
-          ex4HintBtn: "تلميح",
-          ex4Ok: "عمل احترافي! جمعت بين الدوال والقوائم بنجاح.",
-          ex4Err: "تحقق من كتابة def ثم append ثم return.",
-
-          ex5Title: "التحدي 5: القواميس ومعالجة الأخطاء (try / except)",
-          ex5Desc: "أكمل الكود المحمي لالتقاط خطأ القسمة على صفر.",
-          ex5Hint: "نبدأ كتلة الحماية بـ try ونلتقط الاستثناء بـ except.",
-          ex5CheckBtn: "فحص التحدي 5",
-          ex5HintBtn: "تلميح",
-          ex5Ok: "ممتاز! برنامجك الآن محمي ضد الانهيار المفاجئ.",
-          ex5Err: "راجع صيغة معالجة الاستثناءات: try ثم except.",
-
-          mcqTitle: "التحدي 6: سؤال فهم عميق",
-          mcqQuestion: "ماذا تطبع التعليمة print(15 % 4) في بايثون؟",
-          mcqOptions: [
-            { value: "3.75", text: "3.75 (ناتج القسمة العشرية)" },
-            { value: "3", text: "3 (باقي قسمة 15 على 4 لأن 4×3=12 والباقي 3)" },
-            { value: "4", text: "4 (المقسوم عليه)" }
-          ],
-          mcqCheckBtn: "تحقق من الإجابة",
-          mcqOk: "صحيح 100%! المعامل % يعيد باقي القسمة الصحيحة وهو 3.",
-          mcqErr: "خطأ بسيط: الرمز % يحسب باقي القسمة (15 - 12 = 3)."
+          id: "lab-section",
+          heading: "المختبر التطبيقي الشامل: اختبر فهمك للدروس الخمسة (6 تحديات)",
+          intro:
+            "أكمل التحديات الستة التالية للتأكد من ترسيخ كل درس عملياً. اكتب الإجابة في الفراغ واضغط على زر التحقق للحصول على تصحيح فوري وشرح مفصل.",
+          progressLabel: "تقدمك في المختبر:",
+          scoreUnit: "نقطة",
+          checkBtn: "تحقق من الإجابة",
+          hintBtn: "تلميح",
+          resetBtn: "إعادة المحاولة",
+          c1: {
+            badge: "تحدي الدرس 1 • الطباعة والفاصل",
+            score: "10 نقاط",
+            title: "1. إكمال أمر الطباعة بفاصل مخصص",
+            desc: "نريد طباعة التاريخ بصيغة 2026-11-25 باستخدام المعامل sep. ما اسم الدالة وما الرمز الناقص؟",
+            hint: "الدالة المسؤولة عن الطباعة هي print، والرمز الذي يفصل بين السنة والشهر واليوم هو الشرطة -",
+            ok: "أحسنت! الدالة print مع sep=\"-\" تضع الشرطة بين كل عنصر وآخر تلقائياً.",
+            err: "راجع الإجابة: اسم الدالة print، وقيمة sep يجب أن تكون الشرطة - لتطابق الناتج 2026-11-25."
+          },
+          c2: {
+            badge: "تحدي الدرس 2 • المتغيرات والتحويل النوعي",
+            score: "15 نقطة",
+            title: "2. تحويل النص إلى رقم صحيح لحساب المجموع",
+            desc: "المتغير items_str يحتوي على النص \"12\". حوّله إلى عدد صحيح لكي ينجح الجمع ويعطي 20:",
+            hint: "لتحويل سلسلة نصية إلى عدد صحيح، نستخدم الدالة المدمجة int().",
+            ok: "ممتاز! دالة int() حوّلت النص \"12\" إلى العدد 12 فأصبح المجموع 20 بدلاً من \"128\".",
+            err: "تذكر: لكي نجمع نصاً مع رقم، يجب تحويل النص أولاً إلى عدد صحيح باستخدام دالة int."
+          },
+          c3: {
+            badge: "تحدي الدرس 2 • فهرسة النصوص",
+            score: "15 نقطة",
+            title: "3. استخراج أول حرف من الكلمة",
+            desc: "في بايثون، يبدأ ترقيم المواقع (Indexing) من الصفر. ما الرقم الذي يوضع بين المعقوفتين لاستخراج الحرف P؟",
+            hint: "أول حرف في بايثون يأخذ دائماً الفهرس 0.",
+            ok: "صحيح 100%! الفهرس 0 يشير دائماً إلى أول حرف في السلسلة النصية.",
+            err: "خطأ بسيط: تذكر أن العدّ في بايثون يبدأ من 0 وليس من 1."
+          },
+          c4: {
+            badge: "تحدي الدرس 3 • باقي القسمة والمنطق",
+            score: "20 نقطة",
+            title: "4. حساب باقي القسمة لتوزيع العناصر",
+            desc: "لدينا 14 قطعة حلوى ونريد توزيعها بالتساوي على 4 أطفال. ما الرمز الحسابي الذي يعطينا الباقي (2)؟",
+            hint: "الرمز المسؤول عن إيجاد باقي القسمة في بايثون هو علامة النسبة المئوية %",
+            ok: "رائع! 14 % 4 تُرجع 2 لأن 14 تقسيم 4 تساوي 3 والباقي 2.",
+            err: "غير صحيح: القسمة الصحيحة // تُرجع 3، أما باقي القسمة فيستخدم الرمز %."
+          },
+          c5: {
+            badge: "تحدي الدرس 4 • الجمل الشرطية",
+            score: "20 نقطة",
+            title: "5. بناء شرط النجاح في الاختبار",
+            desc: "أكمل الكلمة المفتاحية للشرط الأول، والكلمة المفتاحية للشرط البديل (وإلا):",
+            hint: "نبدأ الشرط بـ if، ونختم بالخيار الاحتياطي الأخير بـ else.",
+            ok: "إجابة دقيقة! if تختبر الشرط، و else تنفذ الكتلة البديلة عند عدم تحقق الشرط.",
+            err: "راجع الدرس 4: الشرط يبدأ بـ if والخيار البديل يُكتب else."
+          },
+          c6: {
+            badge: "تحدي الدرس 5 • القوائم والدوال",
+            score: "20 نقطة",
+            title: "6. إنشاء دالة وإرجاع النتيجة",
+            desc: "أكمل الكلمة المحجوزة لتعريف الدالة، والكلمة المحجوزة لإرجاع ناتج الضرب:",
+            hint: "نعرّف الدالة بـ def، ونُرجع النتيجة النهائية منها بـ return.",
+            ok: "مبارك! أتقنت تعريف الدوال بـ def وإرجاع القيم بـ return بنجاح تام!",
+            err: "تذكر: تعريف الدالة يبدأ بـ def، وإرجاع القيمة من داخلها يتم عبر return."
+          }
         }
       },
 
       en: {
         dir: "ltr",
         brandName: "MinPy Academy",
-        brandSub: "Complete Python Foundations",
+        brandSub: "Deep Step-by-Step Python Foundations",
         themeToDark: "Dark Mode",
         themeToLight: "Light Mode",
         langToEn: "العربية",
-        lectureTag: "Lecture 01",
-        footerText: "MinPy Academy — Complete Python Foundations from Zero to Mastery",
-        badgeText: "Core Foundations Curriculum • 15 Complete Study Units",
-        metaText: "Level: Absolute Zero to Core Mastery • Includes 6 Interactive Lab Challenges",
-        title: "Python Programming Foundations: Complete Reference with Simple Analogies",
+        lectureTag: "5 Deep Lessons",
+        footerText: "MinPy Academy — Deep Step-by-Step Python Foundations (Arabic / English • Light / Dark)",
+        badgeText: "Deep Mastery Curriculum • 5 Comprehensive Lessons + Interactive Lab",
+        metaText: "Level: Absolute Beginner to Solid Foundations • Line-by-line explanations & tracing",
+        title: "Learn Python Programming from Absolute Zero: 5 Deep, Crystal-Clear Lessons",
         abstract:
-          "This comprehensive reference covers every real foundational concept in Python from absolute zero through functions, data structures, exception handling, and file I/O. Every unit pairs formal precision with a crystal-clear explanation that makes learning easy.",
-        tocTitle: "Complete Curriculum Index (15 Study Units + Interactive Lab)",
-        toc: [
-          { href: "#sec-1", label: "1. Computers, Algorithms & Programming" },
-          { href: "#sec-2", label: "2. Why Python & How the Interpreter Works" },
-          { href: "#sec-3", label: "3. Output print() & Comments" },
-          { href: "#sec-4", label: "4. Variables & Memory References" },
-          { href: "#sec-5", label: "5. Data Types & Type Casting" },
-          { href: "#sec-6", label: "6. Strings: Indexing, Slicing & Methods" },
-          { href: "#sec-7", label: "7. Arithmetic, Comparison & Logic Operators" },
-          { href: "#sec-8", label: "8. User Input input() & f-strings" },
-          { href: "#sec-9", label: "9. Conditionals: if / elif / else" },
-          { href: "#sec-10", label: "10. Loops: while, for, break & continue" },
-          { href: "#sec-11", label: "11. Lists & Tuples" },
-          { href: "#sec-12", label: "12. Dictionaries & Sets" },
-          { href: "#sec-13", label: "13. Functions, return & Variable Scope" },
-          { href: "#sec-14", label: "14. Exception Handling: try / except" },
-          { href: "#sec-15", label: "15. File I/O & Standard Library Modules" },
-          { href: "#sec-16", label: "16. Interactive Lab (6 Challenges)" }
+          "Instead of rushing through 15 fragmented topics, we distilled core programming and Python fundamentals into 5 deeply explained lessons. Every concept is unpacked step-by-step with real-world analogies, line-by-line tracing, common beginner pitfalls, and hands-on practice.",
+        roadmap: [
+          { step: "Lesson 01", name: "Computer Logic & print()" },
+          { step: "Lesson 02", name: "Variables, Types & Strings" },
+          { step: "Lesson 03", name: "Math, Logic & input()" },
+          { step: "Lesson 04", name: "Decisions (if) & Loops" },
+          { step: "Lesson 05", name: "Lists, Dicts & Functions" }
         ],
-        sections: [
+        tocTitle: "Course Map (5 Deep Lessons + Interactive Lab)",
+        toc: [
+          { href: "#lesson-1", label: "Lesson 1: How Computers Think, Python Interpreter, print() & Comments" },
+          { href: "#lesson-2", label: "Lesson 2: Computer Memory, Variables, Data Types & String Manipulation" },
+          { href: "#lesson-3", label: "Lesson 3: Arithmetic, Boolean Logic, User input() & f-string Formatting" },
+          { href: "#lesson-4", label: "Lesson 4: Smart Programs: Conditionals (if/elif/else) & Loops (for/while)" },
+          { href: "#lesson-5", label: "Lesson 5: Organizing Data (Lists & Dictionaries) & Building Functions" },
+          { href: "#lab-section", label: "Comprehensive Practice Lab: 6 Interactive Challenges with Instant Grading" }
+        ],
+        lessons: [
           {
-            id: "sec-1",
-            heading: "1. What Are Computers, Algorithms, and Programming?",
-            paragraphs: [
-              "A computer is a high-speed electronic processor that executes instructions stored in memory using binary logic (0s and 1s). It possesses no intuition of its own; it executes exact sequences deterministically.",
-              "An algorithm is a finite, unambiguous step-by-step procedure for solving a problem, and a program is that algorithm expressed in a formal programming language."
+            id: "lesson-1",
+            kicker: "Lesson 1 of 5 • Mindset & First Execution",
+            heading: "Lesson 1: How Does a Computer Think? What Is Python & How Do We Write Our First Program?",
+            intro: [
+              "Before writing a single character of code, let's clear up the biggest myth that intimidates beginners: a computer is not smart and does not understand meaning like humans do! A computer is an ultra-fast electronic machine that obeys instructions literally in the exact order you give them.",
+              "When we program, we simply write an ordered, unambiguous list of steps to solve a problem. That logical plan is called an Algorithm, and when written in a programming language like Python, it becomes a Program."
             ],
-            kid: {
-              title: "Simple Explanation: An Obedient Toy Robot and a Cake Recipe",
+            analogy: {
+              title: "Everyday Analogy: An Obedient Robot & Making Tea",
               lines: [
-                "Imagine a super-fast toy robot standing in front of you. It cannot decide anything on its own until you give clear steps in order: 'Walk two steps, turn right, pick up the blue block.'",
-                "An algorithm is like a cake recipe step by step, and programming is writing that recipe in a language the robot understands!"
+                "Imagine a fast household robot that knows nothing about daily life. If you say Make me tea, it freezes! You must give exact steps in order: pick up the kettle, fill it with water, place it on the stove, wait until it boils, add tea leaves and sugar.",
+                "Notice that order is critical: putting tea and sugar on the table without a kettle fails completely. Programming is writing that exact recipe for a computer."
               ]
             },
-            note: {
-              strong: "Fundamental Rule of Computing:",
-              text: "Instruction order determines correctness: putting on socks then shoes succeeds, whereas reversing the exact same steps fails."
-            }
+            subsections: [
+              {
+                title: "1.1 Why Python and How Does the Interpreter Work?",
+                paragraphs: [
+                  "Deep inside, computer hardware only understands electrical signals represented as 0s and 1s (Binary). Writing software directly in binary is practically impossible for humans.",
+                  "To solve this, computer scientists created high-level languages close to structured English, and Python is the clearest, most popular choice. A special program called the Python Interpreter reads your code line by line from top to bottom and translates it into machine instructions immediately."
+                ],
+                bullets: [
+                  "You write readable instructions in Python.",
+                  "The Python Interpreter reads your file line by line from top to bottom.",
+                  "It translates each line into machine code (0s and 1s) and executes it right away."
+                ]
+              },
+              {
+                title: "1.2 Your First Real Command: The print() Function",
+                paragraphs: [
+                  "To see what our program produces, we display output on the screen using Python's built-in function print().",
+                  "Write print in lowercase followed by parentheses (). If you want to print text, wrap it in double quotes or single quotes so Python knows it is literal text rather than a command name."
+                ],
+                code: "# This line is a comment; Python ignores it completely\nprint(\"Welcome to the world of programming!\")\nprint(\"Hello, Python World!\")\nprint(2026)\nprint(10 + 15)",
+                output: "Welcome to the world of programming!\nHello, Python World!\n2026\n25",
+                trace: [
+                  "Line 1: Starts with #, so the interpreter skips it as a note for humans.",
+                  "Line 2: Sees print with text inside quotes and displays it on the screen.",
+                  "Line 3: Prints the second text on a new line automatically.",
+                  "Line 4: 2026 is a number, so no quotation marks are needed.",
+                  "Line 5: Evaluates the math expression 10 + 15 first (25), then prints 25."
+                ]
+              },
+              {
+                title: "1.3 Customizing print() with sep & end, Plus Comments",
+                paragraphs: [
+                  "You can pass multiple values to print() separated by commas, and Python automatically places a space between them. You can customize that separator with sep and change what appears at the end of the line with end.",
+                  "Comments starting with # are essential professional habits—they explain why your code exists when you revisit it later."
+                ],
+                code: "# Printing multiple comma-separated items\nprint(\"Age:\", 25, \"years\")\n\n# Customizing the separator using sep\nprint(\"2026\", \"11\", \"25\", sep=\"/\")\n\n# Staying on the same line using end\nprint(\"Loading\", end=\"... \")\nprint(\"Done!\")",
+                output: "Age: 25 years\n2026/11/25\nLoading... Done!"
+              }
+            ],
+            mistake: {
+              title: "Watch Out for These 3 Common Beginner Mistakes:",
+              text: "1) Writing Print with a capital P: Python is case-sensitive, so Print causes an error. 2) Forgetting quotation marks around text: print(Hello) makes Python look for a variable named Hello. 3) Leaving a parenthesis or quote unclosed."
+            },
+            summary: "Lesson 1 Summary: Computers execute commands strictly from top to bottom via the Python Interpreter. Use print() to display results and # to write helpful human notes."
           },
-          {
-            id: "sec-2",
-            heading: "2. Why Python and How the Interpreter Works",
-            paragraphs: [
-              "Python is a high-level programming language created by Guido van Rossum in 1991. It prioritizes clean, readable syntax and supports procedural, object-oriented, and functional paradigms.",
-              "Standard CPython compiles source code into bytecode and executes it via the Python Virtual Machine (PVM), enabling rapid prototyping and clear error diagnostics."
-            ],
-            kid: {
-              title: "Simple Explanation: A Fast Live Translator",
-              lines: [
-                "You write neat instructions in friendly Python words, while the computer speaks binary zeros and ones.",
-                "The interpreter acts like a clever translator reading your lines and translating them immediately so the computer runs them right away."
-              ]
-            },
-            code: `# First official Python program
-print("Welcome to MinPy Academy!")
-print("2 + 3 =", 2 + 3)`,
-            output: "Welcome to MinPy Academy!\n2 + 3 = 5"
-          },
-          {
-            id: "sec-3",
-            heading: "3. Output with print() and Comments (#)",
-            paragraphs: [
-              "The built-in print() function writes values to standard output. It accepts multiple comma-separated arguments and supports optional parameters such as sep (separator) and end (line terminator).",
-              "Comments begin with # and are ignored by the interpreter; engineers use them to document intent and clarify non-obvious logic."
-            ],
-            kid: {
-              title: "Simple Explanation: A Megaphone and Pencil Margin Notes",
-              lines: [
-                "print() is like a megaphone: whatever you put inside the parentheses appears clearly on the screen.",
-                "A # symbol is like a quiet pencil note written for yourself in the notebook margin—the computer skips reading it out loud."
-              ]
-            },
-            code: `# Customizing separator and line ending in print
-print("2026", "11", "25", sep="-")
-print("Loading", end="... ")
-print("Done!")`,
-            output: "2026-11-25\nLoading... Done!"
-          },
-          {
-            id: "sec-4",
-            heading: "4. Variables, Naming Rules, and Memory References",
-            paragraphs: [
-              "A variable binds a symbolic identifier to an object in memory via the assignment operator (=). Python is dynamically typed, meaning types attach to objects at runtime and variables can be rebound.",
-              "Identifiers must start with a letter or underscore (_), cannot start with a digit, contain no spaces, are case-sensitive (total != Total), and follow snake_case by convention."
-            ],
-            kid: {
-              title: "Simple Explanation: Labeled Toy Boxes on a Shelf",
-              lines: [
-                "Picture neat boxes on a shelf with name stickers on the front, such as a box labeled 'score' and another labeled 'level'.",
-                "Writing score = 10 puts 10 stars inside that box. Writing score = 20 later replaces the old stars with 20 stars!"
-              ]
-            },
-            code: `player_name = "Ziad"
-level = 1
-score = 100
-score += 50          # Shorthand for score = score + 50
-x, y = 10, 20        # Multiple assignment
 
-print(player_name, level, score)
-print(x, y)`,
-            output: "Ziad 1 150\n10 20"
-          },
           {
-            id: "sec-5",
-            heading: "5. Core Data Types and Explicit Type Casting",
-            paragraphs: [
-              "Core built-in types include int (arbitrary-precision integers), float (floating-point decimals), str (immutable text sequences), and bool (True or False).",
-              "Use type() to inspect an object's class, and int(), float(), str(), or bool() for explicit type conversion."
+            id: "lesson-2",
+            kicker: "Lesson 2 of 5 • Memory, Data Types & Strings",
+            heading: "Lesson 2: How Computers Store Data: Variables, Data Types & String Manipulation",
+            intro: [
+              "Imagine a program tracking exam scores or a bank balance. Where does the computer keep those values while running? Inside RAM (memory). Instead of dealing with raw memory addresses, programming gives us Variables.",
+              "In this lesson, you will master creating variables, understanding Python's 4 core data types, and slicing or transforming text strings."
             ],
-            kid: {
-              title: "Simple Explanation: Counting Whole Balls vs. Measuring Milk",
+            analogy: {
+              title: "Analogy: Labeled Storage Boxes in a Warehouse",
               lines: [
-                "Integers (int) count whole items: 1, 2, 3.",
-                "Floats (float) measure fractions: 1.5 cups.",
-                "Strings (str) hold quoted text like \"Hello\".",
-                "Booleans (bool) act like a light switch: True (on) or False (off)."
+                "Picture computer memory as a huge warehouse full of empty boxes. When you write score = 100, you tell Python: grab an empty box, put 100 inside it, and stick a label reading score on the front.",
+                "In programming, = does not mean mathematical equality—it means Assignment: take the value on the right and store it inside the variable on the left."
               ]
             },
-            table: {
-              headers: ["Concept", "Python Type", "Examples", "Casting Example"],
-              rows: [
-                ["Integer", "int", "0, 17, -45", "int(\"17\") -> 17"],
-                ["Float", "float", "3.14, -2.5, 8.0", "float(\"3.5\") -> 3.5"],
-                ["String", "str", "\"MinPy\", 'Hi'", "str(99) -> \"99\""],
-                ["Boolean", "bool", "True, False", "bool(1) -> True, bool(0) -> False"]
-              ]
+            subsections: [
+              {
+                title: "2.1 Variable Naming Rules & Updating Values",
+                paragraphs: [
+                  "Choose descriptive names like user_name or total_price while following Python's 4 strict naming rules:"
+                ],
+                bullets: [
+                  "Must start with a letter (a-z, A-Z) or an underscore (_).",
+                  "Cannot start with a digit (1player is invalid; player1 is valid).",
+                  "No spaces or special symbols (use underscores: student_age).",
+                  "Cannot use Python reserved keywords (such as print, if, or for)."
+                ],
+                code: "player_name = \"Sami\"\npoints = 50\nprint(\"Initial points:\", points)\n\n# Updating the variable: 50 + 30 = 80\npoints = points + 30\nprint(\"Points after win:\", points)\n\n# Shorthand operator for the exact same update:\npoints += 20\nprint(\"Final points:\", points)",
+                output: "Initial points: 50\nPoints after win: 80\nFinal points: 100",
+                trace: [
+                  "Line 1: Creates a box named player_name holding \"Sami\".",
+                  "Line 2: Creates a box named points holding 50.",
+                  "Line 6: Evaluates 50 + 30 first (80), then replaces 50 with 80 inside points.",
+                  "Line 9: += adds 20 directly to the existing value in points."
+                ]
+              },
+              {
+                title: "2.2 The 4 Fundamental Data Types & Type Casting",
+                paragraphs: [
+                  "Computers treat numbers differently from text: numbers can be added and multiplied, whereas strings are joined and formatted. Python organizes basic values into 4 primary types:"
+                ],
+                table: {
+                  headers: ["Data Type", "Python Keyword", "When to Use It", "Examples", "Conversion Function"],
+                  rows: [
+                    ["Integer", "int", "Whole numbers without decimals (age, item count)", "0, 7, 150, -12", "int(\"25\") -> 25"],
+                    ["Floating-Point", "float", "Numbers with decimal points (prices, GPA)", "19.99, 3.14, -0.5", "float(\"19.5\") -> 19.5"],
+                    ["String", "str", "Any text, letters, or symbols wrapped in quotes", "\"Alex\", 'Python', \"123\"", "str(500) -> \"500\""],
+                    ["Boolean", "bool", "Logical states with two possibilities: true or false", "True, False", "bool(1) -> True"]
+                  ]
+                },
+                code: "# Why Type Casting matters:\nprice_text = \"45\"\ntax_text = \"5\"\n\n# Adding strings concatenates them: \"45\" + \"5\" = \"455\"\nprint(\"Concatenated as text:\", price_text + tax_text)\n\n# Correct way: convert both to integers using int() first\ntotal_price = int(price_text) + int(tax_text)\nprint(\"Added as numbers:\", total_price)\n\n# Inspect any variable's type using type()\nprint(\"Type of total_price:\", type(total_price))",
+                output: "Concatenated as text: 455\nAdded as numbers: 50\nType of total_price: <class 'int'>"
+              },
+              {
+                title: "2.3 Deep Dive into Strings: Indexing, Slicing & Built-in Methods",
+                paragraphs: [
+                  "A string is an ordered sequence of characters where each character has an index. Golden Rule of Programming: Indexing always starts at 0, not 1!",
+                  "Negative indices count backward from the end: -1 is the last character, and -2 is the second-to-last. Python also includes handy methods to clean and transform text."
+                ],
+                code: "course = \"  Python Programming  \"\n\n# 1. Remove extra leading and trailing spaces\nclean_course = course.strip()\nprint(\"Clean text:\", clean_course)\n\n# 2. Count total characters\nprint(\"Length:\", len(clean_course))\n\n# 3. Access specific characters (Indexing)\nprint(\"First char (index 0):\", clean_course[0])\nprint(\"Last char (index -1):\", clean_course[-1])\n\n# 4. Extract a substring (Slicing from 0 up to 6, 6 excluded)\nprint(\"First word:\", clean_course[0:6])\n\n# 5. Uppercase conversion and word replacement\nprint(\"Uppercase:\", clean_course.upper())\nprint(\"Replaced:\", clean_course.replace(\"Python\", \"Modern Python\"))",
+                output: "Clean text: Python Programming\nLength: 18\nFirst char (index 0): P\nLast char (index -1): g\nFirst word: Python\nUppercase: PYTHON PROGRAMMING\nReplaced: Modern Python Programming"
+              }
+            ],
+            mistake: {
+              title: "Watch Out for This Classic Slicing Trap:",
+              text: "In clean_course[0:6], index 6 is the stop boundary and is NOT included! Python grabs indices 0 through 5 (6 characters total). Also, strings are immutable, so methods like upper() return a new string rather than modifying the original variable unless reassigned."
             },
-            code: `raw_price = "19.5"
-price = float(raw_price)
-quantity = int("3")
-total = price * quantity
-
-print(type(total), total)
-print("Receipt: $" + str(total))`,
-            output: "<class 'float'> 58.5\nReceipt: $58.5"
+            summary: "Lesson 2 Summary: Variables are labeled memory boxes assigned with =. The core types are int, float, str, and bool. Strings are zero-indexed sequences that can be sliced and cleaned effortlessly."
           },
+
           {
-            id: "sec-6",
-            heading: "6. Strings: Indexing, Slicing, and Built-in Methods",
-            paragraphs: [
-              "Strings are ordered character sequences indexed from 0 on the left and -1 on the right. Substrings are extracted via slicing: text[start:stop:step].",
-              "Common non-mutating string methods include strip(), lower(), upper(), replace(), split(), and len()."
+            id: "lesson-3",
+            kicker: "Lesson 3 of 5 • Math, Logic & User Interaction",
+            heading: "Lesson 3: Arithmetic & Boolean Logic, User input(), and Clean f-string Formatting",
+            intro: [
+              "A static program that prints the exact same output every run has limited usefulness. Real software interacts with users, accepts input, performs calculations and logical checks, and displays tailored results.",
+              "In this lesson, you will master every arithmetic operator (including floor division and modulo), Boolean logic, safe user input, and clean f-string formatting."
             ],
-            kid: {
-              title: "Simple Explanation: A Numbered Letter Train",
+            analogy: {
+              title: "Analogy: Sharing Candies Among Kids (Mastering // and %)",
               lines: [
-                "A word in Python is like a tiny train where each car holds one letter, and the very first car is always numbered 0!",
-                "You can slice out a section of cars or turn all letters uppercase with a single command."
+                "Imagine you have 17 candies to share equally among 5 kids without breaking any candy:",
+                "How many whole candies does each kid get? 3 candies. In Python: 17 // 5 evaluates to 3 (Floor Division).",
+                "How many candies remain left over on the plate? 2 candies! In Python: 17 % 5 evaluates to 2 (Modulo / Remainder)."
               ]
             },
-            code: `word = "  Python Academy  "
-clean = word.strip()
-print(len(clean))
-print(clean[0], clean[-1])
-print(clean[0:6])
-print(clean.upper())
-print(clean.replace("Academy", "Lab"))`,
-            output: "14\nP y\nPython\nPYTHON ACADEMY\nPython Lab"
+            subsections: [
+              {
+                title: "3.1 Complete Arithmetic Operators Table & Precedence",
+                paragraphs: [
+                  "Python follows standard mathematical order of operations (Parentheses, Exponents, Multiplication/Division, Addition/Subtraction). Here is the full operator reference:"
+                ],
+                table: {
+                  headers: ["Operation", "Symbol", "Example", "Result", "Beginner Tip"],
+                  rows: [
+                    ["Addition", "+", "10 + 4", "14", "Adds numbers; concatenates strings with str"],
+                    ["Subtraction", "-", "10 - 4", "6", "Works with numeric types only"],
+                    ["Multiplication", "*", "10 * 4", "40", "Multiplies numbers; repeats strings with int"],
+                    ["True Division", "/", "10 / 4", "2.5", "Always returns a float, even when dividing evenly"],
+                    ["Floor Division", "//", "10 // 4", "2", "Discards the fractional part and keeps the whole integer"],
+                    ["Modulo (Remainder)", "%", "10 % 4", "2", "Great for checking even/odd numbers (num % 2 == 0)"],
+                    ["Exponentiation", "**", "2 ** 3", "8", "Raises 2 to the power of 3"]
+                  ]
+                },
+                code: "apples = 23\nkids = 4\n\nper_kid = apples // kids\nleftover = apples % kids\nprint(\"Each kid gets:\", per_kid, \"apples, leftover:\", leftover)\n\n# Checking if a number is even or odd\nnumber = 18\nprint(\"Is 18 even?\", number % 2 == 0)",
+                output: "Each kid gets: 5 apples, leftover: 3\nIs 18 even? True"
+              },
+              {
+                title: "3.2 Comparison & Boolean Operators (Asking Questions in Code)",
+                paragraphs: [
+                  "To make decisions, programs evaluate questions whose answers are either True or False. We use comparison operators and combine multiple conditions with and, or, and not."
+                ],
+                bullets: [
+                  "Comparison operators: == (equal to), != (not equal to), > (greater than), < (less than), >= (greater or equal), <= (less or equal).",
+                  "and: Returns True only if BOTH conditions are True.",
+                  "or: Returns True if AT LEAST ONE condition is True.",
+                  "not: Flips a Boolean value (turns True into False and vice versa)."
+                ],
+                code: "age = 20\nhas_ticket = True\n\ncan_enter = (age >= 18) and has_ticket\nprint(\"Allowed entry?\", can_enter)\n\nis_weekend = False\nis_holiday = True\ncan_relax = is_weekend or is_holiday\nprint(\"Day off?\", can_relax)\nprint(\"Opposite of day off:\", not can_relax)",
+                output: "Allowed entry? True\nDay off? True\nOpposite of day off: False"
+              },
+              {
+                title: "3.3 Reading User Input via input() & Formatting with f-strings",
+                paragraphs: [
+                  "The function input(\"Prompt: \") pauses execution until the user types a line and presses Enter. Golden Rule: input() ALWAYS returns a string (str), even if the user types digits! Convert it with int() or float() before doing math.",
+                  "To embed variables cleanly inside strings, prefix the quote with f (an f-string) and place variables or expressions inside curly braces { }."
+                ],
+                code: "user_name = input(\"Enter your name: \")\nbirth_year = int(input(\"Enter your birth year: \"))\n\ncurrent_year = 2026\nage = current_year - birth_year\n\n# Clean formatting with f-string\nprint(f\"Welcome, {user_name}! In {current_year}, your approximate age is {age}.\")",
+                output: "Enter your name: Tariq\nEnter your birth year: 2004\nWelcome, Tariq! In 2026, your approximate age is 22."
+              }
+            ],
+            mistake: {
+              title: "The Crucial Difference Between = and == :",
+              text: "A single equals sign (=) assigns a value (x = 5 stores 5 in x). A double equals sign (==) compares two values (x == 5 asks whether x equals 5). Confusing them is one of the most frequent beginner errors."
+            },
+            summary: "Lesson 3 Summary: Python supports full arithmetic including // and %, evaluates logic with ==, and, or, reads text via input(), and formats clean output with f-strings."
           },
+
           {
-            id: "sec-7",
-            heading: "7. Arithmetic, Comparison, and Logical Operators",
-            paragraphs: [
-              "Arithmetic operators include +, -, *, /, floor division (//), modulo remainder (%), and exponentiation (**), evaluated according to standard precedence rules.",
-              "Comparison operators (==, !=, >, <, >=, <=) produce booleans combined with logical operators (and, or, not)."
+            id: "lesson-4",
+            kicker: "Lesson 4 of 5 • Branching Logic & Repetition",
+            heading: "Lesson 4: Making Programs Smart: Conditionals (if / elif / else) & Loops (for / while)",
+            intro: [
+              "So far, our programs run in a straight line from top to bottom. Real-world software branches based on conditions and repeats actions efficiently.",
+              "In this lesson, you will master conditional branching and repetition loops, along with Python's signature indentation rule."
             ],
-            kid: {
-              title: "Simple Explanation: Sharing Candies and Leftovers on the Plate",
+            analogy: {
+              title: "Analogy: Traffic Lights & Running Laps Around a Track",
               lines: [
-                "Suppose you share 11 candies equally among 3 kids: each gets 3 candies (11 // 3 = 3), and 2 candies stay left over (11 % 3 = 2).",
-                "Modulo (%) is super handy for checking if a number is even (number % 2 == 0)!"
+                "Conditionals work like a driver at a traffic light: if the light is green drive, elif it is yellow slow down, else stop completely!",
+                "Loops work like a coach telling an athlete: Run 5 laps around the track. Instead of writing Run a lap 5 separate times, you write it once inside a loop from 1 to 5."
               ]
             },
-            code: `print(11 // 3)
-print(11 % 3)
-print(3 ** 3)
-number = 14
-is_even = (number % 2 == 0)
-print("Is even?", is_even)
-print(is_even and number > 10)`,
-            output: "3\n2\n27\nIs even? True\nTrue"
+            subsections: [
+              {
+                title: "4.1 Conditionals (if / elif / else) & Indentation Rules",
+                paragraphs: [
+                  "Start a conditional block with if followed by a condition and a colon (:). Every line indented by 4 spaces beneath it belongs to that block and runs only when the condition is True.",
+                  "Use elif to check additional conditions sequentially, and end with else as a fallback when none of the above conditions match."
+                ],
+                code: "score = 84\n\nif score >= 90:\n    grade = \"Excellent (A)\"\n    message = \"Outstanding performance!\"\nelif score >= 80:\n    grade = \"Very Good (B)\"\n    message = \"Great job, keep going!\"\nelif score >= 60:\n    grade = \"Pass (C)\"\n    message = \"You passed the exam.\"\nelse:\n    grade = \"Fail (F)\"\n    message = \"Needs further review.\"\n\nprint(f\"Score: {score} | Grade: {grade}\")\nprint(message)",
+                output: "Score: 84 | Grade: Very Good (B)\nGreat job, keep going!",
+                trace: [
+                  "Checks the first condition (84 >= 90): False, so it skips the A block.",
+                  "Checks the first elif (84 >= 80): True! Executes its indented lines and sets grade to B.",
+                  "Once a branch matches, Python skips all remaining elif/else blocks and jumps to print()."
+                ]
+              },
+              {
+                title: "4.2 Definite Loops: for with range()",
+                paragraphs: [
+                  "Use a for loop when you know the number of iterations or want to step through items in a sequence. Paired with range(start, stop, step), it generates numbers cleanly.",
+                  "Remember the stop rule: range(1, 6) yields 1, 2, 3, 4, 5 (stopping right before 6)."
+                ],
+                code: "# Practical example: summing numbers from 1 to 5\ntotal = 0\n\nfor number in range(1, 6):\n    total = total + number\n    print(f\"Added {number} -> Running total = {total}\")\n\nprint(\"Final total:\", total)",
+                output: "Added 1 -> Running total = 1\nAdded 2 -> Running total = 3\nAdded 3 -> Running total = 6\nAdded 4 -> Running total = 10\nAdded 5 -> Running total = 15\nFinal total: 15"
+              },
+              {
+                title: "4.3 Conditional Loops: while, break & continue",
+                paragraphs: [
+                  "A while loop repeats as long as its condition stays True—ideal when you don't know beforehand how many attempts are needed.",
+                  "Inside any loop, break exits the loop immediately, whereas continue skips the rest of the current iteration and jumps to the next cycle."
+                ],
+                code: "# Combining while with continue and break\nstep = 0\nwhile step < 6:\n    step += 1\n    if step == 3:\n        print(\"Skipping number 3!\")\n        continue\n    if step == 5:\n        print(\"Emergency stop at 5!\")\n        break\n    print(\"Current step:\", step)",
+                output: "Current step: 1\nCurrent step: 2\nSkipping number 3!\nCurrent step: 4\nEmergency stop at 5!"
+              }
+            ],
+            mistake: {
+              title: "Avoid Infinite Loops & Indentation Errors:",
+              text: "In a while loop, forgetting to update the loop variable (such as omitting step += 1) keeps the condition True forever and freezes your program! Also, forgetting the 4-space indentation after a colon : triggers an indentation error."
+            },
+            summary: "Lesson 4 Summary: Use if/elif/else with 4-space indentation for decisions, and use for/while loops with break and continue to automate repetitive tasks."
           },
+
           {
-            id: "sec-8",
-            heading: "8. Reading User Input input() and Formatting with f-strings",
-            paragraphs: [
-              "input() pauses execution to read a line of user input and always returns a str. Convert with int() or float() before doing math.",
-              "Formatted string literals (f-strings) embed expressions directly inside braces {expr} for clean output."
+            id: "lesson-5",
+            kicker: "Lesson 5 of 5 • Data Structures & Reusable Functions",
+            heading: "Lesson 5: Organizing Data (Lists & Dictionaries) and Building Your Own Tools (Functions)",
+            intro: [
+              "Imagine building an app for a school with 500 students—you would never create 500 separate variables! Instead, we use Data Structures to store collections cleanly.",
+              "Likewise, rather than copy-pasting the same logic everywhere, we package reusable steps into Functions so our programs stay clean, modular, and easy to maintain."
             ],
-            kid: {
-              title: "Simple Explanation: A Party Card That Fills In Your Name",
+            analogy: {
+              title: "Analogy: Shopping List, Phone Contacts & Coffee Machine",
               lines: [
-                "input() lets the computer ask you a question and wait for your keyboard answer.",
-                "An f-string works like an invitation card with a {name} blank that automatically fills in your name!"
+                "List: Like an ordered shopping list; you can append new items or modify existing ones.",
+                "Dictionary: Like your phone's contact book; you look up a person's name (Key) to retrieve their phone number (Value) instantly.",
+                "Function: Like an automatic coffee machine; built once, and whenever you press its button with inputs, it outputs a result via return."
               ]
             },
-            code: `student = input("Enter student name: ")
-hours = float(input("Study hours today: "))
-minutes = int(hours * 60)
-
-print(f"Student {student} studied {hours}h ({minutes} mins).")`,
-            output: "Enter student name: Omar\nStudy hours today: 2.5\nStudent Omar studied 2.5h (150 mins)."
-          },
-          {
-            id: "sec-9",
-            heading: "9. Conditional Statements (if / elif / else) and Indentation",
-            paragraphs: [
-              "Conditionals branch program execution based on boolean expressions. Python checks if first, then elif clauses sequentially, and falls back to else.",
-              "Indentation (4 spaces) defines block ownership syntactically in Python."
+            subsections: [
+              {
+                title: "5.1 Lists: Ordered, Mutable Collections",
+                paragraphs: [
+                  "Lists are written inside square brackets [ ] with comma-separated elements. Like strings, lists are zero-indexed, and they are mutable—you can add items with append(), update items by index, and loop over them effortlessly."
+                ],
+                code: "shopping_list = [\"Bread\", \"Milk\", \"Apples\"]\n\n# Add a new item at the end\nshopping_list.append(\"Honey\")\n\n# Update the second item (index 1)\nshopping_list[1] = \"Fresh Milk\"\n\nprint(\"Total items:\", len(shopping_list))\n\n# Loop over every item in the list\nfor item in shopping_list:\n    print(\"- Buy:\", item)",
+                output: "Total items: 4\n- Buy: Bread\n- Buy: Fresh Milk\n- Buy: Apples\n- Buy: Honey"
+              },
+              {
+                title: "5.2 Dictionaries: Key-Value Records",
+                paragraphs: [
+                  "When describing an entity with named attributes (like a student's name, age, and grade), a Dictionary (dict) is ideal. It uses curly braces { } containing key: value pairs."
+                ],
+                code: "student = {\n    \"name\": \"Layla\",\n    \"age\": 19,\n    \"grade\": 94.5\n}\n\n# Read a value by its key\nprint(\"Student name:\", student[\"name\"])\n\n# Add a new key or update an existing value\nstudent[\"passed\"] = True\nstudent[\"grade\"] = 96.0\n\nprint(\"Updated record:\", student)",
+                output: "Student name: Layla\nUpdated record: {'name': 'Layla', 'age': 19, 'grade': 96.0, 'passed': True}"
+              },
+              {
+                title: "5.3 Functions: Creating Custom Commands with def & return",
+                paragraphs: [
+                  "A function is a named block of code that performs a specific task. Define it with def, a function name, parentheses for parameters, and a colon (:).",
+                  "Use return to send the computed result back to the caller so it can be stored in a variable or used in further calculations."
+                ],
+                code: "# Define a function that calculates final price after discount\ndef calculate_final_price(price, discount_percent):\n    discount_amount = price * (discount_percent / 100)\n    final_price = price - discount_amount\n    return final_price\n\n# Call the function for two different products\nlaptop_price = calculate_final_price(1000, 15)\nphone_price = calculate_final_price(600, 10)\n\nprint(f\"Laptop after discount: ${laptop_price}\")\nprint(f\"Phone after discount: ${phone_price}\")",
+                output: "Laptop after discount: $850.0\nPhone after discount: $540.0",
+                trace: [
+                  "Lines 2-5: Teaches Python how to calculate a discount; nothing executes until called.",
+                  "Line 8: Calls the function with 1000 and 15, returning 850.0 into laptop_price.",
+                  "Line 9: Reuses the exact same logic with new inputs without duplicating code."
+                ]
+              }
             ],
-            kid: {
-              title: "Simple Explanation: Picking Clothes Based on the Weather",
-              lines: [
-                "If it is hot (if), wear a t-shirt; else if it is mild (elif), wear a light jacket; else, put on a warm coat!",
-                "The spaces before each line tell Python which actions belong inside each choice."
-              ]
+            mistake: {
+              title: "print() vs return Inside a Function:",
+              text: "Many beginners write print() inside a function instead of return! Remember: print() only displays text on screen and hands back None to your program, whereas return delivers the actual value so you can store or reuse it."
             },
-            code: `temp = 18
-
-if temp >= 30:
-    status = "Hot"
-elif temp >= 15:
-    status = "Mild"
-else:
-    status = "Cold"
-
-print(f"Temperature {temp}C -> {status}")`,
-            output: "Temperature 18C -> Mild"
-          },
-          {
-            id: "sec-10",
-            heading: "10. Loops: while, for, break, and continue",
-            paragraphs: [
-              "A while loop repeats while its condition remains True. A for loop iterates over sequences or numeric intervals produced by range(start, stop, step).",
-              "break exits the loop immediately, whereas continue skips the rest of the current iteration."
-            ],
-            kid: {
-              title: "Simple Explanation: Running Laps Around a Track",
-              lines: [
-                "A for loop is like running 5 laps around a playground track while counting each lap.",
-                "continue says 'skip this puddle and keep going,' while break says 'stop the race right now!'"
-              ]
-            },
-            code: `total = 0
-for n in range(1, 7):
-    if n == 3:
-        continue
-    if n == 6:
-        break
-    total += n
-    print("Added:", n)
-
-print("Total:", total)`,
-            output: "Added: 1\nAdded: 2\nAdded: 4\nAdded: 5\nTotal: 12"
-          },
-          {
-            id: "sec-11",
-            heading: "11. Lists and Tuples",
-            paragraphs: [
-              "A list is an ordered, mutable collection written in square brackets [...] supporting append(), pop(), slicing, and iteration.",
-              "A tuple is an ordered, immutable sequence written in parentheses (...) used to protect fixed records."
-            ],
-            kid: {
-              title: "Simple Explanation: An Open Backpack vs. a Locked Glass Box",
-              lines: [
-                "A list is like your school backpack: you can add a new book (append) or remove a pencil (pop) anytime.",
-                "A tuple is like a locked display box: you can look inside and read items, but nobody can swap them!"
-              ]
-            },
-            code: `tasks = ["Read", "Code", "Test"]
-tasks.append("Deploy")
-tasks[0] = "Study Python"
-
-for idx, item in enumerate(tasks, start=1):
-    print(f"{idx}. {item}")
-
-dimensions = (1920, 1080)
-print("Screen:", dimensions[0], "x", dimensions[1])`,
-            output: "1. Study Python\n2. Code\n3. Test\n4. Deploy\nScreen: 1920 x 1080"
-          },
-          {
-            id: "sec-12",
-            heading: "12. Dictionaries and Sets",
-            paragraphs: [
-              "A dictionary (dict) maps unique keys to values {key: value} with average O(1) lookup time, ideal for structured records.",
-              "A set stores unique unordered elements and supports mathematical union and intersection."
-            ],
-            kid: {
-              title: "Simple Explanation: A Phonebook and a Sticker Album Without Duplicates",
-              lines: [
-                "A dictionary is like a phonebook: look up a friend's name (the key) and get their number (the value) right away!",
-                "A set is like a sticker album that automatically removes duplicate stickers so every sticker appears once."
-              ]
-            },
-            code: `student = {
-    "name": "Ali",
-    "age": 17,
-    "grade": 96
-}
-student["passed"] = True
-print(student["name"], "->", student.get("grade"))
-
-unique_tags = {"python", "code", "python", "ai"}
-print(unique_tags)`,
-            output: "Ali -> 96\n{'python', 'code', 'ai'}"
-          },
-          {
-            id: "sec-13",
-            heading: "13. Functions, return Statements, and Scope",
-            paragraphs: [
-              "Functions encapsulate reusable logic defined with def, accepting parameters and returning outputs with return.",
-              "Variables assigned inside a function live in local scope, preventing unintended side effects elsewhere."
-            ],
-            kid: {
-              title: "Simple Explanation: A Magic Juice Blender",
-              lines: [
-                "A function is like a fruit blender: put oranges in (parameters), let it blend inside, and get a glass of juice back (return)!",
-                "Instead of squeezing by hand every time, you just call the function by name."
-              ]
-            },
-            code: `def calc_discount(price, percent=10):
-    saved = price * (percent / 100)
-    return price - saved
-
-final_a = calc_discount(200, 25)
-final_b = calc_discount(100)
-print("Final A:", final_a)
-print("Final B:", final_b)`,
-            output: "Final A: 150.0\nFinal B: 90.0"
-          },
-          {
-            id: "sec-14",
-            heading: "14. Error and Exception Handling (try / except)",
-            paragraphs: [
-              "Runtime exceptions such as ValueError or ZeroDivisionError occur when invalid inputs or states arise during execution.",
-              "Wrapping risky operations in try / except handles failures gracefully without crashing the application."
-            ],
-            kid: {
-              title: "Simple Explanation: A Soft Safety Mat Under a Swing",
-              lines: [
-                "Imagine a soft foam mat under a playground swing: if someone slips, they land safely instead of getting hurt.",
-                "try / except catches errors gently and displays a helpful message instead of crashing!"
-              ]
-            },
-            code: `user_input = "abc"
-try:
-    num = int(user_input)
-    print(100 / num)
-except ValueError:
-    print("Error: Please enter digits only.")
-except ZeroDivisionError:
-    print("Error: Cannot divide by zero.")`,
-            output: "Error: Please enter digits only."
-          },
-          {
-            id: "sec-15",
-            heading: "15. File Persistence (with open) and Standard Modules (import)",
-            paragraphs: [
-              "To persist data on disk, open files using the context manager with open(path, mode, encoding='utf-8'), guaranteeing automatic file closure.",
-              "Python's standard library provides battle-tested modules such as math, random, and datetime via import."
-            ],
-            kid: {
-              title: "Simple Explanation: A Real Notebook and a Ready-Made Toolbox",
-              lines: [
-                "Variables disappear when you turn off the computer, while files are like a real paper notebook that saves your notes for tomorrow!",
-                "import is like borrowing a ready-made toolbox from the library instead of building every tool from scratch."
-              ]
-            },
-            code: `import math
-
-with open("notes.txt", "w", encoding="utf-8") as f:
-    f.write("MinPy Lesson 01 Completed!\\n")
-
-with open("notes.txt", "r", encoding="utf-8") as f:
-    print(f.read().strip())
-
-print("Square root of 81:", math.sqrt(81))`,
-            output: "MinPy Lesson 01 Completed!\nSquare root of 81: 9.0"
+            summary: "Lesson 5 Summary: Lists [ ] hold ordered collections, Dictionaries { } map keys to values, and Functions (def ... return) package reusable logic. You now hold all the core building blocks of Python!"
           }
         ],
         lab: {
-          id: "sec-16",
-          heading: "16. Comprehensive Lab (6 Hands-On Challenges)",
-          intro: "Verify your mastery across all lecture concepts in this interactive lab. Complete the code blanks and concept check below.",
-          totalScoreLabel: (earned, total) => `Lab Score: ${earned} / ${total}`,
-
-          ex1Title: "Challenge 1: Variables, Casting & Output",
-          ex1Desc: "Complete the blanks to assign a name, parse \"40\" as an integer, and print the result.",
-          ex1Hint: "Use (=) for assignment, (int) to parse text to an integer, and (print) to output.",
-          ex1CheckBtn: "Check Challenge 1",
-          ex1HintBtn: "Hint",
-          ex1Ok: "Excellent! You mastered assignment and string-to-integer casting.",
-          ex1Err: "Check your blanks: use (=), then (int), then (print).",
-
-          ex2Title: "Challenge 2: Multi-Branch Conditionals (if / elif / else)",
-          ex2Desc: "Complete the conditional chain to assign grades A, B, or C.",
-          ex2Hint: "Use if for the first branch, elif for the second, and else for the fallback.",
-          ex2CheckBtn: "Check Challenge 2",
-          ex2HintBtn: "Hint",
-          ex2Ok: "Great job! Your conditional chain is 100% accurate.",
-          ex2Err: "Review the keywords: if, then elif, then else.",
-
-          ex3Title: "Challenge 3: Iteration with for and range()",
-          ex3Desc: "Complete the loop to print numbers 0 through 3 using for and range.",
-          ex3Hint: "Correct syntax: for i in range(4): followed by print(i).",
-          ex3CheckBtn: "Check Challenge 3",
-          ex3HintBtn: "Hint",
-          ex3Ok: "Spot on! Your loop executes accurately.",
-          ex3Err: "Make sure you entered for, then range, then print.",
-
-          ex4Title: "Challenge 4: Lists & Functions (def / append / return)",
-          ex4Desc: "Complete the function that appends an item to a list and returns its length.",
-          ex4Hint: "Define the function with def, add the item with append, and send back the result with return.",
-          ex4CheckBtn: "Check Challenge 4",
-          ex4HintBtn: "Hint",
-          ex4Ok: "Well engineered! You combined functions and list mutation cleanly.",
-          ex4Err: "Check your keywords: def, then append, then return.",
-
-          ex5Title: "Challenge 5: Exception Handling (try / except)",
-          ex5Desc: "Complete the guarded block to catch ZeroDivisionError safely.",
-          ex5Hint: "Start the protected block with try and catch the error with except.",
-          ex5CheckBtn: "Check Challenge 5",
-          ex5HintBtn: "Hint",
-          ex5Ok: "Awesome! Your program handles division by zero gracefully.",
-          ex5Err: "Review exception syntax: try followed by except.",
-
-          mcqTitle: "Challenge 6: Deep Concept Check",
-          mcqQuestion: "What does print(15 % 4) output in Python?",
-          mcqOptions: [
-            { value: "3.75", text: "3.75 (true floating-point quotient)" },
-            { value: "3", text: "3 (remainder of 15 divided by 4, since 4×3=12 with 3 left over)" },
-            { value: "4", text: "4 (the divisor)" }
-          ],
-          mcqCheckBtn: "Check Answer",
-          mcqOk: "100% right! The % operator computes the integer remainder, which is 3.",
-          mcqErr: "Not quite: % computes the remainder (15 - 12 = 3)."
+          id: "lab-section",
+          heading: "Comprehensive Practice Lab: Test All 5 Lessons (6 Challenges)",
+          intro:
+            "Complete the 6 hands-on challenges below to solidify every lesson. Fill in the blanks and click Check Answer for instant feedback and explanations.",
+          progressLabel: "Lab Progress:",
+          scoreUnit: "pts",
+          checkBtn: "Check Answer",
+          hintBtn: "Hint",
+          resetBtn: "Reset",
+          c1: {
+            badge: "Lesson 1 Challenge • Output & Separator",
+            score: "10 pts",
+            title: "1. Complete the print() Call with a Custom Separator",
+            desc: "We want to print the date as 2026-11-25 using sep. Fill in the function name and separator symbol:",
+            hint: "The output function is print, and the symbol separating year, month, and day is a hyphen -",
+            ok: "Spot on! print() with sep=\"-\" places a hyphen between each argument automatically.",
+            err: "Review Lesson 1: The function name is print and sep should be - to output 2026-11-25."
+          },
+          c2: {
+            badge: "Lesson 2 Challenge • Variables & Casting",
+            score: "15 pts",
+            title: "2. Convert a String to an Integer to Compute the Sum",
+            desc: "The variable items_str holds \"12\". Convert it to an integer so addition produces 20:",
+            hint: "To convert a numeric string into an integer, use the built-in int() function.",
+            ok: "Excellent! int() converted \"12\" into the integer 12, giving 20 instead of \"128\".",
+            err: "Remember: Convert the text string to a whole number first using int."
+          },
+          c3: {
+            badge: "Lesson 2 Challenge • String Indexing",
+            score: "15 pts",
+            title: "3. Extract the First Character of a String",
+            desc: "In Python, indexing starts at zero. What index number goes inside the brackets to get P?",
+            hint: "The very first character in any Python sequence always sits at index 0.",
+            ok: "100% right! Index 0 always points to the first character of a string.",
+            err: "Close! Remember that Python counts starting from 0, not 1."
+          },
+          c4: {
+            badge: "Lesson 3 Challenge • Modulo & Logic",
+            score: "20 pts",
+            title: "4. Calculate the Remainder When Sharing Candies",
+            desc: "We have 14 candies to share equally among 4 kids. Which arithmetic operator gives the remainder (2)?",
+            hint: "The modulo (remainder) operator in Python is the percent sign %",
+            ok: "Great job! 14 % 4 evaluates to 2 because 14 divided by 4 is 3 with a remainder of 2.",
+            err: "Not quite: Floor division // returns 3, whereas the remainder operator is %."
+          },
+          c5: {
+            badge: "Lesson 4 Challenge • Conditionals",
+            score: "20 pts",
+            title: "5. Build a Passing Grade Conditional",
+            desc: "Fill in the keyword for the primary condition and the fallback keyword:",
+            hint: "Start the condition with if and end with the fallback keyword else.",
+            ok: "Accurate! if checks the condition, and else runs the alternative block when False.",
+            err: "Review Lesson 4: Start with if and use else for the fallback branch."
+          },
+          c6: {
+            badge: "Lesson 5 Challenge • Functions & Return",
+            score: "20 pts",
+            title: "6. Define a Function and Return Its Result",
+            desc: "Fill in the keyword used to define a function and the keyword used to send back the product:",
+            hint: "Define functions with def and send the computed result back with return.",
+            ok: "Congratulations! You mastered defining functions with def and returning values with return!",
+            err: "Remember: Function definitions begin with def, and results are returned using return."
+          }
         }
       }
     };
 
-    const STORAGE_LANG_KEY = "minpy_lec01_lang";
-    const STORAGE_THEME_KEY = "minpy_lec01_theme";
-    let currentLang = localStorage.getItem(STORAGE_LANG_KEY) || "ar";
-    let currentTheme = localStorage.getItem(STORAGE_THEME_KEY) || "light";
-
-    const labResults = { ex1: false, ex2: false, ex3: false, ex4: false, ex5: false, mcq: false };
+    let currentLang = "ar";
+    let currentTheme = "light";
+    const solvedChallenges = {
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false
+    };
 
     function escapeHtml(str) {
       return String(str)
@@ -1505,179 +1571,6 @@ print("Square root of 81:", math.sqrt(81))`,
         .replace(/"/g, "&quot;");
     }
 
-    function applyTheme() {
-      document.documentElement.setAttribute("data-theme", currentTheme);
-      const t = LECTURE_CONTENT[currentLang];
-      const themeBtn = document.getElementById("theme-btn");
-      if (themeBtn) themeBtn.textContent = currentTheme === "light" ? t.themeToDark : t.themeToLight;
-    }
-
-    function toggleTheme() {
-      currentTheme = currentTheme === "light" ? "dark" : "light";
-      localStorage.setItem(STORAGE_THEME_KEY, currentTheme);
-      applyTheme();
-    }
-
-    function toggleLanguage() {
-      currentLang = currentLang === "ar" ? "en" : "ar";
-      localStorage.setItem(STORAGE_LANG_KEY, currentLang);
-      renderLecture();
-    }
-
-    function renderSectionHtml(sec) {
-      const parasHtml = sec.paragraphs.map((p) => `<p class="body-para">${escapeHtml(p)}</p>`).join("\n");
-      const kidLinesHtml = sec.kid.lines.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n");
-      const kidHtml = `
-        <div class="kid-card">
-          <span class="kid-card-title">${escapeHtml(sec.kid.title)}</span>
-          ${kidLinesHtml}
-        </div>
-      `;
-
-      let tableHtml = "";
-      if (sec.table) {
-        const thHtml = sec.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
-        const trHtml = sec.table.rows
-          .map((row) => `<tr>${row.map((cell) => `<td><code class="inline-code">${escapeHtml(cell)}</code></td>`).join("")}</tr>`)
-          .join("\n");
-        tableHtml = `<div class="table-wrap"><table class="acad-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table></div>`;
-      }
-
-      const codeHtml = sec.code ? `<pre class="code-block">${escapeHtml(sec.code)}</pre>` : "";
-      const outputHtml = sec.output
-        ? `<div class="output-box"><span class="output-label">Output</span>${escapeHtml(sec.output).replace(/\n/g, "<br>")}</div>`
-        : "";
-      const noteHtml = sec.note
-        ? `<div class="formal-note"><strong>${escapeHtml(sec.note.strong)}</strong> ${escapeHtml(sec.note.text)}</div>`
-        : "";
-
-      return `
-        <section class="unit-section" id="${escapeHtml(sec.id)}">
-          <h2 class="unit-heading">${escapeHtml(sec.heading)}</h2>
-          ${parasHtml}
-          ${kidHtml}
-          ${tableHtml}
-          ${codeHtml}
-          ${outputHtml}
-          ${noteHtml}
-        </section>
-      `;
-    }
-
-    function renderLabHtml(lab) {
-      const earned = Object.values(labResults).filter(Boolean).length;
-      const total = Object.keys(labResults).length;
-      const mcqOptionsHtml = lab.mcqOptions
-        .map(
-          (opt, idx) => `
-            <label class="mcq-option" for="mcq_opt_${idx}">
-              <input type="radio" name="mcq_choice" id="mcq_opt_${idx}" value="${escapeHtml(opt.value)}" />
-              <span>${escapeHtml(opt.text)}</span>
-            </label>
-          `
-        )
-        .join("\n");
-
-      return `
-        <section class="unit-section" id="${escapeHtml(lab.id)}">
-          <h2 class="unit-heading">${escapeHtml(lab.heading)}</h2>
-          <p class="body-para">${escapeHtml(lab.intro)}</p>
-
-          <div class="lab-card">
-            <div class="lab-header">
-              <span class="lab-badge">${escapeHtml(lab.ex1Title)}</span>
-              <span class="lab-score" id="lab-score-display">${escapeHtml(lab.totalScoreLabel(earned, total))}</span>
-            </div>
-            <p class="body-para">${escapeHtml(lab.ex1Desc)}</p>
-            <div class="code-editor-box">
-              student <input type="text" id="ex1_a" class="quiz-input" placeholder="=" /> "Nadia"<br>
-              points = <input type="text" id="ex1_b" class="quiz-input" placeholder="int" />("40")<br>
-              <input type="text" id="ex1_c" class="quiz-input" placeholder="print" />(student, points + 10)
-            </div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkExercise1()">${escapeHtml(lab.ex1CheckBtn)}</button>
-              <button type="button" class="secondary-btn" onclick="showHint('ex1_fb', '${escapeHtml(lab.ex1Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex1HintBtn)}</button>
-            </div>
-            <div class="feedback" id="ex1_fb"></div>
-          </div>
-
-          <div class="lab-card">
-            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex2Title)}</span></div>
-            <p class="body-para">${escapeHtml(lab.ex2Desc)}</p>
-            <div class="code-editor-box">
-              mark = 82<br>
-              <input type="text" id="ex2_a" class="quiz-input" placeholder="if" /> mark &gt;= 90:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;grade = "A"<br>
-              <input type="text" id="ex2_b" class="quiz-input" placeholder="elif" /> mark &gt;= 75:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;grade = "B"<br>
-              <input type="text" id="ex2_c" class="quiz-input" placeholder="else" />:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;grade = "C"
-            </div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkExercise2()">${escapeHtml(lab.ex2CheckBtn)}</button>
-              <button type="button" class="secondary-btn" onclick="showHint('ex2_fb', '${escapeHtml(lab.ex2Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex2HintBtn)}</button>
-            </div>
-            <div class="feedback" id="ex2_fb"></div>
-          </div>
-
-          <div class="lab-card">
-            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex3Title)}</span></div>
-            <p class="body-para">${escapeHtml(lab.ex3Desc)}</p>
-            <div class="code-editor-box">
-              <input type="text" id="ex3_a" class="quiz-input" placeholder="for" /> i in <input type="text" id="ex3_b" class="quiz-input" placeholder="range" />(4):<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ex3_c" class="quiz-input" placeholder="print" />(i)
-            </div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkExercise3()">${escapeHtml(lab.ex3CheckBtn)}</button>
-              <button type="button" class="secondary-btn" onclick="showHint('ex3_fb', '${escapeHtml(lab.ex3Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex3HintBtn)}</button>
-            </div>
-            <div class="feedback" id="ex3_fb"></div>
-          </div>
-
-          <div class="lab-card">
-            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex4Title)}</span></div>
-            <p class="body-para">${escapeHtml(lab.ex4Desc)}</p>
-            <div class="code-editor-box">
-              <input type="text" id="ex4_a" class="quiz-input" placeholder="def" /> add_item(items, new_val):<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;items.<input type="text" id="ex4_b" class="quiz-input" placeholder="append" />(new_val)<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ex4_c" class="quiz-input" placeholder="return" /> len(items)
-            </div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkExercise4()">${escapeHtml(lab.ex4CheckBtn)}</button>
-              <button type="button" class="secondary-btn" onclick="showHint('ex4_fb', '${escapeHtml(lab.ex4Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex4HintBtn)}</button>
-            </div>
-            <div class="feedback" id="ex4_fb"></div>
-          </div>
-
-          <div class="lab-card">
-            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex5Title)}</span></div>
-            <p class="body-para">${escapeHtml(lab.ex5Desc)}</p>
-            <div class="code-editor-box">
-              <input type="text" id="ex5_a" class="quiz-input" placeholder="try" />:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;print(50 / 0)<br>
-              <input type="text" id="ex5_b" class="quiz-input" placeholder="except" /> ZeroDivisionError:<br>
-              &nbsp;&nbsp;&nbsp;&nbsp;print("Cannot divide by zero")
-            </div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkExercise5()">${escapeHtml(lab.ex5CheckBtn)}</button>
-              <button type="button" class="secondary-btn" onclick="showHint('ex5_fb', '${escapeHtml(lab.ex5Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex5HintBtn)}</button>
-            </div>
-            <div class="feedback" id="ex5_fb"></div>
-          </div>
-
-          <div class="lab-card">
-            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.mcqTitle)}</span></div>
-            <p class="body-para"><strong>${escapeHtml(lab.mcqQuestion)}</strong></p>
-            <div style="margin-top: 10px;">${mcqOptionsHtml}</div>
-            <div class="btn-row">
-              <button type="button" class="action-btn" onclick="checkMcq()">${escapeHtml(lab.mcqCheckBtn)}</button>
-            </div>
-            <div class="feedback" id="mcq_fb"></div>
-          </div>
-        </section>
-      `;
-    }
-
     function renderLecture() {
       const data = LECTURE_CONTENT[currentLang];
       document.documentElement.lang = currentLang;
@@ -1685,15 +1578,274 @@ print("Square root of 81:", math.sqrt(81))`,
 
       document.getElementById("brand-name").textContent = data.brandName;
       document.getElementById("brand-sub").textContent = data.brandSub;
-      document.getElementById("lang-btn").textContent = data.langToEn;
       document.getElementById("lecture-tag").textContent = data.lectureTag;
       document.getElementById("footer-text").textContent = data.footerText;
+      document.getElementById("lang-btn").textContent = data.langToEn;
+      document.getElementById("theme-btn").textContent =
+        currentTheme === "light" ? data.themeToDark : data.themeToLight;
+
+      const roadmapHtml = data.roadmap
+        .map(
+          (r) => `
+          <div class="roadmap-pill">
+            <strong>${escapeHtml(r.step)}</strong>
+            <span>${escapeHtml(r.name)}</span>
+          </div>`
+        )
+        .join("");
 
       const tocHtml = data.toc
-        .map((item) => `<a class="toc-link" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`)
-        .join("\n");
-      const sectionsHtml = data.sections.map((sec) => renderSectionHtml(sec)).join("\n");
-      const labHtml = renderLabHtml(data.lab);
+        .map((item) => `<a class="toc-link" href="${item.href}">${escapeHtml(item.label)}</a>`)
+        .join("");
+
+      const lessonsHtml = data.lessons
+        .map((lesson) => {
+          const introHtml = lesson.intro
+            .map((p) => `<p class="body-para">${escapeHtml(p)}</p>`)
+            .join("");
+
+          const analogyHtml = lesson.analogy
+            ? `<div class="analogy-card">
+                <span class="analogy-card-title">${escapeHtml(lesson.analogy.title)}</span>
+                ${lesson.analogy.lines.map((l) => `<p>${escapeHtml(l)}</p>`).join("")}
+              </div>`
+            : "";
+
+          const subsHtml = lesson.subsections
+            .map((sub) => {
+              const subParas = (sub.paragraphs || [])
+                .map((p) => `<p class="body-para">${escapeHtml(p)}</p>`)
+                .join("");
+
+              const bulletsHtml = sub.bullets
+                ? `<ul class="detail-list">
+                    ${sub.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}
+                  </ul>`
+                : "";
+
+              const tableHtml = sub.table
+                ? `<div class="table-wrap">
+                    <table class="acad-table">
+                      <thead>
+                        <tr>${sub.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr>
+                      </thead>
+                      <tbody>
+                        ${sub.table.rows
+                          .map(
+                            (row) =>
+                              `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`
+                          )
+                          .join("")}
+                      </tbody>
+                    </table>
+                  </div>`
+                : "";
+
+              const codeHtml = sub.code
+                ? `<pre class="code-block">${escapeHtml(sub.code)}</pre>`
+                : "";
+
+              const outLabel = currentLang === "ar" ? "المخرجات على الشاشة (Output):" : "Console Output:";
+              const outputHtml = sub.output
+                ? `<div class="output-box"><span class="output-label">${outLabel}</span>${escapeHtml(
+                    sub.output
+                  ).replace(/\n/g, "<br>")}</div>`
+                : "";
+
+              const traceTitle =
+                currentLang === "ar"
+                  ? "تتبّع تنفيذ الكود سطراً بسطر (ماذا فعل الحاسوب؟):"
+                  : "Line-by-Line Execution Trace (What Did the Computer Do?):";
+              const traceHtml = sub.trace
+                ? `<div class="trace-card">
+                    <span class="trace-card-title">${traceTitle}</span>
+                    ${sub.trace
+                      .map((step) => `<div class="trace-step">${escapeHtml(step)}</div>`)
+                      .join("")}
+                  </div>`
+                : "";
+
+              return `
+                <h3 class="sub-heading">${escapeHtml(sub.title)}</h3>
+                ${subParas}
+                ${bulletsHtml}
+                ${tableHtml}
+                ${codeHtml}
+                ${outputHtml}
+                ${traceHtml}
+              `;
+            })
+            .join("");
+
+          const mistakeHtml = lesson.mistake
+            ? `<div class="mistake-box">
+                <span class="mistake-box-title">${escapeHtml(lesson.mistake.title)}</span>
+                <p>${escapeHtml(lesson.mistake.text)}</p>
+              </div>`
+            : "";
+
+          const summaryHtml = lesson.summary
+            ? `<div class="summary-box">
+                <span class="summary-box-title">${
+                  currentLang === "ar" ? "الخلاصة الذهبية للدرس:" : "Key Takeaway:"
+                }</span>
+                <p>${escapeHtml(lesson.summary)}</p>
+              </div>`
+            : "";
+
+          return `
+            <section class="unit-section" id="${lesson.id}">
+              <span class="unit-kicker">${escapeHtml(lesson.kicker)}</span>
+              <h2 class="unit-heading">${escapeHtml(lesson.heading)}</h2>
+              ${introHtml}
+              ${analogyHtml}
+              ${subsHtml}
+              ${mistakeHtml}
+              ${summaryHtml}
+            </section>
+          `;
+        })
+        .join("");
+
+      const lab = data.lab;
+      const labHtml = `
+        <section class="unit-section" id="${lab.id}">
+          <span class="unit-kicker">${currentLang === "ar" ? "التطبيق العملي" : "Hands-On Practice"}</span>
+          <h2 class="unit-heading">${escapeHtml(lab.heading)}</h2>
+          <p class="body-para">${escapeHtml(lab.intro)}</p>
+
+          <div class="progress-bar-wrap">
+            <strong>${escapeHtml(lab.progressLabel)} <span id="lab-progress-text">0 / 6</span></strong>
+            <div class="progress-track">
+              <div class="progress-fill" id="lab-progress-fill"></div>
+            </div>
+            <span class="lab-score" id="lab-total-points">0 / 100 ${escapeHtml(lab.scoreUnit)}</span>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c1.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c1.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c1.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c1.desc)}</p>
+            <div class="code-editor-box">
+              <input type="text" id="q1_fn" class="quiz-input" placeholder="function" />("2026", "11", "25", sep="<input type="text" id="q1_sep" class="quiz-input" style="width:65px;" placeholder="?" />")<br>
+              <span># Expected Output: 2026-11-25</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC1()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(1)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(1, ['q1_fn', 'q1_sep'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-1" class="feedback"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c2.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c2.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c2.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c2.desc)}</p>
+            <div class="code-editor-box">
+              items_str = "12"<br>
+              total = <input type="text" id="q2_cast" class="quiz-input" style="width:90px;" placeholder="type" />(items_str) + 8<br>
+              print(total)  <span># Expected Output: 20</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC2()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(2)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(2, ['q2_cast'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-2" class="feedback"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c3.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c3.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c3.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c3.desc)}</p>
+            <div class="code-editor-box">
+              lang = "Python"<br>
+              first_letter = lang[<input type="text" id="q3_idx" class="quiz-input" style="width:75px;" placeholder="index" />]<br>
+              print(first_letter)  <span># Expected Output: P</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC3()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(3)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(3, ['q3_idx'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-3" class="feedback"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c4.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c4.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c4.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c4.desc)}</p>
+            <div class="code-editor-box">
+              candies = 14<br>
+              kids = 4<br>
+              remainder = candies <input type="text" id="q4_op" class="quiz-input" style="width:75px;" placeholder="op" /> kids<br>
+              print(remainder)  <span># Expected Output: 2</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC4()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(4)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(4, ['q4_op'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-4" class="feedback"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c5.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c5.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c5.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c5.desc)}</p>
+            <div class="code-editor-box">
+              mark = 75<br>
+              <input type="text" id="q5_if" class="quiz-input" style="width:85px;" placeholder="keyword" /> mark >= 60:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;print("Passed")<br>
+              <input type="text" id="q5_else" class="quiz-input" style="width:85px;" placeholder="keyword" />:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;print("Try again")
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC5()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(5)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(5, ['q5_if', 'q5_else'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-5" class="feedback"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.c6.badge)}</span>
+              <span class="lab-score">${escapeHtml(lab.c6.score)}</span>
+            </div>
+            <h3 class="sub-heading">${escapeHtml(lab.c6.title)}</h3>
+            <p class="body-para">${escapeHtml(lab.c6.desc)}</p>
+            <div class="code-editor-box">
+              <input type="text" id="q6_def" class="quiz-input" style="width:85px;" placeholder="keyword" /> multiply(a, b):<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;result = a * b<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="q6_ret" class="quiz-input" style="width:95px;" placeholder="keyword" /> result<br><br>
+              print(multiply(4, 5))  <span># Expected Output: 20</span>
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkC6()">${escapeHtml(lab.checkBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint(6)">${escapeHtml(lab.hintBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="resetChallenge(6, ['q6_def', 'q6_ret'])">${escapeHtml(lab.resetBtn)}</button>
+            </div>
+            <div id="fb-6" class="feedback"></div>
+          </div>
+        </section>
+      `;
 
       document.getElementById("lecture-root").innerHTML = `
         <div class="lecture-header-meta">
@@ -1702,90 +1854,156 @@ print("Square root of 81:", math.sqrt(81))`,
         </div>
         <h1 class="lecture-title">${escapeHtml(data.title)}</h1>
         <div class="lecture-abstract">${escapeHtml(data.abstract)}</div>
-        <nav class="toc-box" aria-label="Lecture Outline">
+        <div class="roadmap-banner">${roadmapHtml}</div>
+        <nav class="toc-box">
           <div class="toc-title">${escapeHtml(data.tocTitle)}</div>
           <div class="toc-grid">${tocHtml}</div>
         </nav>
-        ${sectionsHtml}
+        ${lessonsHtml}
         ${labHtml}
       `;
-      applyTheme();
+
+      updateProgressUI();
     }
 
-    function updateScoreBadge() {
+    function setFeedback(num, type, message) {
+      const fb = document.getElementById("fb-" + num);
+      fb.className = "feedback " + type;
+      fb.textContent = message;
+    }
+
+    function updateProgressUI() {
+      const weights = { 1: 10, 2: 15, 3: 15, 4: 20, 5: 20, 6: 20 };
+      let count = 0;
+      let points = 0;
+      for (let i = 1; i <= 6; i++) {
+        if (solvedChallenges[i]) {
+          count++;
+          points += weights[i];
+        }
+      }
+      const progText = document.getElementById("lab-progress-text");
+      const progFill = document.getElementById("lab-progress-fill");
+      const ptsText = document.getElementById("lab-total-points");
+      const unit = LECTURE_CONTENT[currentLang].lab.scoreUnit;
+
+      if (progText) progText.textContent = count + " / 6";
+      if (progFill) progFill.style.width = Math.round((count / 6) * 100) + "%";
+      if (ptsText) ptsText.textContent = points + " / 100 " + unit;
+    }
+
+    function showHint(num) {
       const lab = LECTURE_CONTENT[currentLang].lab;
-      const earned = Object.values(labResults).filter(Boolean).length;
-      const total = Object.keys(labResults).length;
-      const badge = document.getElementById("lab-score-display");
-      if (badge) badge.textContent = lab.totalScoreLabel(earned, total);
+      const hintMsg = lab["c" + num].hint;
+      setFeedback(num, "hint", hintMsg);
     }
 
-    function setFeedback(elId, type, message) {
-      const el = document.getElementById(elId);
-      if (!el) return;
-      el.className = `feedback ${type}`;
-      el.textContent = message;
+    function resetChallenge(num, inputIds) {
+      inputIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.value = "";
+      });
+      const fb = document.getElementById("fb-" + num);
+      if (fb) {
+        fb.className = "feedback";
+        fb.textContent = "";
+      }
+      solvedChallenges[num] = false;
+      updateProgressUI();
     }
 
-    function showHint(elId, hintText) {
-      setFeedback(elId, "hint", hintText);
+    function checkC1() {
+      const fn = document.getElementById("q1_fn").value.trim();
+      const sep = document.getElementById("q1_sep").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c1;
+      if (fn === "print" && sep === "-") {
+        solvedChallenges[1] = true;
+        setFeedback(1, "ok", c.ok);
+      } else {
+        solvedChallenges[1] = false;
+        setFeedback(1, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkExercise1() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const a = document.getElementById("ex1_a").value.trim();
-      const b = document.getElementById("ex1_b").value.trim();
-      const c = document.getElementById("ex1_c").value.trim();
-      labResults.ex1 = (a === "=" && b === "int" && c === "print");
-      setFeedback("ex1_fb", labResults.ex1 ? "ok" : "err", labResults.ex1 ? lab.ex1Ok : lab.ex1Err);
-      updateScoreBadge();
+    function checkC2() {
+      const val = document.getElementById("q2_cast").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c2;
+      if (val === "int") {
+        solvedChallenges[2] = true;
+        setFeedback(2, "ok", c.ok);
+      } else {
+        solvedChallenges[2] = false;
+        setFeedback(2, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkExercise2() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const a = document.getElementById("ex2_a").value.trim();
-      const b = document.getElementById("ex2_b").value.trim();
-      const c = document.getElementById("ex2_c").value.trim();
-      labResults.ex2 = (a === "if" && b === "elif" && c === "else");
-      setFeedback("ex2_fb", labResults.ex2 ? "ok" : "err", labResults.ex2 ? lab.ex2Ok : lab.ex2Err);
-      updateScoreBadge();
+    function checkC3() {
+      const val = document.getElementById("q3_idx").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c3;
+      if (val === "0") {
+        solvedChallenges[3] = true;
+        setFeedback(3, "ok", c.ok);
+      } else {
+        solvedChallenges[3] = false;
+        setFeedback(3, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkExercise3() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const a = document.getElementById("ex3_a").value.trim();
-      const b = document.getElementById("ex3_b").value.trim();
-      const c = document.getElementById("ex3_c").value.trim();
-      labResults.ex3 = (a === "for" && b === "range" && c === "print");
-      setFeedback("ex3_fb", labResults.ex3 ? "ok" : "err", labResults.ex3 ? lab.ex3Ok : lab.ex3Err);
-      updateScoreBadge();
+    function checkC4() {
+      const val = document.getElementById("q4_op").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c4;
+      if (val === "%") {
+        solvedChallenges[4] = true;
+        setFeedback(4, "ok", c.ok);
+      } else {
+        solvedChallenges[4] = false;
+        setFeedback(4, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkExercise4() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const a = document.getElementById("ex4_a").value.trim();
-      const b = document.getElementById("ex4_b").value.trim();
-      const c = document.getElementById("ex4_c").value.trim();
-      labResults.ex4 = (a === "def" && b === "append" && c === "return");
-      setFeedback("ex4_fb", labResults.ex4 ? "ok" : "err", labResults.ex4 ? lab.ex4Ok : lab.ex4Err);
-      updateScoreBadge();
+    function checkC5() {
+      const v1 = document.getElementById("q5_if").value.trim();
+      const v2 = document.getElementById("q5_else").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c5;
+      if (v1 === "if" && v2 === "else") {
+        solvedChallenges[5] = true;
+        setFeedback(5, "ok", c.ok);
+      } else {
+        solvedChallenges[5] = false;
+        setFeedback(5, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkExercise5() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const a = document.getElementById("ex5_a").value.trim();
-      const b = document.getElementById("ex5_b").value.trim();
-      labResults.ex5 = (a === "try" && b === "except");
-      setFeedback("ex5_fb", labResults.ex5 ? "ok" : "err", labResults.ex5 ? lab.ex5Ok : lab.ex5Err);
-      updateScoreBadge();
+    function checkC6() {
+      const v1 = document.getElementById("q6_def").value.trim();
+      const v2 = document.getElementById("q6_ret").value.trim();
+      const c = LECTURE_CONTENT[currentLang].lab.c6;
+      if (v1 === "def" && v2 === "return") {
+        solvedChallenges[6] = true;
+        setFeedback(6, "ok", c.ok);
+      } else {
+        solvedChallenges[6] = false;
+        setFeedback(6, "err", c.err);
+      }
+      updateProgressUI();
     }
 
-    function checkMcq() {
-      const lab = LECTURE_CONTENT[currentLang].lab;
-      const selected = document.querySelector('input[name="mcq_choice"]:checked');
-      labResults.mcq = Boolean(selected && selected.value === "3");
-      setFeedback("mcq_fb", labResults.mcq ? "ok" : "err", labResults.mcq ? lab.mcqOk : lab.mcqErr);
-      updateScoreBadge();
+    function toggleTheme() {
+      currentTheme = currentTheme === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", currentTheme);
+      const data = LECTURE_CONTENT[currentLang];
+      document.getElementById("theme-btn").textContent =
+        currentTheme === "light" ? data.themeToDark : data.themeToLight;
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      renderLecture();
     }
 
     renderLecture();
