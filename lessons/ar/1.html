@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MinPy Academy | أكاديمية MinPy — المنهج التأسيسي الكامل</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --paper: #ffffff;
+      --surface-soft: #f8fafc;
+      --surface-tint: #eef2ff;
+      --border: #dce3ec;
+      --border-strong: #cbd5e1;
+      --navy: #1e3a5f;
+      --navy-hover: #152a45;
+      --accent: #2563eb;
+      --accent-soft: rgba(37, 99, 235, 0.12);
+      --text: #1f2937;
+      --heading: #0f172a;
+      --subtext: #334155;
+      --muted: #64748b;
+      --code-bg: #f8fafc;
+      --code-border: #cbd5e1;
+      --inline-code-bg: #f1f5f9;
+      --input-bg: #ffffff;
+      --success: #15803d;
+      --success-bg: #f0fdf4;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fef2f2;
+      --error-border: #fca5a5;
+      --warn: #b45309;
+      --warn-bg: #fffbeb;
+      --warn-border: #fcd34d;
+      --shadow: 0 4px 14px rgba(15, 23, 42, 0.05);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --paper: #1e293b;
+      --surface-soft: #172033;
+      --surface-tint: rgba(96, 165, 250, 0.12);
+      --border: #334155;
+      --border-strong: #475569;
+      --navy: #172554;
+      --navy-hover: #1e3a8a;
+      --accent: #60a5fa;
+      --accent-soft: rgba(96, 165, 250, 0.16);
+      --text: #e2e8f0;
+      --heading: #f8fafc;
+      --subtext: #cbd5e1;
+      --muted: #94a3b8;
+      --code-bg: #0b1120;
+      --code-border: #334155;
+      --inline-code-bg: #0f172a;
+      --input-bg: #0f172a;
+      --success: #4ade80;
+      --success-bg: rgba(21, 128, 61, 0.22);
+      --success-border: #166534;
+      --error: #f87171;
+      --error-bg: rgba(185, 28, 28, 0.22);
+      --error-border: #991b1b;
+      --warn: #fbbf24;
+      --warn-bg: rgba(180, 83, 9, 0.22);
+      --warn-border: #92400e;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.9;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    header {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 14px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.18rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #cbd5e1;
+      padding-inline-start: 12px;
+      border-inline-start: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      padding: 5px 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .ctrl-btn:hover { background: rgba(255, 255, 255, 0.24); }
+
+    .course-tag {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      padding: 4px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 700;
+    }
+
+    main {
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 28px auto 40px;
+      padding: 0 20px;
+    }
+
+    .lecture-sheet {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--accent);
+      border-radius: var(--radius-md);
+      padding: 44px 48px;
+      box-shadow: var(--shadow);
+    }
+
+    .lecture-header-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--surface-tint);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      border: 1px solid var(--accent-soft);
+    }
+
+    .meta-info {
+      font-size: 0.88rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    h1.lecture-title {
+      font-size: 1.9rem;
+      color: var(--heading);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .lecture-abstract {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-inline-start: 4px solid var(--navy);
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 26px;
+      color: var(--subtext);
+      font-size: 1.02rem;
+    }
+
+    .toc-box {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin-bottom: 32px;
+    }
+
+    .toc-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 10px;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+
+    .toc-link {
+      display: block;
+      text-decoration: none;
+      color: var(--accent);
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.89rem;
+      font-weight: 600;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .toc-link:hover {
+      border-color: var(--accent);
+      background: var(--surface-tint);
+    }
+
+    section.unit-section {
+      margin-top: 42px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+
+    h2.unit-heading {
+      font-size: 1.42rem;
+      color: var(--heading);
+      font-weight: 800;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+
+    p.body-para {
+      margin-bottom: 15px;
+      font-size: 1.05rem;
+      color: var(--subtext);
+    }
+
+    .kid-card {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      border-radius: var(--radius-md);
+      padding: 18px 22px;
+      margin: 18px 0;
+    }
+
+    .kid-card-title {
+      font-weight: 800;
+      color: var(--warn);
+      font-size: 0.98rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .kid-card p {
+      color: var(--text);
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+    }
+
+    .kid-card p:last-child { margin-bottom: 0; }
+
+    .formal-note {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-inline-start: 4px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 15px 18px;
+      margin: 18px 0;
+      font-size: 0.98rem;
+      color: var(--subtext);
+    }
+
+    .formal-note strong { color: var(--heading); }
+
+    code.inline-code {
+      background: var(--inline-code-bg);
+      color: var(--heading);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.92em;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    pre.code-block {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-inline-start: 4px solid var(--accent);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      margin: 16px 0;
+      direction: ltr;
+      text-align: left;
+      font-family: "Consolas", "Courier New", monospace;
+      color: var(--heading);
+      overflow-x: auto;
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .output-box {
+      background: var(--surface-soft);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin: -6px 0 18px;
+      direction: ltr;
+      text-align: left;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .output-label {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: block;
+      margin-bottom: 4px;
+      color: var(--accent);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      margin: 18px 0 24px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+    }
+
+    table.acad-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.96rem;
+    }
+
+    table.acad-table th {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 12px 14px;
+      text-align: start;
+      font-weight: 700;
+    }
+
+    table.acad-table td {
+      padding: 11px 14px;
+      border-top: 1px solid var(--border);
+      color: var(--subtext);
+      vertical-align: top;
+    }
+
+    table.acad-table tr:nth-child(even) td { background: var(--surface-soft); }
+
+    .lab-card {
+      background: var(--surface-soft);
+      border: 1px solid var(--border-strong);
+      border-top: 4px solid var(--navy);
+      border-radius: var(--radius-md);
+      padding: 24px 26px;
+      margin: 22px 0;
+    }
+
+    .lab-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .lab-badge {
+      background: var(--navy);
+      color: #ffffff;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .lab-score {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .code-editor-box {
+      background: var(--code-bg);
+      border: 1px solid var(--code-border);
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      margin: 14px 0;
+      direction: ltr;
+      text-align: left;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.96rem;
+      line-height: 1.85;
+      color: var(--heading);
+      overflow-x: auto;
+    }
+
+    .quiz-input {
+      background: var(--input-bg);
+      border: 1.5px solid var(--accent);
+      color: var(--heading);
+      padding: 3px 9px;
+      border-radius: 4px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 0.94rem;
+      width: 145px;
+      text-align: center;
+      font-weight: 700;
+      margin: 2px 3px;
+    }
+
+    .quiz-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .action-btn {
+      background: var(--navy);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.93rem;
+    }
+
+    .action-btn:hover { background: var(--navy-hover); }
+
+    .secondary-btn {
+      background: var(--paper);
+      color: var(--heading);
+      border: 1px solid var(--border-strong);
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .secondary-btn:hover { border-color: var(--accent); }
+
+    .feedback {
+      margin-top: 14px;
+      padding: 13px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback.ok {
+      display: block;
+      background: var(--success-bg);
+      border: 1px solid var(--success-border);
+      color: var(--success);
+    }
+
+    .feedback.err {
+      display: block;
+      background: var(--error-bg);
+      border: 1px solid var(--error-border);
+      color: var(--error);
+    }
+
+    .feedback.hint {
+      display: block;
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-border);
+      color: var(--warn);
+    }
+
+    .mcq-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      cursor: pointer;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+
+    .mcq-option:hover { border-color: var(--accent); }
+    .mcq-option input { accent-color: var(--accent); width: 17px; height: 17px; cursor: pointer; }
+
+    footer {
+      background: var(--paper);
+      border-top: 1px solid var(--border);
+      padding: 20px 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 680px) {
+      .lecture-sheet { padding: 26px 18px; }
+      h1.lecture-title { font-size: 1.5rem; }
+      .brand-sub { display: none; }
+      .quiz-input { width: 118px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span id="brand-name">أكاديمية MinPy</span>
+      <span class="brand-badge">CS-101</span>
+      <span class="brand-sub" id="brand-sub">المنهج الشامل لأساسيات بايثون</span>
+    </div>
+    <div class="header-controls">
+      <button type="button" class="ctrl-btn" id="theme-btn" onclick="toggleTheme()">الوضع الداكن</button>
+      <button type="button" class="ctrl-btn" id="lang-btn" onclick="toggleLanguage()">English</button>
+      <div class="course-tag" id="lecture-tag">المحاضرة 01</div>
+    </div>
+  </header>
+
+  <main>
+    <article class="lecture-sheet" id="lecture-root"></article>
+  </main>
+
+  <footer>
+    <p id="footer-text">MinPy Academy — Complete Python Foundations (Arabic / English • Light / Dark)</p>
+  </footer>
+
+  <script>
+    const LECTURE_CONTENT = {
+      ar: {
+        dir: "rtl",
+        brandName: "أكاديمية MinPy",
+        brandSub: "المنهج الشامل لأساسيات بايثون",
+        themeToDark: "الوضع الداكن",
+        themeToLight: "الوضع الفاتح",
+        langToEn: "English",
+        lectureTag: "المحاضرة 01",
+        footerText: "أكاديمية MinPy — منهج أساسيات بايثون الكامل من الصفر إلى الاحتراف",
+        badgeText: "المقرر التأسيسي الشامل • 15 وحدة دراسية متكاملة",
+        metaText: "المستوى: صفر إلى متمكن في الأساسيات • يتضمن 6 اختبارات عملية داخل المختبر",
+        title: "أساسيات البرمجة بلغة بايثون (Python): المرجع الشامل بأسلوب مبسّط",
+        abstract:
+          "يغطي هذا المرجع كل أساسيات لغة بايثون الحقيقية من النقطة صفر حتى بناء الدوال وهياكل البيانات ومعالجة الأخطاء والملفات. كل درس يجمع بين الدقة الأكاديمية وبين شرح بسيط جداً يسهّل الفهم.",
+        tocTitle: "فهرس الوحدات الدراسية الكاملة (15 وحدة + مختبر عملي)",
+        toc: [
+          { href: "#sec-1", label: "1. الحاسوب والخوارزميات والبرمجة" },
+          { href: "#sec-2", label: "2. لغة بايثون وكيف يعمل المفسّر" },
+          { href: "#sec-3", label: "3. الطباعة print() والتعليقات" },
+          { href: "#sec-4", label: "4. المتغيرات وصناديق الذاكرة" },
+          { href: "#sec-5", label: "5. أنواع البيانات والتحويل النوعي" },
+          { href: "#sec-6", label: "6. النصوص String ودوالها وتقطيعها" },
+          { href: "#sec-7", label: "7. العمليات الحسابية والمقارنة والمنطق" },
+          { href: "#sec-8", label: "8. المدخلات input() وتنسيق f-strings" },
+          { href: "#sec-9", label: "9. الجمل الشرطية if / elif / else" },
+          { href: "#sec-10", label: "10. الحلقات التكرارية while و for" },
+          { href: "#sec-11", label: "11. القوائم Lists والصفوف Tuples" },
+          { href: "#sec-12", label: "12. القواميس Dictionaries والمجموعات Sets" },
+          { href: "#sec-13", label: "13. الدوال Functions و return والنطاق" },
+          { href: "#sec-14", label: "14. معالجة الأخطاء try / except" },
+          { href: "#sec-15", label: "15. الملفات Files والمكتبات القياسية" },
+          { href: "#sec-16", label: "16. المختبر التطبيقي الشامل (6 تحديات)" }
+        ],
+        sections: [
+          {
+            id: "sec-1",
+            heading: "1. ما هي البرمجة وما هو الحاسوب والخوارزمية؟",
+            paragraphs: [
+              "الحاسوب معالج إلكتروني فائق السرعة ينفّذ تعليمات مخزّنة في الذاكرة اعتماداً على النظام الثنائي (0 و 1). لا يملك الحاسوب فهماً ذاتياً؛ بل ينفّذ التسلسل المنطقي الذي نكتبه له بدقة صارمة.",
+              "الخوارزمية (Algorithm) هي خطة حل المشكلة كخطوات متسلسلة ومحددة، والبرنامج (Program) هو ترجمة هذه الخوارزمية إلى لغة برمجة يفهمها الحاسوب."
+            ],
+            kid: {
+              title: "شرح مبسّط: الروبوت المطيع ووصفة الكعك",
+              lines: [
+                "تخيّل عندك روبوت لعبة سريع جداً، لكنه ما يعرف يسوي شي لحاله إلا إذا قلت له كل خطوة بالترتيب: 'امشِ خطوتين، التفت يمين، خذ المكعب الأزرق'.",
+                "الخوارزمية تشبه وصفة تحضير الكعك خطوة بخطوة، والبرنامج هو كتابة الوصفة بلغة يفهمها الروبوت!"
+              ]
+            },
+            note: {
+              strong: "قاعدة ذهبية في علوم الحاسوب:",
+              text: "ترتيب التعليمات يغيّر النتيجة كلياً؛ ارتداء الجوارب ثم الحذاء ينجح، أما عكس الترتيب فيفشل رغم أن الخطوتين نفسهما."
+            }
+          },
+          {
+            id: "sec-2",
+            heading: "2. لماذا بايثون (Python) وكيف يعمل المفسّر (Interpreter)؟",
+            paragraphs: [
+              "بايثون لغة برمجة عالية المستوى (High-Level) ابتكرها غيدو فان روسوم عام 1991. صُممت لتكون واضحة القراءة وقريبة من اللغة البشرية المنظمة، وتدعم البرمجة الإجرائية والكائنية والوظيفية.",
+              "يعتمد تنفيذ بايثون قياسياً (CPython) على مفسّر يترجم الكود المصدري إلى بايت كود (Bytecode) ثم ينفّذه سطراً بسطر عبر الآلة الافتراضية لبايثون (PVM)."
+            ],
+            kid: {
+              title: "شرح مبسّط: المترجم الفوري الشاطر",
+              lines: [
+                "أنت تكتب أوامر مرتبة بلغة بايثون السهلة، والكمبيوتر يفهم فقط لغة الأرقام (صفر وواحد).",
+                "المفسّر يشبه المترجم الشاطر اللي يقرأ كلامك سطر بسطر ويترجمه فوراً للكمبيوتر عشان ينفّذه قدام عينك!"
+              ]
+            },
+            code: `# أول برنامج رسمي في بايثون
+print("Welcome to MinPy Academy!")
+print("2 + 3 =", 2 + 3)`,
+            output: "Welcome to MinPy Academy!\n2 + 3 = 5"
+          },
+          {
+            id: "sec-3",
+            heading: "3. دالة الإخراج print() والتعليقات (Comments)",
+            paragraphs: [
+              "تُستخدم الدالة المدمجة print() لطباعة النصوص والأرقام ونتائج العمليات على الشاشة. تقبل عدة معاملات مفصولة بفواصل، وتدعم معاملين اختياريين مهمين هما sep (الفاصل بين العناصر) و end (ما يُطبع في نهاية السطر).",
+              "التعليقات تبدأ بالرمز # ويتجاهلها المفسّر كلياً؛ تُستخدم لشرح منطق الكود وتوثيقه."
+            ],
+            kid: {
+              title: "شرح مبسّط: الميكروفون وملاحظات القلم الرصاص",
+              lines: [
+                "دالة print() تشبه الميكروفون: أي كلام تحطه جوا القوسين يطلع على الشاشة.",
+                "والعلامة # تشبه ملاحظة تكتبها بقلم رصاص على دفتر الملاحظات لنفسك، والكمبيوتر ما يقرأها."
+              ]
+            },
+            code: `# تخصيص الفاصل ونهاية السطر في print
+print("2026", "11", "25", sep="-")
+print("Loading", end="... ")
+print("Done!")`,
+            output: "2026-11-25\nLoading... Done!"
+          },
+          {
+            id: "sec-4",
+            heading: "4. المتغيرات (Variables) وقواعد التسمية وإدارة المراجع",
+            paragraphs: [
+              "المتغير اسم رمزي يشير إلى كائن مخزّن في الذاكرة عبر عامل الإسناد (=). بايثون لغة ذات تنميط ديناميكي (Dynamic Typing)، أي أن نوع المتغير يُستنتج من القيمة المسندة ويمكن إعادة إسناد قيمة من نوع آخر له.",
+              "قواعد التسمية: يبدأ بحرف أو شرطة سفلية (_)، لا يبدأ برقم، لا يحوي مسافات أو رموزاً خاصة، حساس لحالة الأحرف (total ≠ Total)، ويُفضّل أسلوب snake_case."
+            ],
+            kid: {
+              title: "شرح مبسّط: صناديق الألعاب وعليها ملصقات أسماء",
+              lines: [
+                "تخيّل عندك صناديق مرتبة على الرف، وكل صندوق عليه ملصق اسم: صندوق اسمه 'نقاط' وصندوق اسمه 'مستوى'.",
+                "لما تكتب score = 10 كأنك حطيت 10 نجوم جوا صندوق النقاط. ولو كتبت بعدها score = 20 كأنك بدّلت محتوى الصندوق إلى 20 نجمة!"
+              ]
+            },
+            code: `player_name = "Ziad"
+level = 1
+score = 100
+score += 50          # اختصار لـ score = score + 50
+x, y = 10, 20        # إسناد متعدد في سطر واحد
+
+print(player_name, level, score)
+print(x, y)`,
+            output: "Ziad 1 150\n10 20"
+          },
+          {
+            id: "sec-5",
+            heading: "5. أنواع البيانات الأساسية (Data Types) والتحويل النوعي (Casting)",
+            paragraphs: [
+              "الأنواع الأولية الأساسية في بايثون هي: int للأعداد الصحيحة غير محدودة الدقة، float للأعداد العشرية ذات الفاصلة العائمة، str للسلاسل النصية غير القابلة للتعديل، و bool للقيم المنطقية True و False.",
+              "نستخدم type() لمعرفة النوع، و int() و float() و str() و bool() للتحويل الصريح بين الأنواع."
+            ],
+            kid: {
+              title: "شرح مبسّط: فرق بين عدّ التفاح وقياس الحليب",
+              lines: [
+                "العدد الصحيح (int) مثل عدد الكرات: 1، 2، 3.",
+                "العدد العشري (float) مثل كوب ونص حليب: 1.5.",
+                "النص (str) مثل كلمة 'أهلاً' جوا علامات تنصيص.",
+                "والمنطقي (bool) مثل زر النور: شغّال (True) أو طافي (False)."
+              ]
+            },
+            table: {
+              headers: ["النوع", "الكلمة في بايثون", "أمثلة", "دالة التحويل"],
+              rows: [
+                ["عدد صحيح", "int", "0, 17, -45", "int(\"17\") -> 17"],
+                ["عدد عشري", "float", "3.14, -2.5, 8.0", "float(\"3.5\") -> 3.5"],
+                ["نص", "str", "\"MinPy\", 'Hi'", "str(99) -> \"99\""],
+                ["منطقي", "bool", "True, False", "bool(1) -> True, bool(0) -> False"]
+              ]
+            },
+            code: `raw_price = "19.5"
+price = float(raw_price)
+quantity = int("3")
+total = price * quantity
+
+print(type(total), total)
+print("Receipt: $" + str(total))`,
+            output: "<class 'float'> 58.5\nReceipt: $58.5"
+          },
+          {
+            id: "sec-6",
+            heading: "6. السلاسل النصية (Strings): الفهرسة والتقطيع والدوال الجاهزة",
+            paragraphs: [
+              "السلسلة النصية في بايثون تسلسل مرتب من المحارف يبدأ ترقيمه (Indexing) من الصفر 0 من اليسار، ومن -1 من اليمين. كما يدعم التقطيع (Slicing) بالصيغة text[start:stop:step].",
+              "توفر النصوص دوالاً مدمجة قوية مثل lower() و upper() و strip() لإزالة الفراغات الطرفية، و replace() و split() و len()."
+            ],
+            kid: {
+              title: "شرح مبسّط: قطار الحروف المرقّم",
+              lines: [
+                "الكلمة في بايثون تشبه قطار صغير كل عربة فيها حرف واحد، وأول عربة رقمها دائماً صفر 0!",
+                "تقدر تقصّ جزء من القطار أو تحوّل كل الحروف لكبيرة أو صغيرة بأمر واحد جاهز."
+              ]
+            },
+            code: `word = "  Python Academy  "
+clean = word.strip()
+print(len(clean))          # طول النص
+print(clean[0], clean[-1]) # أول حرف وآخر حرف
+print(clean[0:6])          # تقطيع أول 6 حروف
+print(clean.upper())
+print(clean.replace("Academy", "Lab"))`,
+            output: "14\nP y\nPython\nPYTHON ACADEMY\nPython Lab"
+          },
+          {
+            id: "sec-7",
+            heading: "7. العمليات الحسابية، المقارنة، والمنطق (Operators)",
+            paragraphs: [
+              "تشمل العمليات الحسابية: الجمع (+)، الطرح (-)، الضرب (*)، القسمة العشرية (/)، القسمة الصحيحة (//)، باقي القسمة (%)، والأس (**). وتخضع لأولوية العمليات الرياضية القياسية (PEMDAS).",
+              "معاملات المقارنة (==، !=، >، <، >=، <=) تُرجع bool، وتربطها المعاملات المنطقية (and، or، not)."
+            ],
+            kid: {
+              title: "شرح مبسّط: تقسيم قطع الحلوى والباقي في الصحن",
+              lines: [
+                "معك 11 قطعة حلوى وتبي توزعها بالتساوي على 3 أطفال: كل طفل ياخذ 3 قطع (11 // 3 = 3)، ويبقى في الصحن قطعتان (11 % 3 = 2).",
+                "باقي القسمة (%) مفيد جداً عشان نعرف إذا الرقم زوجي (رقم % 2 == 0) أو فردي!"
+              ]
+            },
+            code: `print(11 // 3)           # قسمة صحيحة: 3
+print(11 % 3)            # باقي القسمة: 2
+print(3 ** 3)            # 3 أس 3: 27
+number = 14
+is_even = (number % 2 == 0)
+print("Is even?", is_even)
+print(is_even and number > 10)`,
+            output: "3\n2\n27\nIs even? True\nTrue"
+          },
+          {
+            id: "sec-8",
+            heading: "8. قراءة المدخلات input() وتنسيق النصوص f-strings",
+            paragraphs: [
+              "توقف الدالة input() البرنامج لقراءة سطر يكتبه المستخدم وتعيده دائماً كـ str. للعمليات الحسابية نحول الناتج بـ int() أو float().",
+              "لتنسيق النصوص باحترافية، نستخدم سلاسل f-strings بوضع حرف f قبل علامة التنصيص وكتابة المتغيرات أو التعبيرات داخل أقواس معقوفة {expr}."
+            ],
+            kid: {
+              title: "شرح مبسّط: بطاقة دعوة تكتب اسمك تلقائياً",
+              lines: [
+                "أمر input() يخلي الكمبيوتر يسألك سؤال وينتظر جوابك على الكيبورد.",
+                "و f-string يشبه بطاقة دعوة فيها فراغ {name} يمتلئ باسمك فوراً وبشكل مرتب!"
+              ]
+            },
+            code: `student = input("Enter student name: ")
+hours = float(input("Study hours today: "))
+minutes = int(hours * 60)
+
+print(f"Student {student} studied {hours}h ({minutes} mins).")`,
+            output: "Enter student name: Omar\nStudy hours today: 2.5\nStudent Omar studied 2.5h (150 mins)."
+          },
+          {
+            id: "sec-9",
+            heading: "9. الجمل الشرطية (if / elif / else) والمسافة البادئة",
+            paragraphs: [
+              "تتيح الجمل الشرطية تفرّع مسار التنفيذ حسب تحقق الشروط. يفحص المفسّر if أولاً، ثم elif بالترتيب، وينفذ else إذا لم يتحقق أي شرط.",
+              "المسافة البادئة (4 مسافات) إجبارية نحوياً في بايثون لتحديد الكتلة التابعة لكل شرط."
+            ],
+            kid: {
+              title: "شرح مبسّط: اختيار الملابس حسب الطقس",
+              lines: [
+                "إذا الجو برد (if) البس معطف، وإلا إذا الجو معتدل (elif) البس قميص، وإلا (else) البس ملابس صيفية!",
+                "المسافات الفاضية قبل الأسطر تورّي الكمبيوتر أي أمر يشتغل جوا كل اختيار."
+              ]
+            },
+            code: `temp = 18
+
+if temp >= 30:
+    status = "Hot"
+elif temp >= 15:
+    status = "Mild"
+else:
+    status = "Cold"
+
+print(f"Temperature {temp}C -> {status}")`,
+            output: "Temperature 18C -> Mild"
+          },
+          {
+            id: "sec-10",
+            heading: "10. الحلقات التكرارية (Loops): while و for و break / continue",
+            paragraphs: [
+              "تُنفّذ حلقة while كتلة الكود طالما الشرط True. وتُكرّر حلقة for عبر عناصر تسلسل أو مجال رقمي range(start, stop, step).",
+              "تُنهي التعليمة break الحلقة فوراً، بينما تتخطى continue الدورة الحالية وتنتقل للدورة التالية."
+            ],
+            kid: {
+              title: "شرح مبسّط: الجري حول الملعب وتخطي الحفر",
+              lines: [
+                "حلقة for تشبه الجري 5 لفات حول الملعب بالعدّ: 1، 2، 3، 4، 5.",
+                "كلمة continue تقول: 'اقفز فوق هاي الخطوة وكمّل'، وكلمة break تقول: 'توقف واطلع من السباق فوراً!'"
+              ]
+            },
+            code: `total = 0
+for n in range(1, 7):
+    if n == 3:
+        continue       # تخطّي الرقم 3
+    if n == 6:
+        break          # إيقاف الحلقة عند 6
+    total += n
+    print("Added:", n)
+
+print("Total:", total)`,
+            output: "Added: 1\nAdded: 2\nAdded: 4\nAdded: 5\nTotal: 12"
+          },
+          {
+            id: "sec-11",
+            heading: "11. القوائم (Lists) والصفوف (Tuples)",
+            paragraphs: [
+              "القائمة (list) بنية بيانات مرتبة وقابلة للتعديل (Mutable) تُكتب بين معقوفتين [...] وتدعم الإضافة append() والحذف pop() والفرز sort() والمرور عليها بحلقة for.",
+              "الصف (tuple) يشبه القائمة لكنه غير قابل للتعديل (Immutable) ويُكتب بين قوسين (...) لحماية البيانات الثابتة."
+            ],
+            kid: {
+              title: "شرح مبسّط: حقيبة الظهر القابلة للتعديل vs الصندوق المقفل",
+              lines: [
+                "القائمة (List) مثل شنطة مدرستك: تقدر تحط فيها كتاب جديد (append) أو تطلّع منها قلم (pop) بأي وقت.",
+                "الصف (Tuple) مثل صندوق زجاجي مقفل بمفتاح: تشوف اللي جواه وتقرأه، بس ما تقدر تبدّل مكانه!"
+              ]
+            },
+            code: `tasks = ["Read", "Code", "Test"]
+tasks.append("Deploy")
+tasks[0] = "Study Python"
+
+for idx, item in enumerate(tasks, start=1):
+    print(f"{idx}. {item}")
+
+dimensions = (1920, 1080)  # Tuple ثابت
+print("Screen:", dimensions[0], "x", dimensions[1])`,
+            output: "1. Study Python\n2. Code\n3. Test\n4. Deploy\nScreen: 1920 x 1080"
+          },
+          {
+            id: "sec-12",
+            heading: "12. القواميس (Dictionaries) والمجموعات (Sets)",
+            paragraphs: [
+              "القاموس (dict) يخزن البيانات على شكل أزواج مفتاح وقيمة {key: value} بوقت وصول فائق السرعة O(1) وسطياً، ويُستخدم لتمثيل السجلات والملفات المهيكلة.",
+              "المجموعة (set) تخزن عناصر فريدة غير مكررة وتدعم عمليات الاتحاد والتقاطع الرياضية."
+            ],
+            kid: {
+              title: "شرح مبسّط: دفتر الهاتف وملصقات الأبطال بدون تكرار",
+              lines: [
+                "القاموس (Dictionary) مثل دفتر أرقام الهاتف: تبحث بالاسم (المفتاح) فيطلع لك الرقم (القيمة) فوراً!",
+                "المجموعة (Set) مثل ألبوم ملصقات: لو جاك ملصق مكرر مرتين، الألبوم يحتفظ بنسخة وحدة فقط!"
+              ]
+            },
+            code: `student = {
+    "name": "Ali",
+    "age": 17,
+    "grade": 96
+}
+student["passed"] = True
+print(student["name"], "->", student.get("grade"))
+
+unique_tags = {"python", "code", "python", "ai"}
+print(unique_tags)`,
+            output: "Ali -> 96\n{'python', 'code', 'ai'}"
+          },
+          {
+            id: "sec-13",
+            heading: "13. الدوال (Functions) وتعليمة return ونطاق المتغيرات",
+            paragraphs: [
+              "الدالة كتلة برمجية مسماة قابلة لإعادة الاستخدام تُعرّف بالكلمة المحجوزة def. تستقبل معاملات (Parameters) وتعيد نتيجة عبر return.",
+              "المتغيرات المعرّفة داخل الدالة تكون محلية (Local Scope) لا تُرى خارجها، مما يحمي البرنامج من التداخل غير المقصود."
+            ],
+            kid: {
+              title: "شرح مبسّط: آلة العصير السحرية",
+              lines: [
+                "الدالة تشبه عصّارة الفواكه: تعطيها برتقال (المدخلات)، تشتغل جواها، وترجع لك كوب عصير جاهز (return)!",
+                "بدل ما تعصر بإيدك كل مرة، تضغط زر الدالة باسمها فتشتغل فوراً."
+              ]
+            },
+            code: `def calc_discount(price, percent=10):
+    saved = price * (percent / 100)
+    return price - saved
+
+final_a = calc_discount(200, 25)
+final_b = calc_discount(100)      # يستخدم النسبة الافتراضية 10%
+print("Final A:", final_a)
+print("Final B:", final_b)`,
+            output: "Final A: 150.0\nFinal B: 90.0"
+          },
+          {
+            id: "sec-14",
+            heading: "14. معالجة الأخطاء والاستثناءات (try / except / finally)",
+            paragraphs: [
+              "عند تشغيل البرامج قد تحدث أخطاء وقت التشغيل (Runtime Exceptions) مثل القسمة على صفر ZeroDivisionError أو إدخال نص بدل رقم ValueError.",
+              "نستخدم كتلة try / except لالتقاط الخطأ بأمان ومنع توقف البرنامج المفاجئ، مع إمكانية إضافة finally لتنفيذ التنظيف دائماً."
+            ],
+            kid: {
+              title: "شرح مبسّط: وسادة الأمان تحت الأرجوحة",
+              lines: [
+                "تخيّل طفل يلعب على الأرجوحة وتحته وسادة إسفنج ناعمة: لو وقع ما يتأذى ويكمل لعب.",
+                "كتلة try / except هي الوسادة اللي تمسك الخطأ بلطف وتقول للمستخدم 'اكتب رقماً صحيحاً' بدل ما ينهار البرنامج!"
+              ]
+            },
+            code: `user_input = "abc"
+try:
+    num = int(user_input)
+    print(100 / num)
+except ValueError:
+    print("Error: Please enter digits only.")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero.")`,
+            output: "Error: Please enter digits only."
+          },
+          {
+            id: "sec-15",
+            heading: "15. التعامل مع الملفات (with open) واستيراد المكتبات (import)",
+            paragraphs: [
+              "للحفاظ على البيانات بعد إغلاق البرنامج، نكتب ونقرأ من الملفات باستخدام مدير السياق with open(filename, mode, encoding='utf-8') الذي يغلق الملف تلقائياً.",
+              "كما تضم بايثون مكتبة قياسية ضخمة (مثل math و random و datetime) تُستدعى عبر import."
+            ],
+            kid: {
+              title: "شرح مبسّط: دفتر الحفظ الدائم وصندوق الأدوات الجاهز",
+              lines: [
+                "المتغيرات تنمسح لما تطفي الكمبيوتر، أما الملفات تشبه دفتر حقيقي تكتب فيه وتلقاه بكرة موجود!",
+                "وأمر import يشبه استعارة صندوق أدوات جاهز من المكتبة بدل ما تصنع المفكّ بنفسك."
+              ]
+            },
+            code: `import math
+
+with open("notes.txt", "w", encoding="utf-8") as f:
+    f.write("MinPy Lesson 01 Completed!\\n")
+
+with open("notes.txt", "r", encoding="utf-8") as f:
+    print(f.read().strip())
+
+print("Square root of 81:", math.sqrt(81))`,
+            output: "MinPy Lesson 01 Completed!\nSquare root of 81: 9.0"
+          }
+        ],
+        lab: {
+          id: "sec-16",
+          heading: "16. المختبر التطبيقي الشامل (6 اختبارات عملية)",
+          intro: "اختبر إتقانك لجميع مفاهيم المحاضرة في هذا المختبر التفاعلي. أكمل الأكواد البرمجية وأجب عن الأسئلة ثم اضغط زر الفحص.",
+          totalScoreLabel: (earned, total) => `النتيجة الكلية للمختبر: ${earned} / ${total}`,
+
+          ex1Title: "التحدي 1: المتغيرات والتحويل النوعي والطباعة",
+          ex1Desc: "أكمل الفراغات لإسناد الاسم، وتحويل \"40\" إلى عدد صحيح، وطباعة الناتج.",
+          ex1Hint: "استخدم (=) للإسناد، و (int) لتحويل النص إلى رقم، و (print) للطباعة.",
+          ex1CheckBtn: "فحص التحدي 1",
+          ex1HintBtn: "تلميح",
+          ex1Ok: "ممتاز! أتقنت الإسناد والتحويل من نص إلى عدد صحيح.",
+          ex1Err: "تحقق من الفراغات: نحتاج (=) ثم (int) ثم (print).",
+
+          ex2Title: "التحدي 2: الشروط المتعددة (if / elif / else)",
+          ex2Desc: "أكمل الكود لتصنيف الدرجة إلى A أو B أو C.",
+          ex2Hint: "استخدم if للشرط الأول، و elif للشرط الثاني، و else للحالة الأخيرة.",
+          ex2CheckBtn: "فحص التحدي 2",
+          ex2HintBtn: "تلميح",
+          ex2Ok: "رائع! بناء الشروط المتدرجة صحيح 100%.",
+          ex2Err: "راجع الكلمات المحجوزة: if ثم elif ثم else.",
+
+          ex3Title: "التحدي 3: الحلقات التكرارية (for / range)",
+          ex3Desc: "أكمل الحلقة لطباعة الأرقام من 0 إلى 3 باستخدام for و range.",
+          ex3Hint: "الصيغة الصحيحة: for i in range(4): متبوعة بـ print(i).",
+          ex3CheckBtn: "فحص التحدي 3",
+          ex3HintBtn: "تلميح",
+          ex3Ok: "ممتاز! حلقة التكرار تعمل بدقة.",
+          ex3Err: "تأكد من كتابة for ثم range ثم print.",
+
+          ex4Title: "التحدي 4: القوائم والدوال (def / append / return)",
+          ex4Desc: "أكمل الدالة التي تضيف عنصراً للقائمة ثم تُرجع طولها عبر len.",
+          ex4Hint: "عرّف الدالة بـ def، وأضف العنصر بـ append، وأرجع النتيجة بـ return.",
+          ex4CheckBtn: "فحص التحدي 4",
+          ex4HintBtn: "تلميح",
+          ex4Ok: "عمل احترافي! جمعت بين الدوال والقوائم بنجاح.",
+          ex4Err: "تحقق من كتابة def ثم append ثم return.",
+
+          ex5Title: "التحدي 5: القواميس ومعالجة الأخطاء (try / except)",
+          ex5Desc: "أكمل الكود المحمي لالتقاط خطأ القسمة على صفر.",
+          ex5Hint: "نبدأ كتلة الحماية بـ try ونلتقط الاستثناء بـ except.",
+          ex5CheckBtn: "فحص التحدي 5",
+          ex5HintBtn: "تلميح",
+          ex5Ok: "ممتاز! برنامجك الآن محمي ضد الانهيار المفاجئ.",
+          ex5Err: "راجع صيغة معالجة الاستثناءات: try ثم except.",
+
+          mcqTitle: "التحدي 6: سؤال فهم عميق",
+          mcqQuestion: "ماذا تطبع التعليمة print(15 % 4) في بايثون؟",
+          mcqOptions: [
+            { value: "3.75", text: "3.75 (ناتج القسمة العشرية)" },
+            { value: "3", text: "3 (باقي قسمة 15 على 4 لأن 4×3=12 والباقي 3)" },
+            { value: "4", text: "4 (المقسوم عليه)" }
+          ],
+          mcqCheckBtn: "تحقق من الإجابة",
+          mcqOk: "صحيح 100%! المعامل % يعيد باقي القسمة الصحيحة وهو 3.",
+          mcqErr: "خطأ بسيط: الرمز % يحسب باقي القسمة (15 - 12 = 3)."
+        }
+      },
+
+      en: {
+        dir: "ltr",
+        brandName: "MinPy Academy",
+        brandSub: "Complete Python Foundations",
+        themeToDark: "Dark Mode",
+        themeToLight: "Light Mode",
+        langToEn: "العربية",
+        lectureTag: "Lecture 01",
+        footerText: "MinPy Academy — Complete Python Foundations from Zero to Mastery",
+        badgeText: "Core Foundations Curriculum • 15 Complete Study Units",
+        metaText: "Level: Absolute Zero to Core Mastery • Includes 6 Interactive Lab Challenges",
+        title: "Python Programming Foundations: Complete Reference with Simple Analogies",
+        abstract:
+          "This comprehensive reference covers every real foundational concept in Python from absolute zero through functions, data structures, exception handling, and file I/O. Every unit pairs formal precision with a crystal-clear explanation that makes learning easy.",
+        tocTitle: "Complete Curriculum Index (15 Study Units + Interactive Lab)",
+        toc: [
+          { href: "#sec-1", label: "1. Computers, Algorithms & Programming" },
+          { href: "#sec-2", label: "2. Why Python & How the Interpreter Works" },
+          { href: "#sec-3", label: "3. Output print() & Comments" },
+          { href: "#sec-4", label: "4. Variables & Memory References" },
+          { href: "#sec-5", label: "5. Data Types & Type Casting" },
+          { href: "#sec-6", label: "6. Strings: Indexing, Slicing & Methods" },
+          { href: "#sec-7", label: "7. Arithmetic, Comparison & Logic Operators" },
+          { href: "#sec-8", label: "8. User Input input() & f-strings" },
+          { href: "#sec-9", label: "9. Conditionals: if / elif / else" },
+          { href: "#sec-10", label: "10. Loops: while, for, break & continue" },
+          { href: "#sec-11", label: "11. Lists & Tuples" },
+          { href: "#sec-12", label: "12. Dictionaries & Sets" },
+          { href: "#sec-13", label: "13. Functions, return & Variable Scope" },
+          { href: "#sec-14", label: "14. Exception Handling: try / except" },
+          { href: "#sec-15", label: "15. File I/O & Standard Library Modules" },
+          { href: "#sec-16", label: "16. Interactive Lab (6 Challenges)" }
+        ],
+        sections: [
+          {
+            id: "sec-1",
+            heading: "1. What Are Computers, Algorithms, and Programming?",
+            paragraphs: [
+              "A computer is a high-speed electronic processor that executes instructions stored in memory using binary logic (0s and 1s). It possesses no intuition of its own; it executes exact sequences deterministically.",
+              "An algorithm is a finite, unambiguous step-by-step procedure for solving a problem, and a program is that algorithm expressed in a formal programming language."
+            ],
+            kid: {
+              title: "Simple Explanation: An Obedient Toy Robot and a Cake Recipe",
+              lines: [
+                "Imagine a super-fast toy robot standing in front of you. It cannot decide anything on its own until you give clear steps in order: 'Walk two steps, turn right, pick up the blue block.'",
+                "An algorithm is like a cake recipe step by step, and programming is writing that recipe in a language the robot understands!"
+              ]
+            },
+            note: {
+              strong: "Fundamental Rule of Computing:",
+              text: "Instruction order determines correctness: putting on socks then shoes succeeds, whereas reversing the exact same steps fails."
+            }
+          },
+          {
+            id: "sec-2",
+            heading: "2. Why Python and How the Interpreter Works",
+            paragraphs: [
+              "Python is a high-level programming language created by Guido van Rossum in 1991. It prioritizes clean, readable syntax and supports procedural, object-oriented, and functional paradigms.",
+              "Standard CPython compiles source code into bytecode and executes it via the Python Virtual Machine (PVM), enabling rapid prototyping and clear error diagnostics."
+            ],
+            kid: {
+              title: "Simple Explanation: A Fast Live Translator",
+              lines: [
+                "You write neat instructions in friendly Python words, while the computer speaks binary zeros and ones.",
+                "The interpreter acts like a clever translator reading your lines and translating them immediately so the computer runs them right away."
+              ]
+            },
+            code: `# First official Python program
+print("Welcome to MinPy Academy!")
+print("2 + 3 =", 2 + 3)`,
+            output: "Welcome to MinPy Academy!\n2 + 3 = 5"
+          },
+          {
+            id: "sec-3",
+            heading: "3. Output with print() and Comments (#)",
+            paragraphs: [
+              "The built-in print() function writes values to standard output. It accepts multiple comma-separated arguments and supports optional parameters such as sep (separator) and end (line terminator).",
+              "Comments begin with # and are ignored by the interpreter; engineers use them to document intent and clarify non-obvious logic."
+            ],
+            kid: {
+              title: "Simple Explanation: A Megaphone and Pencil Margin Notes",
+              lines: [
+                "print() is like a megaphone: whatever you put inside the parentheses appears clearly on the screen.",
+                "A # symbol is like a quiet pencil note written for yourself in the notebook margin—the computer skips reading it out loud."
+              ]
+            },
+            code: `# Customizing separator and line ending in print
+print("2026", "11", "25", sep="-")
+print("Loading", end="... ")
+print("Done!")`,
+            output: "2026-11-25\nLoading... Done!"
+          },
+          {
+            id: "sec-4",
+            heading: "4. Variables, Naming Rules, and Memory References",
+            paragraphs: [
+              "A variable binds a symbolic identifier to an object in memory via the assignment operator (=). Python is dynamically typed, meaning types attach to objects at runtime and variables can be rebound.",
+              "Identifiers must start with a letter or underscore (_), cannot start with a digit, contain no spaces, are case-sensitive (total != Total), and follow snake_case by convention."
+            ],
+            kid: {
+              title: "Simple Explanation: Labeled Toy Boxes on a Shelf",
+              lines: [
+                "Picture neat boxes on a shelf with name stickers on the front, such as a box labeled 'score' and another labeled 'level'.",
+                "Writing score = 10 puts 10 stars inside that box. Writing score = 20 later replaces the old stars with 20 stars!"
+              ]
+            },
+            code: `player_name = "Ziad"
+level = 1
+score = 100
+score += 50          # Shorthand for score = score + 50
+x, y = 10, 20        # Multiple assignment
+
+print(player_name, level, score)
+print(x, y)`,
+            output: "Ziad 1 150\n10 20"
+          },
+          {
+            id: "sec-5",
+            heading: "5. Core Data Types and Explicit Type Casting",
+            paragraphs: [
+              "Core built-in types include int (arbitrary-precision integers), float (floating-point decimals), str (immutable text sequences), and bool (True or False).",
+              "Use type() to inspect an object's class, and int(), float(), str(), or bool() for explicit type conversion."
+            ],
+            kid: {
+              title: "Simple Explanation: Counting Whole Balls vs. Measuring Milk",
+              lines: [
+                "Integers (int) count whole items: 1, 2, 3.",
+                "Floats (float) measure fractions: 1.5 cups.",
+                "Strings (str) hold quoted text like \"Hello\".",
+                "Booleans (bool) act like a light switch: True (on) or False (off)."
+              ]
+            },
+            table: {
+              headers: ["Concept", "Python Type", "Examples", "Casting Example"],
+              rows: [
+                ["Integer", "int", "0, 17, -45", "int(\"17\") -> 17"],
+                ["Float", "float", "3.14, -2.5, 8.0", "float(\"3.5\") -> 3.5"],
+                ["String", "str", "\"MinPy\", 'Hi'", "str(99) -> \"99\""],
+                ["Boolean", "bool", "True, False", "bool(1) -> True, bool(0) -> False"]
+              ]
+            },
+            code: `raw_price = "19.5"
+price = float(raw_price)
+quantity = int("3")
+total = price * quantity
+
+print(type(total), total)
+print("Receipt: $" + str(total))`,
+            output: "<class 'float'> 58.5\nReceipt: $58.5"
+          },
+          {
+            id: "sec-6",
+            heading: "6. Strings: Indexing, Slicing, and Built-in Methods",
+            paragraphs: [
+              "Strings are ordered character sequences indexed from 0 on the left and -1 on the right. Substrings are extracted via slicing: text[start:stop:step].",
+              "Common non-mutating string methods include strip(), lower(), upper(), replace(), split(), and len()."
+            ],
+            kid: {
+              title: "Simple Explanation: A Numbered Letter Train",
+              lines: [
+                "A word in Python is like a tiny train where each car holds one letter, and the very first car is always numbered 0!",
+                "You can slice out a section of cars or turn all letters uppercase with a single command."
+              ]
+            },
+            code: `word = "  Python Academy  "
+clean = word.strip()
+print(len(clean))
+print(clean[0], clean[-1])
+print(clean[0:6])
+print(clean.upper())
+print(clean.replace("Academy", "Lab"))`,
+            output: "14\nP y\nPython\nPYTHON ACADEMY\nPython Lab"
+          },
+          {
+            id: "sec-7",
+            heading: "7. Arithmetic, Comparison, and Logical Operators",
+            paragraphs: [
+              "Arithmetic operators include +, -, *, /, floor division (//), modulo remainder (%), and exponentiation (**), evaluated according to standard precedence rules.",
+              "Comparison operators (==, !=, >, <, >=, <=) produce booleans combined with logical operators (and, or, not)."
+            ],
+            kid: {
+              title: "Simple Explanation: Sharing Candies and Leftovers on the Plate",
+              lines: [
+                "Suppose you share 11 candies equally among 3 kids: each gets 3 candies (11 // 3 = 3), and 2 candies stay left over (11 % 3 = 2).",
+                "Modulo (%) is super handy for checking if a number is even (number % 2 == 0)!"
+              ]
+            },
+            code: `print(11 // 3)
+print(11 % 3)
+print(3 ** 3)
+number = 14
+is_even = (number % 2 == 0)
+print("Is even?", is_even)
+print(is_even and number > 10)`,
+            output: "3\n2\n27\nIs even? True\nTrue"
+          },
+          {
+            id: "sec-8",
+            heading: "8. Reading User Input input() and Formatting with f-strings",
+            paragraphs: [
+              "input() pauses execution to read a line of user input and always returns a str. Convert with int() or float() before doing math.",
+              "Formatted string literals (f-strings) embed expressions directly inside braces {expr} for clean output."
+            ],
+            kid: {
+              title: "Simple Explanation: A Party Card That Fills In Your Name",
+              lines: [
+                "input() lets the computer ask you a question and wait for your keyboard answer.",
+                "An f-string works like an invitation card with a {name} blank that automatically fills in your name!"
+              ]
+            },
+            code: `student = input("Enter student name: ")
+hours = float(input("Study hours today: "))
+minutes = int(hours * 60)
+
+print(f"Student {student} studied {hours}h ({minutes} mins).")`,
+            output: "Enter student name: Omar\nStudy hours today: 2.5\nStudent Omar studied 2.5h (150 mins)."
+          },
+          {
+            id: "sec-9",
+            heading: "9. Conditional Statements (if / elif / else) and Indentation",
+            paragraphs: [
+              "Conditionals branch program execution based on boolean expressions. Python checks if first, then elif clauses sequentially, and falls back to else.",
+              "Indentation (4 spaces) defines block ownership syntactically in Python."
+            ],
+            kid: {
+              title: "Simple Explanation: Picking Clothes Based on the Weather",
+              lines: [
+                "If it is hot (if), wear a t-shirt; else if it is mild (elif), wear a light jacket; else, put on a warm coat!",
+                "The spaces before each line tell Python which actions belong inside each choice."
+              ]
+            },
+            code: `temp = 18
+
+if temp >= 30:
+    status = "Hot"
+elif temp >= 15:
+    status = "Mild"
+else:
+    status = "Cold"
+
+print(f"Temperature {temp}C -> {status}")`,
+            output: "Temperature 18C -> Mild"
+          },
+          {
+            id: "sec-10",
+            heading: "10. Loops: while, for, break, and continue",
+            paragraphs: [
+              "A while loop repeats while its condition remains True. A for loop iterates over sequences or numeric intervals produced by range(start, stop, step).",
+              "break exits the loop immediately, whereas continue skips the rest of the current iteration."
+            ],
+            kid: {
+              title: "Simple Explanation: Running Laps Around a Track",
+              lines: [
+                "A for loop is like running 5 laps around a playground track while counting each lap.",
+                "continue says 'skip this puddle and keep going,' while break says 'stop the race right now!'"
+              ]
+            },
+            code: `total = 0
+for n in range(1, 7):
+    if n == 3:
+        continue
+    if n == 6:
+        break
+    total += n
+    print("Added:", n)
+
+print("Total:", total)`,
+            output: "Added: 1\nAdded: 2\nAdded: 4\nAdded: 5\nTotal: 12"
+          },
+          {
+            id: "sec-11",
+            heading: "11. Lists and Tuples",
+            paragraphs: [
+              "A list is an ordered, mutable collection written in square brackets [...] supporting append(), pop(), slicing, and iteration.",
+              "A tuple is an ordered, immutable sequence written in parentheses (...) used to protect fixed records."
+            ],
+            kid: {
+              title: "Simple Explanation: An Open Backpack vs. a Locked Glass Box",
+              lines: [
+                "A list is like your school backpack: you can add a new book (append) or remove a pencil (pop) anytime.",
+                "A tuple is like a locked display box: you can look inside and read items, but nobody can swap them!"
+              ]
+            },
+            code: `tasks = ["Read", "Code", "Test"]
+tasks.append("Deploy")
+tasks[0] = "Study Python"
+
+for idx, item in enumerate(tasks, start=1):
+    print(f"{idx}. {item}")
+
+dimensions = (1920, 1080)
+print("Screen:", dimensions[0], "x", dimensions[1])`,
+            output: "1. Study Python\n2. Code\n3. Test\n4. Deploy\nScreen: 1920 x 1080"
+          },
+          {
+            id: "sec-12",
+            heading: "12. Dictionaries and Sets",
+            paragraphs: [
+              "A dictionary (dict) maps unique keys to values {key: value} with average O(1) lookup time, ideal for structured records.",
+              "A set stores unique unordered elements and supports mathematical union and intersection."
+            ],
+            kid: {
+              title: "Simple Explanation: A Phonebook and a Sticker Album Without Duplicates",
+              lines: [
+                "A dictionary is like a phonebook: look up a friend's name (the key) and get their number (the value) right away!",
+                "A set is like a sticker album that automatically removes duplicate stickers so every sticker appears once."
+              ]
+            },
+            code: `student = {
+    "name": "Ali",
+    "age": 17,
+    "grade": 96
+}
+student["passed"] = True
+print(student["name"], "->", student.get("grade"))
+
+unique_tags = {"python", "code", "python", "ai"}
+print(unique_tags)`,
+            output: "Ali -> 96\n{'python', 'code', 'ai'}"
+          },
+          {
+            id: "sec-13",
+            heading: "13. Functions, return Statements, and Scope",
+            paragraphs: [
+              "Functions encapsulate reusable logic defined with def, accepting parameters and returning outputs with return.",
+              "Variables assigned inside a function live in local scope, preventing unintended side effects elsewhere."
+            ],
+            kid: {
+              title: "Simple Explanation: A Magic Juice Blender",
+              lines: [
+                "A function is like a fruit blender: put oranges in (parameters), let it blend inside, and get a glass of juice back (return)!",
+                "Instead of squeezing by hand every time, you just call the function by name."
+              ]
+            },
+            code: `def calc_discount(price, percent=10):
+    saved = price * (percent / 100)
+    return price - saved
+
+final_a = calc_discount(200, 25)
+final_b = calc_discount(100)
+print("Final A:", final_a)
+print("Final B:", final_b)`,
+            output: "Final A: 150.0\nFinal B: 90.0"
+          },
+          {
+            id: "sec-14",
+            heading: "14. Error and Exception Handling (try / except)",
+            paragraphs: [
+              "Runtime exceptions such as ValueError or ZeroDivisionError occur when invalid inputs or states arise during execution.",
+              "Wrapping risky operations in try / except handles failures gracefully without crashing the application."
+            ],
+            kid: {
+              title: "Simple Explanation: A Soft Safety Mat Under a Swing",
+              lines: [
+                "Imagine a soft foam mat under a playground swing: if someone slips, they land safely instead of getting hurt.",
+                "try / except catches errors gently and displays a helpful message instead of crashing!"
+              ]
+            },
+            code: `user_input = "abc"
+try:
+    num = int(user_input)
+    print(100 / num)
+except ValueError:
+    print("Error: Please enter digits only.")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero.")`,
+            output: "Error: Please enter digits only."
+          },
+          {
+            id: "sec-15",
+            heading: "15. File Persistence (with open) and Standard Modules (import)",
+            paragraphs: [
+              "To persist data on disk, open files using the context manager with open(path, mode, encoding='utf-8'), guaranteeing automatic file closure.",
+              "Python's standard library provides battle-tested modules such as math, random, and datetime via import."
+            ],
+            kid: {
+              title: "Simple Explanation: A Real Notebook and a Ready-Made Toolbox",
+              lines: [
+                "Variables disappear when you turn off the computer, while files are like a real paper notebook that saves your notes for tomorrow!",
+                "import is like borrowing a ready-made toolbox from the library instead of building every tool from scratch."
+              ]
+            },
+            code: `import math
+
+with open("notes.txt", "w", encoding="utf-8") as f:
+    f.write("MinPy Lesson 01 Completed!\\n")
+
+with open("notes.txt", "r", encoding="utf-8") as f:
+    print(f.read().strip())
+
+print("Square root of 81:", math.sqrt(81))`,
+            output: "MinPy Lesson 01 Completed!\nSquare root of 81: 9.0"
+          }
+        ],
+        lab: {
+          id: "sec-16",
+          heading: "16. Comprehensive Lab (6 Hands-On Challenges)",
+          intro: "Verify your mastery across all lecture concepts in this interactive lab. Complete the code blanks and concept check below.",
+          totalScoreLabel: (earned, total) => `Lab Score: ${earned} / ${total}`,
+
+          ex1Title: "Challenge 1: Variables, Casting & Output",
+          ex1Desc: "Complete the blanks to assign a name, parse \"40\" as an integer, and print the result.",
+          ex1Hint: "Use (=) for assignment, (int) to parse text to an integer, and (print) to output.",
+          ex1CheckBtn: "Check Challenge 1",
+          ex1HintBtn: "Hint",
+          ex1Ok: "Excellent! You mastered assignment and string-to-integer casting.",
+          ex1Err: "Check your blanks: use (=), then (int), then (print).",
+
+          ex2Title: "Challenge 2: Multi-Branch Conditionals (if / elif / else)",
+          ex2Desc: "Complete the conditional chain to assign grades A, B, or C.",
+          ex2Hint: "Use if for the first branch, elif for the second, and else for the fallback.",
+          ex2CheckBtn: "Check Challenge 2",
+          ex2HintBtn: "Hint",
+          ex2Ok: "Great job! Your conditional chain is 100% accurate.",
+          ex2Err: "Review the keywords: if, then elif, then else.",
+
+          ex3Title: "Challenge 3: Iteration with for and range()",
+          ex3Desc: "Complete the loop to print numbers 0 through 3 using for and range.",
+          ex3Hint: "Correct syntax: for i in range(4): followed by print(i).",
+          ex3CheckBtn: "Check Challenge 3",
+          ex3HintBtn: "Hint",
+          ex3Ok: "Spot on! Your loop executes accurately.",
+          ex3Err: "Make sure you entered for, then range, then print.",
+
+          ex4Title: "Challenge 4: Lists & Functions (def / append / return)",
+          ex4Desc: "Complete the function that appends an item to a list and returns its length.",
+          ex4Hint: "Define the function with def, add the item with append, and send back the result with return.",
+          ex4CheckBtn: "Check Challenge 4",
+          ex4HintBtn: "Hint",
+          ex4Ok: "Well engineered! You combined functions and list mutation cleanly.",
+          ex4Err: "Check your keywords: def, then append, then return.",
+
+          ex5Title: "Challenge 5: Exception Handling (try / except)",
+          ex5Desc: "Complete the guarded block to catch ZeroDivisionError safely.",
+          ex5Hint: "Start the protected block with try and catch the error with except.",
+          ex5CheckBtn: "Check Challenge 5",
+          ex5HintBtn: "Hint",
+          ex5Ok: "Awesome! Your program handles division by zero gracefully.",
+          ex5Err: "Review exception syntax: try followed by except.",
+
+          mcqTitle: "Challenge 6: Deep Concept Check",
+          mcqQuestion: "What does print(15 % 4) output in Python?",
+          mcqOptions: [
+            { value: "3.75", text: "3.75 (true floating-point quotient)" },
+            { value: "3", text: "3 (remainder of 15 divided by 4, since 4×3=12 with 3 left over)" },
+            { value: "4", text: "4 (the divisor)" }
+          ],
+          mcqCheckBtn: "Check Answer",
+          mcqOk: "100% right! The % operator computes the integer remainder, which is 3.",
+          mcqErr: "Not quite: % computes the remainder (15 - 12 = 3)."
+        }
+      }
+    };
+
+    const STORAGE_LANG_KEY = "minpy_lec01_lang";
+    const STORAGE_THEME_KEY = "minpy_lec01_theme";
+    let currentLang = localStorage.getItem(STORAGE_LANG_KEY) || "ar";
+    let currentTheme = localStorage.getItem(STORAGE_THEME_KEY) || "light";
+
+    const labResults = { ex1: false, ex2: false, ex3: false, ex4: false, ex5: false, mcq: false };
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", currentTheme);
+      const t = LECTURE_CONTENT[currentLang];
+      const themeBtn = document.getElementById("theme-btn");
+      if (themeBtn) themeBtn.textContent = currentTheme === "light" ? t.themeToDark : t.themeToLight;
+    }
+
+    function toggleTheme() {
+      currentTheme = currentTheme === "light" ? "dark" : "light";
+      localStorage.setItem(STORAGE_THEME_KEY, currentTheme);
+      applyTheme();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      localStorage.setItem(STORAGE_LANG_KEY, currentLang);
+      renderLecture();
+    }
+
+    function renderSectionHtml(sec) {
+      const parasHtml = sec.paragraphs.map((p) => `<p class="body-para">${escapeHtml(p)}</p>`).join("\n");
+      const kidLinesHtml = sec.kid.lines.map((line) => `<p>${escapeHtml(line)}</p>`).join("\n");
+      const kidHtml = `
+        <div class="kid-card">
+          <span class="kid-card-title">${escapeHtml(sec.kid.title)}</span>
+          ${kidLinesHtml}
+        </div>
+      `;
+
+      let tableHtml = "";
+      if (sec.table) {
+        const thHtml = sec.table.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("");
+        const trHtml = sec.table.rows
+          .map((row) => `<tr>${row.map((cell) => `<td><code class="inline-code">${escapeHtml(cell)}</code></td>`).join("")}</tr>`)
+          .join("\n");
+        tableHtml = `<div class="table-wrap"><table class="acad-table"><thead><tr>${thHtml}</tr></thead><tbody>${trHtml}</tbody></table></div>`;
+      }
+
+      const codeHtml = sec.code ? `<pre class="code-block">${escapeHtml(sec.code)}</pre>` : "";
+      const outputHtml = sec.output
+        ? `<div class="output-box"><span class="output-label">Output</span>${escapeHtml(sec.output).replace(/\n/g, "<br>")}</div>`
+        : "";
+      const noteHtml = sec.note
+        ? `<div class="formal-note"><strong>${escapeHtml(sec.note.strong)}</strong> ${escapeHtml(sec.note.text)}</div>`
+        : "";
+
+      return `
+        <section class="unit-section" id="${escapeHtml(sec.id)}">
+          <h2 class="unit-heading">${escapeHtml(sec.heading)}</h2>
+          ${parasHtml}
+          ${kidHtml}
+          ${tableHtml}
+          ${codeHtml}
+          ${outputHtml}
+          ${noteHtml}
+        </section>
+      `;
+    }
+
+    function renderLabHtml(lab) {
+      const earned = Object.values(labResults).filter(Boolean).length;
+      const total = Object.keys(labResults).length;
+      const mcqOptionsHtml = lab.mcqOptions
+        .map(
+          (opt, idx) => `
+            <label class="mcq-option" for="mcq_opt_${idx}">
+              <input type="radio" name="mcq_choice" id="mcq_opt_${idx}" value="${escapeHtml(opt.value)}" />
+              <span>${escapeHtml(opt.text)}</span>
+            </label>
+          `
+        )
+        .join("\n");
+
+      return `
+        <section class="unit-section" id="${escapeHtml(lab.id)}">
+          <h2 class="unit-heading">${escapeHtml(lab.heading)}</h2>
+          <p class="body-para">${escapeHtml(lab.intro)}</p>
+
+          <div class="lab-card">
+            <div class="lab-header">
+              <span class="lab-badge">${escapeHtml(lab.ex1Title)}</span>
+              <span class="lab-score" id="lab-score-display">${escapeHtml(lab.totalScoreLabel(earned, total))}</span>
+            </div>
+            <p class="body-para">${escapeHtml(lab.ex1Desc)}</p>
+            <div class="code-editor-box">
+              student <input type="text" id="ex1_a" class="quiz-input" placeholder="=" /> "Nadia"<br>
+              points = <input type="text" id="ex1_b" class="quiz-input" placeholder="int" />("40")<br>
+              <input type="text" id="ex1_c" class="quiz-input" placeholder="print" />(student, points + 10)
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkExercise1()">${escapeHtml(lab.ex1CheckBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint('ex1_fb', '${escapeHtml(lab.ex1Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex1HintBtn)}</button>
+            </div>
+            <div class="feedback" id="ex1_fb"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex2Title)}</span></div>
+            <p class="body-para">${escapeHtml(lab.ex2Desc)}</p>
+            <div class="code-editor-box">
+              mark = 82<br>
+              <input type="text" id="ex2_a" class="quiz-input" placeholder="if" /> mark &gt;= 90:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;grade = "A"<br>
+              <input type="text" id="ex2_b" class="quiz-input" placeholder="elif" /> mark &gt;= 75:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;grade = "B"<br>
+              <input type="text" id="ex2_c" class="quiz-input" placeholder="else" />:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;grade = "C"
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkExercise2()">${escapeHtml(lab.ex2CheckBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint('ex2_fb', '${escapeHtml(lab.ex2Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex2HintBtn)}</button>
+            </div>
+            <div class="feedback" id="ex2_fb"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex3Title)}</span></div>
+            <p class="body-para">${escapeHtml(lab.ex3Desc)}</p>
+            <div class="code-editor-box">
+              <input type="text" id="ex3_a" class="quiz-input" placeholder="for" /> i in <input type="text" id="ex3_b" class="quiz-input" placeholder="range" />(4):<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ex3_c" class="quiz-input" placeholder="print" />(i)
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkExercise3()">${escapeHtml(lab.ex3CheckBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint('ex3_fb', '${escapeHtml(lab.ex3Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex3HintBtn)}</button>
+            </div>
+            <div class="feedback" id="ex3_fb"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex4Title)}</span></div>
+            <p class="body-para">${escapeHtml(lab.ex4Desc)}</p>
+            <div class="code-editor-box">
+              <input type="text" id="ex4_a" class="quiz-input" placeholder="def" /> add_item(items, new_val):<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;items.<input type="text" id="ex4_b" class="quiz-input" placeholder="append" />(new_val)<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ex4_c" class="quiz-input" placeholder="return" /> len(items)
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkExercise4()">${escapeHtml(lab.ex4CheckBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint('ex4_fb', '${escapeHtml(lab.ex4Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex4HintBtn)}</button>
+            </div>
+            <div class="feedback" id="ex4_fb"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.ex5Title)}</span></div>
+            <p class="body-para">${escapeHtml(lab.ex5Desc)}</p>
+            <div class="code-editor-box">
+              <input type="text" id="ex5_a" class="quiz-input" placeholder="try" />:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;print(50 / 0)<br>
+              <input type="text" id="ex5_b" class="quiz-input" placeholder="except" /> ZeroDivisionError:<br>
+              &nbsp;&nbsp;&nbsp;&nbsp;print("Cannot divide by zero")
+            </div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkExercise5()">${escapeHtml(lab.ex5CheckBtn)}</button>
+              <button type="button" class="secondary-btn" onclick="showHint('ex5_fb', '${escapeHtml(lab.ex5Hint.replace(/'/g, "\\'"))}')">${escapeHtml(lab.ex5HintBtn)}</button>
+            </div>
+            <div class="feedback" id="ex5_fb"></div>
+          </div>
+
+          <div class="lab-card">
+            <div class="lab-header"><span class="lab-badge">${escapeHtml(lab.mcqTitle)}</span></div>
+            <p class="body-para"><strong>${escapeHtml(lab.mcqQuestion)}</strong></p>
+            <div style="margin-top: 10px;">${mcqOptionsHtml}</div>
+            <div class="btn-row">
+              <button type="button" class="action-btn" onclick="checkMcq()">${escapeHtml(lab.mcqCheckBtn)}</button>
+            </div>
+            <div class="feedback" id="mcq_fb"></div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderLecture() {
+      const data = LECTURE_CONTENT[currentLang];
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = data.dir;
+
+      document.getElementById("brand-name").textContent = data.brandName;
+      document.getElementById("brand-sub").textContent = data.brandSub;
+      document.getElementById("lang-btn").textContent = data.langToEn;
+      document.getElementById("lecture-tag").textContent = data.lectureTag;
+      document.getElementById("footer-text").textContent = data.footerText;
+
+      const tocHtml = data.toc
+        .map((item) => `<a class="toc-link" href="${escapeHtml(item.href)}">${escapeHtml(item.label)}</a>`)
+        .join("\n");
+      const sectionsHtml = data.sections.map((sec) => renderSectionHtml(sec)).join("\n");
+      const labHtml = renderLabHtml(data.lab);
+
+      document.getElementById("lecture-root").innerHTML = `
+        <div class="lecture-header-meta">
+          <span class="tag">${escapeHtml(data.badgeText)}</span>
+          <span class="meta-info">${escapeHtml(data.metaText)}</span>
+        </div>
+        <h1 class="lecture-title">${escapeHtml(data.title)}</h1>
+        <div class="lecture-abstract">${escapeHtml(data.abstract)}</div>
+        <nav class="toc-box" aria-label="Lecture Outline">
+          <div class="toc-title">${escapeHtml(data.tocTitle)}</div>
+          <div class="toc-grid">${tocHtml}</div>
+        </nav>
+        ${sectionsHtml}
+        ${labHtml}
+      `;
+      applyTheme();
+    }
+
+    function updateScoreBadge() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const earned = Object.values(labResults).filter(Boolean).length;
+      const total = Object.keys(labResults).length;
+      const badge = document.getElementById("lab-score-display");
+      if (badge) badge.textContent = lab.totalScoreLabel(earned, total);
+    }
+
+    function setFeedback(elId, type, message) {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      el.className = `feedback ${type}`;
+      el.textContent = message;
+    }
+
+    function showHint(elId, hintText) {
+      setFeedback(elId, "hint", hintText);
+    }
+
+    function checkExercise1() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const a = document.getElementById("ex1_a").value.trim();
+      const b = document.getElementById("ex1_b").value.trim();
+      const c = document.getElementById("ex1_c").value.trim();
+      labResults.ex1 = (a === "=" && b === "int" && c === "print");
+      setFeedback("ex1_fb", labResults.ex1 ? "ok" : "err", labResults.ex1 ? lab.ex1Ok : lab.ex1Err);
+      updateScoreBadge();
+    }
+
+    function checkExercise2() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const a = document.getElementById("ex2_a").value.trim();
+      const b = document.getElementById("ex2_b").value.trim();
+      const c = document.getElementById("ex2_c").value.trim();
+      labResults.ex2 = (a === "if" && b === "elif" && c === "else");
+      setFeedback("ex2_fb", labResults.ex2 ? "ok" : "err", labResults.ex2 ? lab.ex2Ok : lab.ex2Err);
+      updateScoreBadge();
+    }
+
+    function checkExercise3() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const a = document.getElementById("ex3_a").value.trim();
+      const b = document.getElementById("ex3_b").value.trim();
+      const c = document.getElementById("ex3_c").value.trim();
+      labResults.ex3 = (a === "for" && b === "range" && c === "print");
+      setFeedback("ex3_fb", labResults.ex3 ? "ok" : "err", labResults.ex3 ? lab.ex3Ok : lab.ex3Err);
+      updateScoreBadge();
+    }
+
+    function checkExercise4() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const a = document.getElementById("ex4_a").value.trim();
+      const b = document.getElementById("ex4_b").value.trim();
+      const c = document.getElementById("ex4_c").value.trim();
+      labResults.ex4 = (a === "def" && b === "append" && c === "return");
+      setFeedback("ex4_fb", labResults.ex4 ? "ok" : "err", labResults.ex4 ? lab.ex4Ok : lab.ex4Err);
+      updateScoreBadge();
+    }
+
+    function checkExercise5() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const a = document.getElementById("ex5_a").value.trim();
+      const b = document.getElementById("ex5_b").value.trim();
+      labResults.ex5 = (a === "try" && b === "except");
+      setFeedback("ex5_fb", labResults.ex5 ? "ok" : "err", labResults.ex5 ? lab.ex5Ok : lab.ex5Err);
+      updateScoreBadge();
+    }
+
+    function checkMcq() {
+      const lab = LECTURE_CONTENT[currentLang].lab;
+      const selected = document.querySelector('input[name="mcq_choice"]:checked');
+      labResults.mcq = Boolean(selected && selected.value === "3");
+      setFeedback("mcq_fb", labResults.mcq ? "ok" : "err", labResults.mcq ? lab.mcqOk : lab.mcqErr);
+      updateScoreBadge();
+    }
+
+    renderLecture();
+  </script>
+</body>
+</html>
