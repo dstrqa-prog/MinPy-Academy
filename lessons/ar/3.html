@@ -1,0 +1,1290 @@
+<style>
+  .minpy-deep-unit {
+    --surface-soft: #f8fafc;
+    --surface-tint: #eef2ff;
+    --border-strong: #cbd5e1;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fcd34d;
+    --analogy-bg: #f0f9ff;
+    --analogy-border: #7dd3fc;
+    --analogy-title: #0369a1;
+    --step-bg: #faf5ff;
+    --step-border: #d8b4fe;
+    --step-title: #6b21a8;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --navy: #1e293b;
+    --navy-hover: #334155;
+    --border: #e2e8f0;
+    --paper: #ffffff;
+    --heading: #0f172a;
+    --subtext: #334155;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --error: #dc2626;
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
+    --success: #15803d;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+    --inline-code-bg: #f1f5f9;
+    line-height: 1.95;
+  }
+
+  [data-theme="dark"] .minpy-deep-unit {
+    --surface-soft: #172033;
+    --surface-tint: rgba(96, 165, 250, 0.12);
+    --border-strong: #475569;
+    --accent-soft: rgba(96, 165, 250, 0.16);
+    --warn: #fbbf24;
+    --warn-bg: rgba(180, 83, 9, 0.22);
+    --warn-border: #92400e;
+    --analogy-bg: rgba(3, 105, 161, 0.18);
+    --analogy-border: #0284c7;
+    --analogy-title: #38bdf8;
+    --step-bg: rgba(107, 33, 168, 0.18);
+    --step-border: #7e22ce;
+    --step-title: #c084fc;
+    --navy: #0f172a;
+    --navy-hover: #1e293b;
+    --border: #1e293b;
+    --paper: #0b1220;
+    --heading: #e2e8f0;
+    --subtext: #cbd5e1;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #60a5fa;
+    --error: #f87171;
+    --error-bg: rgba(220, 38, 38, 0.12);
+    --error-border: #7f1d1d;
+    --success: #4ade80;
+    --success-bg: rgba(21, 128, 61, 0.15);
+    --success-border: #14532d;
+    --inline-code-bg: #1e293b;
+  }
+
+  .minpy-deep-unit .tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .minpy-deep-unit .run-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .minpy-deep-unit .run-btn:hover { opacity: 0.9; }
+
+  .minpy-deep-unit .code-box {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+    line-height: 2.1;
+  }
+
+  .minpy-deep-unit .quiz-input {
+    background: var(--paper);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    text-align: center;
+  }
+  .minpy-deep-unit .quiz-input:focus { outline: 2px solid var(--accent); }
+
+  .minpy-deep-unit .feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+  .minpy-deep-unit .feedback.ok {
+    display: block;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success);
+  }
+  .minpy-deep-unit .feedback.err {
+    display: block;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error);
+  }
+
+  .minpy-deep-unit pre {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+  }
+
+  .minpy-deep-unit h1 {
+    font-size: 1.9rem;
+    color: var(--heading);
+    margin: 16px 0;
+    line-height: 1.35;
+  }
+
+  .minpy-deep-unit p {
+    color: var(--subtext);
+    margin: 10px 0;
+  }
+
+  .minpy-deep-unit .minpy-abstract {
+    white-space: pre-line;
+  }
+
+  .minpy-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .minpy-lang-btn {
+    background: var(--navy);
+    color: #ffffff;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .minpy-lang-btn:hover { background: var(--navy-hover); }
+
+  .minpy-meta-info {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .minpy-abstract {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-inline-start: 4px solid var(--navy);
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    color: var(--subtext);
+    font-size: 1.05rem;
+  }
+
+  .minpy-abstract strong.welcome-banner {
+    display: block;
+    color: var(--accent);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .minpy-roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .minpy-pill {
+    background: var(--surface-tint);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    text-align: center;
+  }
+  .minpy-pill strong { display: block; color: var(--accent); font-size: 0.84rem; }
+  .minpy-pill span { font-size: 0.88rem; color: var(--heading); font-weight: 700; }
+
+  .minpy-toc {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+  .minpy-toc-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--heading);
+    margin-bottom: 12px;
+  }
+  .minpy-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+  }
+  .minpy-toc-link {
+    display: block;
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.91rem;
+    font-weight: 700;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .minpy-toc-link:hover { border-color: var(--accent); background: var(--surface-tint); }
+
+  .minpy-section {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 2px solid var(--border);
+  }
+
+  .minpy-kicker {
+    display: inline-block;
+    background: var(--navy);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .minpy-h2 {
+    font-size: 1.45rem !important;
+    color: var(--heading);
+    font-weight: 800;
+    margin: 6px 0 16px !important;
+    line-height: 1.45;
+  }
+
+  .minpy-h3 {
+    font-size: 1.15rem;
+    color: var(--navy);
+    font-weight: 800;
+    margin: 24px 0 10px;
+    padding-inline-start: 10px;
+    border-inline-start: 3px solid var(--accent);
+  }
+  [data-theme="dark"] .minpy-h3 { color: var(--accent); }
+
+  .minpy-list {
+    margin: 12px 0 18px 0;
+    padding-inline-start: 24px;
+    color: var(--subtext);
+  }
+  .minpy-list li { margin-bottom: 10px; font-size: 1.03rem; }
+
+  .minpy-analogy {
+    background: var(--analogy-bg);
+    border: 1px solid var(--analogy-border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin: 18px 0;
+  }
+  .minpy-analogy-title {
+    font-weight: 800;
+    color: var(--analogy-title);
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .minpy-analogy p { color: var(--text) !important; font-size: 1.02rem !important; margin-bottom: 8px !important; }
+  .minpy-analogy p:last-child { margin-bottom: 0 !important; }
+
+  .minpy-trace {
+    background: var(--step-bg);
+    border: 1px solid var(--step-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 16px 0 22px;
+  }
+  .minpy-trace-title {
+    font-weight: 800;
+    color: var(--step-title);
+    font-size: 0.96rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .minpy-trace-step {
+    padding: 8px 12px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    font-size: 0.96rem;
+    color: var(--subtext);
+  }
+  .minpy-trace-step:last-child { margin-bottom: 0; }
+
+  .minpy-mistake {
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 20px 0;
+    color: var(--text);
+  }
+  .minpy-mistake-title {
+    font-weight: 800;
+    color: var(--error);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.98rem;
+  }
+  .minpy-mistake p { color: var(--text) !important; margin-bottom: 0 !important; }
+
+  .minpy-output {
+    background: var(--surface-soft);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin: -8px 0 18px;
+    direction: ltr;
+    text-align: left;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .minpy-output-label {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent);
+  }
+
+  .minpy-table-wrap {
+    overflow-x: auto;
+    margin: 18px 0 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+  table.minpy-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  table.minpy-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 11px 14px;
+    text-align: start;
+    font-weight: 700;
+  }
+  table.minpy-table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--subtext);
+    vertical-align: top;
+  }
+  table.minpy-table tr:nth-child(even) td { background: var(--surface-soft); }
+
+  .minpy-summary {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-top: 22px;
+  }
+  .minpy-summary-title {
+    font-weight: 800;
+    color: var(--success);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+  .minpy-summary p { color: var(--text) !important; margin-bottom: 0 !important; }
+
+  .minpy-lab-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-strong);
+    border-top: 4px solid var(--navy);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    margin: 20px 0;
+  }
+  .minpy-lab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .minpy-lab-badge {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .minpy-lab-score { font-size: 0.92rem; font-weight: 700; color: var(--accent); }
+
+  .minpy-btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .minpy-sec-btn {
+    background: var(--paper);
+    color: var(--heading);
+    border: 1px solid var(--border-strong);
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  .minpy-sec-btn:hover { border-color: var(--accent); }
+
+  .feedback.hint {
+    display: block;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: var(--warn);
+  }
+
+  .minpy-progress-wrap {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .minpy-progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 12px;
+    background: var(--inline-code-bg);
+    border-radius: 99px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .minpy-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+</style>
+
+<div class="minpy-deep-unit" id="minpy-unit-wrapper"></div>
+
+<script>
+  (function () {
+    const LESSON_THREE_CONTENT = {
+      ar: {
+        dir: "rtl",
+        langBtnText: "Switch to English",
+        badgeText: "الدرس الثالث • 5 دروس مفصلة جداً لطفل عمره 6 سنوات + مختبر تفاعلي",
+        metaText: "الدرس الثالث كامل • 5 دروس صغيرة سهلة جداً خطوة بخطوة مع أمثلة ومختبر عملي",
+        title: "الدرس الثالث: 5 دروس صغيرة سهلة جداً لطفل عمره 6 سنوات",
+        welcome: "أهلاً بك يا بطل في الدرس الثالث!",
+        abstract:
+          "في هذا الدرس الثالث قسّمنا الفكرة إلى 5 دروس صغيرة جداً، كأننا نحكي قصة بسيطة جداً لطفل عمره 6 سنوات خطوة بخطوة وبتفصيل لطيف وممتع.\n\nفي كل درس صغير ستجد:\n• قصة سهلة جداً نفهمها من اللعب والبيت والألعاب.\n• شرحاً بطيئاً واضحاً خطوة بخطوة حتى لو أعدنا الفكرة أكثر من مرة بلطف.\n• خطوات عملية سهلة جداً نجرّبها معاً.\n• تنبيهاً لطيفاً للأخطاء الصغيرة التي قد تحصل ونصلحها بابتسامة.\n\nوفي النهاية ستجد مختبراً صغيراً تفاعلياً تختبر فيه نفسك وتضغط زر التحقق لترى نتيجتك!",
+        roadmap: [
+          { step: "الدرس 3-1", name: "العدّ والجمع خطوة بخطوة" },
+          { step: "الدرس 3-2", name: "التقسيم والباقي في الكيس" },
+          { step: "الدرس 3-3", name: "سؤال نعم أم لا (الشرط)" },
+          { step: "الدرس 3-4", name: "كلمة السر أو الجواب" },
+          { step: "الدرس 3-5", name: "ترتيب الرسالة الجميلة" }
+        ],
+        tocTitle: "خريطة الدروس الخمسة للدرس الثالث والمختبر",
+        toc: [
+          { href: "#sub-3-1", label: "3.1 — كيف نعدّ ونضيف؟ (الجمع والطرح على أصابع اليد)" },
+          { href: "#sub-3-2", label: "3.2 — كيف نوزّع الحلوى على أكياس؟ (القسمة والباقي)" },
+          { href: "#sub-3-3", label: "3.3 — متى نفتح الباب؟ (سؤال نعم أو لا)" },
+          { href: "#sub-3-4", label: "3.4 — مفتاحان أو مفتاح واحد؟ (و / أو / عكس)" },
+          { href: "#sub-3-5", label: "3.5 — كيف نرتّب الجملة الجميلة؟ (وضع الكلمة في مكانها)" },
+          { href: "#lab-3", label: "المختبر التفاعلي للدرس الثالث: ألعاب صغيرة وتصحيح فوري" }
+        ],
+        lessons: [
+          {
+            id: "sub-3-1",
+            kicker: "الدرس الثالث • الجزء 1 من 5",
+            heading: "3.1 كيف نعدّ ونضيف؟ (الجمع والطرح خطوة بخطوة كأننا نعدّ نجوماً)",
+            intro: [
+              "تخيل أن معك **3 نجوم صفراء** جميلة في يدك. ثم أعطاك صديقك **2 نجمة أخرى**. كم نجمة أصبحت معك الآن؟ نعدّ ببطء: كانت 3، ثم نقول: 4، ثم 5! صاروا **5 نجوم**!",
+              "والعكس صحيح: لو كان معك **5 تفاحات** وأكلت **تفاحة واحدة**، نعدّ للخلف بهدوء: كانت 5، أخذنا 1، بقي **4 تفاحات**. العدّ البطيء يجعل كل شيء واضحاً جداً."
+            ],
+            analogy: {
+              title: "حكاية صغيرة لعمر 6 سنوات: مكعبات البناء على السجادة",
+              lines: [
+                "تخيل أنك تبني برجاً من المكعبات فوق السجادة. وضعت أولاً **4 مكعبات**، واحد، اثنان، ثلاثة، أربعة.",
+                "ثم جئت بـ **3 مكعبات** جديدة ووضعتها فوقها: خمسة، ستة، سبعة! الآن البرج فيه **7 مكعبات**.",
+                "ولو أخذت مكعبين لتبني سيارة صغيرة، نعدّ بهدوء: سبعة... ستة... خمسة! بقي في البرج **5 مكعبات**."
+              ]
+            },
+            subsections: [
+              {
+                title: "لماذا نعدّ خطوة بخطوة ولا نستعجل؟",
+                paragraphs: [
+                  "عندما نستعجل في العدّ قد ننسى رقماً أو نعدّ مكعباً مرتين. لكن عندما نشير بإصبعنا إلى كل شيء ونقول رقمه بصوت واضح، لا نخطئ أبداً!"
+                ],
+                bullets: [
+                  "نبدأ بالعدد الأول ونضعه في رأسنا.",
+                  "نضيف أو ننقص شيئاً واحداً في كل مرة.",
+                  "ننطق العدد الجديد بهدوء ووضوح."
+                ]
+              },
+              {
+                title: "مثال بسيط جداً بالأرقام",
+                paragraphs: [
+                  "لنرَ كيف يظهر هذا في سطور بسيطة جداً وسهلة:"
+                ],
+                code: "stars = 3\nstars = stars + 2\nprint(stars)\n\napples = 5\napples = apples - 1\nprint(apples)",
+                output: "5\n4",
+                trace: [
+                  "الخطوة 1: بدأنا بـ 3 نجوم.",
+                  "الخطوة 2: أضفنا 2 نجمة، فصار المجموع 5 وطبعنا 5.",
+                  "الخطوة 3: بدأنا بـ 5 تفاحات، وأخذنا منها 1، فبقي 4 وطبعنا 4."
+                ]
+              }
+            ],
+            mistake: {
+              title: "غلطة صغيرة قد تحصل ونصلحها بابتسامة:",
+              text: "أحياناً ننسى الرقم الأول ونبدأ من الصفر من جديد، أو نجمع بدل أن ننقص. الحل سهل جداً: نرجع خطوة واحدة لوراء ونعدّ بهدوء من جديد!"
+            },
+            summary: "في هذا الجزء الأول تعلمنا أن إضافة الأشياء تزيد العدد، وأخذ الأشياء ينقص العدد، والعدّ البطيء خطوة بخطوة يحفظنا من الخطأ."
+          },
+          {
+            id: "sub-3-2",
+            kicker: "الدرس الثالث • الجزء 2 من 5",
+            heading: "3.2 كيف نوزّع الحلوى على أكياس؟ (المجموعات الكاملة والباقي الصغير)",
+            intro: [
+              "تخيل أن معك **7 حبات حلوى** لذيذة، وتريد أن تضع في كل كيس **3 حبات حلوى** فقط.",
+              "نملأ الكيس الأول بـ 3 حبات (صار لدينا كيس واحد). ثم نملأ الكيس الثاني بـ 3 حبات (صار لدينا كيسان). كم حبة حلوى بقيت في يدك؟ بقيت **حبة واحدة فقط** لأنها لا تكفي لملء كيس ثالث كامل!"
+            ],
+            analogy: {
+              title: "حكاية صغيرة لعمر 6 سنوات: أصدقاء يجلسون على كراسي",
+              lines: [
+                "تخيل أن هناك **7 أطفال**، وكل طاولة تتسع لـ **3 أطفال**.",
+                "الطاولة الأولى تجلس عليها 3 أطفال، والطاولة الثانية تجلس عليها 3 أطفال آخرون، ويبقى **طفل واحد** واقفاً ينتظر لأن الطاولة الثالثة لم تكتمل بعد."
+              ]
+            },
+            subsections: [
+              {
+                title: "ما معنى «مجموعات كاملة» و«الباقي»؟",
+                paragraphs: [
+                  "المجموعة الكاملة هي التي أخذت العدد المطلوب كله دون نقصان. والباقي هو القطع الصغيرة التي تبقى وحدها لأنها أقل من عدد المجموعة."
+                ],
+                bullets: [
+                  "عدد المجموعات الكاملة في مثال 7 على 3 هو: 2.",
+                  "عدد القطع الباقية في مثال 7 على 3 هو: 1."
+                ],
+                code: "candies = 7\nbag_size = 3\n\nfull_bags = candies // bag_size\nleftover = candies % bag_size\n\nprint(\"full_bags:\", full_bags)\nprint(\"leftover:\", leftover)",
+                output: "full_bags: 2\nleftover: 1",
+                trace: [
+                  "الخطوة 1: لدينا 7 حبات حلوى، وكل كيس يأخذ 3 حبات.",
+                  "الخطوة 2: // يحسب كم كيساً ممتلئاً صار لدينا، والنتيجة 2.",
+                  "الخطوة 3: % يحسب كم حبة بقيت خارج الأكياس الممتلئة، والنتيجة 1."
+                ]
+              }
+            ],
+            mistake: {
+              title: "غلطة صغيرة قد تحصل ونصلحها بابتسامة:",
+              text: "قد نخلط بين عدد الأكياس الممتلئة وعدد الحبات الباقية. دائماً نسأل: كم كيساً امتلأ بالكامل؟ وكم حبة بقيت لوحدها؟"
+            },
+            summary: "في هذا الجزء الثاني عرفنا الفرق بين «كم مجموعة كاملة تكوّنت» و«كم قطعة بقيت زيادة»."
+          },
+          {
+            id: "sub-3-3",
+            kicker: "الدرس الثالث • الجزء 3 من 5",
+            heading: "3.3 متى نفتح الباب؟ (سؤال صغير جوابه نعم أو لا)",
+            intro: [
+              "تخيل أنك واقف أمام **باب غرفة الألعاب**، وهناك بطاقة مكتوب عليها: «نفتح الباب فقط إذا كان معك 5 ملصقات».",
+              "ننظر إلى يدك: إذا كان معك 5 ملصقات، فالجواب **نعم** ونفتح الباب! وإذا كان معك 3 ملصقات فقط، فالجواب **لا** ويبقى الباب مغلقاً حتى تجمع الباقي."
+            ],
+            analogy: {
+              title: "حكاية صغيرة لعمر 6 سنوات: لعبة القفز فوق الخط",
+              lines: [
+                "تخيل خطاً مرسوماً على الأرض. نسأل: هل وصلت إلى الخط؟",
+                "إذا وصلت نقول «نعم» ونصفق لك، وإذا لم تصل بعد نقول «لا» ونكمل خطوة أخرى."
+              ]
+            },
+            subsections: [
+              {
+                title: "كيف نسأل السؤال بوضوح؟",
+                paragraphs: [
+                  "في البرمجة، عندما نقارن بين شيئين لنعرف هل هما متساويان نسأل بعلامتي يساوي معاً ==، وعندما نريد معرفة هل شيء أكبر نسأل بعلامة >."
+                ],
+                bullets: [
+                  "stickers == 5 تسأل: هل عدد الملصقات يساوي 5 بالضبط؟",
+                  "stickers >= 5 تسأل: هل عدد الملصقات 5 أو أكثر؟"
+                ],
+                code: "stickers = 5\ncan_open = stickers == 5\nprint(can_open)",
+                output: "True",
+                trace: [
+                  "الخطوة 1: عدد الملصقات هو 5.",
+                  "الخطوة 2: نسأل هل 5 يساوي 5؟ الجواب نعم (True)."
+                ]
+              }
+            ],
+            mistake: {
+              title: "غلطة صغيرة قد تحصل ونصلحها بابتسامة:",
+              text: "نستخدم = واحدة عندما نضع رقماً داخل الاسم مثل stickers = 5، ونستخدم == عندما نسأل سؤال المقارنة هل هما متساويان."
+            },
+            summary: "في هذا الجزء الثالث تعلمنا أن كل سؤال مقارنة يعطينا جواباً واضحاً: نعم (True) أو لا (False)."
+          },
+          {
+            id: "sub-3-4",
+            kicker: "الدرس الثالث • الجزء 4 من 5",
+            heading: "3.4 مفتاحان أو مفتاح واحد؟ (كلمة «و» وكلمة «أو» وعكس الجواب)",
+            intro: [
+              "تخيل صندوقاً سحرياً له **مفتاحان صغيران**: مفتاح أحمر ومفتاح أزرق.",
+              "• إذا قال لك الصندوق: «أفتح فقط إذا لففت المفتاح الأحمر **و** المفتاح الأزرق معاً» (and)، فلازم يلفّان كلاهما معاً.\n• وإذا قال لك: «أفتح إذا لففت المفتاح الأحمر **أو** المفتاح الأزرق» (or)، فيكفي أن تلف واحداً منهما فقط!"
+            ],
+            analogy: {
+              title: "حكاية صغيرة لعمر 6 سنوات: الخروج في نزهة",
+              lines: [
+                "أحياناً نقول: نخرج للحديقة إذا كانت الشمس مشرقة **و** الوقت مناسب (لازم الاثنين معاً).",
+                "وأحياناً نقول: نأخذ مظلة إذا كانت السماء تمطر **أو** الجو غائماً جداً (يكفي واحد منهما)."
+              ]
+            },
+            subsections: [
+              {
+                title: "ثلاث كلمات صغيرة تغيّر المعنى بوضوح",
+                paragraphs: [
+                  "هذه الكلمات الثلاث تساعدنا نربط الأسئلة أو نعكسها بسهولة:"
+                ],
+                bullets: [
+                  "and تعني: يجب أن يتحقق الأمر الأول والأمر الثاني معاً.",
+                  "or تعني: يكفي أن يتحقق الأمر الأول أو الأمر الثاني.",
+                  "not تعني: نعكس الجواب؛ «نعم» تصبح «لا»، و«لا» تصبح «نعم»."
+                ],
+                code: "has_red_key = True\nhas_blue_key = True\nprint(has_red_key and has_blue_key)\n\nraining = False\nsnowing = True\nprint(raining or snowing)\nprint(not raining)",
+                output: "True\nTrue\nTrue",
+                trace: [
+                  "الخطوة 1: المفتاح الأحمر موجود والمفتاح الأزرق موجود، إذن and تعطي True.",
+                  "الخطوة 2: الثلج يتساقط (True)، إذن or تعطي True.",
+                  "الخطوة 3: not raining تعكس False لتصبح True."
+                ]
+              }
+            ],
+            mistake: {
+              title: "غلطة صغيرة قد تحصل ونصلحها بابتسامة:",
+              text: "عندما نحتاج شرطين معاً نختار كلمة and، وعندما يكفي شرط واحد فقط نختار كلمة or."
+            },
+            summary: "في هذا الجزء الرابع عرفنا كيف نجمع سؤالين بـ and أو or، وكيف نعكس الجواب بـ not."
+          },
+          {
+            id: "sub-3-5",
+            kicker: "الدرس الثالث • الجزء 5 من 5",
+            heading: "3.5 كيف نرتّب الجملة الجميلة؟ (وضع الكلمة والرقم في مكانها الصحيح)",
+            intro: [
+              "تخيل أنك تريد أن تكتب بطاقة جميلة لصديقك: «معي 6 بالونات ملونة».",
+              "بدل أن تكتب الكلمات مبعثرة، نضع مكاناً فارغاً جميلاً للرقم، فتدخل الكلمة أو الرقم في مكانه بالضبط وتطلع الجملة مرتبة ومفهومة!"
+            ],
+            analogy: {
+              title: "حكاية صغيرة لعمر 6 سنوات: قطار يحمل عربات مرقمة",
+              lines: [
+                "تخيل قطاراً جميلاً له عربة تحمل اسم لون البالون، وعربة تحمل عدد البالونات.",
+                "عندما نركّب العربات في القطار الصحيح، تصبح الجملة كاملة وواضحة للجميع."
+              ]
+            },
+            subsections: [
+              {
+                title: "كيف نركّب الجملة بسهولة؟",
+                paragraphs: [
+                  "نضع حرف f قبل علامة التنصيص، ثم نضع اسم الشيء داخل قوسين { } لكي يظهر الرقم أو الاسم داخل الجملة مباشرة."
+                ],
+                bullets: [
+                  "نكتب f\"...\" قبل النص.",
+                  "نضع المتغير داخل { } في المكان الذي نريد ظهوره فيه.",
+                  "نقرأ الجملة بعد الطباعة ونتأكد أن معناها واضح وجميل."
+                ],
+                code: "color = \"أزرق\"\nballoons = 6\nsentence = f\"معي {balloons} بالونات بلون {color}\"\nprint(sentence)",
+                output: "معي 6 بالونات بلون أزرق",
+                trace: [
+                  "الخطوة 1: وضعنا \"أزرق\" في color و 6 في balloons.",
+                  "الخطوة 2: أدخلنا {balloons} و {color} داخل الجملة فظهرت مرتبة وواضحة."
+                ]
+              }
+            ],
+            mistake: {
+              title: "غلطة صغيرة قد تحصل ونصلحها بابتسامة:",
+              text: "إذا نسينا حرف f قبل علامة التنصيص، ستظهر كلمة {balloons} كما هي بدلاً من الرقم 6. لذلك نضع حرف f دائماً!"
+            },
+            summary: "في هذا الجزء الخامس تعلمنا كيف نركّب جملة جميلة ومرتبة نضع فيها الأرقام والكلمات في مكانها الصحيح."
+          }
+        ],
+        lab: {
+          kicker: "المختبر التفاعلي • الدرس الثالث",
+          heading: "المختبر التفاعلي: هيا نلعب ونختبر ما تعلمناه في الدروس الخمسة!",
+          subtitle: "اكتب الإجابة الصحيحة في كل مربع ثم اضغط «تحقق من الإجابة» لتشاهد النتيجة فوراً.",
+          scorePrefix: "النقاط المكتسبة: ",
+          checkBtn: "تحقق من الإجابة",
+          hintBtn: "تلميح لطيف",
+          resetBtn: "إعادة المحاولة",
+          challenges: [
+            {
+              id: "q1",
+              badge: "لعبة 1 • العدّ والجمع",
+              prompt: "كان معك 4 كرات ثم أضفت 3 كرات أخرى. ما الناتج؟",
+              codeBefore: "balls = 4 + 3\nprint(balls)  # الناتج: ",
+              codeAfter: "",
+              answers: ["7"],
+              hint: "عدّ من 4 ثم زد 3 خطوات: 5، 6، 7.",
+              okMsg: "ممتاز يا بطل! 4 + 3 يساوي 7 فعلاً.",
+              errMsg: "قريب جداً! جرّب أن تعدّ من 4 وتزيد 3 خطوات صغيرة."
+            },
+            {
+              id: "q2",
+              badge: "لعبة 2 • الأكياس والباقي",
+              prompt: "معك 8 قطع بسكويت وتضع في كل كيس 3 قطع. كم قطعة تبقى وحدها؟",
+              codeBefore: "leftover = 8 % 3\nprint(leftover)  # الباقي: ",
+              codeAfter: "",
+              answers: ["2"],
+              hint: "كيسان يأخذان 6 قطع (3 + 3)، ويبقى من 8 قطعتان.",
+              okMsg: "رائع! 8 ناقص 6 يساوي 2 باقية.",
+              errMsg: "لا بأس، اطرح 6 (كيسين كاملين) من 8 لترى كم بقي."
+            },
+            {
+              id: "q3",
+              badge: "لعبة 3 • سؤال نعم أو لا",
+              prompt: "هل 10 أكبر من 6؟ اكتب True أو False:",
+              codeBefore: "answer = 10 > 6\nprint(answer)  # الجواب: ",
+              codeAfter: "",
+              answers: ["true"],
+              hint: "الرقم 10 أكبر من 6، إذن الجواب نعم (True).",
+              okMsg: "أحسنت! 10 أكبر من 6 إذن النتيجة True.",
+              errMsg: "فكّر: هل 10 أكبر من 6؟ اكتب True أو False."
+            },
+            {
+              id: "q4",
+              badge: "لعبة 4 • كلمة «أو»",
+              prompt: "هل (False or True) تعطي True أم False؟",
+              codeBefore: "result = False or True\nprint(result)  # النتيجة: ",
+              codeAfter: "",
+              answers: ["true"],
+              hint: "في كلمة «أو» يكفي أن يكون أحد الطرفين True.",
+              okMsg: "بطل حقيقي! لأن الطرف الثاني True فالنتيجة True.",
+              errMsg: "تذكّر: كلمة or تحتاج طرفاً واحداً صحيحاً على الأقل."
+            }
+          ]
+        }
+      },
+      en: {
+        dir: "ltr",
+        langBtnText: "التبديل إلى العربية",
+        badgeText: "Lesson Three • 5 Very Detailed Lessons for a 6-Year-Old + Interactive Lab",
+        metaText: "Complete Lesson Three • 5 gentle step-by-step mini-lessons with examples and lab",
+        title: "Lesson Three: 5 Very Gentle Lessons for a 6-Year-Old",
+        welcome: "Welcome, superstar, to Lesson Three!",
+        abstract:
+          "In Lesson Three, we split the idea into 5 tiny, friendly lessons explained gently step by step as if talking to a 6-year-old.\n\nEach mini-lesson includes:\n• A playful everyday story.\n• Slow, clear step-by-step guidance.\n• Simple steps to try together.\n• Gentle reminders for small mistakes and how to fix them with a smile.\n\nAt the end, you can play and check your answers in the interactive mini-lab!",
+        roadmap: [
+          { step: "Part 3-1", name: "Counting & Adding" },
+          { step: "Part 3-2", name: "Bags & Leftovers" },
+          { step: "Part 3-3", name: "Yes or No Question" },
+          { step: "Part 3-4", name: "And / Or / Not" },
+          { step: "Part 3-5", name: "Building a Neat Sentence" }
+        ],
+        tocTitle: "Map of the 5 Mini-Lessons & Lab",
+        toc: [
+          { href: "#sub-3-1", label: "3.1 — How do we count and add? (Slow step-by-step counting)" },
+          { href: "#sub-3-2", label: "3.2 — Sharing treats into bags (Full bags and leftovers)" },
+          { href: "#sub-3-3", label: "3.3 — When do we open the door? (Yes or No question)" },
+          { href: "#sub-3-4", label: "3.4 — Two keys or one key? (and, or, not)" },
+          { href: "#sub-3-5", label: "3.5 — Putting words in a neat sentence" },
+          { href: "#lab-3", label: "Interactive Mini-Lab: Fun checks with instant feedback" }
+        ],
+        lessons: [
+          {
+            id: "sub-3-1",
+            kicker: "Lesson Three • Part 1 of 5",
+            heading: "3.1 How do we count and add? (Counting stars slowly step by step)",
+            intro: [
+              "Imagine holding **3 shiny stars** in your hand. Then a friend gives you **2 more stars**. How many stars do you have now? Let's count slowly: we had 3, then 4, then 5! That makes **5 stars**!",
+              "It works backwards too: if you have **5 apples** and eat **1 apple**, we count backwards gently: 5... 4! **4 apples** are left."
+            ],
+            analogy: {
+              title: "Little story for age 6: Building blocks on the rug",
+              lines: [
+                "Imagine stacking blocks on a soft rug. First you place **4 blocks**: one, two, three, four.",
+                "Then you add **3 more blocks** on top: five, six, seven! Now you have **7 blocks**."
+              ]
+            },
+            subsections: [
+              {
+                title: "Why do we count slowly instead of rushing?",
+                paragraphs: [
+                  "Rushing can make us skip a number or count the same block twice. Pointing with a finger and saying each number calmly helps us stay accurate."
+                ],
+                bullets: [
+                  "Start with the first number.",
+                  "Add or take away one step at a time.",
+                  "Say the new count clearly."
+                ],
+                code: "stars = 3\nstars = stars + 2\nprint(stars)\n\napples = 5\napples = apples - 1\nprint(apples)",
+                output: "5\n4",
+                trace: [
+                  "Step 1: Start with 3 stars.",
+                  "Step 2: Add 2 stars to get 5, then print 5.",
+                  "Step 3: Start with 5 apples, take 1 away to get 4, then print 4."
+                ]
+              }
+            ],
+            mistake: {
+              title: "Small mistake we fix with a smile:",
+              text: "Forgetting the starting count and restarting from zero, or adding when we meant to subtract. Just pause, breathe, and count again slowly."
+            },
+            summary: "Part 1 done: adding grows the count, taking away shrinks it, and slow step-by-step counting keeps things clear."
+          },
+          {
+            id: "sub-3-2",
+            kicker: "Lesson Three • Part 2 of 5",
+            heading: "3.2 Sharing treats into bags (Full bags and leftovers)",
+            intro: [
+              "Suppose you have **7 yummy treats**, and each bag holds **3 treats**.",
+              "You fill bag 1 with 3 treats, and bag 2 with 3 treats. **1 treat** is left over because it isn't enough to fill a third bag."
+            ],
+            analogy: {
+              title: "Little story for age 6: Friends sitting at tables",
+              lines: [
+                "Suppose **7 friends** arrive and each table seats **3 friends**.",
+                "Two tables are full (6 friends), and **1 friend** is waiting for another seat."
+              ]
+            },
+            subsections: [
+              {
+                title: "Full groups vs. leftover pieces",
+                paragraphs: [
+                  "A full group has every spot filled. The leftover is what remains when there aren't enough pieces to make another full group."
+                ],
+                bullets: [
+                  "Full bags of 3 out of 7 treats: 2.",
+                  "Leftover treats out of 7 using bags of 3: 1."
+                ],
+                code: "candies = 7\nbag_size = 3\n\nfull_bags = candies // bag_size\nleftover = candies % bag_size\n\nprint(\"full_bags:\", full_bags)\nprint(\"leftover:\", leftover)",
+                output: "full_bags: 2\nleftover: 1",
+                trace: [
+                  "Step 1: 7 treats and bag size 3.",
+                  "Step 2: // finds 2 full bags.",
+                  "Step 3: % finds 1 leftover treat."
+                ]
+              }
+            ],
+            mistake: {
+              title: "Small mistake we fix with a smile:",
+              text: "Mixing up how many full bags we made with how many treats were left over. Always check both questions separately."
+            },
+            summary: "Part 2 done: we know how to tell full groups apart from leftover pieces."
+          },
+          {
+            id: "sub-3-3",
+            kicker: "Lesson Three • Part 3 of 5",
+            heading: "3.3 When do we open the door? (A simple Yes or No question)",
+            intro: [
+              "Imagine standing by the **playroom door** with a sign that says: open only if you have **5 stickers**.",
+              "If you have 5 stickers, the answer is **Yes** and the door opens. If you have 3 stickers, the answer is **No**."
+            ],
+            analogy: {
+              title: "Little story for age 6: Stepping over the line",
+              lines: [
+                "There is a line on the floor. Did you reach the line?",
+                "If yes, we cheer! If not yet, we take another step."
+              ]
+            },
+            subsections: [
+              {
+                title: "Asking clear comparison questions",
+                paragraphs: [
+                  "In code, == checks if two things are equal, and > checks if the left number is greater than the right number."
+                ],
+                bullets: [
+                  "stickers == 5 asks if stickers equals 5.",
+                  "stickers >= 5 asks if stickers is 5 or more."
+                ],
+                code: "stickers = 5\ncan_open = stickers == 5\nprint(can_open)",
+                output: "True",
+                trace: [
+                  "Step 1: stickers is 5.",
+                  "Step 2: 5 == 5 is True."
+                ]
+              }
+            ],
+            mistake: {
+              title: "Small mistake we fix with a smile:",
+              text: "Using a single = puts a value into a name, while == asks whether two values match."
+            },
+            summary: "Part 3 done: comparison questions give a clear True or False answer."
+          },
+          {
+            id: "sub-3-4",
+            kicker: "Lesson Three • Part 4 of 5",
+            heading: "3.4 Two keys or one key? (and, or, not)",
+            intro: [
+              "Imagine a toy box with a **red key** and a **blue key**.",
+              "With **and**, both keys are needed. With **or**, just one of them is enough. With **not**, we flip the answer."
+            ],
+            analogy: {
+              title: "Little story for age 6: Going to the park",
+              lines: [
+                "Sometimes we need sunny weather **and** free time together.",
+                "Sometimes we take an umbrella if it's raining **or** very cloudy."
+              ]
+            },
+            subsections: [
+              {
+                title: "Three helpful logic words",
+                paragraphs: [
+                  "These words combine or flip True and False answers."
+                ],
+                bullets: [
+                  "and: True only when both sides are True.",
+                  "or: True when at least one side is True.",
+                  "not: flips True to False and False to True."
+                ],
+                code: "has_red_key = True\nhas_blue_key = True\nprint(has_red_key and has_blue_key)\n\nraining = False\nsnowing = True\nprint(raining or snowing)\nprint(not raining)",
+                output: "True\nTrue\nTrue",
+                trace: [
+                  "Step 1: Both keys are True -> True.",
+                  "Step 2: snowing is True -> True.",
+                  "Step 3: not False -> True."
+                ]
+              }
+            ],
+            mistake: {
+              title: "Small mistake we fix with a smile:",
+              text: "Pick 'and' when both conditions must happen, and 'or' when either one is enough."
+            },
+            summary: "Part 4 done: we can combine and flip conditions with and, or, and not."
+          },
+          {
+            id: "sub-3-5",
+            kicker: "Lesson Three • Part 5 of 5",
+            heading: "3.5 Putting words in a neat sentence",
+            intro: [
+              "Suppose you want to write a neat note: \"I have 6 blue balloons\".",
+              "Putting an f in front of the quotes lets us drop variables right inside { } so the sentence reads cleanly."
+            ],
+            analogy: {
+              title: "Little story for age 6: Train cars in order",
+              lines: [
+                "Each train car carries a piece of the message in order so the whole sentence makes sense."
+              ]
+            },
+            subsections: [
+              {
+                title: "Building clean messages",
+                paragraphs: [
+                  "Use f\"...\" and place variable names inside curly braces { }."
+                ],
+                bullets: [
+                  "Start the string with f.",
+                  "Put {variable_name} where the value belongs.",
+                  "Read the printed result to verify."
+                ],
+                code: "color = \"blue\"\nballoons = 6\nsentence = f\"I have {balloons} {color} balloons\"\nprint(sentence)",
+                output: "I have 6 blue balloons",
+                trace: [
+                  "Step 1: Store \"blue\" in color and 6 in balloons.",
+                  "Step 2: Insert both values into the f-string."
+                ]
+              }
+            ],
+            mistake: {
+              title: "Small mistake we fix with a smile:",
+              text: "Forgetting the f before the opening quote leaves {balloons} as literal text instead of 6."
+            },
+            summary: "Part 5 done: we can build clear, neat sentences with values placed right inside."
+          }
+        ],
+        lab: {
+          kicker: "Interactive Mini-Lab • Lesson Three",
+          heading: "Play & Check: Test what we learned across all 5 parts!",
+          subtitle: "Type an answer in each box and click Check to see instant feedback.",
+          scorePrefix: "Score: ",
+          checkBtn: "Check Answer",
+          hintBtn: "Gentle Hint",
+          resetBtn: "Try Again",
+          challenges: [
+            {
+              id: "q1",
+              badge: "Game 1 • Counting & Adding",
+              prompt: "You have 4 balls and add 3 more. What is printed?",
+              codeBefore: "balls = 4 + 3\nprint(balls)  # Output: ",
+              codeAfter: "",
+              answers: ["7"],
+              hint: "Count 3 steps up from 4: 5, 6, 7.",
+              okMsg: "Awesome! 4 + 3 is 7.",
+              errMsg: "Almost! Count 3 steps up from 4."
+            },
+            {
+              id: "q2",
+              badge: "Game 2 • Bags & Leftover",
+              prompt: "You have 8 cookies and pack 3 per bag. How many are left over?",
+              codeBefore: "leftover = 8 % 3\nprint(leftover)  # Leftover: ",
+              codeAfter: "",
+              answers: ["2"],
+              hint: "Two full bags hold 6 cookies; 8 minus 6 leaves 2.",
+              okMsg: "Great job! 2 cookies are left over.",
+              errMsg: "Try subtracting 6 (two full bags) from 8."
+            },
+            {
+              id: "q3",
+              badge: "Game 3 • Yes or No",
+              prompt: "Is 10 greater than 6? Type True or False:",
+              codeBefore: "answer = 10 > 6\nprint(answer)  # Result: ",
+              codeAfter: "",
+              answers: ["true"],
+              hint: "10 is greater than 6, so the answer is True.",
+              okMsg: "Spot on! 10 > 6 is True.",
+              errMsg: "Check whether 10 is greater than 6 (True or False)."
+            },
+            {
+              id: "q4",
+              badge: "Game 4 • Or Logic",
+              prompt: "Does (False or True) evaluate to True or False?",
+              codeBefore: "result = False or True\nprint(result)  # Result: ",
+              codeAfter: "",
+              answers: ["true"],
+              hint: "With 'or', one True side is enough for True.",
+              okMsg: "Nice work! One True side makes 'or' True.",
+              errMsg: "Remember: 'or' is True if at least one side is True."
+            }
+          ]
+        }
+      }
+    };
+
+    let currentLang = "ar";
+    const solvedSet = new Set();
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderLesson(lesson) {
+      const subsectionsHtml = lesson.subsections
+        .map((sub) => {
+          const paras = (sub.paragraphs || [])
+            .map((p) => `<p>${p}</p>`)
+            .join("");
+          const bullets = sub.bullets
+            ? `<ul class="minpy-list">${sub.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>`
+            : "";
+          const codeBlock = sub.code
+            ? `<pre><code>${escapeHtml(sub.code)}</code></pre>`
+            : "";
+          const outputBlock = sub.output
+            ? `<div class="minpy-output"><span class="minpy-output-label">OUTPUT</span>${escapeHtml(sub.output).replace(/\n/g, "<br>")}</div>`
+            : "";
+          const traceBlock = sub.trace
+            ? `<div class="minpy-trace"><span class="minpy-trace-title">خطوة بخطوة (Step-by-Step)</span>${sub.trace
+                .map((t, idx) => `<div class="minpy-trace-step"><strong>${idx + 1}.</strong> ${t}</div>`)
+                .join("")}</div>`
+            : "";
+          return `
+            <h3 class="minpy-h3">${escapeHtml(sub.title)}</h3>
+            ${paras}
+            ${bullets}
+            ${codeBlock}
+            ${outputBlock}
+            ${traceBlock}
+          `;
+        })
+        .join("");
+
+      const introParas = lesson.intro.map((p) => `<p>${p}</p>`).join("");
+      const analogyLines = lesson.analogy.lines.map((l) => `<p>${l}</p>`).join("");
+
+      return `
+        <section class="minpy-section" id="${escapeHtml(lesson.id)}">
+          <span class="minpy-kicker">${escapeHtml(lesson.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(lesson.heading)}</h2>
+          ${introParas}
+          <div class="minpy-analogy">
+            <span class="minpy-analogy-title">${escapeHtml(lesson.analogy.title)}</span>
+            ${analogyLines}
+          </div>
+          ${subsectionsHtml}
+          <div class="minpy-mistake">
+            <span class="minpy-mistake-title">${escapeHtml(lesson.mistake.title)}</span>
+            <p>${escapeHtml(lesson.mistake.text)}</p>
+          </div>
+          <div class="minpy-summary">
+            <span class="minpy-summary-title">خلاصة لطيفة</span>
+            <p>${escapeHtml(lesson.summary)}</p>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderLab(lab, data) {
+      const total = lab.challenges.length;
+      const pct = Math.round((solvedSet.size / total) * 100);
+      const cardsHtml = lab.challenges
+        .map((ch) => {
+          const isSolved = solvedSet.has(ch.id);
+          return `
+            <div class="minpy-lab-card" id="card-${escapeHtml(ch.id)}">
+              <div class="minpy-lab-header">
+                <span class="minpy-lab-badge">${escapeHtml(ch.badge)}</span>
+                <span class="minpy-lab-score">${isSolved ? "✓ " + escapeHtml(data.welcome) : ""}</span>
+              </div>
+              <p><strong>${escapeHtml(ch.prompt)}</strong></p>
+              <div class="code-box">
+                ${escapeHtml(ch.codeBefore)}<input type="text" class="quiz-input" id="input-${escapeHtml(ch.id)}" size="10" aria-label="${escapeHtml(ch.badge)}" />${escapeHtml(ch.codeAfter)}
+              </div>
+              <div class="minpy-btn-row">
+                <button type="button" class="run-btn" data-action="check" data-qid="${escapeHtml(ch.id)}">${escapeHtml(lab.checkBtn)}</button>
+                <button type="button" class="minpy-sec-btn" data-action="hint" data-qid="${escapeHtml(ch.id)}">${escapeHtml(lab.hintBtn)}</button>
+                <button type="button" class="minpy-sec-btn" data-action="reset" data-qid="${escapeHtml(ch.id)}">${escapeHtml(lab.resetBtn)}</button>
+              </div>
+              <div class="feedback" id="fb-${escapeHtml(ch.id)}"></div>
+            </div>
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="minpy-section" id="lab-3">
+          <span class="minpy-kicker">${escapeHtml(lab.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(lab.heading)}</h2>
+          <p>${escapeHtml(lab.subtitle)}</p>
+          <div class="minpy-progress-wrap">
+            <span class="minpy-lab-score" id="lab-score-text">${escapeHtml(lab.scorePrefix)}${solvedSet.size} / ${total}</span>
+            <div class="minpy-progress-track">
+              <div class="minpy-progress-fill" id="lab-progress-fill" style="width: ${pct}%;"></div>
+            </div>
+          </div>
+          ${cardsHtml}
+        </section>
+      `;
+    }
+
+    function render() {
+      const wrapper = document.getElementById("minpy-unit-wrapper");
+      if (!wrapper) return;
+      const data = LESSON_THREE_CONTENT[currentLang];
+      wrapper.setAttribute("dir", data.dir);
+
+      const roadmapHtml = data.roadmap
+        .map((r) => `<div class="minpy-pill"><strong>${escapeHtml(r.step)}</strong><span>${escapeHtml(r.name)}</span></div>`)
+        .join("");
+
+      const tocHtml = data.toc
+        .map((t) => `<a class="minpy-toc-link" href="${escapeHtml(t.href)}">${escapeHtml(t.label)}</a>`)
+        .join("");
+
+      const lessonsHtml = data.lessons.map(renderLesson).join("");
+      const labHtml = renderLab(data.lab, data);
+
+      wrapper.innerHTML = `
+        <div class="minpy-top-bar">
+          <span class="tag">${escapeHtml(data.badgeText)}</span>
+          <button type="button" class="minpy-lang-btn" id="minpy-toggle-lang">${escapeHtml(data.langBtnText)}</button>
+        </div>
+        <div class="minpy-meta-info">${escapeHtml(data.metaText)}</div>
+        <h1>${escapeHtml(data.title)}</h1>
+        <div class="minpy-abstract">
+          <strong class="welcome-banner">${escapeHtml(data.welcome)}</strong>
+          ${escapeHtml(data.abstract)}
+        </div>
+        <div class="minpy-roadmap">${roadmapHtml}</div>
+        <div class="minpy-toc">
+          <div class="minpy-toc-title">${escapeHtml(data.tocTitle)}</div>
+          <div class="minpy-toc-grid">${tocHtml}</div>
+        </div>
+        ${lessonsHtml}
+        ${labHtml}
+      `;
+
+      const toggleBtn = document.getElementById("minpy-toggle-lang");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          currentLang = currentLang === "ar" ? "en" : "ar";
+          render();
+        });
+      }
+
+      wrapper.querySelectorAll("button[data-action]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const action = btn.getAttribute("data-action");
+          const qid = btn.getAttribute("data-qid");
+          const ch = data.lab.challenges.find((item) => item.id === qid);
+          const input = document.getElementById("input-" + qid);
+          const fb = document.getElementById("fb-" + qid);
+          if (!ch || !input || !fb) return;
+
+          if (action === "hint") {
+            fb.className = "feedback hint";
+            fb.textContent = ch.hint;
+          } else if (action === "reset") {
+            input.value = "";
+            solvedSet.delete(qid);
+            fb.className = "feedback";
+            fb.textContent = "";
+            updateScore(data.lab);
+          } else if (action === "check") {
+            const val = input.value.trim().toLowerCase();
+            if (ch.answers.includes(val)) {
+              solvedSet.add(qid);
+              fb.className = "feedback ok";
+              fb.textContent = ch.okMsg;
+            } else {
+              fb.className = "feedback err";
+              fb.textContent = ch.errMsg;
+            }
+            updateScore(data.lab);
+          }
+        });
+      });
+    }
+
+    function updateScore(lab) {
+      const scoreEl = document.getElementById("lab-score-text");
+      const fillEl = document.getElementById("lab-progress-fill");
+      const total = lab.challenges.length;
+      if (scoreEl) scoreEl.textContent = `${lab.scorePrefix}${solvedSet.size} / ${total}`;
+      if (fillEl) fillEl.style.width = `${Math.round((solvedSet.size / total) * 100)}%`;
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", render);
+    } else {
+      render();
+    }
+  })();
+</script>
