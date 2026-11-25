@@ -4,111 +4,123 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MinPy Academy | أكاديمية MinPy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f4f6f9;
+      --bg: #f1f5f9;
       --paper: #ffffff;
-      --border: #dce3ec;
-      --navy: #1e3a5f;
-      --navy-hover: #152a45;
+      --border: #e2e8f0;
+      --navy: #0f172a;
+      --navy-hover: #1e293b;
       --accent: #2563eb;
-      --text: #1f2937;
+      --accent-hover: #1d4ed8;
+      --accent-glow: rgba(37, 99, 235, 0.25);
+      --text: #1e293b;
       --heading: #0f172a;
-      --subtext: #334155;
+      --subtext: #475569;
       --muted: #64748b;
-      --tag-bg: #e0e7ff;
+      --tag-bg: #eff6ff;
       --code-bg: #f8fafc;
       --code-border: #cbd5e1;
       --inline-code-bg: #f1f5f9;
       --input-bg: #ffffff;
+      --card-bg: #f8fafc;
       --success: #15803d;
       --success-bg: #f0fdf4;
       --success-border: #86efac;
       --error: #b91c1c;
       --error-bg: #fef2f2;
       --error-border: #fca5a5;
-      --shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+      --shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
     }
 
     [data-theme="dark"] {
-      --bg: #0f172a;
-      --paper: #1e293b;
-      --border: #334155;
-      --navy: #172554;
-      --navy-hover: #1e3a8a;
-      --accent: #60a5fa;
+      --bg: #090d16;
+      --paper: #111827;
+      --border: #1f2937;
+      --navy: #0f172a;
+      --navy-hover: #1e293b;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --accent-glow: rgba(59, 130, 246, 0.25);
       --text: #e2e8f0;
       --heading: #f8fafc;
       --subtext: #cbd5e1;
       --muted: #94a3b8;
-      --tag-bg: rgba(96, 165, 250, 0.18);
+      --tag-bg: rgba(59, 130, 246, 0.15);
       --code-bg: #0b1120;
-      --code-border: #334155;
-      --inline-code-bg: #0f172a;
+      --code-border: #1f2937;
+      --inline-code-bg: #1e293b;
       --input-bg: #0f172a;
+      --card-bg: #161f32;
       --success: #4ade80;
       --success-bg: rgba(21, 128, 61, 0.2);
       --success-border: #166534;
       --error: #f87171;
       --error-bg: rgba(185, 28, 28, 0.2);
       --error-border: #991b1b;
-      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 1.9;
-      transition: background-color 0.2s ease, color 0.2s ease;
+      line-height: 1.85;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* الشريط العلوي الدراسي */
+    /* الشريط العلوي */
     header {
-      background: var(--navy);
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: #ffffff;
-      padding: 10px 28px;
+      padding: 12px 28px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 50;
       gap: 12px;
       flex-wrap: wrap;
     }
 
     .brand {
       font-weight: 800;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      cursor: pointer;
+      transition: opacity 0.2s;
     }
 
-    /* شعار الأكاديمية بجانب العنوان */
+    .brand:hover { opacity: 0.9; }
+
     .brand-logo {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
       object-fit: contain;
-      border-radius: 8px;
+      border-radius: 10px;
       background: #ffffff;
       padding: 3px;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       flex-shrink: 0;
     }
 
     .brand span {
       font-size: 0.85rem;
-      font-weight: 400;
+      font-weight: 600;
       color: #cbd5e1;
-      padding-inline-start: 10px;
+      padding-inline-start: 12px;
       border-inline-start: 1px solid rgba(255, 255, 255, 0.25);
     }
 
@@ -116,57 +128,382 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
+      position: relative;
     }
 
     .ctrl-btn {
       background: rgba(255, 255, 255, 0.12);
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 4px 12px;
-      border-radius: 6px;
-      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.15s ease;
+      transition: all 0.2s ease;
     }
 
     .ctrl-btn:hover {
-      background: rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
     }
 
-    .page-indicator {
-      background: rgba(255, 255, 255, 0.16);
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      padding: 4px 16px;
-      border-radius: 6px;
+    /* زر التنقل السريع بين الصفحات */
+    .page-indicator-btn {
+      background: rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 16px;
+      border-radius: 8px;
+      font-family: inherit;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
     }
 
-    /* حاوية عرض الدرس */
+    .page-indicator-btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+    }
+
+    /* قائمة التنقل السريع المنبثقة */
+    .quick-jump-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: var(--paper);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      width: 260px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 100;
+      animation: popIn 0.18s ease;
+    }
+
+    .quick-jump-popover.open { display: flex; }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(-8px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .quick-jump-popover label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--heading);
+    }
+
+    .jump-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .jump-input-row input {
+      width: 100%;
+      padding: 7px 10px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border);
+      background: var(--input-bg);
+      color: var(--heading);
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .jump-input-row input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .jump-go-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 0 14px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .jump-go-btn:hover { background: var(--accent-hover); }
+
+    .quick-presets {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    .preset-chip {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--subtext);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+
+    .preset-chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* الحاوية الرئيسية */
     main {
       flex: 1;
-      max-width: 840px;
+      max-width: 880px;
       width: 100%;
-      margin: 32px auto;
+      margin: 34px auto;
       padding: 0 20px;
+    }
+
+    /* ================= تصميم صفحة البداية الترحيبية ================= */
+    #welcome-screen {
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 46px 44px;
+      box-shadow: var(--shadow);
+      animation: fadeIn 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #welcome-screen::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #2563eb, #38bdf8, #1e3a8a);
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--tag-bg);
+      color: var(--accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--heading);
+      line-height: 1.35;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.12rem;
+      color: var(--subtext);
+      margin-bottom: 28px;
+      max-width: 720px;
+    }
+
+    /* شبكة المميزات */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--heading);
+      margin-bottom: 4px;
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* بطاقة التعريف بالمؤسس (فارس) */
+    .about-creator {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(14, 165, 233, 0.06) 100%);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      border-radius: 14px;
+      padding: 24px 26px;
+      margin-bottom: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .creator-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .creator-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--heading);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .age-pill {
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 0.8rem;
+      padding: 2px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .about-creator p {
+      font-size: 1rem;
+      color: var(--text);
+      margin: 0;
+    }
+
+    .portfolio-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 800;
+      text-decoration: none;
+      font-size: 0.98rem;
+      width: fit-content;
+      padding: 6px 14px;
+      background: var(--paper);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .portfolio-link:hover {
+      border-color: var(--accent);
+      transform: translateX(-3px);
+      box-shadow: 0 4px 12px var(--accent-glow);
+    }
+
+    /* أزرار البداية */
+    .cta-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .start-learning-btn {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      border: none;
+      padding: 14px 34px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 8px 22px var(--accent-glow);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .start-learning-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+    }
+
+    .resume-btn {
+      background: var(--card-bg);
+      color: var(--heading);
+      border: 1.5px solid var(--border);
+      padding: 13px 24px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .resume-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ================= حاوية عرض الدرس ================= */
+    #lesson-wrapper {
+      display: none;
     }
 
     #lesson-container {
       background: var(--paper);
       border: 1px solid var(--border);
       border-top: 4px solid var(--accent);
-      border-radius: 8px;
+      border-radius: 14px;
       padding: 44px 48px;
       min-height: 460px;
       box-shadow: var(--shadow);
-      animation: fadeIn 0.2s ease;
+      animation: fadeIn 0.25s ease;
       transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(4px); }
+      from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
@@ -174,27 +511,27 @@
       display: inline-block;
       background: var(--tag-bg);
       color: var(--accent);
-      padding: 3px 12px;
-      border-radius: 4px;
-      font-size: 0.82rem;
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-size: 0.85rem;
       margin-bottom: 14px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     #lesson-container h1 {
-      font-size: 1.75rem;
+      font-size: 1.8rem;
       margin-bottom: 20px;
       color: var(--heading);
       border-bottom: 2px solid var(--border);
       padding-bottom: 14px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     #lesson-container h2 {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       margin: 26px 0 12px;
       color: var(--heading);
-      font-weight: 700;
+      font-weight: 800;
     }
 
     #lesson-container p {
@@ -206,8 +543,8 @@
     #lesson-container code {
       background: var(--inline-code-bg);
       color: var(--heading);
-      padding: 2px 6px;
-      border-radius: 4px;
+      padding: 2px 7px;
+      border-radius: 5px;
       border: 1px solid var(--border);
       font-family: "Consolas", "Courier New", monospace;
       font-size: 0.92em;
@@ -219,7 +556,7 @@
       background: var(--code-bg);
       border: 1px solid var(--code-border);
       border-inline-start: 4px solid var(--accent);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 18px 20px;
       margin: 18px 0;
       direction: ltr;
@@ -236,40 +573,44 @@
       background: var(--input-bg);
       border: 1.5px solid var(--accent);
       color: var(--heading);
-      padding: 4px 10px;
-      border-radius: 4px;
+      padding: 5px 10px;
+      border-radius: 6px;
       font-family: "Consolas", "Courier New", monospace;
       font-size: 0.95rem;
       width: 145px;
       text-align: center;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .quiz-input:focus {
       outline: none;
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+      box-shadow: 0 0 0 3px var(--accent-glow);
     }
 
     .run-btn {
-      background: var(--navy);
+      background: var(--accent);
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      border: none;
       padding: 10px 24px;
-      border-radius: 6px;
+      border-radius: 8px;
+      font-family: inherit;
       font-weight: 700;
       cursor: pointer;
       margin-top: 12px;
       font-size: 0.95rem;
-      transition: background 0.15s;
+      transition: background 0.15s, transform 0.15s;
     }
 
-    .run-btn:hover { background: var(--navy-hover); }
+    .run-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+    }
 
     .feedback {
       margin-top: 16px;
       padding: 14px 18px;
-      border-radius: 6px;
-      font-weight: 600;
+      border-radius: 8px;
+      font-weight: 700;
       font-size: 0.95rem;
       display: none;
     }
@@ -290,10 +631,9 @@
 
     /* شريط التنقل السفلي */
     footer {
-      max-width: 840px;
+      max-width: 880px;
       width: 100%;
-      margin: 0 auto 36px;
-      padding: 0 20px;
+      margin: 24px auto 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -305,26 +645,28 @@
       color: var(--heading);
       border: 1px solid var(--border);
       padding: 11px 24px;
-      border-radius: 6px;
+      border-radius: 10px;
+      font-family: inherit;
       cursor: pointer;
       font-weight: 700;
       font-size: 0.95rem;
-      transition: 0.15s;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+      transition: 0.2s;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
 
     .nav-btn:hover:not(:disabled) {
       border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .nav-btn.next {
-      background: var(--navy);
+      background: var(--accent);
       color: #ffffff;
-      border-color: rgba(255, 255, 255, 0.15);
+      border-color: var(--accent);
     }
 
     .nav-btn.next:hover:not(:disabled) {
-      background: var(--navy-hover);
+      background: var(--accent-hover);
     }
 
     .nav-btn:disabled {
@@ -332,45 +674,131 @@
       cursor: not-allowed;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
+      header { padding: 10px 16px; }
+      #welcome-screen { padding: 28px 20px; }
+      .hero-title { font-size: 1.65rem; }
       #lesson-container { padding: 26px 20px; }
       .brand span { display: none; }
       .brand-logo { width: 36px; height: 36px; }
+      .quick-jump-popover { left: 0; width: 240px; }
     }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="brand" id="brand-title">
+    <div class="brand" id="brand-title" onclick="showWelcome()" title="العودة للصفحة الرئيسية">
       <img src="minpy.jpg" alt="شعار أكاديمية MinPy" class="brand-logo" />
       أكاديمية MinPy
       <span>المسار التأسيسي التطبيقي</span>
     </div>
+
     <div class="header-controls">
+      <button class="ctrl-btn" onclick="showWelcome()">الرئيسية</button>
       <button class="ctrl-btn" id="theme-toggle" onclick="toggleTheme()">داكن</button>
-      <div class="page-indicator" id="page-badge">صفحة 1</div>
+      
+      <!-- زر التنقل السريع بين الصفحات -->
+      <button class="page-indicator-btn" id="page-badge" onclick="toggleJumpMenu(event)">
+        <span>الرئيسية</span> ▾
+      </button>
+
+      <!-- القائمة المنبثقة للقفز السريع لأي صفحة -->
+      <div class="quick-jump-popover" id="quick-jump-menu" onclick="event.stopPropagation()">
+        <label for="jump-input">انتقل مباشرة إلى رقم الصفحة:</label>
+        <div class="jump-input-row">
+          <input type="number" id="jump-input" min="1" placeholder="مثلاً: 1" onkeydown="if(event.key==='Enter') handleJumpSubmit()" />
+          <button class="jump-go-btn" onclick="handleJumpSubmit()">انتقال</button>
+        </div>
+        <div class="quick-presets">
+          <button class="preset-chip" onclick="startLearning(1)">درس 1</button>
+          <button class="preset-chip" onclick="startLearning(2)">درس 2</button>
+          <button class="preset-chip" onclick="startLearning(3)">درس 3</button>
+          <button class="preset-chip" onclick="startLearning(5)">درس 5</button>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
-    <div id="lesson-container">جاري تحميل الدرس...</div>
-  </main>
+    <!-- 1. صفحة البداية الترحيبية المدمجة -->
+    <section id="welcome-screen">
+      <div class="hero-badge">🐍 منصة تعليم بايثون التفاعلية والمجانية</div>
+      <h1 class="hero-title">أهلاً بك في <span>أكاديمية MinPy</span><br>طريقك العملي لإتقان البرمجة من الصفر</h1>
+      <p class="hero-desc">
+        منصة تعليمية تفاعلية صُممت لتبسيط لغة <strong>Python</strong> بعيداً عن التعقيد النظري؛ دروس قصيرة، أمثلة واضحة، وتدريبات عملية فورية داخل كل درس لترسيخ المعلومة خطوة بخطوة.
+      </p>
 
-  <footer>
-    <button class="nav-btn" id="prev-btn" onclick="changePage(-1)">→ الدرس السابق</button>
-    <button class="nav-btn next" id="next-btn" onclick="changePage(1)">الدرس التالي ←</button>
-  </footer>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>تعلم تطبيقي مباشر</h3>
+          <p>كل درس مدعوم بأمثلة برمجية واضحة واختبارات تفاعلية تقيس فهمك فوراً.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧭</span>
+          <h3>تنقل سريع ومرن</h3>
+          <p>احفظ تقدمك تلقائياً أو انتقل لأي درس بضغطة زر من شريط التنقل العلوي.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌙</span>
+          <h3>بيئة مريحة للعين</h3>
+          <p>تصميم عصري يدعم الوضع الليلي والنهاري لتجربة دراسة ممتعة في أي وقت.</p>
+        </div>
+      </div>
+
+      <!-- بطاقة التعريف عنك -->
+      <div class="about-creator">
+        <div class="creator-header">
+          <div class="creator-title">👨‍💻 عن مطوّر ومؤسس الأكاديمية</div>
+          <span class="age-pill">فارس • 17 عاماً (قريباً 18)</span>
+        </div>
+        <p>
+          مرحباً! أنا <strong>فارس</strong>، شاب شغوف بعالم البرمجة والتطوير، عمري 17 سنة وأستعد لدخول الـ 18 قريباً جداً. أنشأت <strong>أكاديمية MinPy</strong> كصدقة علم وفعل خير لمساعدة المبتدئين على دخول عالم البرمجة مجاناً وبأسلوب مبسط، ولتكون أيضاً مشروعاً عملياً يعزز مسيرتي التقنية وسيرتي الذاتية (CV).
+        </p>
+        <a href="https://dstr-qa.free.nf/?i=2&lang=ar" target="_blank" rel="noopener noreferrer" class="portfolio-link">
+          🌐 تصفح موقعي الرسمي وأعمالي البرمجية ←
+        </a>
+      </div>
+
+      <!-- أزرار الانطلاق -->
+      <div class="cta-group">
+        <button class="start-learning-btn" onclick="startLearning(1)">
+          ابدأ التعلم الآن 🚀
+        </button>
+        <button class="resume-btn" id="resume-last-btn" style="display: none;" onclick="resumeSavedLesson()">
+          متابعة من حيث توقفت (صفحة <span id="saved-page-num">1</span>)
+        </button>
+      </div>
+    </section>
+
+    <!-- 2. حاوية الدروس -->
+    <div id="lesson-wrapper">
+      <div id="lesson-container">جاري تحميل الدرس...</div>
+      <footer>
+        <button class="nav-btn" id="prev-btn" onclick="changePage(-1)">→ الدرس السابق</button>
+        <button class="nav-btn next" id="next-btn" onclick="changePage(1)">الدرس التالي ←</button>
+      </footer>
+    </div>
+  </main>
 
   <script>
     let currentTheme = localStorage.getItem('minpy_theme') || 'light';
-    let currentPage = parseInt(localStorage.getItem('minpy_page')) || 1;
+    let savedPage = parseInt(localStorage.getItem('minpy_page')) || 1;
+    let currentPage = savedPage;
+    let isWelcomeActive = true;
 
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const lessonWrapper = document.getElementById('lesson-wrapper');
     const container = document.getElementById('lesson-container');
     const pageBadge = document.getElementById('page-badge');
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
     const themeBtn = document.getElementById('theme-toggle');
+    const jumpMenu = document.getElementById('quick-jump-menu');
+    const jumpInput = document.getElementById('jump-input');
+    const resumeLastBtn = document.getElementById('resume-last-btn');
+    const savedPageNumSpan = document.getElementById('saved-page-num');
 
     function applyThemeUI() {
       document.documentElement.setAttribute('data-theme', currentTheme);
@@ -381,6 +809,58 @@
       currentTheme = currentTheme === 'light' ? 'dark' : 'light';
       localStorage.setItem('minpy_theme', currentTheme);
       applyThemeUI();
+    }
+
+    /* التحكم في قائمة التنقل السريع بالزاوية */
+    function toggleJumpMenu(event) {
+      event.stopPropagation();
+      jumpMenu.classList.toggle('open');
+      if (jumpMenu.classList.contains('open')) {
+        jumpInput.value = isWelcomeActive ? 1 : currentPage;
+        jumpInput.focus();
+        jumpInput.select();
+      }
+    }
+
+    document.addEventListener('click', () => {
+      jumpMenu.classList.remove('open');
+    });
+
+    function handleJumpSubmit() {
+      const target = parseInt(jumpInput.value);
+      if (target && target >= 1) {
+        jumpMenu.classList.remove('open');
+        startLearning(target);
+      }
+    }
+
+    /* الانتقال بين شاشة البداية والدروس */
+    function showWelcome() {
+      isWelcomeActive = true;
+      welcomeScreen.style.display = 'block';
+      lessonWrapper.style.display = 'none';
+      pageBadge.innerHTML = `<span>الرئيسية</span> ▾`;
+      jumpMenu.classList.remove('open');
+
+      const latestSaved = parseInt(localStorage.getItem('minpy_page'));
+      if (latestSaved && latestSaved > 1) {
+        resumeLastBtn.style.display = 'inline-block';
+        savedPageNumSpan.textContent = latestSaved;
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function startLearning(pageNumber = 1) {
+      isWelcomeActive = false;
+      welcomeScreen.style.display = 'none';
+      lessonWrapper.style.display = 'block';
+      jumpMenu.classList.remove('open');
+      loadLesson(pageNumber);
+    }
+
+    function resumeSavedLesson() {
+      const latestSaved = parseInt(localStorage.getItem('minpy_page')) || 1;
+      startLearning(latestSaved);
     }
 
     async function loadLesson(pageNumber) {
@@ -395,8 +875,10 @@
               <p>بمجرد رفع ملف <strong>${pageNumber}.html</strong> داخل مجلد <code>lessons/ar</code> على GitHub، سيظهر هنا تلقائياً.</p>
               <button class="run-btn" onclick="goToPage(1)">العودة للدرس الأول</button>
             `;
+            currentPage = pageNumber;
             nextBtn.disabled = true;
-            pageBadge.textContent = `صفحة ${pageNumber}`;
+            prevBtn.disabled = false;
+            pageBadge.innerHTML = `<span>صفحة ${pageNumber}</span> ▾`;
             return;
           }
           throw new Error('Lesson 1 not found');
@@ -407,7 +889,7 @@
 
         currentPage = pageNumber;
         localStorage.setItem('minpy_page', currentPage);
-        pageBadge.textContent = `صفحة ${currentPage}`;
+        pageBadge.innerHTML = `<span>صفحة ${currentPage}</span> ▾`;
         prevBtn.disabled = currentPage <= 1;
         nextBtn.disabled = false;
 
@@ -416,9 +898,12 @@
 
       } catch (err) {
         container.innerHTML = `
+          <span class="tag">تنبيه</span>
           <h1>تعذر تحميل الصفحة</h1>
           <p>تأكد من وجود مجلد <code>lessons/ar</code> وبداخله <code>1.html</code> على مستودع GitHub.</p>
+          <button class="run-btn" onclick="showWelcome()">العودة للصفحة الرئيسية</button>
         `;
+        pageBadge.innerHTML = `<span>صفحة ${pageNumber}</span> ▾`;
       }
     }
 
@@ -438,17 +923,17 @@
     }
 
     function goToPage(num) {
-      loadLesson(num);
+      startLearning(num);
     }
 
     document.addEventListener('keydown', (e) => {
-      if (e.target.tagName === 'INPUT') return;
+      if (isWelcomeActive || e.target.tagName === 'INPUT') return;
       if (e.key === 'ArrowLeft') changePage(1);
       if (e.key === 'ArrowRight' && currentPage > 1) changePage(-1);
     });
 
     applyThemeUI();
-    loadLesson(currentPage);
+    showWelcome();
   </script>
 </body>
 </html>
