@@ -1,0 +1,2375 @@
+<style>
+  .minpy-deep-unit {
+    --surface-soft: #f8fafc;
+    --surface-tint: #eef2ff;
+    --border-strong: #cbd5e1;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fcd34d;
+    --analogy-bg: #f0f9ff;
+    --analogy-border: #7dd3fc;
+    --analogy-title: #0369a1;
+    --step-bg: #faf5ff;
+    --step-border: #d8b4fe;
+    --step-title: #6b21a8;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --navy: #1e293b;
+    --navy-hover: #334155;
+    --border: #e2e8f0;
+    --paper: #ffffff;
+    --heading: #0f172a;
+    --subtext: #334155;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --error: #dc2626;
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
+    --success: #15803d;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+    --inline-code-bg: #f1f5f9;
+    line-height: 1.95;
+  }
+
+  [data-theme="dark"] .minpy-deep-unit {
+    --surface-soft: #172033;
+    --surface-tint: rgba(96, 165, 250, 0.12);
+    --border-strong: #475569;
+    --accent-soft: rgba(96, 165, 250, 0.16);
+    --warn: #fbbf24;
+    --warn-bg: rgba(180, 83, 9, 0.22);
+    --warn-border: #92400e;
+    --analogy-bg: rgba(3, 105, 161, 0.18);
+    --analogy-border: #0284c7;
+    --analogy-title: #38bdf8;
+    --step-bg: rgba(107, 33, 168, 0.18);
+    --step-border: #7e22ce;
+    --step-title: #c084fc;
+    --navy: #0f172a;
+    --navy-hover: #1e293b;
+    --border: #1e293b;
+    --paper: #0b1220;
+    --heading: #e2e8f0;
+    --subtext: #cbd5e1;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #60a5fa;
+    --error: #f87171;
+    --error-bg: rgba(220, 38, 38, 0.12);
+    --error-border: #7f1d1d;
+    --success: #4ade80;
+    --success-bg: rgba(21, 128, 61, 0.15);
+    --success-border: #14532d;
+    --inline-code-bg: #1e293b;
+  }
+
+  .minpy-deep-unit .tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .minpy-deep-unit .run-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.92rem;
+    transition: opacity 0.15s ease;
+  }
+
+  .minpy-deep-unit .run-btn:hover {
+    opacity: 0.9;
+  }
+
+  .minpy-deep-unit .code-box {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+    line-height: 1.9;
+    overflow-x: auto;
+  }
+
+  .minpy-deep-unit .quiz-input {
+    background: var(--paper);
+    border: 1.5px solid var(--accent);
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.92rem;
+    color: var(--heading);
+    text-align: center;
+    min-width: 150px;
+  }
+
+  .minpy-deep-unit .quiz-input:focus {
+    outline: 2px solid var(--accent);
+  }
+
+  .minpy-deep-unit .feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 0.93rem;
+    font-weight: 700;
+  }
+
+  .minpy-deep-unit .feedback.ok {
+    display: block;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success);
+  }
+
+  .minpy-deep-unit .feedback.err {
+    display: block;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error);
+  }
+
+  .minpy-deep-unit .feedback.hint {
+    display: block;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: var(--warn);
+  }
+
+  .minpy-deep-unit pre {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+  }
+
+  .minpy-deep-unit h1 {
+    font-size: 1.85rem;
+    color: var(--heading);
+    margin: 16px 0;
+    line-height: 1.38;
+  }
+
+  .minpy-deep-unit p {
+    color: var(--subtext);
+    margin: 10px 0;
+  }
+
+  .minpy-deep-unit .minpy-abstract {
+    white-space: pre-line;
+  }
+
+  .minpy-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .minpy-lang-btn {
+    background: var(--navy);
+    color: #ffffff;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .minpy-lang-btn:hover {
+    background: var(--navy-hover);
+  }
+
+  .minpy-meta-info {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .minpy-abstract {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-inline-start: 4px solid var(--navy);
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    color: var(--subtext);
+    font-size: 1.04rem;
+  }
+
+  .minpy-abstract strong.welcome-banner {
+    display: block;
+    color: var(--accent);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .minpy-roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .minpy-pill {
+    background: var(--surface-tint);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .minpy-pill strong {
+    display: block;
+    color: var(--accent);
+    font-size: 0.84rem;
+  }
+
+  .minpy-pill span {
+    font-size: 0.9rem;
+    color: var(--heading);
+    font-weight: 700;
+  }
+
+  .minpy-toc {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+
+  .minpy-toc-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--heading);
+    margin-bottom: 12px;
+  }
+
+  .minpy-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+
+  .minpy-toc-link {
+    display: block;
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.91rem;
+    font-weight: 700;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .minpy-toc-link:hover {
+    border-color: var(--accent);
+    background: var(--surface-tint);
+  }
+
+  .minpy-section {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 2px solid var(--border);
+  }
+
+  .minpy-kicker {
+    display: inline-block;
+    background: var(--navy);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .minpy-h2 {
+    font-size: 1.45rem !important;
+    color: var(--heading);
+    font-weight: 800;
+    margin: 6px 0 16px !important;
+    line-height: 1.45;
+  }
+
+  .minpy-h3 {
+    font-size: 1.14rem;
+    color: var(--navy);
+    font-weight: 800;
+    margin: 22px 0 10px;
+    padding-inline-start: 10px;
+    border-inline-start: 3px solid var(--accent);
+  }
+
+  [data-theme="dark"] .minpy-h3 {
+    color: var(--accent);
+  }
+
+  .minpy-list {
+    margin: 12px 0 18px 0;
+    padding-inline-start: 24px;
+    color: var(--subtext);
+  }
+
+  .minpy-list li {
+    margin-bottom: 8px;
+    font-size: 1.02rem;
+  }
+
+  .minpy-analogy {
+    background: var(--analogy-bg);
+    border: 1px solid var(--analogy-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .minpy-analogy-title {
+    font-weight: 800;
+    color: var(--analogy-title);
+    font-size: 1rem;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .minpy-analogy p {
+    color: var(--text) !important;
+    font-size: 1.01rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .minpy-analogy p:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .minpy-review-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-inline-start: 4px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin: 16px 0;
+  }
+
+  .minpy-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .minpy-review-title {
+    font-size: 1.08rem;
+    font-weight: 800;
+    color: var(--heading);
+  }
+
+  .minpy-review-tag {
+    font-size: 0.78rem;
+    font-weight: 700;
+    background: var(--surface-tint);
+    color: var(--accent);
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+  }
+
+  .minpy-table-wrap {
+    overflow-x: auto;
+    margin: 18px 0 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+
+  table.minpy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.94rem;
+  }
+
+  table.minpy-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 11px 14px;
+    text-align: start;
+    font-weight: 700;
+  }
+
+  table.minpy-table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--subtext);
+    vertical-align: top;
+  }
+
+  table.minpy-table tr:nth-child(even) td {
+    background: var(--surface-soft);
+  }
+
+  .minpy-summary {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-top: 22px;
+  }
+
+  .minpy-summary-title {
+    font-weight: 800;
+    color: var(--success);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+
+  .minpy-summary p {
+    color: var(--text) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .minpy-exam-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-strong);
+    border-top: 4px solid var(--navy);
+    border-radius: var(--radius-md);
+    padding: 20px 22px;
+    margin: 18px 0;
+  }
+
+  .minpy-exam-card.answered-ok {
+    border-top-color: var(--success);
+  }
+
+  .minpy-exam-card.answered-err {
+    border-top-color: var(--error);
+  }
+
+  .minpy-lab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .minpy-lab-badge {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .minpy-lab-score {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .minpy-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px 0;
+  }
+
+  .minpy-option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.96rem;
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .minpy-option-label:hover {
+    border-color: var(--accent);
+    background: var(--surface-tint);
+  }
+
+  .minpy-option-label input[type="radio"] {
+    accent-color: var(--accent);
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .minpy-btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+
+  .minpy-sec-btn {
+    background: var(--paper);
+    color: var(--heading);
+    border: 1px solid var(--border-strong);
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: border-color 0.15s ease;
+  }
+
+  .minpy-sec-btn:hover {
+    border-color: var(--accent);
+  }
+
+  .minpy-progress-wrap {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    position: sticky;
+    top: 64px;
+    z-index: 5;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+  }
+
+  .minpy-progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 12px;
+    background: var(--inline-code-bg);
+    border-radius: 99px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .minpy-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .minpy-final-report {
+    display: none;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-md);
+    padding: 24px 26px;
+    margin-top: 28px;
+  }
+
+  .minpy-final-report.visible {
+    display: block;
+  }
+
+  .minpy-final-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .minpy-stat-box {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .minpy-stat-box strong {
+    display: block;
+    font-size: 1.35rem;
+    color: var(--accent);
+  }
+
+  .minpy-stat-box span {
+    font-size: 0.86rem;
+    color: var(--muted);
+    font-weight: 700;
+  }
+</style>
+
+<div class="minpy-deep-unit" id="minpy-unit-wrapper"></div>
+
+<script>
+  (function () {
+    const UNIT_FOUR_DATA = {
+      ar: {
+        dir: "rtl",
+        langBtnText: "Switch to English",
+        badgeText: "الملف الرابع • المراجعة الشاملة الكبرى + الاختبار النهائي (30 سؤالاً)",
+        metaText: "المستوى: تقييم شامل لكامل الدروس السابقة (15 درساً عبر 3 وحدات) • سؤالان لكل درس",
+        title: "الملف الرابع: المراجعة الشاملة الكاملة + الاختبار الحقيقي الشامل (30 سؤالاً)",
+        welcome: "مرحباً بك في محطة التقييم والمراجعة الشاملة في أكاديمية MinPy!",
+        abstract:
+          "وصلت الآن إلى الملف الرابع، وهو محطة المراجعة المركزية والاختبار التطبيقي الحقيقي لكل ما تعلمته في الملفات الثلاثة السابقة.\n\nيغطي هذا الملف جميع الدروس الـ 15 التي مررت بها:\n• الوحدة الأولى (1.html — 5 دروس): عقل الحاسوب والطباعة print() والتعليقات #، المتغيرات وأنواع البيانات (int, float, str, bool) وفهرسة النصوص، العمليات الحسابية (// و %) والمنطق (and, or, not) والمدخلات input() والتنسيق f-strings، الجمل الشرطية (if/elif/else) والحلقات (for/while)، والقوائم والقواميس والدوال (def/return).\n• الوحدة الثانية (2.html — 5 دروس): التأسيس بمنطق ماين كرافت وكتل الإشارات واللوحات (sep و end)، صناديق الموارد والتحويل النوعي، شبكات الريدستون وباقي القسمة والمنطق، البوابات الشرطية وحلقات البناء الآلي، وشريط الأدوات والمخزون ومخططات البناء.\n• الوحدة الثالثة (3.html — 5 دروس): إشارة الضوء والمصباح وتبديل الحالة، القطار والعربات المرقمة والتنفيذ المتسلسل، صندوق الكنز والمفاتيح المنطقية، الطريق الممهد والمنعطف والمسافات البادئة، والآلة الصغيرة التي تحفظ وتحدّث القيم.\n\nالقسم الأول: مراجعة مركزة ومنظمة لجميع الدروس الـ 15 مع خلاصة القواعد والجداول.\nالقسم الثاني: اختبار حقيقي مكوّن من 30 سؤالاً (سؤالان لكل درس بالضبط)، يجمع بين أسئلة الاختيار من متعدد وأسئلة كتابة الكود الفعلي، مع شريط تقدم حي وتقرير درجات شامل.",
+        roadmap: [
+          { step: "الجزء الأول", name: "مراجعة الوحدة 1 (5 دروس)" },
+          { step: "الجزء الثاني", name: "مراجعة الوحدة 2 (5 دروس)" },
+          { step: "الجزء الثالث", name: "مراجعة الوحدة 3 (5 دروس)" },
+          { step: "الجزء الرابع", name: "جدول القواعد الذهبية" },
+          { step: "الجزء الخامس", name: "الاختبار الحقيقي (30 سؤالاً)" }
+        ],
+        tocTitle: "خريطة المراجعة الشاملة والاختبار النهائي",
+        toc: [
+          { href: "#review-unit-1", label: "القسم 1: مراجعة كاملة لدروس الملف الأول (الدروس 1 إلى 5)" },
+          { href: "#review-unit-2", label: "القسم 2: مراجعة كاملة لدروس الملف الثاني — منطق ماين كرافت (الدروس 6 إلى 10)" },
+          { href: "#review-unit-3", label: "القسم 3: مراجعة كاملة لدروس الملف الثالث — التفصيل التدريجي (الدروس 11 إلى 15)" },
+          { href: "#golden-cheat-sheet", label: "القسم 4: لوحة القواعد الذهبية والمقارنات السريعة قبل الاختبار" },
+          { href: "#final-exam-section", label: "القسم 5: الاختبار الحقيقي الشامل (30 سؤالاً — سؤالان لكل درس)" }
+        ],
+        reviewSections: [
+          {
+            id: "review-unit-1",
+            kicker: "مراجعة الملف الأول • الدروس 1 إلى 5",
+            heading: "القسم 1: مراجعة كاملة لدروس الملف الأول (أساسيات بايثون من الصفر)",
+            intro: "في الملف الأول بنينا القاعدة الصلبة للبرمجة بلغة بايثون عبر خمسة دروس مترابطة تبدأ من طريقة تفكير الحاسوب وتنتهي ببناء الدوال وهياكل البيانات:",
+            cards: [
+              {
+                tag: "الدرس 1 • الملف الأول",
+                title: "1. عقل الحاسوب، المفسّر (Interpreter)، دالة print()، والتعليقات #",
+                points: [
+                  "الحاسوب آلة تنفذ التعليمات حرفياً من الأعلى إلى الأسفل (Sequential Execution) دون تخمين.",
+                  "مفسّر بايثون يقرأ الكود سطراً بسطر ويحوله إلى لغة الآلة (0 و 1).",
+                  "دالة print() تطبع النصوص (داخل علامتي تنصيص) أو الأرقام والعمليات الحسابية مباشرة.",
+                  "نستخدم sep لتغيير الفاصل بين العناصر المطبوعة، و end لمنع النزول إلى سطر جديد.",
+                  "علامة # تبدأ تعليقاً توضيحياً يتجاهله الحاسوب تماماً أثناء التشغيل."
+                ],
+                code: "# تعليق توضيحي لا ينفذ\nprint(\"2026\", \"11\", \"25\", sep=\"-\", end=\" | \")\nprint(10 + 15)  # الناتج: 2026-11-25 | 25"
+              },
+              {
+                tag: "الدرس 2 • الملف الأول",
+                title: "2. المتغيرات (Variables)، الأنواع الأربعة، وفهرسة النصوص وتقطيعها",
+                points: [
+                  "المتغير صندوق مسمى في الذاكرة؛ وعلامة = تعني الإسناد (تخزين القيمة اليمنى في الاسم الأيسر).",
+                  "شروط التسمية: يبدأ بحرف أو _، لا يبدأ برقم، بلا مسافات، وليس كلمة محجوزة.",
+                  "الأنواع الأربعة: int (عدد صحيح)، float (عدد عشري)، str (نص)، bool (True أو False).",
+                  "فهرسة النصوص تبدأ من الصفر [0]، وآخر حرف هو [-1]، والتقطيع [start:stop] يستبعد stop.",
+                  "دوال النصوص المهمة: strip() لتنظيف المسافات، len() للطول، upper()، و replace()."
+                ],
+                code: "text = \"  Python  \".strip()\nprint(text[0], text[-1], text[0:3], len(text))  # P n Pyt 6"
+              },
+              {
+                tag: "الدرس 3 • الملف الأول",
+                title: "3. العمليات الحسابية (// و %)، المنطق، input()، و f-strings",
+                points: [
+                  "القسمة العادية / تعطي float دائماً، بينما // تعطي القسمة الصحيحة بدون كسر، و % تعطي باقي القسمة.",
+                  "فحص الزوجي والفردي يتم عبر n % 2 == 0.",
+                  "الفرق الحاسم: = للتخزين، أما == فللمقارنة والسؤال هل القيمتان متساويتان.",
+                  "الروابط المنطقية: and (يتحقق الشرطان معاً)، or (يكفي شرط واحد)، not (تعكس النتيجة).",
+                  "دالة input() ترجع نصاً str دائماً، لذلك نحولها بـ int() أو float() قبل الحساب، وننسق المخرجات بـ f\"...{var}...\"."
+                ],
+                code: "candies, kids = 17, 5\nprint(f\"لكل طفل {candies // kids} والباقي {candies % kids}\")"
+              },
+              {
+                tag: "الدرس 4 • الملف الأول",
+                title: "4. الجمل الشرطية (if / elif / else) والحلقات التكرارية (for / while)",
+                points: [
+                  "الجمل الشرطية تعتمد على النقطتين (:) والمسافة البادئة (4 مسافات) لتحديد الكتلة التابعة للشرط.",
+                  "ينفذ أول شرط يتحقق فقط من بين if و elif، وإذا لم يتحقق شيء تنفذ كتلة else.",
+                  "حلقة for مع range(start, stop) تكرر بعدد محدد وتتوقف قبل stop.",
+                  "حلقة while تستمر طالما الشرط True، ويجب تحديث المتغير داخلها لتجنب الحلقة اللانهائية.",
+                  "break تخرج من الحلقة فوراً، بينما continue تتخطى الدورة الحالية وتكمل التالية."
+                ],
+                code: "total = 0\nfor i in range(1, 5):\n    total += i\nprint(total)  # 1 + 2 + 3 + 4 = 10"
+              },
+              {
+                tag: "الدرس 5 • الملف الأول",
+                title: "5. القوائم (Lists)، القواميس (Dictionaries)، والدوال (def / return)",
+                points: [
+                  "القائمة [ ] مرتبة وقابلة للتعديل، نضيف إليها بـ append() ونصل لعناصرها بالفهرس من 0.",
+                  "القاموس { } يخزن بيانات بصيغة key: value للوصول السريع عبر اسم المفتاح.",
+                  "الدالة تُعرّف بـ def وتستقبل معاملات (Parameters) وتعيد النتيجة الفعلية عبر return.",
+                  "الفرق بين print و return: الأولى تعرض على الشاشة فقط، والثانية تسلم القيمة للبرنامج لاستخدامها."
+                ],
+                code: "def final_price(price, tax):\n    return price + tax\n\nscores = [80, 95]\nscores.append(100)\nstudent = {\"name\": \"Layla\", \"top\": scores[-1]}"
+              }
+            ]
+          },
+          {
+            id: "review-unit-2",
+            kicker: "مراجعة الملف الثاني • الدروس 6 إلى 10",
+            heading: "القسم 2: مراجعة كاملة لدروس الملف الثاني (تأسيس بايثون بمنطق ماين كرافت)",
+            intro: "في الملف الثاني ربطنا كل مفهوم برمجي بميكانيكيات عالم ماين كرافت ودوائر الريدستون والصناديق لتعميق الفهم العملي:",
+            cards: [
+              {
+                tag: "الدرس 6 • الدرس 1 في الملف الثاني",
+                title: "1. بلوكة الإشارة واللوحة الخشبية (print، #، sep، end)",
+                points: [
+                  "إشارة الريدستون تسري بالترتيب من البداية للنهاية؛ كذلك أوامر بايثون تنفذ من الأعلى للأسفل.",
+                  "الأمر print() يشبه اللوحة الخشبية (Sign) التي تعرض رسالة واضحة للاعبين.",
+                  "استخدام sep=\" | \" يربط الإحداثيات مثل X و Y و Z بفاصل مخصص في سطر واحد.",
+                  "استخدام end=\" -> \" يبقي المؤشر على نفس السطر لإكمال الإشارة في أمر الطباعة التالي."
+                ],
+                code: "print(\"X=10\", \"Y=64\", \"Z=-20\", sep=\" | \")\nprint(\"الريدستون\", end=\" -> \")\nprint(\"المكبس يعمل!\")"
+              },
+              {
+                tag: "الدرس 7 • الدرس 2 في الملف الثاني",
+                title: "2. صناديق الموارد وأنواع الكتل (المتغيرات، التحويل النوعي، وتنظيف النصوص)",
+                points: [
+                  "كل صندوق في غرفة التخزين يحمل اسماً مثل torches = 10 ويمكن تحديثه بـ torches += 6.",
+                  "الستاك الواحد 64؛ دمج \"32\" + \"32\" كنصوص يعطي \"3232\"، أما int(\"32\") + int(\"32\") فيعطي 64.",
+                  "دالة type() تكشف نوع الكتلة أو القيمة المخزنة داخل المتغير.",
+                  "تنظيف أسماء الأدوات بـ strip() وتغيير حالة الأحرف بـ upper() والاستبدال بـ replace()."
+                ],
+                code: "item = \"  redstone_torch  \".strip()\nprint(item.replace(\"torch\", \"block\"))  # redstone_block"
+              },
+              {
+                tag: "الدرس 8 • الدرس 3 في الملف الثاني",
+                title: "3. أسلاك الريدستون وتقسيم الصفوف (//، %، والروابط المنطقية)",
+                points: [
+                  "توزيع 50 بلوكة على صفوف من 6 بلوكات: 50 // 6 يعطي 8 صفوف كاملة، و 50 % 6 يعطي 2 بلوكة متبقية.",
+                  "بوابة AND في الريدستون تقابل and في بايثون: يفتح المخزن فقط إذا كان has_key and power_on صحيحين.",
+                  "بوابة OR تقابل or: تغلق النوافذ إذا كان is_night or is_storming صحيحاً.",
+                  "قراءة عدد الأعمدة عبر int(input()) وحساب البلوكات المطلوبة وتنسيق الرسالة بـ f-string."
+                ],
+                code: "stones = 50\nprint(stones // 6, stones % 6)  # 8 2"
+              },
+              {
+                tag: "الدرس 9 • الدرس 4 في الملف الثاني",
+                title: "4. بوابات الأمان وحلقات البناء الآلي (if / elif / else و for / while)",
+                points: [
+                  "بوابة القلعة تفحص مستوى الطاقة power_level: إذا كان >= 15 تعمل بأقصى طاقة، وإذا >= 10 تفتح باستقرار، وإلا تبقى مغلقة.",
+                  "حلقة for مع range(1, 5) تبني صفاً من 4 بلوكات مرقمة من 1 إلى 4 تلقائياً.",
+                  "حلقة while تستمر بتشغيل الفرن طالما fuel > 0، وتنقص الوقود بمقدار 1 في كل دورة."
+                ],
+                code: "fuel = 3\nwhile fuel > 0:\n    fuel -= 1\nprint(\"توقف الفرن:\", fuel)"
+              },
+              {
+                tag: "الدرس 10 • الدرس 5 في الملف الثاني",
+                title: "5. شريط الأدوات Hotbar، لوحة المخزون Dict، ومخطط البناء Def",
+                points: [
+                  "قائمة hotbar تخزن الأدوات بالترتيب وتسمح بالمرور عليها مع أرقام الخانات عبر enumerate(hotbar).",
+                  "قاموس chest_items يربط اسم المورد بكميته مثل {\"iron\": 18, \"emerald\": 5} ويُقرأ عبر .items().",
+                  "دالة blocks_for_wall(length, height) تحسب مساحة أي جدار وتعيد الناتج بـ return لإعادة استخدامه."
+                ],
+                code: "def blocks_for_wall(length, height):\n    return length * height"
+              }
+            ]
+          },
+          {
+            id: "review-unit-3",
+            kicker: "مراجعة الملف الثالث • الدروس 11 إلى 15",
+            heading: "القسم 3: مراجعة كاملة لدروس الملف الثالث (التدرج البطيء والمنطق التأسيسي)",
+            intro: "في الملف الثالث ركزنا على بناء الحدس البرمجي خطوة بخطوة عبر خمسة دروس تأسيسية دقيقة:",
+            cards: [
+              {
+                tag: "الدرس 11 • الدرس الجديد 1 في الملف الثالث",
+                title: "1. إشارة الضوء والمصباح (الحالات الثنائية True و False)",
+                points: [
+                  "المصباح له حالتان واضحتان فقط: مطفأ (False) أو مضيء (True).",
+                  "تغيير حالة المتغير lamp_on من False إلى True يمثل ضغط زر التشغيل بالترتيب.",
+                  "يجب تحديث قيمة المتغير قبل طباعته لكي تظهر الحالة الجديدة وليس القديمة."
+                ],
+                code: "lamp_on = False\nlamp_on = True\nprint(lamp_on)  # True"
+              },
+              {
+                tag: "الدرس 12 • الدرس الجديد 2 في الملف الثالث",
+                title: "2. القطار والعربات المرقمة (التسلسل والترتيب الزمني للأسطر)",
+                points: [
+                  "العربة الأولى تأتي قبل الثانية، والثانية قبل الثالثة؛ أي تغيير في ترتيب الأسطر يغير ترتيب المخرجات.",
+                  "إضافة عربة رابعة في سطر جديد في النهاية يحافظ على تسلسل القطار من البداية للنهاية."
+                ],
+                code: "print(\"Car 1: Engine\")\nprint(\"Car 2: Toys\")\nprint(\"Car 3: Books\")"
+              },
+              {
+                tag: "الدرس 13 • الدرس الجديد 3 في الملف الثالث",
+                title: "3. صندوق الكنز والمفاتيح (القيم المنطقية وحساسية حالة الأحرف)",
+                points: [
+                  "القيم المنطقية في بايثون تكتب دائماً بحرف أول كبير: True و False.",
+                  "كتابة true أو false بحروف صغيرة تسبب خطأ NameError لأن بايثون لا تتعرف عليها."
+                ],
+                code: "has_key = True\nprint(\"Key available:\", has_key)"
+              },
+              {
+                tag: "الدرس 14 • الدرس الجديد 4 في الملف الثالث",
+                title: "4. الطريق الممهد والمنعطف (اتخاذ القرار وإزاحة الأسطر)",
+                points: [
+                  "عند الوصول إلى مفترق طرق، يختبر if الشرط؛ إذا تحقق ينفذ الفرع الأول، وإلا ينفذ فرع else.",
+                  "يجب وضع نقطتين رأسيتين (:) في نهاية سطر if وسطر else وإزاحة الأسطر التابعة لهما للداخل."
+                ],
+                code: "score = 3\nif score > 5:\n    print(\"High score\")\nelse:\n    print(\"Keep going\")"
+              },
+              {
+                tag: "الدرس 15 • الدرس الجديد 5 في الملف الثالث",
+                title: "5. الآلة الصغيرة التي تحفظ (التخزين والتحديث واستخدام القيم لاحقاً)",
+                points: [
+                  "نحفظ الأرقام مثل coins = 10 أو النصوص مثل hero = \"Nova\" في متغيرات ذات أسماء واضحة.",
+                  "تحديث العداد عبر coins = coins + 5 يقرأ القيمة السابقة، يضيف 5، ثم يخزن المجموع الجديد 15.",
+                  "لا يجوز استخدام أي متغير قبل تعريفه وإعطائه قيمة أولية."
+                ],
+                code: "coins = 10\ncoins = coins + 5\nprint(\"Total coins:\", coins)  # 15"
+              }
+            ]
+          }
+        ],
+        cheatSheet: {
+          id: "golden-cheat-sheet",
+          kicker: "ملخص القواعد الذهبية",
+          heading: "القسم 4: لوحة القواعد الذهبية السريعة قبل دخول الاختبار",
+          headers: ["المفهوم", "الصيغة الصحيحة", "خطأ شائع يجب تجنبه", "النتيجة / القاعدة"],
+          rows: [
+            ["الطباعة والفاصل", "print(\"A\", \"B\", sep=\"-\")", "Print(\"A\") بحرف كبير", "يطبع A-B"],
+            ["التحويل النوعي", "int(\"12\") + 8", "\"12\" + 8 مباشرة", "20 بدلاً من TypeError"],
+            ["الفهرسة والتقطيع", "word[0] و word[0:3]", "ظن أن 3 مشمولة في [0:3]", "يبدأ من 0 ويتوقف قبل 3"],
+            ["القسمة والباقي", "17 // 5 و 17 % 5", "الخلط بين // و / و %", "17//5 = 3 و 17%5 = 2"],
+            ["الإسناد والمقارنة", "x = 5 ثم x == 5", "كتابة if x = 5:", "= للتخزين و == للسؤال"],
+            ["القيم المنطقية", "True و False", "true و false بحروف صغيرة", "تبدأ بحرف كبير دائماً"],
+            ["الشروط والحلقات", "if x > 0: مع 4 مسافات", "نسيان : أو المسافة البادئة", "IndentationError / SyntaxError"],
+            ["الدوال والإرجاع", "def f(a): return a * 2", "الاكتفاء بـ print داخل الدالة", "return ترجع القيمة للاستخدام"]
+          ],
+          summary: "أنت الآن جاهز تماماً! راجع أي بطاقة أعلاه إذا احتجت، ثم انتقل إلى الاختبار الحقيقي المكون من 30 سؤالاً (سؤالان لكل درس من الدروس الـ 15 السابقة)."
+        },
+        exam: {
+          id: "final-exam-section",
+          kicker: "الاختبار الحقيقي الشامل • 30 سؤالاً",
+          heading: "القسم 5: الاختبار النهائي الحقيقي (سؤالان لكل درس من الدروس الـ 15)",
+          intro:
+            "يتكون هذا الاختبار من 30 سؤالاً متدرجاً تغطي جميع الدروس الـ 15 السابقة بمعدل سؤالين لكل درس. أجب عن كل سؤال ثم اضغط «تحقق من الإجابة» لتصحيحه فوراً، أو اضغط في النهاية على «عرض التقرير النهائي الشامل» لمعرفة درجتك من 30 وتقديرك العام.",
+          progressLabel: "تقدمك في الاختبار:",
+          scoreLabel: (correct, total) => `الدرجة الحالية: ${correct} / ${total}`,
+          checkBtn: "تحقق من الإجابة",
+          hintBtn: "تلميح",
+          reportBtn: "عرض التقرير النهائي الشامل",
+          resetAllBtn: "إعادة الاختبار بالكامل",
+          reportTitle: "تقرير النتيجة النهائية للاختبار الشامل",
+          statCorrect: "إجابات صحيحة",
+          statSolved: "أسئلة تم حلها",
+          statPercent: "النسبة المئوية",
+          statGrade: "التقدير العام",
+          grades: {
+            excellent: "ممتاز (A+) — إتقان كامل!",
+            veryGood: "جيد جداً (B) — أداء قوي!",
+            pass: "ناجح (C) — أساس جيد!",
+            retry: "يحتاج مراجعة — أعد قراءة الملخص!"
+          },
+          questions: [
+            // الدرس 1 (الملف 1 - الدرس 1): print والتعليقات
+            {
+              id: "q1",
+              lessonTag: "الدرس 1 (الملف 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ما ناتج تنفيذ الكود التالي في بايثون؟",
+              code: "# print(\"مرحباً\")\nprint(\"2026\", \"11\", sep=\"/\")",
+              options: [
+                "مرحباً ثم 2026/11",
+                "2026/11 فقط",
+                "2026 11",
+                "خطأ برمجي بسبب علامة #"
+              ],
+              correctIndex: 1,
+              hint: "السطر الأول يبدأ بعلامة # فهو تعليق يتجاهله الحاسوب، والفاصل sep يضع / بين العنصرين.",
+              okMsg: "صحيح! السطر الأول تعليق مهمل، والسطر الثاني يطبع 2026/11.",
+              errMsg: "غير صحيح. تذكر أن # تعليق لا يُنفذ، وأن sep=\"/\" يضع / بين 2026 و 11."
+            },
+            {
+              id: "q2",
+              lessonTag: "الدرس 1 (الملف 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "أكمل الكود التالي لطباعة كلمة Done في نفس سطر Loading بدون النزول لسطر جديد:",
+              before: "print(\"Loading\", ",
+              after: "=\"... \")\nprint(\"Done\")",
+              placeholder: "اسم المعامل",
+              hint: "المعامل المسؤول عن تحديد نهاية السطر بدلاً من النزول لسطر جديد هو end.",
+              okMsg: "ممتاز! معامل end يتحكم في نهاية الطباعة ويبقيها على نفس السطر.",
+              errMsg: "الإجابة الصحيحة هي end.",
+              accept: (v) => v.trim() === "end"
+            },
+
+            // الدرس 2 (الملف 1 - الدرس 2): المتغيرات والأنواع والنصوص
+            {
+              id: "q3",
+              lessonTag: "الدرس 2 (الملف 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "أي اسم من أسماء المتغيرات التالية يُعد صحيحاً ومقبولاً في لغة بايثون؟",
+              code: "1) 2nd_score = 90\n2) student age = 18\n3) total_price = 45.5\n4) if = 10",
+              options: [
+                "2nd_score",
+                "student age",
+                "total_price",
+                "if"
+              ],
+              correctIndex: 2,
+              hint: "اسم المتغير لا يبدأ برقم، ولا يحتوي مسافات، ولا يكون كلمة محجوزة.",
+              okMsg: "أحسنت! total_price يلتزم بجميع قواعد تسمية المتغيرات في بايثون.",
+              errMsg: "خطأ. 2nd_score يبدأ برقم، student age فيه مسافة، و if كلمة محجوزة."
+            },
+            {
+              id: "q4",
+              lessonTag: "الدرس 2 (الملف 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "ما ناتج تنفيذ التقطيع التالي على النص؟ (اكتب الحروف الناتجة فقط بدون علامات تنصيص)",
+              before: "word = \"Python\"\nprint(word[0:3])  # الناتج: ",
+              after: "",
+              placeholder: "اكتب الناتج",
+              hint: "الفهرس 0 هو P، والفهرس 1 هو y، والفهرس 2 هو t، بينما الفهرس 3 مستبعد.",
+              okMsg: "رائع! التقطيع [0:3] يأخذ الفهارس 0 و 1 و 2 فيعطي Pyt.",
+              errMsg: "الإجابة الصحيحة هي Pyt لأن الفهرس 3 لا يدخل في الناتج.",
+              accept: (v) => v.trim() === "Pyt"
+            },
+
+            // الدرس 3 (الملف 1 - الدرس 3): العمليات الحسابية والمنطق والمدخلات
+            {
+              id: "q5",
+              lessonTag: "الدرس 3 (الملف 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ما ناتج تنفيذ التعبيرات الحسابية والمنطقية التالية؟",
+              code: "a = 17 // 5\nb = 17 % 5\nprint(a, b, (a == 3) and (b == 2))",
+              options: [
+                "3.4 2 False",
+                "3 2 True",
+                "2 3 False",
+                "3 5 True"
+              ],
+              correctIndex: 1,
+              hint: "17 // 5 تعطي القسمة الصحيحة (3)، و 17 % 5 تعطي الباقي (2).",
+              okMsg: "دقيق 100%! 17 // 5 = 3 و 17 % 5 = 2 وكلا الشرطين صحيح مع and.",
+              errMsg: "غير صحيح. 17 // 5 تساوي 3، و 17 % 5 تساوي 2، ونتيجة and هي True."
+            },
+            {
+              id: "q6",
+              lessonTag: "الدرس 3 (الملف 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "دالة input() ترجع النص \"20\". اكتب اسم الدالة اللازمة لتحويله إلى عدد صحيح لجمعه مع 5:",
+              before: "age = ",
+              after: "(input(\"Age: \")) + 5",
+              placeholder: "اسم الدالة",
+              hint: "لتحويل النص إلى عدد صحيح نستخدم دالة int.",
+              okMsg: "ممتاز! دالة int() تحول النص إلى عدد صحيح.",
+              errMsg: "الإجابة الصحيحة هي int.",
+              accept: (v) => v.trim() === "int"
+            },
+
+            // الدرس 4 (الملف 1 - الدرس 4): الشروط والحلقات
+            {
+              id: "q7",
+              lessonTag: "الدرس 4 (الملف 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "كم سيكون قيمة المتغير total بعد انتهاء الحلقة التالية؟",
+              code: "total = 0\nfor n in range(1, 5):\n    if n == 3:\n        continue\n    total += n",
+              options: [
+                "10",
+                "7",
+                "3",
+                "15"
+              ],
+              correctIndex: 1,
+              hint: "range(1, 5) تعطي 1, 2, 3, 4. وعندما n == 3 يقوم continue بتخطي جمع الرقم 3.",
+              okMsg: "عبقري! يتم جمع 1 + 2 + 4 وتخطي 3، فيكون المجموع 7.",
+              errMsg: "الإجابة الصحيحة هي 7 (1 + 2 + 4 = 7 لأن continue تخطى الرقم 3)."
+            },
+            {
+              id: "q8",
+              lessonTag: "الدرس 4 (الملف 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "أكمل الكلمة المفتاحية التي توقف الحلقة وتخرج منها فوراً عند تحقق الشرط:",
+              before: "for x in range(10):\n    if x == 4:\n        ",
+              after: "",
+              placeholder: "اكتب الأمر",
+              hint: "الأمر الذي يكسر الحلقة ويخرج منها فوراً هو break.",
+              okMsg: "صحيح! break ينهي الحلقة فوراً.",
+              errMsg: "الإجابة الصحيحة هي break.",
+              accept: (v) => v.trim() === "break"
+            },
+
+            // الدرس 5 (الملف 1 - الدرس 5): القوائم والقواميس والدوال
+            {
+              id: "q9",
+              lessonTag: "الدرس 5 (الملف 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ما الفرق الأساسي بين استخدام return واستخدام print داخل الدالة؟",
+              options: [
+                "لا يوجد أي فرق بينهما في بايثون",
+                "return تُسلم القيمة للبرنامج لتخزينها أو استخدامها في حسابات أخرى، بينما print تعرضها على الشاشة فقط",
+                "print أسرع من return وتُرجع عدداً صحيحاً دائماً",
+                "return تُستخدم فقط مع النصوص ولا تعمل مع الأرقام"
+              ],
+              correctIndex: 1,
+              hint: "الدالة التي تنتهي بـ print فقط دون return تُرجع None عند تخزين ناتجها في متغير.",
+              okMsg: "إجابة نموذجية! return تسلم القيمة الفعلية للمكان الذي استدعى الدالة.",
+              errMsg: "غير صحيح. return تعيد القيمة لاستخدامها لاحقاً، بينما print للعرض على الشاشة فقط."
+            },
+            {
+              id: "q10",
+              lessonTag: "الدرس 5 (الملف 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "أكمل الدالة لإضافة العنصر \"Honey\" إلى نهاية القائمة items:",
+              before: "items = [\"Bread\", \"Milk\"]\nitems.",
+              after: "(\"Honey\")",
+              placeholder: "اسم الدالة",
+              hint: "الدالة التي تضيف عنصراً جديداً في آخر القائمة هي append.",
+              okMsg: "أحسنت! append() تضيف العنصر الجديد إلى نهاية القائمة.",
+              errMsg: "الإجابة الصحيحة هي append.",
+              accept: (v) => v.trim() === "append"
+            },
+
+            // الدرس 6 (الملف 2 - الدرس 1): منطق ماين كرافت — الإشارات واللوحات
+            {
+              id: "q11",
+              lessonTag: "الدرس 6 (الملف 2 • ماين كرافت 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "في تشبيه ماين كرافت، كيف ينفذ مفسّر بايثون الأوامر المكتوبة في الملف؟",
+              options: [
+                "ينفذ الأوامر العشوائية الأسهل أولاً",
+                "ينفذها من الأسفل إلى الأعلى",
+                "ينفذها سطراً بسطر بالترتيب من الأعلى إلى الأسفل مثل سريان إشارة الريدستون",
+                "ينفذ السطور التي تبدأ بعلامة # أولاً"
+              ],
+              correctIndex: 2,
+              hint: "إشارة الريدستون تمشي خطوة بخطوة من بداية الخط إلى نهايته.",
+              okMsg: "صحيح! التنفيذ المتسلسل يبدأ من السطر الأول نزولاً إلى الأخير.",
+              errMsg: "غير صحيح. بايثون تنفذ الأوامر سطراً بعد سطر من الأعلى إلى الأسفل."
+            },
+            {
+              id: "q12",
+              lessonTag: "الدرس 6 (الملف 2 • ماين كرافت 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "ما ناتج طباعة العملية التالية؟ (اكتب الرقم فقط)",
+              before: "print(32 + 32)  # الناتج: ",
+              after: "",
+              placeholder: "الرقم",
+              hint: "32 + 32 بدون علامتي تنصيص تُحسب رياضياً وتُطبع نتيجتها.",
+              okMsg: "ممتاز! ستاك كامل من البلوكات = 64.",
+              errMsg: "الإجابة الصحيحة هي 64.",
+              accept: (v) => v.trim() === "64"
+            },
+
+            // الدرس 7 (الملف 2 - الدرس 2): صناديق الموارد وأنواع الكتل
+            {
+              id: "q13",
+              lessonTag: "الدرس 7 (الملف 2 • ماين كرافت 2) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ماذا يطبع الكود التالي؟",
+              code: "stack_a = \"32\"\nstack_b = \"32\"\nprint(stack_a + stack_b)",
+              options: [
+                "64",
+                "3232",
+                "32 + 32",
+                "خطأ TypeError"
+              ],
+              correctIndex: 1,
+              hint: "القيمتان محاطتان بعلامتي تنصيص، أي أنهما نصوص (str) وليستا أرقاماً!",
+              okMsg: "رائع! جمع نصين بعلامة + يلصقهما ببعض فيصبح الناتج 3232.",
+              errMsg: "انتبه! لأن \"32\" نص وليس رقماً، فإن + تدمجهما ليصبح الناتج 3232."
+            },
+            {
+              id: "q14",
+              lessonTag: "الدرس 7 (الملف 2 • ماين كرافت 2) • سؤال 2 من 2",
+              type: "input",
+              prompt: "كم ستكون قيمة torches بعد تنفيذ السطور التالية؟ (اكتب الرقم فقط)",
+              before: "torches = 10\ntorches = torches + 6\ntorches += 4\nprint(torches)  # الناتج: ",
+              after: "",
+              placeholder: "الرقم النهائي",
+              hint: "ابدأ بـ 10، أضف 6 لتصبح 16، ثم أضف 4 لتصبح 20.",
+              okMsg: "صحيح! 10 + 6 + 4 = 20.",
+              errMsg: "الإجابة الصحيحة هي 20.",
+              accept: (v) => v.trim() === "20"
+            },
+
+            // الدرس 8 (الملف 2 - الدرس 3): أسلاك الريدستون والحساب والمنطق
+            {
+              id: "q15",
+              lessonTag: "الدرس 8 (الملف 2 • ماين كرافت 3) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "معك 50 بلوكة وتريد بناء صفوف كاملة يتسع كل صف لـ 6 بلوكات. ما ناتج 50 // 6 و 50 % 6 على الترتيب؟",
+              options: [
+                "8 و 2",
+                "2 و 8",
+                "8.33 و 2",
+                "9 و 4"
+              ],
+              correctIndex: 0,
+              hint: "8 × 6 = 48 بلوكة (8 صفوف كاملة)، ويتبقى 50 - 48 = 2 بلوكة.",
+              okMsg: "ممتاز! 8 صفوف كاملة و 2 بلوكة متبقية.",
+              errMsg: "غير صحيح. 50 // 6 يساوي 8، و 50 % 6 يساوي 2."
+            },
+            {
+              id: "q16",
+              lessonTag: "الدرس 8 (الملف 2 • ماين كرافت 3) • سؤال 2 من 2",
+              type: "input",
+              prompt: "إذا كانت is_night = False و is_storming = True، فما ناتج العبارة المنطقية التالية؟ (اكتب True أو False)",
+              before: "print(is_night or is_storming)  # الناتج: ",
+              after: "",
+              placeholder: "True أو False",
+              hint: "الرابط or يعطي True إذا تحقق طرف واحد على الأقل.",
+              okMsg: "صحيح! يكفي أن يكون أحد الشرطين True مع or.",
+              errMsg: "الإجابة الصحيحة هي True.",
+              accept: (v) => v.trim() === "True"
+            },
+
+            // الدرس 9 (الملف 2 - الدرس 4): البوابات الشرطية وحلقات البناء الآلي
+            {
+              id: "q17",
+              lessonTag: "الدرس 9 (الملف 2 • ماين كرافت 4) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "إذا كانت power_level = 12، أي رسالة ستُطبع من الكود التالي؟",
+              code: "power_level = 12\nif power_level >= 15:\n    print(\"أقصى طاقة\")\nelif power_level >= 10:\n    print(\"البوابة مفتوحة\")\nelse:\n    print(\"البوابة مغلقة\")",
+              options: [
+                "أقصى طاقة",
+                "البوابة مفتوحة",
+                "البوابة مغلقة",
+                "أقصى طاقة ثم البوابة مفتوحة"
+              ],
+              correctIndex: 1,
+              hint: "12 ليست >= 15، لكنها >= 10 فيتحقق شرط elif.",
+              okMsg: "أحسنت! يتحقق شرط elif الأول ويطبع «البوابة مفتوحة».",
+              errMsg: "غير صحيح. بما أن 12 >= 10 يتحقق فرع elif ويطبع «البوابة مفتوحة»."
+            },
+            {
+              id: "q18",
+              lessonTag: "الدرس 9 (الملف 2 • ماين كرافت 4) • سؤال 2 من 2",
+              type: "input",
+              prompt: "كم مرة ستدور الحلقة التالية؟ (اكتب الرقم فقط)",
+              before: "for step in range(1, 5):\n    print(step)",
+              after: "",
+              placeholder: "عدد الدورات",
+              hint: "range(1, 5) تولد الأرقام 1، 2، 3، 4.",
+              okMsg: "صحيح! تدور الحلقة 4 مرات (من 1 إلى 4).",
+              errMsg: "الإجابة الصحيحة هي 4 مرات لأن 5 مستبعدة في range(1, 5).",
+              accept: (v) => v.trim() === "4"
+            },
+
+            // الدرس 10 (الملف 2 - الدرس 5): القوائم والقواميس والدوال في ماين كرافت
+            {
+              id: "q19",
+              lessonTag: "الدرس 10 (الملف 2 • ماين كرافت 5) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ما القيمة التي ستُطبع بعد تحديث قاموس الموارد التالي؟",
+              code: "chest_items = {\"iron\": 18, \"emerald\": 5}\nchest_items[\"emerald\"] += 3\nprint(chest_items[\"emerald\"])",
+              options: [
+                "5",
+                "3",
+                "8",
+                "18"
+              ],
+              correctIndex: 2,
+              hint: "قيمة \"emerald\" كانت 5 ثم أضفنا إليها 3.",
+              okMsg: "ممتاز! 5 + 3 = 8.",
+              errMsg: "غير صحيح. القيمة الأصلية 5 + 3 تساوي 8."
+            },
+            {
+              id: "q20",
+              lessonTag: "الدرس 10 (الملف 2 • ماين كرافت 5) • سؤال 2 من 2",
+              type: "input",
+              prompt: "ما الناتج النهائي لنداء الدالة blocks_for_wall(6, 3)؟ (اكتب الرقم فقط)",
+              before: "def blocks_for_wall(length, height):\n    return length * height\n\nprint(blocks_for_wall(6, 3))  # الناتج: ",
+              after: "",
+              placeholder: "الرقم",
+              hint: "الدالة تضرب length في height (أي 6 × 3).",
+              okMsg: "رائع! 6 × 3 = 18 بلوكة.",
+              errMsg: "الإجابة الصحيحة هي 18.",
+              accept: (v) => v.trim() === "18"
+            },
+
+            // الدرس 11 (الملف 3 - الدرس الجديد 1): إشارة الضوء والمصباح
+            {
+              id: "q21",
+              lessonTag: "الدرس 11 (الملف 3 • الدرس 1) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ماذا يطبع الكود التالي عند تشغيل المصباح ثم إطفائه؟",
+              code: "lamp_on = False\nlamp_on = True\nlamp_on = False\nprint(lamp_on)",
+              options: [
+                "True",
+                "False",
+                "True ثم False",
+                "None"
+              ],
+              correctIndex: 1,
+              hint: "آخر قيمة خُزنت في المتغير lamp_on قبل أمر الطباعة هي False.",
+              okMsg: "صحيح! المتغير يحتفظ بآخر قيمة أُسندت إليه وهي False.",
+              errMsg: "غير صحيح. آخر تحديث للمتغير كان False وهو ما سيُطبع."
+            },
+            {
+              id: "q22",
+              lessonTag: "الدرس 11 (الملف 3 • الدرس 1) • سؤال 2 من 2",
+              type: "input",
+              prompt: "أكمل السطر لتغيير حالة المصباح من مطفأ إلى مضيء في بايثون:",
+              before: "lamp_on = False\nlamp_on = ",
+              after: "\nprint(lamp_on)",
+              placeholder: "True أو False",
+              hint: "الحالة المفعلة في بايثون تُكتب True بحرف T كبير.",
+              okMsg: "أحسنت! lamp_on = True يفعّل المصباح.",
+              errMsg: "الإجابة الصحيحة هي True.",
+              accept: (v) => v.trim() === "True"
+            },
+
+            // الدرس 12 (الملف 3 - الدرس الجديد 2): القطار والعربات المرقمة
+            {
+              id: "q23",
+              lessonTag: "الدرس 12 (الملف 3 • الدرس 2) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "إذا نفذنا السطور التالية بالترتيب، ما السطر الثاني الذي سيظهر على الشاشة؟",
+              code: "print(\"Car 1: Engine\")\nprint(\"Car 2: Toys\")\nprint(\"Car 3: Books\")",
+              options: [
+                "Car 1: Engine",
+                "Car 2: Toys",
+                "Car 3: Books",
+                "تُطبع جميعها في سطر واحد"
+              ],
+              correctIndex: 1,
+              hint: "السطر الثاني في الكود هو print(\"Car 2: Toys\").",
+              okMsg: "ممتاز! التنفيذ يمشي بالترتيب فيطبع Car 2: Toys ثانياً.",
+              errMsg: "غير صحيح. السطر الثاني يطبع Car 2: Toys."
+            },
+            {
+              id: "q24",
+              lessonTag: "الدرس 12 (الملف 3 • الدرس 2) • سؤال 2 من 2",
+              type: "input",
+              prompt: "أكمل رقم العربة لتكون العربة الرابعة في نهاية القطار:",
+              before: "print(\"Car ",
+              after: ": Snacks\")",
+              placeholder: "الرقم",
+              hint: "بعد Car 1 و Car 2 و Car 3 تأتي العربة رقم 4.",
+              okMsg: "صحيح! العربة الرابعة تحافظ على تسلسل الترقيم.",
+              errMsg: "الإجابة الصحيحة هي 4.",
+              accept: (v) => v.trim() === "4"
+            },
+
+            // الدرس 13 (الملف 3 - الدرس الجديد 3): صندوق الكنز والمفاتيح
+            {
+              id: "q25",
+              lessonTag: "الدرس 13 (الملف 3 • الدرس 3) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ماذا يحدث إذا كتب المبرمج has_key = true (بحرف t صغير) في بايثون؟",
+              options: [
+                "تعمل بشكل طبيعي وتعتبرها True",
+                "تعتبرها نصاً تلقائياً",
+                "تُظهر خطأ NameError لأن القيم المنطقية في بايثون تبدأ بحرف كبير (True / False)",
+                "تحولها إلى الرقم 0"
+              ],
+              correctIndex: 2,
+              hint: "بايثون حساسة لحالة الأحرف (Case-Sensitive).",
+              okMsg: "دقيق! في بايثون يجب كتابة True و False بحرف أول كبير دائماً.",
+              errMsg: "غير صحيح. كتابة true بحرف صغير تسبب خطأ NameError."
+            },
+            {
+              id: "q26",
+              lessonTag: "الدرس 13 (الملف 3 • الدرس 3) • سؤال 2 من 2",
+              type: "input",
+              prompt: "إذا ضاع المفتاح، ما القيمة المنطقية التي نضعها في has_key؟",
+              before: "has_key = ",
+              after: "\nprint(\"Key available:\", has_key)",
+              placeholder: "القيمة المنطقية",
+              hint: "عدم وجود المفتاح يمثّل بـ False بحرف F كبير.",
+              okMsg: "أحسنت! has_key = False تعبر عن عدم توفر المفتاح.",
+              errMsg: "الإجابة الصحيحة هي False.",
+              accept: (v) => v.trim() === "False"
+            },
+
+            // الدرس 14 (الملف 3 - الدرس الجديد 4): الطريق الممهد والمنعطف
+            {
+              id: "q27",
+              lessonTag: "الدرس 14 (الملف 3 • الدرس 4) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ما الناتج الذي سيُطبع عند تشغيل الكود التالي؟",
+              code: "score = 3\nif score > 5:\n    print(\"High score\")\nelse:\n    print(\"Keep going\")",
+              options: [
+                "High score",
+                "Keep going",
+                "High score ثم Keep going",
+                "لا يطبع شيئاً"
+              ],
+              correctIndex: 1,
+              hint: "هل 3 أكبر من 5؟ الجواب لا (False)، فينتقل البرنامج إلى فرع else.",
+              okMsg: "صحيح! بما أن الشرط False، ينفذ فرع else ويطبع Keep going.",
+              errMsg: "غير صحيح. 3 ليست أكبر من 5، لذلك يُطبع Keep going."
+            },
+            {
+              id: "q28",
+              lessonTag: "الدرس 14 (الملف 3 • الدرس 4) • سؤال 2 من 2",
+              type: "input",
+              prompt: "ما الرمز الناقص في نهاية سطر if وسطر else في بايثون؟ (اكتب الرمز فقط)",
+              before: "if score > 5",
+              after: "\n    print(\"High score\")",
+              placeholder: "الرمز",
+              hint: "كل رأس جملة شرطية أو حلقة ينتهي بنقطتين رأسيتين :",
+              okMsg: "ممتاز! النقطتان الرأسيتان (:) ضروريتان لبدء الكتلة المزاحة.",
+              errMsg: "الإجابة الصحيحة هي :",
+              accept: (v) => v.trim() === ":"
+            },
+
+            // الدرس 15 (الملف 3 - الدرس الجديد 5): الآلة الصغيرة التي تحفظ
+            {
+              id: "q29",
+              lessonTag: "الدرس 15 (الملف 3 • الدرس 5) • سؤال 1 من 2",
+              type: "mcq",
+              prompt: "ماذا يحدث إذا حاولت طباعة متغير مثل print(coins) في السطر الأول قبل أن تعطيه أي قيمة؟",
+              options: [
+                "يطبع الرقم 0 تلقائياً",
+                "يطبع فراغاً بدون خطأ",
+                "يُظهر خطأ NameError لأن المتغير غير معرّف بعد",
+                "ينشئ المتغير تلقائياً بقيمة 1"
+              ],
+              correctIndex: 2,
+              hint: "لا يمكنك قراءة ملصق علبة لم تقم بإنشائها بعد.",
+              okMsg: "صحيح 100%! يجب تعريف المتغير وإسناد قيمة له قبل استخدامه.",
+              errMsg: "غير صحيح. استخدام متغير قبل تعريفه يسبب خطأ NameError."
+            },
+            {
+              id: "q30",
+              lessonTag: "الدرس 15 (الملف 3 • الدرس 5) • سؤال 2 من 2",
+              type: "input",
+              prompt: "بدأت بـ coins = 10 ثم أضفت 5، ما القيمة النهائية التي سيطبعها البرنامج؟ (اكتب الرقم فقط)",
+              before: "coins = 10\ncoins = coins + 5\nprint(coins)  # الناتج: ",
+              after: "",
+              placeholder: "الرقم النهائي",
+              hint: "10 + 5 = 15.",
+              okMsg: "مبارك! أتممت السؤال الثلاثين بنجاح تام! الناتج هو 15.",
+              errMsg: "الإجابة الصحيحة هي 15.",
+              accept: (v) => v.trim() === "15"
+            }
+          ]
+        }
+      },
+
+      en: {
+        dir: "ltr",
+        langBtnText: "التبديل إلى العربية",
+        badgeText: "File 4 • Full Comprehensive Review + Real Final Exam (30 Questions)",
+        metaText: "Level: Full Mastery Check across all 15 previous lessons (3 units) • 2 questions per lesson",
+        title: "File 4: Complete Comprehensive Review + Real Final Exam (30 Questions)",
+        welcome: "Welcome to the Comprehensive Review & Final Assessment Station at MinPy Academy!",
+        abstract:
+          "You have reached File 4—the central review hub and real practical exam covering everything taught across the previous three files.\n\nThis unit covers all 15 previous lessons:\n• Unit 1 (1.html — 5 lessons): Computer execution, print() & # comments, variables & core types (int, float, str, bool) with string indexing/slicing, arithmetic (// and %), boolean logic (and, or, not), input() & f-strings, conditionals (if/elif/else) & loops (for/while), and lists, dictionaries, and functions (def/return).\n• Unit 2 (2.html — 5 lessons): Minecraft-logic foundations—signal blocks & signs (sep, end), resource chests & type casting, redstone math & logic gates, conditional castle gates & automated build loops, and hotbars, inventory dicts, and wall blueprints.\n• Unit 3 (3.html — 5 lessons): Lamp state toggling (True/False), sequential train cars, treasure chest key flags, path branching with colons & indentation, and storing/updating counter variables.\n\nPart 1: Structured, thorough review of all 15 lessons with rules and examples.\nPart 2: A real 30-question exam (2 questions per lesson) combining multiple-choice and hands-on code completion with live progress tracking and a complete score report.",
+        roadmap: [
+          { step: "Part 01", name: "Unit 1 Review (5 Lessons)" },
+          { step: "Part 02", name: "Unit 2 Review (5 Lessons)" },
+          { step: "Part 03", name: "Unit 3 Review (5 Lessons)" },
+          { step: "Part 04", name: "Golden Rules Table" },
+          { step: "Part 05", name: "Real Exam (30 Questions)" }
+        ],
+        tocTitle: "Comprehensive Review & Final Exam Map",
+        toc: [
+          { href: "#review-unit-1", label: "Section 1: Full Review of File 1 (Lessons 1 to 5)" },
+          { href: "#review-unit-2", label: "Section 2: Full Review of File 2 — Minecraft Logic (Lessons 6 to 10)" },
+          { href: "#review-unit-3", label: "Section 3: Full Review of File 3 — Step-by-Step Foundations (Lessons 11 to 15)" },
+          { href: "#golden-cheat-sheet", label: "Section 4: Golden Rules & Quick Comparison Cheat Sheet" },
+          { href: "#final-exam-section", label: "Section 5: Real Final Exam (30 Questions — 2 per Lesson)" }
+        ],
+        reviewSections: [
+          {
+            id: "review-unit-1",
+            kicker: "File 1 Review • Lessons 1 to 5",
+            heading: "Section 1: Complete Review of File 1 (Python Foundations from Zero)",
+            intro: "File 1 built your core Python foundation across five connected lessons:",
+            cards: [
+              {
+                tag: "Lesson 1 • File 1",
+                title: "1. Computer Execution, Interpreter, print(), and # Comments",
+                points: [
+                  "Computers execute instructions strictly top-to-bottom in sequence.",
+                  "The Python Interpreter translates code line-by-line into machine code (0s and 1s).",
+                  "print() outputs strings (in quotes), numbers, or evaluated expressions.",
+                  "Use sep to customize separators and end to prevent automatic newlines.",
+                  "Lines starting with # are comments ignored by Python."
+                ],
+                code: "# Comment ignored by Python\nprint(\"2026\", \"11\", \"25\", sep=\"-\", end=\" | \")\nprint(10 + 15)  # Output: 2026-11-25 | 25"
+              },
+              {
+                tag: "Lesson 2 • File 1",
+                title: "2. Variables, Four Core Types, and String Indexing/Slicing",
+                points: [
+                  "Variables store values using assignment (=). Names start with a letter or _, never a digit.",
+                  "Core types: int (integers), float (decimals), str (strings), bool (True/False).",
+                  "String indexing starts at 0; -1 accesses the last character; slicing [start:stop] excludes stop.",
+                  "Useful string methods: strip(), len(), upper(), and replace()."
+                ],
+                code: "text = \"  Python  \".strip()\nprint(text[0], text[-1], text[0:3], len(text))  # P n Pyt 6"
+              },
+              {
+                tag: "Lesson 3 • File 1",
+                title: "3. Arithmetic (// and %), Logic, input(), and f-strings",
+                points: [
+                  "True division / returns a float; // returns floor division; % returns the remainder.",
+                  "Even check: n % 2 == 0.",
+                  "= assigns a value; == compares two values for equality.",
+                  "and requires both sides True; or requires at least one True; not flips booleans.",
+                  "input() always returns a str; cast with int() or float() before math and format with f-strings."
+                ],
+                code: "candies, kids = 17, 5\nprint(f\"Each gets {candies // kids}, leftover {candies % kids}\")"
+              },
+              {
+                tag: "Lesson 4 • File 1",
+                title: "4. Conditionals (if / elif / else) and Loops (for / while)",
+                points: [
+                  "Conditionals use colons (:) and 4-space indentation to define blocks.",
+                  "Only the first matching if/elif branch runs; else acts as the fallback.",
+                  "for with range(start, stop) iterates up to stop - 1.",
+                  "while repeats while True; break exits immediately and continue skips to the next cycle."
+                ],
+                code: "total = 0\nfor i in range(1, 5):\n    total += i\nprint(total)  # 10"
+              },
+              {
+                tag: "Lesson 5 • File 1",
+                title: "5. Lists, Dictionaries, and Functions (def / return)",
+                points: [
+                  "Lists [] are ordered, mutable collections modified with append() and indexed from 0.",
+                  "Dictionaries {} store key: value records for direct key lookup.",
+                  "Functions are defined with def and send values back using return (unlike print which only displays)."
+                ],
+                code: "def final_price(price, tax):\n    return price + tax"
+              }
+            ]
+          },
+          {
+            id: "review-unit-2",
+            kicker: "File 2 Review • Lessons 6 to 10",
+            heading: "Section 2: Complete Review of File 2 (Python with Minecraft Logic)",
+            intro: "File 2 mapped core Python mechanics to Minecraft blocks, redstone wiring, and chests:",
+            cards: [
+              {
+                tag: "Lesson 6 • File 2 Lesson 1",
+                title: "1. Signal Blocks & Wooden Signs (print, #, sep, end)",
+                points: [
+                  "Code runs top-to-bottom like a redstone pulse traveling down a line.",
+                  "print() acts like a wooden Sign displaying clear messages.",
+                  "sep and end format coordinates and inline status messages cleanly."
+                ],
+                code: "print(\"X=10\", \"Y=64\", \"Z=-20\", sep=\" | \")"
+              },
+              {
+                tag: "Lesson 7 • File 2 Lesson 2",
+                title: "2. Resource Chests & Block Types (Variables & Casting)",
+                points: [
+                  "Variables act like labeled chests updated with +=.",
+                  "Joining \"32\" + \"32\" gives \"3232\", whereas int(\"32\") + int(\"32\") gives 64."
+                ],
+                code: "item = \"  redstone_torch  \".strip()\nprint(item.replace(\"torch\", \"block\"))"
+              },
+              {
+                tag: "Lesson 8 • File 2 Lesson 3",
+                title: "3. Redstone Wiring & Row Division (//, %, and/or/not)",
+                points: [
+                  "50 // 6 yields 8 full rows and 50 % 6 yields 2 leftover blocks.",
+                  "and / or / not mirror redstone logic gates."
+                ],
+                code: "stones = 50\nprint(stones // 6, stones % 6)  # 8 2"
+              },
+              {
+                tag: "Lesson 9 • File 2 Lesson 4",
+                title: "4. Security Gates & Automated Build Loops",
+                points: [
+                  "if / elif / else routes power levels cleanly.",
+                  "for loops place counted rows; while loops run until fuel hits 0."
+                ],
+                code: "fuel = 3\nwhile fuel > 0:\n    fuel -= 1"
+              },
+              {
+                tag: "Lesson 10 • File 2 Lesson 5",
+                title: "5. Hotbar Lists, Inventory Dicts & Wall Blueprints",
+                points: [
+                  "enumerate(hotbar) pairs slot indices with tool names.",
+                  "chest_items.items() iterates over resource keys and quantities.",
+                  "blocks_for_wall(length, height) returns length * height."
+                ],
+                code: "def blocks_for_wall(length, height):\n    return length * height"
+              }
+            ]
+          },
+          {
+            id: "review-unit-3",
+            kicker: "File 3 Review • Lessons 11 to 15",
+            heading: "Section 3: Complete Review of File 3 (Step-by-Step Foundations)",
+            intro: "File 3 reinforced step-by-step mental models across five focused lessons:",
+            cards: [
+              {
+                tag: "Lesson 11 • File 3 Lesson 1",
+                title: "1. Light & Lamp Signal (Boolean State Toggling)",
+                points: [
+                  "A lamp holds either False (off) or True (on).",
+                  "Update the variable before printing to reflect the new state."
+                ],
+                code: "lamp_on = False\nlamp_on = True\nprint(lamp_on)  # True"
+              },
+              {
+                tag: "Lesson 12 • File 3 Lesson 2",
+                title: "2. Train & Ordered Cars (Sequential Order)",
+                points: [
+                  "Statements run strictly in line order from first car to last car."
+                ],
+                code: "print(\"Car 1: Engine\")\nprint(\"Car 2: Toys\")\nprint(\"Car 3: Books\")"
+              },
+              {
+                tag: "Lesson 13 • File 3 Lesson 3",
+                title: "3. Treasure Box & Keys (Capitalized Booleans)",
+                points: [
+                  "Booleans must be capitalized as True and False in Python."
+                ],
+                code: "has_key = True\nprint(\"Key available:\", has_key)"
+              },
+              {
+                tag: "Lesson 14 • File 3 Lesson 4",
+                title: "4. Road & Fork Choice (Colons & Indentation)",
+                points: [
+                  "Both if and else require trailing colons (:) and indented bodies."
+                ],
+                code: "score = 3\nif score > 5:\n    print(\"High score\")\nelse:\n    print(\"Keep going\")"
+              },
+              {
+                tag: "Lesson 15 • File 3 Lesson 5",
+                title: "5. Saving & Updating Labels (Variables)",
+                points: [
+                  "Always define a variable before referencing it; update counters with coins = coins + 5."
+                ],
+                code: "coins = 10\ncoins = coins + 5\nprint(\"Total coins:\", coins)  # 15"
+              }
+            ]
+          }
+        ],
+        cheatSheet: {
+          id: "golden-cheat-sheet",
+          kicker: "Golden Rules Summary",
+          heading: "Section 4: Quick Golden Rules Cheat Sheet Before the Exam",
+          headers: ["Concept", "Correct Syntax", "Common Mistake", "Rule / Result"],
+          rows: [
+            ["Output & sep", "print(\"A\", \"B\", sep=\"-\")", "Print(\"A\") capitalized", "Prints A-B"],
+            ["Type Casting", "int(\"12\") + 8", "\"12\" + 8 directly", "20 instead of TypeError"],
+            ["Indexing & Slicing", "word[0] and word[0:3]", "Thinking 3 is included", "0-indexed; stops before 3"],
+            ["Division & Modulo", "17 // 5 and 17 % 5", "Confusing //, /, and %", "17//5 = 3, 17%5 = 2"],
+            ["Assign vs Compare", "x = 5 then x == 5", "Writing if x = 5:", "= stores; == compares"],
+            ["Booleans", "True and False", "Lowercase true / false", "Always capitalized"],
+            ["Blocks", "if x > 0: + 4 spaces", "Missing : or indent", "SyntaxError / IndentationError"],
+            ["Functions", "def f(a): return a * 2", "Only using print inside", "return sends value back"]
+          ],
+          summary: "You are ready! Proceed to the real 30-question exam below (2 questions for each of the 15 lessons)."
+        },
+        exam: {
+          id: "final-exam-section",
+          kicker: "Real Comprehensive Exam • 30 Questions",
+          heading: "Section 5: Real Final Exam (2 Questions per Lesson across All 15 Lessons)",
+          intro:
+            "This exam contains 30 questions covering all 15 lessons (2 questions per lesson). Answer each question and click Check Answer for instant grading, then click Show Final Score Report to view your total score out of 30 and final grade.",
+          progressLabel: "Exam Progress:",
+          scoreLabel: (correct, total) => `Current Score: ${correct} / ${total}`,
+          checkBtn: "Check Answer",
+          hintBtn: "Hint",
+          reportBtn: "Show Final Score Report",
+          resetAllBtn: "Reset Entire Exam",
+          reportTitle: "Comprehensive Final Exam Score Report",
+          statCorrect: "Correct Answers",
+          statSolved: "Questions Attempted",
+          statPercent: "Percentage",
+          statGrade: "Final Grade",
+          grades: {
+            excellent: "Excellent (A+) — Full Mastery!",
+            veryGood: "Very Good (B) — Strong Performance!",
+            pass: "Pass (C) — Solid Foundation!",
+            retry: "Needs Review — Re-read the Summary!"
+          },
+          questions: [
+            {
+              id: "q1",
+              lessonTag: "Lesson 1 (File 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is the console output of the following Python snippet?",
+              code: "# print(\"Hello\")\nprint(\"2026\", \"11\", sep=\"/\")",
+              options: [
+                "Hello then 2026/11",
+                "2026/11 only",
+                "2026 11",
+                "SyntaxError because of #"
+              ],
+              correctIndex: 1,
+              hint: "Line 1 starts with # so it is skipped; sep=\"/\" joins arguments with /.",
+              okMsg: "Correct! Line 1 is a comment and line 2 prints 2026/11.",
+              errMsg: "Incorrect. # comments are ignored and sep=\"/\" outputs 2026/11."
+            },
+            {
+              id: "q2",
+              lessonTag: "Lesson 1 (File 1) • Question 2 of 2",
+              type: "input",
+              prompt: "Fill in the parameter name that keeps Done on the same line after Loading:",
+              before: "print(\"Loading\", ",
+              after: "=\"... \")\nprint(\"Done\")",
+              placeholder: "parameter name",
+              hint: "The print() parameter controlling line endings is end.",
+              okMsg: "Spot on! end controls what follows print() without a newline.",
+              errMsg: "The correct parameter name is end.",
+              accept: (v) => v.trim() === "end"
+            },
+            {
+              id: "q3",
+              lessonTag: "Lesson 2 (File 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "Which variable name is valid in Python?",
+              code: "1) 2nd_score = 90\n2) student age = 18\n3) total_price = 45.5\n4) if = 10",
+              options: ["2nd_score", "student age", "total_price", "if"],
+              correctIndex: 2,
+              hint: "Variable names cannot start with digits, contain spaces, or match keywords.",
+              okMsg: "Correct! total_price follows all Python naming rules.",
+              errMsg: "Incorrect. Only total_price is a valid identifier."
+            },
+            {
+              id: "q4",
+              lessonTag: "Lesson 2 (File 1) • Question 2 of 2",
+              type: "input",
+              prompt: "What is the exact output of slicing word[0:3]? (Type the characters only)",
+              before: "word = \"Python\"\nprint(word[0:3])  # Output: ",
+              after: "",
+              placeholder: "Output",
+              hint: "Indices 0, 1, and 2 are P, y, and t; index 3 is excluded.",
+              okMsg: "Great! word[0:3] evaluates to Pyt.",
+              errMsg: "The correct output is Pyt.",
+              accept: (v) => v.trim() === "Pyt"
+            },
+            {
+              id: "q5",
+              lessonTag: "Lesson 3 (File 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is printed by the following arithmetic and logical expressions?",
+              code: "a = 17 // 5\nb = 17 % 5\nprint(a, b, (a == 3) and (b == 2))",
+              options: ["3.4 2 False", "3 2 True", "2 3 False", "3 5 True"],
+              correctIndex: 1,
+              hint: "17 // 5 is 3 and 17 % 5 is 2.",
+              okMsg: "100% right! 3, 2, and True.",
+              errMsg: "Incorrect. 17 // 5 = 3, 17 % 5 = 2, and both conditions are True."
+            },
+            {
+              id: "q6",
+              lessonTag: "Lesson 3 (File 1) • Question 2 of 2",
+              type: "input",
+              prompt: "Type the built-in function name needed to convert input() text into an integer:",
+              before: "age = ",
+              after: "(input(\"Age: \")) + 5",
+              placeholder: "function",
+              hint: "Use int() to convert a numeric string into an integer.",
+              okMsg: "Correct! int() converts the string to an integer.",
+              errMsg: "The correct function name is int.",
+              accept: (v) => v.trim() === "int"
+            },
+            {
+              id: "q7",
+              lessonTag: "Lesson 4 (File 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is the final value of total after this loop finishes?",
+              code: "total = 0\nfor n in range(1, 5):\n    if n == 3:\n        continue\n    total += n",
+              options: ["10", "7", "3", "15"],
+              correctIndex: 1,
+              hint: "range(1, 5) yields 1, 2, 3, 4; continue skips adding 3.",
+              okMsg: "Awesome! 1 + 2 + 4 = 7.",
+              errMsg: "Incorrect. Skipping 3 gives 1 + 2 + 4 = 7."
+            },
+            {
+              id: "q8",
+              lessonTag: "Lesson 4 (File 1) • Question 2 of 2",
+              type: "input",
+              prompt: "Enter the keyword that exits a loop immediately when x == 4:",
+              before: "for x in range(10):\n    if x == 4:\n        ",
+              after: "",
+              placeholder: "keyword",
+              hint: "break exits the enclosing loop immediately.",
+              okMsg: "Correct! break stops the loop immediately.",
+              errMsg: "The correct keyword is break.",
+              accept: (v) => v.trim() === "break"
+            },
+            {
+              id: "q9",
+              lessonTag: "Lesson 5 (File 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is the key difference between return and print inside a function?",
+              options: [
+                "There is no difference",
+                "return sends the computed value back to the caller for reuse, whereas print only displays text on screen",
+                "print always returns an integer",
+                "return only works on strings"
+              ],
+              correctIndex: 1,
+              hint: "Functions without return evaluate to None.",
+              okMsg: "Spot on! return delivers the actual value back to the caller.",
+              errMsg: "Incorrect. return hands back the value; print only writes to the console."
+            },
+            {
+              id: "q10",
+              lessonTag: "Lesson 5 (File 1) • Question 2 of 2",
+              type: "input",
+              prompt: "Complete the list method name to add \"Honey\" to the end of items:",
+              before: "items = [\"Bread\", \"Milk\"]\nitems.",
+              after: "(\"Honey\")",
+              placeholder: "method",
+              hint: "The list method that adds an item at the end is append.",
+              okMsg: "Correct! append() adds the item to the end of the list.",
+              errMsg: "The correct method name is append.",
+              accept: (v) => v.trim() === "append"
+            },
+            {
+              id: "q11",
+              lessonTag: "Lesson 6 (File 2 • Minecraft 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "In Minecraft logic, how does the Python interpreter execute statements in a file?",
+              options: [
+                "In random order",
+                "From bottom to top",
+                "Line by line from top to bottom like a redstone signal",
+                "Comment lines first"
+              ],
+              correctIndex: 2,
+              hint: "Execution flows sequentially down the file.",
+              okMsg: "Correct! Statements run top-to-bottom sequentially.",
+              errMsg: "Incorrect. Python executes lines top-to-bottom."
+            },
+            {
+              id: "q12",
+              lessonTag: "Lesson 6 (File 2 • Minecraft 1) • Question 2 of 2",
+              type: "input",
+              prompt: "What number is printed by print(32 + 32)?",
+              before: "print(32 + 32)  # Output: ",
+              after: "",
+              placeholder: "number",
+              hint: "32 + 32 equals 64.",
+              okMsg: "Correct! A full stack of 64.",
+              errMsg: "The correct number is 64.",
+              accept: (v) => v.trim() === "64"
+            },
+            {
+              id: "q13",
+              lessonTag: "Lesson 7 (File 2 • Minecraft 2) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What does this snippet output?",
+              code: "stack_a = \"32\"\nstack_b = \"32\"\nprint(stack_a + stack_b)",
+              options: ["64", "3232", "32 + 32", "TypeError"],
+              correctIndex: 1,
+              hint: "Both values are strings in quotes, so + concatenates them.",
+              okMsg: "Correct! String concatenation produces 3232.",
+              errMsg: "Incorrect. Because \"32\" is a string, + produces 3232."
+            },
+            {
+              id: "q14",
+              lessonTag: "Lesson 7 (File 2 • Minecraft 2) • Question 2 of 2",
+              type: "input",
+              prompt: "What is the final value of torches?",
+              before: "torches = 10\ntorches = torches + 6\ntorches += 4\nprint(torches)  # Output: ",
+              after: "",
+              placeholder: "number",
+              hint: "10 + 6 + 4 = 20.",
+              okMsg: "Correct! 10 + 6 + 4 = 20.",
+              errMsg: "The correct value is 20.",
+              accept: (v) => v.trim() === "20"
+            },
+            {
+              id: "q15",
+              lessonTag: "Lesson 8 (File 2 • Minecraft 3) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What do 50 // 6 and 50 % 6 evaluate to respectively?",
+              options: ["8 and 2", "2 and 8", "8.33 and 2", "9 and 4"],
+              correctIndex: 0,
+              hint: "50 divided by 6 is 8 full rows with 2 leftover blocks.",
+              okMsg: "Correct! 8 full rows and 2 leftover blocks.",
+              errMsg: "Incorrect. 50 // 6 is 8 and 50 % 6 is 2."
+            },
+            {
+              id: "q16",
+              lessonTag: "Lesson 8 (File 2 • Minecraft 3) • Question 2 of 2",
+              type: "input",
+              prompt: "With is_night = False and is_storming = True, what does (is_night or is_storming) evaluate to?",
+              before: "print(is_night or is_storming)  # Output: ",
+              after: "",
+              placeholder: "True or False",
+              hint: "or returns True when at least one operand is True.",
+              okMsg: "Correct! It evaluates to True.",
+              errMsg: "The correct answer is True.",
+              accept: (v) => v.trim() === "True"
+            },
+            {
+              id: "q17",
+              lessonTag: "Lesson 9 (File 2 • Minecraft 4) • Question 1 of 2",
+              type: "mcq",
+              prompt: "With power_level = 12, which message is printed?",
+              code: "power_level = 12\nif power_level >= 15:\n    print(\"Peak power\")\nelif power_level >= 10:\n    print(\"Gate open\")\nelse:\n    print(\"Gate closed\")",
+              options: ["Peak power", "Gate open", "Gate closed", "Both Peak power and Gate open"],
+              correctIndex: 1,
+              hint: "12 >= 10 matches the elif branch.",
+              okMsg: "Correct! Gate open is printed.",
+              errMsg: "Incorrect. Since 12 >= 10, Gate open is printed."
+            },
+            {
+              id: "q18",
+              lessonTag: "Lesson 9 (File 2 • Minecraft 4) • Question 2 of 2",
+              type: "input",
+              prompt: "How many times does range(1, 5) iterate?",
+              before: "for step in range(1, 5):\n    print(step)",
+              after: "",
+              placeholder: "count",
+              hint: "range(1, 5) produces 1, 2, 3, and 4.",
+              okMsg: "Correct! 4 iterations.",
+              errMsg: "The correct count is 4.",
+              accept: (v) => v.trim() === "4"
+            },
+            {
+              id: "q19",
+              lessonTag: "Lesson 10 (File 2 • Minecraft 5) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is printed after updating the dictionary below?",
+              code: "chest_items = {\"iron\": 18, \"emerald\": 5}\nchest_items[\"emerald\"] += 3\nprint(chest_items[\"emerald\"])",
+              options: ["5", "3", "8", "18"],
+              correctIndex: 2,
+              hint: "5 + 3 equals 8.",
+              okMsg: "Correct! 8 is printed.",
+              errMsg: "Incorrect. 5 + 3 = 8."
+            },
+            {
+              id: "q20",
+              lessonTag: "Lesson 10 (File 2 • Minecraft 5) • Question 2 of 2",
+              type: "input",
+              prompt: "What number does blocks_for_wall(6, 3) return?",
+              before: "def blocks_for_wall(length, height):\n    return length * height\n\nprint(blocks_for_wall(6, 3))  # Output: ",
+              after: "",
+              placeholder: "number",
+              hint: "6 * 3 = 18.",
+              okMsg: "Correct! 6 * 3 = 18.",
+              errMsg: "The correct number is 18.",
+              accept: (v) => v.trim() === "18"
+            },
+            {
+              id: "q21",
+              lessonTag: "Lesson 11 (File 3 • Lesson 1) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What is printed at the end of this lamp toggle sequence?",
+              code: "lamp_on = False\nlamp_on = True\nlamp_on = False\nprint(lamp_on)",
+              options: ["True", "False", "True then False", "None"],
+              correctIndex: 1,
+              hint: "The final assigned value is False.",
+              okMsg: "Correct! False is printed.",
+              errMsg: "Incorrect. The last value assigned to lamp_on is False."
+            },
+            {
+              id: "q22",
+              lessonTag: "Lesson 11 (File 3 • Lesson 1) • Question 2 of 2",
+              type: "input",
+              prompt: "Complete the line to switch lamp_on to the ON state:",
+              before: "lamp_on = False\nlamp_on = ",
+              after: "\nprint(lamp_on)",
+              placeholder: "True or False",
+              hint: "Use capitalized True.",
+              okMsg: "Correct! True turns the state on.",
+              errMsg: "The correct value is True.",
+              accept: (v) => v.trim() === "True"
+            },
+            {
+              id: "q23",
+              lessonTag: "Lesson 12 (File 3 • Lesson 2) • Question 1 of 2",
+              type: "mcq",
+              prompt: "Which line is printed second when running this train snippet?",
+              code: "print(\"Car 1: Engine\")\nprint(\"Car 2: Toys\")\nprint(\"Car 3: Books\")",
+              options: ["Car 1: Engine", "Car 2: Toys", "Car 3: Books", "All on one line"],
+              correctIndex: 1,
+              hint: "The second print statement outputs Car 2: Toys.",
+              okMsg: "Correct! Car 2: Toys is printed second.",
+              errMsg: "Incorrect. The second line prints Car 2: Toys."
+            },
+            {
+              id: "q24",
+              lessonTag: "Lesson 12 (File 3 • Lesson 2) • Question 2 of 2",
+              type: "input",
+              prompt: "Enter the car number that follows Car 3 at the end of the train:",
+              before: "print(\"Car ",
+              after: ": Snacks\")",
+              placeholder: "number",
+              hint: "4 follows 3.",
+              okMsg: "Correct! Car 4 follows Car 3.",
+              errMsg: "The correct number is 4.",
+              accept: (v) => v.trim() === "4"
+            },
+            {
+              id: "q25",
+              lessonTag: "Lesson 13 (File 3 • Lesson 3) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What happens if you write has_key = true (lowercase t) in Python?",
+              options: [
+                "It works identically to True",
+                "It becomes a string automatically",
+                "It raises a NameError because booleans in Python must be capitalized (True / False)",
+                "It evaluates to 0"
+              ],
+              correctIndex: 2,
+              hint: "Python keywords True and False are case-sensitive.",
+              okMsg: "Correct! True and False must start with uppercase letters.",
+              errMsg: "Incorrect. Lowercase true raises a NameError."
+            },
+            {
+              id: "q26",
+              lessonTag: "Lesson 13 (File 3 • Lesson 3) • Question 2 of 2",
+              type: "input",
+              prompt: "When the key is missing, what boolean value is assigned to has_key?",
+              before: "has_key = ",
+              after: "\nprint(\"Key available:\", has_key)",
+              placeholder: "boolean",
+              hint: "Use capitalized False.",
+              okMsg: "Correct! False represents missing availability.",
+              errMsg: "The correct value is False.",
+              accept: (v) => v.trim() === "False"
+            },
+            {
+              id: "q27",
+              lessonTag: "Lesson 14 (File 3 • Lesson 4) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What does this conditional code print?",
+              code: "score = 3\nif score > 5:\n    print(\"High score\")\nelse:\n    print(\"Keep going\")",
+              options: ["High score", "Keep going", "Both messages", "Nothing"],
+              correctIndex: 1,
+              hint: "3 > 5 is False, so execution enters the else block.",
+              okMsg: "Correct! Keep going is printed.",
+              errMsg: "Incorrect. Because 3 > 5 is False, Keep going is printed."
+            },
+            {
+              id: "q28",
+              lessonTag: "Lesson 14 (File 3 • Lesson 4) • Question 2 of 2",
+              type: "input",
+              prompt: "Enter the missing punctuation symbol at the end of the if header:",
+              before: "if score > 5",
+              after: "\n    print(\"High score\")",
+              placeholder: "symbol",
+              hint: "Conditional headers end with a colon :",
+              okMsg: "Correct! A colon (:) starts the indented block.",
+              errMsg: "The correct symbol is :",
+              accept: (v) => v.trim() === ":"
+            },
+            {
+              id: "q29",
+              lessonTag: "Lesson 15 (File 3 • Lesson 5) • Question 1 of 2",
+              type: "mcq",
+              prompt: "What happens if you call print(coins) before assigning a value to coins?",
+              options: [
+                "It prints 0 automatically",
+                "It prints an empty line",
+                "It raises a NameError because coins has not been defined yet",
+                "It creates coins with value 1"
+              ],
+              correctIndex: 2,
+              hint: "Variables must be assigned before they can be read.",
+              okMsg: "Correct! Referencing an undefined variable raises a NameError.",
+              errMsg: "Incorrect. Reading a variable before defining it raises a NameError."
+            },
+            {
+              id: "q30",
+              lessonTag: "Lesson 15 (File 3 • Lesson 5) • Question 2 of 2",
+              type: "input",
+              prompt: "Start with coins = 10 and add 5. What final number is printed?",
+              before: "coins = 10\ncoins = coins + 5\nprint(coins)  # Output: ",
+              after: "",
+              placeholder: "number",
+              hint: "10 + 5 = 15.",
+              okMsg: "Congratulations! You completed all 30 questions! Output is 15.",
+              errMsg: "The correct number is 15.",
+              accept: (v) => v.trim() === "15"
+            }
+          ]
+        }
+      }
+    };
+
+    const wrapper = document.getElementById("minpy-unit-wrapper");
+    let currentLang = "ar";
+    const questionStates = {};
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderReviewSection(sec) {
+      const cardsHtml = sec.cards
+        .map(
+          (c) => `
+          <div class="minpy-review-card">
+            <div class="minpy-review-header">
+              <span class="minpy-review-title">${escapeHtml(c.title)}</span>
+              <span class="minpy-review-tag">${escapeHtml(c.tag)}</span>
+            </div>
+            <ul class="minpy-list">
+              ${c.points.map((pt) => `<li>${escapeHtml(pt)}</li>`).join("")}
+            </ul>
+            ${c.code ? `<pre>${escapeHtml(c.code)}</pre>` : ""}
+          </div>`
+        )
+        .join("");
+
+      return `
+        <section class="minpy-section" id="${escapeHtml(sec.id)}">
+          <span class="minpy-kicker">${escapeHtml(sec.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(sec.heading)}</h2>
+          <p>${escapeHtml(sec.intro)}</p>
+          ${cardsHtml}
+        </section>
+      `;
+    }
+
+    function renderCheatSheet(cs) {
+      return `
+        <section class="minpy-section" id="${escapeHtml(cs.id)}">
+          <span class="minpy-kicker">${escapeHtml(cs.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(cs.heading)}</h2>
+          <div class="minpy-table-wrap">
+            <table class="minpy-table">
+              <thead>
+                <tr>${cs.headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr>
+              </thead>
+              <tbody>
+                ${cs.rows
+                  .map(
+                    (row) =>
+                      `<tr>${row.map((cell) => `<td>${escapeHtml(cell)}</td>`).join("")}</tr>`
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          </div>
+          <div class="minpy-summary">
+            <span class="minpy-summary-title">${
+              currentLang === "ar" ? "استعد للاختبار الحقيقي:" : "Ready for the Real Exam:"
+            }</span>
+            <p>${escapeHtml(cs.summary)}</p>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderExam(exam) {
+      const total = exam.questions.length;
+      const correctCount = Object.values(questionStates).filter((s) => s && s.isCorrect).length;
+      const pct = Math.round((correctCount / total) * 100);
+
+      const questionsHtml = exam.questions
+        .map((q, idx) => {
+          const st = questionStates[q.id] || {};
+          const cardStateClass = st.checked
+            ? st.isCorrect
+              ? "answered-ok"
+              : "answered-err"
+            : "";
+
+          const codeHtml = q.code ? `<pre>${escapeHtml(q.code)}</pre>` : "";
+
+          let bodyHtml = "";
+          if (q.type === "mcq") {
+            bodyHtml = `
+              <div class="minpy-options-list">
+                ${q.options
+                  .map((opt, optIdx) => {
+                    const checkedAttr = st.selectedIdx === optIdx ? "checked" : "";
+                    return `
+                      <label class="minpy-option-label">
+                        <input type="radio" name="radio-${escapeHtml(q.id)}" value="${optIdx}" ${checkedAttr} />
+                        <span>${escapeHtml(opt)}</span>
+                      </label>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            `;
+          } else {
+            const valAttr = st.inputVal ? escapeHtml(st.inputVal) : "";
+            bodyHtml = `
+              <div class="code-box">
+                ${escapeHtml(q.before).replace(/\n/g, "<br>")}
+                <input type="text" class="quiz-input" id="input-${escapeHtml(
+                  q.id
+                )}" placeholder="${escapeHtml(q.placeholder)}" value="${valAttr}" />
+                ${escapeHtml(q.after).replace(/\n/g, "<br>")}
+              </div>
+            `;
+          }
+
+          let fbClass = "feedback";
+          let fbText = "";
+          if (st.feedbackType === "ok") {
+            fbClass = "feedback ok";
+            fbText = q.okMsg;
+          } else if (st.feedbackType === "err") {
+            fbClass = "feedback err";
+            fbText = q.errMsg;
+          } else if (st.feedbackType === "hint") {
+            fbClass = "feedback hint";
+            fbText = q.hint;
+          }
+
+          return `
+            <div class="minpy-exam-card ${cardStateClass}" id="card-${escapeHtml(q.id)}">
+              <div class="minpy-lab-header">
+                <span class="minpy-lab-badge">Q${idx + 1} • ${escapeHtml(q.lessonTag)}</span>
+                <span class="minpy-lab-score" id="status-${escapeHtml(q.id)}">${
+            st.checked ? (st.isCorrect ? "✓ 1/1" : "✗ 0/1") : "0/1"
+          }</span>
+              </div>
+              <p><strong>${escapeHtml(q.prompt)}</strong></p>
+              ${codeHtml}
+              ${bodyHtml}
+              <div class="minpy-btn-row">
+                <button type="button" class="run-btn" data-exam-check="${escapeHtml(q.id)}">${escapeHtml(
+            exam.checkBtn
+          )}</button>
+                <button type="button" class="minpy-sec-btn" data-exam-hint="${escapeHtml(q.id)}">${escapeHtml(
+            exam.hintBtn
+          )}</button>
+              </div>
+              <div class="${fbClass}" id="fb-${escapeHtml(q.id)}">${escapeHtml(fbText)}</div>
+            </div>
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="minpy-section" id="${escapeHtml(exam.id)}">
+          <span class="minpy-kicker">${escapeHtml(exam.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(exam.heading)}</h2>
+          <p>${escapeHtml(exam.intro)}</p>
+
+          <div class="minpy-progress-wrap">
+            <strong>${escapeHtml(exam.progressLabel)} <span id="exam-score-text">${escapeHtml(
+        exam.scoreLabel(correctCount, total)
+      )}</span></strong>
+            <div class="minpy-progress-track">
+              <div class="minpy-progress-fill" id="exam-progress-fill" style="width:${pct}%"></div>
+            </div>
+            <button type="button" class="minpy-sec-btn" id="exam-reset-all">${escapeHtml(
+              exam.resetAllBtn
+            )}</button>
+          </div>
+
+          ${questionsHtml}
+
+          <div class="minpy-btn-row" style="margin-top:24px;">
+            <button type="button" class="run-btn" id="exam-show-report">${escapeHtml(
+              exam.reportBtn
+            )}</button>
+          </div>
+
+          <div class="minpy-final-report" id="exam-final-report">
+            <h3 class="minpy-h3">${escapeHtml(exam.reportTitle)}</h3>
+            <div class="minpy-final-grid">
+              <div class="minpy-stat-box">
+                <strong id="rep-correct">0 / 30</strong>
+                <span>${escapeHtml(exam.statCorrect)}</span>
+              </div>
+              <div class="minpy-stat-box">
+                <strong id="rep-solved">0 / 30</strong>
+                <span>${escapeHtml(exam.statSolved)}</span>
+              </div>
+              <div class="minpy-stat-box">
+                <strong id="rep-percent">0%</strong>
+                <span>${escapeHtml(exam.statPercent)}</span>
+              </div>
+              <div class="minpy-stat-box">
+                <strong id="rep-grade">-</strong>
+                <span>${escapeHtml(exam.statGrade)}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderAll() {
+      if (!wrapper) return;
+      const data = UNIT_FOUR_DATA[currentLang];
+      wrapper.setAttribute("dir", data.dir);
+
+      const roadmapHtml = data.roadmap
+        .map(
+          (r) =>
+            `<div class="minpy-pill"><strong>${escapeHtml(r.step)}</strong><span>${escapeHtml(
+              r.name
+            )}</span></div>`
+        )
+        .join("");
+
+      const tocHtml = data.toc
+        .map(
+          (t) =>
+            `<a class="minpy-toc-link" href="${escapeHtml(t.href)}">${escapeHtml(t.label)}</a>`
+        )
+        .join("");
+
+      const reviewsHtml = data.reviewSections.map(renderReviewSection).join("");
+      const cheatHtml = renderCheatSheet(data.cheatSheet);
+      const examHtml = renderExam(data.exam);
+
+      wrapper.innerHTML = `
+        <div class="minpy-top-bar">
+          <span class="tag">${escapeHtml(data.badgeText)}</span>
+          <button type="button" class="minpy-lang-btn" id="minpy-lang-toggle">${escapeHtml(
+            data.langBtnText
+          )}</button>
+        </div>
+        <div class="minpy-meta-info">${escapeHtml(data.metaText)}</div>
+        <h1>${escapeHtml(data.title)}</h1>
+        <div class="minpy-abstract">
+          <strong class="welcome-banner">${escapeHtml(data.welcome)}</strong>
+          ${escapeHtml(data.abstract)}
+        </div>
+        <div class="minpy-roadmap">${roadmapHtml}</div>
+        <nav class="minpy-toc">
+          <div class="minpy-toc-title">${escapeHtml(data.tocTitle)}</div>
+          <div class="minpy-toc-grid">${tocHtml}</div>
+        </nav>
+        ${reviewsHtml}
+        ${cheatHtml}
+        ${examHtml}
+      `;
+
+      bindEvents();
+    }
+
+    function bindEvents() {
+      const toggleBtn = document.getElementById("minpy-lang-toggle");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          currentLang = currentLang === "ar" ? "en" : "ar";
+          renderAll();
+        });
+      }
+
+      const data = UNIT_FOUR_DATA[currentLang];
+      const exam = data.exam;
+      const total = exam.questions.length;
+
+      function refreshProgress() {
+        const correctCount = Object.values(questionStates).filter(
+          (s) => s && s.isCorrect
+        ).length;
+        const pct = Math.round((correctCount / total) * 100);
+        const scoreEl = document.getElementById("exam-score-text");
+        const fillEl = document.getElementById("exam-progress-fill");
+        if (scoreEl) scoreEl.textContent = exam.scoreLabel(correctCount, total);
+        if (fillEl) fillEl.style.width = `${pct}%`;
+      }
+
+      exam.questions.forEach((q) => {
+        const checkBtn = wrapper.querySelector(`[data-exam-check="${q.id}"]`);
+        const hintBtn = wrapper.querySelector(`[data-exam-hint="${q.id}"]`);
+        const fbEl = document.getElementById(`fb-${q.id}`);
+        const cardEl = document.getElementById(`card-${q.id}`);
+        const statusEl = document.getElementById(`status-${q.id}`);
+
+        if (checkBtn && fbEl) {
+          checkBtn.addEventListener("click", () => {
+            let isCorrect = false;
+            const prev = questionStates[q.id] || {};
+
+            if (q.type === "mcq") {
+              const selectedRadio = wrapper.querySelector(
+                `input[name="radio-${q.id}"]:checked`
+              );
+              const selectedIdx = selectedRadio ? parseInt(selectedRadio.value, 10) : -1;
+              prev.selectedIdx = selectedIdx;
+              isCorrect = selectedIdx === q.correctIndex;
+            } else {
+              const inp = document.getElementById(`input-${q.id}`);
+              const val = inp ? inp.value : "";
+              prev.inputVal = val;
+              isCorrect = q.accept(val);
+            }
+
+            prev.checked = true;
+            prev.isCorrect = isCorrect;
+            prev.feedbackType = isCorrect ? "ok" : "err";
+            questionStates[q.id] = prev;
+
+            fbEl.className = isCorrect ? "feedback ok" : "feedback err";
+            fbEl.textContent = isCorrect ? q.okMsg : q.errMsg;
+
+            if (cardEl) {
+              cardEl.classList.remove("answered-ok", "answered-err");
+              cardEl.classList.add(isCorrect ? "answered-ok" : "answered-err");
+            }
+            if (statusEl) {
+              statusEl.textContent = isCorrect ? "✓ 1/1" : "✗ 0/1";
+            }
+
+            refreshProgress();
+          });
+        }
+
+        if (hintBtn && fbEl) {
+          hintBtn.addEventListener("click", () => {
+            const prev = questionStates[q.id] || {};
+            prev.feedbackType = "hint";
+            questionStates[q.id] = prev;
+            fbEl.className = "feedback hint";
+            fbEl.textContent = q.hint;
+          });
+        }
+      });
+
+      const reportBtn = document.getElementById("exam-show-report");
+      const reportBox = document.getElementById("exam-final-report");
+      if (reportBtn && reportBox) {
+        reportBtn.addEventListener("click", () => {
+          const states = Object.values(questionStates);
+          const correctCount = states.filter((s) => s && s.isCorrect).length;
+          const attemptedCount = states.filter((s) => s && s.checked).length;
+          const pct = Math.round((correctCount / total) * 100);
+
+          let gradeText = exam.grades.retry;
+          if (pct >= 90) gradeText = exam.grades.excellent;
+          else if (pct >= 75) gradeText = exam.grades.veryGood;
+          else if (pct >= 60) gradeText = exam.grades.pass;
+
+          document.getElementById("rep-correct").textContent = `${correctCount} / ${total}`;
+          document.getElementById("rep-solved").textContent = `${attemptedCount} / ${total}`;
+          document.getElementById("rep-percent").textContent = `${pct}%`;
+          document.getElementById("rep-grade").textContent = gradeText;
+
+          reportBox.classList.add("visible");
+          reportBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+      }
+
+      const resetBtn = document.getElementById("exam-reset-all");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          Object.keys(questionStates).forEach((k) => delete questionStates[k]);
+          renderAll();
+        });
+      }
+    }
+
+    renderAll();
+  })();
+</script>
