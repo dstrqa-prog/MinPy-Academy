@@ -1,0 +1,1558 @@
+<style>
+  .minpy-deep-unit {
+    --surface-soft: #f8fafc;
+    --surface-tint: #eef2ff;
+    --border-strong: #cbd5e1;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+    --warn: #b45309;
+    --warn-bg: #fffbeb;
+    --warn-border: #fcd34d;
+    --analogy-bg: #f0f9ff;
+    --analogy-border: #7dd3fc;
+    --analogy-title: #0369a1;
+    --step-bg: #faf5ff;
+    --step-border: #d8b4fe;
+    --step-title: #6b21a8;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --navy: #1e293b;
+    --navy-hover: #334155;
+    --border: #e2e8f0;
+    --paper: #ffffff;
+    --heading: #0f172a;
+    --subtext: #334155;
+    --text: #1e293b;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --error: #dc2626;
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
+    --success: #15803d;
+    --success-bg: #f0fdf4;
+    --success-border: #bbf7d0;
+    --inline-code-bg: #f1f5f9;
+    line-height: 1.95;
+  }
+
+  [data-theme="dark"] .minpy-deep-unit {
+    --surface-soft: #172033;
+    --surface-tint: rgba(96, 165, 250, 0.12);
+    --border-strong: #475569;
+    --accent-soft: rgba(96, 165, 250, 0.16);
+    --warn: #fbbf24;
+    --warn-bg: rgba(180, 83, 9, 0.22);
+    --warn-border: #92400e;
+    --analogy-bg: rgba(3, 105, 161, 0.18);
+    --analogy-border: #0284c7;
+    --analogy-title: #38bdf8;
+    --step-bg: rgba(107, 33, 168, 0.18);
+    --step-border: #7e22ce;
+    --step-title: #c084fc;
+    --navy: #0f172a;
+    --navy-hover: #1e293b;
+    --border: #1e293b;
+    --paper: #0b1220;
+    --heading: #e2e8f0;
+    --subtext: #cbd5e1;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #60a5fa;
+    --error: #f87171;
+    --error-bg: rgba(220, 38, 38, 0.12);
+    --error-border: #7f1d1d;
+    --success: #4ade80;
+    --success-bg: rgba(21, 128, 61, 0.15);
+    --success-border: #14532d;
+    --inline-code-bg: #1e293b;
+  }
+
+  .minpy-deep-unit .tag {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+
+  .minpy-deep-unit .run-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  .minpy-deep-unit .run-btn:hover { opacity: 0.9; }
+
+  .minpy-deep-unit .code-box {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+    line-height: 2.1;
+  }
+
+  .minpy-deep-unit .quiz-input {
+    background: var(--paper);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    text-align: center;
+  }
+  .minpy-deep-unit .quiz-input:focus { outline: 2px solid var(--accent); }
+
+  .minpy-deep-unit .feedback {
+    display: none;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
+  .minpy-deep-unit .feedback.ok {
+    display: block;
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    color: var(--success);
+  }
+  .minpy-deep-unit .feedback.err {
+    display: block;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    color: var(--error);
+  }
+
+  .minpy-deep-unit pre {
+    background: var(--inline-code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    direction: ltr;
+    text-align: left;
+    overflow-x: auto;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.9rem;
+    color: var(--heading);
+    margin: 12px 0;
+  }
+
+  .minpy-deep-unit h1 {
+    font-size: 1.9rem;
+    color: var(--heading);
+    margin: 16px 0;
+    line-height: 1.35;
+  }
+
+  .minpy-deep-unit p {
+    color: var(--subtext);
+    margin: 10px 0;
+  }
+
+  .minpy-deep-unit .minpy-abstract {
+    white-space: pre-line;
+  }
+
+  .minpy-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .minpy-lang-btn {
+    background: var(--navy);
+    color: #ffffff;
+    border: 1px solid var(--border);
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .minpy-lang-btn:hover { background: var(--navy-hover); }
+
+  .minpy-meta-info {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .minpy-abstract {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-inline-start: 4px solid var(--navy);
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+    color: var(--subtext);
+    font-size: 1.05rem;
+  }
+
+  .minpy-abstract strong.welcome-banner {
+    display: block;
+    color: var(--accent);
+    font-size: 1.15rem;
+    margin-bottom: 6px;
+  }
+
+  .minpy-roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+    gap: 10px;
+    margin-bottom: 26px;
+  }
+
+  .minpy-pill {
+    background: var(--surface-tint);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+    text-align: center;
+  }
+  .minpy-pill strong { display: block; color: var(--accent); font-size: 0.84rem; }
+  .minpy-pill span { font-size: 0.88rem; color: var(--heading); font-weight: 700; }
+
+  .minpy-toc {
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 22px;
+    margin-bottom: 32px;
+  }
+  .minpy-toc-title {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--heading);
+    margin-bottom: 12px;
+  }
+  .minpy-toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 10px;
+  }
+  .minpy-toc-link {
+    display: block;
+    text-decoration: none;
+    color: var(--accent);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 0.91rem;
+    font-weight: 700;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .minpy-toc-link:hover { border-color: var(--accent); background: var(--surface-tint); }
+
+  .minpy-section {
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 2px solid var(--border);
+  }
+
+  .minpy-kicker {
+    display: inline-block;
+    background: var(--navy);
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .minpy-h2 {
+    font-size: 1.45rem !important;
+    color: var(--heading);
+    font-weight: 800;
+    margin: 6px 0 16px !important;
+    line-height: 1.45;
+  }
+
+  .minpy-h3 {
+    font-size: 1.15rem;
+    color: var(--navy);
+    font-weight: 800;
+    margin: 24px 0 10px;
+    padding-inline-start: 10px;
+    border-inline-start: 3px solid var(--accent);
+  }
+  [data-theme="dark"] .minpy-h3 { color: var(--accent); }
+
+  .minpy-list {
+    margin: 12px 0 18px 0;
+    padding-inline-start: 24px;
+    color: var(--subtext);
+  }
+  .minpy-list li { margin-bottom: 10px; font-size: 1.03rem; }
+
+  .minpy-analogy {
+    background: var(--analogy-bg);
+    border: 1px solid var(--analogy-border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    margin: 18px 0;
+  }
+  .minpy-analogy-title {
+    font-weight: 800;
+    color: var(--analogy-title);
+    font-size: 1rem;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .minpy-analogy p { color: var(--text) !important; font-size: 1.02rem !important; margin-bottom: 8px !important; }
+  .minpy-analogy p:last-child { margin-bottom: 0 !important; }
+
+  .minpy-trace {
+    background: var(--step-bg);
+    border: 1px solid var(--step-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 16px 0 22px;
+  }
+  .minpy-trace-title {
+    font-weight: 800;
+    color: var(--step-title);
+    font-size: 0.96rem;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .minpy-trace-step {
+    padding: 8px 12px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 8px;
+    font-size: 0.96rem;
+    color: var(--subtext);
+  }
+  .minpy-trace-step:last-child { margin-bottom: 0; }
+
+  .minpy-mistake {
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 20px 0;
+    color: var(--text);
+  }
+  .minpy-mistake-title {
+    font-weight: 800;
+    color: var(--error);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.98rem;
+  }
+  .minpy-mistake p { color: var(--text) !important; margin-bottom: 0 !important; }
+
+  .minpy-output {
+    background: var(--surface-soft);
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    padding: 12px 16px;
+    margin: -8px 0 18px;
+    direction: ltr;
+    text-align: left;
+    font-family: "Consolas", "Courier New", monospace;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+  .minpy-output-label {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--accent);
+  }
+
+  .minpy-table-wrap {
+    overflow-x: auto;
+    margin: 18px 0 22px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+  }
+  table.minpy-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+  table.minpy-table th {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 11px 14px;
+    text-align: start;
+    font-weight: 700;
+  }
+  table.minpy-table td {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    color: var(--subtext);
+    vertical-align: top;
+  }
+  table.minpy-table tr:nth-child(even) td { background: var(--surface-soft); }
+
+  .minpy-summary {
+    background: var(--success-bg);
+    border: 1px solid var(--success-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-top: 22px;
+  }
+  .minpy-summary-title {
+    font-weight: 800;
+    color: var(--success);
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1rem;
+  }
+  .minpy-summary p { color: var(--text) !important; margin-bottom: 0 !important; }
+
+  .minpy-lab-card {
+    background: var(--surface-soft);
+    border: 1px solid var(--border-strong);
+    border-top: 4px solid var(--navy);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    margin: 20px 0;
+  }
+  .minpy-lab-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .minpy-lab-badge {
+    background: var(--navy);
+    color: #ffffff;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
+  .minpy-lab-score { font-size: 0.92rem; font-weight: 700; color: var(--accent); }
+
+  .minpy-btn-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .minpy-sec-btn {
+    background: var(--paper);
+    color: var(--heading);
+    border: 1px solid var(--border-strong);
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  .minpy-sec-btn:hover { border-color: var(--accent); }
+
+  .feedback.hint {
+    display: block;
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    color: var(--warn);
+  }
+
+  .minpy-progress-wrap {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .minpy-progress-track {
+    flex: 1;
+    min-width: 180px;
+    height: 12px;
+    background: var(--inline-code-bg);
+    border-radius: 99px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .minpy-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+</style>
+
+<div class="minpy-deep-unit" id="minpy-unit-wrapper"></div>
+
+<script>
+  (function () {
+    const LECTURE_CONTENT = {
+      ar: {
+        dir: "rtl",
+        langBtnText: "Switch to English",
+        badgeText: "أكاديمية MinPy • 5 أساسيات بايثون بمنطق ماين كرافت + مختبر تفاعلي",
+        metaText: "المستوى: تأسيس كامل • 5 دروس من أول بلوكة إلى بناء الأنظمة بمنطق ماين كرافت",
+        title: "أكاديمية MinPy: بايثون بمنطق ماين كرافت — 5 أساسيات أساسية",
+        welcome: "منطق الكتل والدوائر في ماين كرافت إلى أوامر بايثون",
+        abstract:
+          "في ماين كرافت نبني كل شيء من كتل بسيطة ودوائر ريدستون: نضع بلوكة، نوصل مسار الحجر الأحمر، نربط رافعة أو مصباحاً أو مكبساً، نجمع المواد في صناديق، ونكرر البناء صفاً بعد صف حتى يكتمل الجسر أو البرج.\n\nبرمجة بايثون تعمل بنفس الطريقة بالضبط: كل أمر في بايثون مثل قطعة أو دائرة ريدستون تقوم بعمل واضح ومحدد، وعندما نرتبها صح نحصل على آلة كاملة تعمل وحدها.\n\nفي هذه الوحدة نبدأ من أول بلوكة أساسية ونتدرج عبر 5 دروس:\n\n• الدرس 1 (الأساس الأول — بلوكة الإشارة واللوحة): كيف نرسل أول إشارة ونعرض كلاماً على الشاشة باستخدام print()، وكيف نكتب ملاحظات على الجدار بعلامة # دون أن تنفذها الآلة.\n• الدرس 2 (الأساس الثاني — صناديق الموارد وأنواع الكتل): كيف نحفظ الأشياء في صناديق مسماة (المتغيرات) ونفرّق بين الأرقام الصحيحة int، الأرقام العشرية float، النصوص str، والصح والخطأ bool.\n• الدرس 3 (الأساس الثالث — أسلاك الريدستون والحساب والمدخلات): كيف نجمع ونقسم وناخذ باقي القسمة، وكيف نسأل أسئلة منطقية بـ and و or و not، وكيف نأخذ أمراً من اللاعب عبر input() ونرتب الجملة بـ f-strings.\n• الدرس 4 (الأساس الرابع — البوابات والحلقات الآلية): كيف نجعل البوابة تفتح فقط إذا تحقق الشرط (if / elif / else)، وكيف نكرر وضع البلوكات صفاً أو عدة مرات بدل التعب (for و while).\n• الدرس 5 (الأساس الخامس — الصناديق المرتبة والمخططات والآلات الجاهزة): كيف نجمع سلسلة أغراض في قائمة list، أو نربط اسم الغرض بقيمته في قاموس dict، وكيف نصنع آلة قابلة لإعادة الاستخدام اسمها دالة def.\n\nكل درس يشرح الفكرة ببساطة ومباشرة بلغة ماين كرافت، ويتتبع كل سطر خطوة بخطوة، وينبهك للأخطاء التي تقع فيها الدوائر والأسلاك.",
+        roadmap: [
+          { step: "الأساس 01", name: "إشارات ولوحات البناء" },
+          { step: "الأساس 02", name: "صناديق الموارد والأنواع" },
+          { step: "الأساس 03", name: "ريدستون وحساب ومدخلات" },
+          { step: "الأساس 04", name: "بوابات وحلقات بناء" },
+          { step: "الأساس 05", name: "قوائم وقواميس ودوال" }
+        ],
+        tocTitle: "خريطة الدروس الخمسة الأساسية والمختبر التطبيقي",
+        toc: [
+          { href: "#lesson-1", label: "الدرس 1: أول بلوكة أساسية — إرسال الإشارات واللوحات (print() والتعليقات #)" },
+          { href: "#lesson-2", label: "الدرس 2: ثاني بلوكة أساسية — صناديق التخزين وأنواع الكتل (المتغيرات و int / float / str / bool)" },
+          { href: "#lesson-3", label: "الدرس 3: ثالث بلوكة أساسية — أسلاك الريدستون والحساب والمدخلات (الحساب، المنطق، input()، f-strings)" },
+          { href: "#lesson-4", label: "الدرس 4: رابع بلوكة أساسية — البوابات الشرطية والحلقات الآلية (if / elif / else و for / while)" },
+          { href: "#lesson-5", label: "الدرس 5: خامس بلوكة أساسية — القوائم، القواميس، والدوال كآلات جاهزة (list، dict، def)" },
+          { href: "#lab-section", label: "المختبر التطبيقي الشامل: 6 تحديات برمجية بمنطق ماين كرافت مع تصحيح فوري" }
+        ],
+        lessons: [
+          {
+            id: "lesson-1",
+            kicker: "الدرس 1 من 5 • الأساس الأول: بلوكة الإشارة واللوحة",
+            heading: "الدرس 1: أول بلوكة أساسية — كيف نرسل أول إشارة ونضع لوحة في العالم؟ (print() والتعليقات #)",
+            intro: [
+              "تخيل أنك واقف في عالم ماين كرافت ومعك بلوكة جديدة وزر تشغيل. عندما تضغط الزر، تريد أن يظهر كلام على الشاشة أو يضيء مصباح يخبرك أن الدائرة اشتغلت. في بايثون، هذه هي أول بلوكة أساسية نبدأ بها: الأمر print() الذي يطبع الكلام أو الأرقام على الشاشة.",
+              "الجهاز في بايثون ينفذ الأوامر سطراً بعد سطر من فوق لتحت، تماماً مثل إشارة الريدستون التي تمشي على الخط من البداية للنهاية. إذا كتبت أمراً أولاً ثم أمراً ثانياً، ينفذ الأول ثم الثاني بنفس الترتيب."
+            ],
+            analogy: {
+              title: "تشبيه ماين كرافت: لوحة خشبية معلقة بجانب باب القاعدة",
+              lines: [
+                "في ماين كرافت، عندما تبني بيتاً أو محطة قطار، تضع لوحة خشبية (Sign) مكتوباً عليها: \"ممنوع الدخول\" أو \"محطة الشمال\" حتى يعرف أي شخص يمر ما هذا المكان.",
+                "في بايثون، الأمر print(\"محطة الشمال\") يشبه هذه اللوحة؛ يظهر الكلام واضحاً أمامك على الشاشة. أما علامة # فتشبه ملاحظة صغيرة تكتبها لنفسك بجانب الكود لتتذكر ماذا تفعل هذه الخطوة، والآلة لا تقرأها كأمر للتشغيل."
+              ]
+            },
+            subsections: [
+              {
+                title: "1.1 كيف يمشي أمر بايثون من فوق لتحت مثل إشارة الريدستون؟",
+                paragraphs: [
+                  "عندما نكتب كود بايثون، يقرأ المفسّر سطراً واحداً في كل مرة من أعلى الصفحة إلى أسفلها. لو وضعت سطراً قبل سطر، سيعمل الأول قبل الثاني دائماً.",
+                  "هذا الترتيب مهم جداً: لا يمكنك أن تطلب إضاءة مصباح قبل وضع المصباح أو تشغيل مصدر الطاقة."
+                ],
+                bullets: [
+                  "السطر الأول يشتغل أولاً، ثم السطر الثاني، ثم الثالث.",
+                  "أي سطر يبدأ بعلامة # هو ملاحظة شرحية فقط، ولا يصدر أي إشارة تشغيل.",
+                  "بايثون تفرّق بين الحروف الكبيرة والصغيرة، لذلك نكتب print بحروف صغيرة دائماً."
+                ]
+              },
+              {
+                title: "1.2 استخدام print() لطباعة الكلام والأرقام والعمليات البسيطة",
+                paragraphs: [
+                  "لكي نطبع نصاً مثل \"جاهز للبناء\"، نضعه داخل قوسين () وبين علامتي تنصيص \" \" حتى تعرف بايثون أن هذا كلام يُعرض كما هو.",
+                  "أما إذا كتبنا رقماً مثل 64 (عدد بلوكات في ستاك واحد في ماين كرافت) أو عملية مثل 32 + 32، فيحسبها ويطبع النتيجة 64."
+                ],
+                code: "# ملاحظة: هذا السطر للشرح فقط ولا ينفذ أمراً\nprint(\"أهلاً في قاعدة البناء!\")\nprint(\"عدد البلوكات في الستاك:\")\nprint(64)\nprint(32 + 32)",
+                output: "أهلاً في قاعدة البناء!\nعدد البلوكات في الستاك:\n64\n64",
+                trace: [
+                  "السطر 1: يبدأ بـ # فيتجاهله المفسّر ولا يطبع شيئاً.",
+                  "السطر 2: ينفذ print فيطبع \"أهلاً في قاعدة البناء!\" على الشاشة.",
+                  "السطر 3: يطبع العنوان \"عدد البلوكات في الستاك:\".",
+                  "السطر 4: يطبع الرقم 64.",
+                  "السطر 5: يجمع 32 + 32 أولاً فتصبح 64 ثم يطبع 64."
+                ]
+              },
+              {
+                title: "1.3 طباعة أكثر من شيء في سطر واحد والتحكم في الفاصل ونهاية السطر",
+                paragraphs: [
+                  "في ماين كرافت قد تريد طباعة اسم الأداة وعددها معاً في سطر واحد. في بايثون نفصل بينها بفاصلة (,) داخل print() فتضع بينها مسافة تلقائياً.",
+                  "ويمكننا أيضاً تغيير الفاصل باستخدام sep=... أو منع النزول لسطر جديد باستخدام end=... كأنك تكمل نفس اللوحة على نفس السطر."
+                ],
+                code: "# طباعة أكثر من جزء بفاصلة\nprint(\"الخشب:\", 16, \"بلوكة\")\n\n# تغيير الفاصل بين الأجزاء بـ sep\nprint(\"X=10\", \"Y=64\", \"Z=-20\", sep=\" | \")\n\n# إبقاء الطباعة على نفس السطر بـ end\nprint(\"توصيل الريدستون\", end=\" -> \")\nprint(\"المكبس جاهز!\")",
+                output: "الخشب: 16 بلوكة\nX=10 | Y=64 | Z=-20\nتوصيل الريدستون -> المكبس جاهز!"
+              }
+            ],
+            mistake: {
+              title: "أخطاء شائعة في أول بلوكة (print):",
+              text: "1) كتابة Print بحرف P كبير: ستعطي خطأ لأن بايثون تبحث عن print بحروف صغيرة. 2) نسيان علامتي التنصيص حول النص مثل print(مرحبا): ستظن بايثون أن مرحبا اسم متغير وليس كلاماً. 3) نسيان قفل القوس ) أو علامة التنصيص \"."
+            },
+            summary: "الأساس الأول مكتمل: الأوامر تمشي من الأعلى للأسفل مثل إشارة الريدستون، نستخدم # للملاحظات، ونستخدم print() لإظهار الكلام والأرقام والنتائج على الشاشة."
+          },
+          {
+            id: "lesson-2",
+            kicker: "الدرس 2 من 5 • الأساس الثاني: صناديق التخزين وأنواع الكتل",
+            heading: "الدرس 2: ثاني بلوكة أساسية — صناديق التخزين وأنواع الموارد (المتغيرات و int / float / str / bool)",
+            intro: [
+              "في ماين كرافت، إذا جمعت حديداً أو فحماً أو خشباً، أين تضعه؟ تضعه في صندوق (Chest) وتكتب عليه أو تتذكر مكانه حتى تأخذه متى احتجت. في بايثون نسمي هذا الصندوق المسمى متغيراً (Variable).",
+              "وكما أن الخشب يختلف عن الحديد وعن البلوكة المضيئة في ماين كرافت، فإن الأشياء داخل بايثون لها أنواع مختلفة: أعداد صحيحة int، أعداد عشرية float، نصوص str، وقيم منطقية bool."
+            ],
+            analogy: {
+              title: "تشبيه ماين كرافت: صناديق الموارد في غرفة التخزين",
+              lines: [
+                "تخيل أنك وضعت صندوقاً وسميته iron_count ووضعت بداخله الرقم 24. عندما تكتب iron_count = 24 فأنت تضع 24 حبة حديد داخل الصندوق الذي يحمل اسم iron_count.",
+                "علامة = هنا لا تعني حساباً رياضياً، بل تعني: ضع القيمة التي على اليمين داخل الصندوق الذي على اليسار. وإذا وضعت قيمة جديدة في نفس الصندوق، تحل محل القيمة القديمة."
+              ]
+            },
+            subsections: [
+              {
+                title: "2.1 تسمية الصناديق (المتغيرات) وتحديث محتواها",
+                paragraphs: [
+                  "لكي تبقى صناديقك منظمة وواضحة، نعطي كل متغير اسماً يدل على ما بداخله، مع الالتزام بقواعد التسمية في بايثون:"
+                ],
+                bullets: [
+                  "يبدأ الاسم بحرف إنجليزي أو شرطة سفلية (_) ولا يبدأ برقم أبداً (مثل chest_1 صحيح، و 1chest خطأ).",
+                  "لا نضع مسافات داخل الاسم، بل نستخدم الشرطة السفلية _ مثل torch_count.",
+                  "لا نستخدم كلمات بايثون المحجوزة كاسم متغير مثل print أو if أو True.",
+                  "عند تحديث القيمة بـ torch_count = torch_count + 5 أو torch_count += 5 نضيف 5 إلى العدد الموجود داخل الصندوق."
+                ],
+                code: "torches = 10\nprint(\"الشعلات في البداية:\", torches)\n\n# أضفنا 6 شعلات جديدة إلى الصندوق\ntorches = torches + 6\nprint(\"بعد إضافة 6 شعلات:\", torches)\n\n# اختصار إضافة 4 شعلات أخرى\ntorches += 4\nprint(\"الإجمالي الآن:\", torches)",
+                output: "الشعلات في البداية: 10\nبعد إضافة 6 شعلات: 16\nالإجمالي الآن: 20",
+                trace: [
+                  "السطر 1: ننشئ صندوقاً باسم torches ونضع فيه 10.",
+                  "السطر 5: نأخذ القيمة 10 ونجمع عليها 6 فتصبح 16، ثم نخزن 16 في torches.",
+                  "السطر 9: torches += 4 تزيد القيمة بمقدار 4 لتصبح 20."
+                ]
+              },
+              {
+                title: "2.2 الأنواع الأربعة للموارد في بايثون والتحويل بينها",
+                paragraphs: [
+                  "في ماين كرافت لا يمكنك معاملة كل بلوكة بنفس الطريقة؛ كذلك في بايثون، الرقم النصي \"10\" يختلف عن الرقم الصحيح 10. إليك الأنواع الأربعة الأساسية:"
+                ],
+                table: {
+                  headers: ["النوع", "الاسم في بايثون", "مثال بمنطق ماين كرافت", "التحويل إليه"],
+                  rows: [
+                    ["عدد صحيح", "int", "عدد البلوكات الكاملة: 64 أو 12 أو -5", "int(\"64\") -> 64"],
+                    ["عدد عشري", "float", "نسبة أو مسافة أو سرعة بفاصلة: 1.5 أو 0.25", "float(\"1.5\") -> 1.5"],
+                    ["نص", "str", "اسم البلوكة أو رسالة: \"Diamond Pickaxe\" أو \"أمان\"", "str(64) -> \"64\""],
+                    ["منطقي (صح/خطأ)", "bool", "حالة إشارة أو بوابة: True (مفعّلة) أو False (مطفاة)", "bool(1) -> True"]
+                  ]
+                },
+                code: "stack_a = \"32\"\nstack_b = \"32\"\n\n# لو جمعناهما كنصوص يلصقان ببعض: \"32\" + \"32\" = \"3232\"\nprint(\"دمج نصوص:\", stack_a + stack_b)\n\n# نحولهما إلى أعداد صحيحة int لكي نجمعهما كعدد بلوكات حقيقي\ntotal_blocks = int(stack_a) + int(stack_b)\nprint(\"مجموع البلوكات:\", total_blocks)\nprint(\"نوع النتيجة:\", type(total_blocks))",
+                output: "دمج نصوص: 3232\nمجموع البلوكات: 64\nنوع النتيجة: <class 'int'>"
+              },
+              {
+                title: "2.3 التعامل مع النصوص: الفهرسة من الصفر والتقطيع والتعديل",
+                paragraphs: [
+                  "النص مثل صف من الحروف المرقمة يبدأ من الرقم 0. أول حرف رقمه 0، وثاني حرف رقمه 1، وآخر حرف يمكنك الوصول إليه بسرعة بـ [-1].",
+                  "كما يمكننا قص جزء من النص [البداية:النهاية] حيث النهاية لا تدخل معنا، أو تعديل الحروف مثل upper() و replace()."
+                ],
+                code: "item = \"  redstone_torch  \"\nclean_item = item.strip()\n\nprint(\"الاسم المنظف:\", clean_item)\nprint(\"عدد الحروف:\", len(clean_item))\nprint(\"أول حرف (0):\", clean_item[0])\nprint(\"آخر حرف (-1):\", clean_item[-1])\nprint(\"أول 8 حروف:\", clean_item[0:8])\nprint(\"أحرف كبيرة:\", clean_item.upper())\nprint(\"استبدال:\", clean_item.replace(\"torch\", \"block\"))",
+                output: "الاسم المنظف: redstone_torch\nعدد الحروف: 14\nأول حرف (0): r\nآخر حرف (-1): h\nأول 8 حروف: redstone\nأحرف كبيرة: REDSTONE_TORCH\nاستبدال: redstone_block"
+              }
+            ],
+            mistake: {
+              title: "أخطاء شائعة في صناديق التخزين والأنواع:",
+              text: "1) جمع نص مع رقم مباشرة مثل \"عدد البلوكات: \" + 64 بدون تحويل أو فاصلة سيعطي خطأ TypeError. 2) ظن أن الفهرس [0:8] يأخذ الحرف رقم 8 أيضاً؛ الحرف رقم 8 هو نقطة التوقف ولا يُضمّن. 3) نسيان أن upper() و replace() ترجعان نصاً جديداً ولا تغيران المتغير الأصلي إلا إذا خزنت الناتج فيه."
+            },
+            summary: "الأساس الثاني مكتمل: المتغيرات صناديق نحفظ فيها القيم بـ =، والأنواع الأساسية هي int و float و str و bool، والنصوص تبدأ فهرستها من 0 ويمكن قصها وتعديلها."
+          },
+          {
+            id: "lesson-3",
+            kicker: "الدرس 3 من 5 • الأساس الثالث: أسلاك الريدستون والحساب والمدخلات",
+            heading: "الدرس 3: ثالث بلوكة أساسية — شبكات الريدستون والحساب والمدخلات (الحساب، المنطق، input()، f-strings)",
+            intro: [
+              "في ماين كرافت، الريدستون يربط الأزرار والرافعات والمقارنات والأبواب والمكابس لتعمل معاً. وفي بايثون، نستخدم العمليات الحسابية لحساب الأعداد، ومعاملات المقارنة والمنطق لفحص الحالات، و input() لأخذ أمر من اللاعب، و f-strings لكتابة رسالة مرتبة.",
+              "من أهم العمليات التي ستفيدك كثيراً في البناء والتوزيع: القسمة الصحيحة // وباقي القسمة %، لأنهما يخبرَانك كم مجموعة كاملة تتكون وكم قطعة تبقى زيادة."
+            ],
+            analogy: {
+              title: "تشبيه ماين كرافت: تقسيم البلوكات على صناديق (// و %)",
+              lines: [
+                "تخيل معك 50 بلوكة حجر وتريد وضعها في صفوف كل صف يتسع لـ 6 بلوكات فقط:",
+                "كم صفاً كاملاً ستبني؟ 50 // 6 يساوي 8 صفوف كاملة.",
+                "كم بلوكة ستبقى معك في اليد بعد إكمال الصفوف؟ 50 % 6 يساوي بلوكتين باقيتين!"
+              ]
+            },
+            subsections: [
+              {
+                title: "3.1 العمليات الحسابية في بايثون وترتيب الأولوية",
+                paragraphs: [
+                  "تتبع بايثون ترتيب العمليات المعروف: الأقواس () أولاً، ثم الأس **، ثم الضرب * والقسمة / و // و %، ثم الجمع + والطرح -."
+                ],
+                table: {
+                  headers: ["العملية", "الرمز", "مثال", "الناتج", "فائدتها"],
+                  rows: [
+                    ["الجمع", "+", "12 + 8", "20", "جمع الأعداد أو وصل النصوص"],
+                    ["الطرح", "-", "20 - 7", "13", "حساب الفرق أو النقصان"],
+                    ["الضرب", "*", "6 * 4", "24", "حساب مساحة أو عدد بلوكات صف"],
+                    ["القسمة العادية", "/", "10 / 4", "2.5", "قسمة تعطي عدداً عشرياً float"],
+                    ["القسمة الصحيحة", "//", "10 // 4", "2", "عدد المرات الكاملة بدون كسر عشري"],
+                    ["باقي القسمة", "%", "10 % 4", "2", "معرفة الباقي أو فحص الزوجي والفردي (n % 2 == 0)"],
+                    ["الأس", "**", "2 ** 4", "16", "قوة العدد (2 أس 4)"]
+                  ]
+                },
+                code: "stones = 50\nrow_size = 6\n\nfull_rows = stones // row_size\nremaining_stones = stones % row_size\n\nprint(\"صفوف كاملة:\", full_rows)\nprint(\"البلوكات المتبقية:\", remaining_stones)\nprint(\"هل 12 زوجي؟\", 12 % 2 == 0)",
+                output: "صفوف كاملة: 8\nالبلوكات المتبقية: 2\nهل 12 زوجي؟ True"
+              },
+              {
+                title: "3.2 المقارنات والروابط المنطقية (and و or و not) مثل بوابات الريدستون",
+                paragraphs: [
+                  "في دوائر الريدستون ندمج الإشارات أحياناً: يجب أن يكون مفتاحان مفعّلين معاً (and)، أو يكفي تفعيل أحد مفتاحين (or)، أو نعكس الإشارة (not). في بايثون نكتب هذه المنطقية بوضوح:"
+                ],
+                bullets: [
+                  "مقارنات القيم: == (تساوي)، != (لا تساوي)، > (أكبر من)، < (أصغر من)، >= (أكبر أو تساوي)، <= (أصغر أو تساوي).",
+                  "and: تعطي True فقط إذا تحقق الطرفان معاً.",
+                  "or: تعطي True إذا تحقق طرف واحد على الأقل.",
+                  "not: تقلب True إلى False وتقلب False إلى True."
+                ],
+                code: "has_key = True\npower_on = True\nopen_vault = has_key and power_on\nprint(\"هل يفتح المخزن؟\", open_vault)\n\nis_night = False\nis_storming = True\nclose_shutters = is_night or is_storming\nprint(\"هل تغلق النوافذ؟\", close_shutters)\nprint(\"عكس إغلاق النوافذ:\", not close_shutters)",
+                output: "هل يفتح المخزن؟ True\nهل تغلق النوافذ؟ True\nعكس إغلاق النوافذ: False"
+              },
+              {
+                title: "3.3 قراءة مدخلات اللاعب عبر input() وترتيب الرسائل بـ f-strings",
+                paragraphs: [
+                  "الأمر input(\"رسالة: \") يوقف البرنامج وينتظر كتابة المستخدم ثم الضغط على Enter، ويرجع القيمة دائماً كنص str. لذلك إذا أردنا حساب رقم أدخله اللاعب نستخدم int(...) أو float(...).",
+                  "ومع f-strings نضع حرف f قبل النص ونضع المتغيرات داخل قوسين معقوفين { } فتظهر الجملة مرتبة وسهلة القراءة."
+                ],
+                code: "# مثال توضيحي لقراءة مدخل وتحويله وحسابه\n# لو أدخل اللاعب الرقم 4:\nraw_input = \"4\"\ncolumns = int(raw_input)\nblocks_per_col = 16\ntotal = columns * blocks_per_col\n\nmessage = f\"بناء {columns} أعمدة يحتاج {total} بلوكة.\"\nprint(message)",
+                output: "بناء 4 أعمدة يحتاج 64 بلوكة."
+              }
+            ],
+            mistake: {
+              title: "أخطاء شائعة في الحساب والمنطق والمدخلات:",
+              text: "1) استخدام = واحدة بدلاً من == عند المقارنة: = للتخزين داخل المتغير، بينما == للسؤال هل القيمتان متساويتان. 2) نسيان تحويل ناتج input() إلى int() عند الجمع أو الضرب الحسابي، لأن \"5\" + \"3\" يعطي \"53\" وليس 8. 3) خلط and مع or في شروط تحتاج تحقق شرطين معاً."
+            },
+            summary: "الأساس الثالث مكتمل: نستخدم // و % للحسابات الدقيقة، و == / != / > / < مع and و or و not للمنطق، و input() لأخذ المدخلات، و f-strings لتركيب الرسائل بوضوح."
+          },
+          {
+            id: "lesson-4",
+            kicker: "الدرس 4 من 5 • الأساس الرابع: البوابات الشرطية والحلقات الآلية",
+            heading: "الدرس 4: رابع بلوكة أساسية — البوابات الشرطية والحلقات الآلية (if / elif / else و for / while)",
+            intro: [
+              "في ماين كرافت، لا نريد أن يفتح الباب دائماً أو يشتغل المصعد بلا سبب؛ نربطه بشرط: إذا كان كذا فافعل كذا، وإلا فافعل شيئاً آخر. في بايثون نكتب ذلك عبر if و elif و else.",
+              "وكذلك، بدل أن نضع نفس البلوكة 20 مرة يدوياً، نستخدم الحلقات التكرارية (Loops) مثل for و while لتنفيذ العمل تلقائياً وبشكل منظم."
+            ],
+            analogy: {
+              title: "تشبيه ماين كرافت: بوابة أمان وموزع بلوكات آلي",
+              lines: [
+                "تخيل بوابة قلعة لا تفتح إلا إذا كان مستوى الطاقة 10 أو أكثر: إذا كان >= 10 تفتح البوابة، وإذا كان بين 5 و 9 تعرض رسالة \"طاقة منخفضة\"، وإلا تبقى مغلقة.",
+                "وتخيل آلة تضع بلوكة واحدة في كل خطوة: حلقة for مناسبة عندما تعرف عدد الخطوات مسبقاً (مثلاً 5 خطوات)، وحلقة while مناسبة عندما تستمر طالما شرط معين متحقق."
+              ]
+            },
+            subsections: [
+              {
+                title: "4.1 الجمل الشرطية (if / elif / else) والمسافة البادئة (Indentation)",
+                paragraphs: [
+                  "في بايثون، المسافة البادئة (4 مسافات غالباً) ليست للزينة؛ هي التي تحدد ما الذي يتبع الشرط وما الذي ينفذ داخله.",
+                  "نكتب if للشرط الأول، ثم elif (اختصار else if) لفحص شرط بديل إذا كان الأول خطأ، ثم else لما يتبقى إذا لم يتحقق أي شرط سابق."
+                ],
+                code: "power_level = 12\n\nif power_level >= 15:\n    print(\"الدائرة تعمل بأقصى طاقة!\")\nelif power_level >= 10:\n    print(\"البوابة مفتوحة والعمل مستقر.\")\nelse:\n    print(\"البوابة مغلقة؛ أضف مصدر طاقة.\")",
+                output: "البوابة مفتوحة والعمل مستقر.",
+                trace: [
+                  "نفحص power_level >= 15 (هل 12 أكبر أو يساوي 15؟) -> False، فنتخطى السطر الأول.",
+                  "نفحص elif power_level >= 10 (هل 12 أكبر أو يساوي 10؟) -> True، فنطبع \"البوابة مفتوحة والعمل مستقر.\".",
+                  "بما أن شرط elif تحقق، نتجاوز else ولا ننفذها."
+                ]
+              },
+              {
+                title: "4.2 الحلقة for مع range() لبناء صفوف متكررة",
+                paragraphs: [
+                  "الدالة range(n) تولد أرقاماً تبدأ من 0 وتنتهي قبل n. مثلاً range(4) يعطي 0, 1, 2, 3 (أربع مرات).",
+                  "ويمكن تحديد بداية ونهاية وخطوة مثل range(1, 5) لتكرار من 1 إلى 4."
+                ],
+                code: "for step in range(1, 5):\n    print(f\"وضع البلوكة رقم {step} في الصف\")\nprint(\"اكتمل الصف!\")",
+                output: "وضع البلوكة رقم 1 في الصف\nوضع البلوكة رقم 2 في الصف\nوضع البلوكة رقم 3 في الصف\nوضع البلوكة رقم 4 في الصف\nاكتمل الصف!"
+              },
+              {
+                title: "4.3 الحلقة while والتحكم عبر break و continue",
+                paragraphs: [
+                  "حلقة while تستمر بالدوران طالما الشرط صحيح. ويجب دائماً تحديث المتغير داخل الحلقة حتى لا تدور للأبد (حلقة لا نهائية).",
+                  "نستخدم break للخروج الفوري من الحلقة، و continue لتخطي الدورة الحالية والانتقال للدورة التالية."
+                ],
+                code: "fuel = 3\nwhile fuel > 0:\n    print(f\"الفرن يعمل... الوقود المتبقي: {fuel}\")\n    fuel -= 1\nprint(\"انتهى الوقود وتوقف الفرن.\")",
+                output: "الفرن يعمل... الوقود المتبقي: 3\nالفرن يعمل... الوقود المتبقي: 2\nالفرن يعمل... الوقود المتبقي: 1\nانتهى الوقود وتوقف الفرن."
+              }
+            ],
+            mistake: {
+              title: "أخطاء شائعة في الشروط والحلقات:",
+              text: "1) نسيان النقطتين الرأسيتين : في نهاية سطر if أو elif أو else أو for أو while. 2) أخطاء المسافة البادئة (IndentationError) بوضع سطر داخل الشرط أو خارجه بالخطأ. 3) نسيان إنقاص أو تغيير شرط while مما يسبب تكراراً لا ينتهي."
+            },
+            summary: "الأساس الرابع مكتمل: if / elif / else توجه الإشارة حسب الشروط مع مراعاة المسافة البادئة، و for و while تكرران العمل تلقائياً لتوفير الوقت والجهد."
+          },
+          {
+            id: "lesson-5",
+            kicker: "الدرس 5 من 5 • الأساس الخامس: القوائم والقواميس والدوال كآلات جاهزة",
+            heading: "الدرس 5: خامس بلوكة أساسية — القوائم، القواميس، والدوال كآلات جاهزة (list، dict، def)",
+            intro: [
+              "عندما تكبر مشاريعك في ماين كرافت، لا تكفيك صناديق مفردة لكل شيء؛ تحتاج إلى صف مرتب من الأدوات (القائمة list)، وإلى بطاقات تربط كل اسم بقيمته (القاموس dict)، وإلى آلة مصغرة تبنيها مرة واحدة وتشغلها كلما احتجت إليها (الدالة def).",
+              "بهذا الأساس الخامس تصبح قادراً على تنظيم البيانات وكتابة كود نظيف يعاد استخدامه بسهولة."
+            ],
+            analogy: {
+              title: "تشبيه ماين كرافت: شريط الأدوات، لوحة المخزون، ومخطط بناء آلي",
+              lines: [
+                "القائمة (list) تشبه شريط الأدوات السريع (Hotbar) أو صفاً مرقماً يبدأ من الفهرس 0: تضع فيه عناصر بالترتيب، وتضيف لها بـ append() أو تحذف منها.",
+                "القاموس (dict) يشبه جدولاً من مفتاح وقيمة (مثل \"iron\": 12، \"gold\": 4) لتصل مباشرة إلى كمية أي مادة باسمها.",
+                "الدالة (def) تشبه مخطط آلة أو غرفة تصنيع: تعرفها مرة واحدة بالمدخلات التي تحتاجها، ثم تناديها متى شئت لتعطيك النتيجة."
+              ]
+            },
+            subsections: [
+              {
+                title: "5.1 القوائم (Lists): تخزين مجموعة عناصر والمرور عليها",
+                paragraphs: [
+                  "نكتب القائمة بين قوسين مربعين [ ] ونفصل العناصر بفاصلة. نصل لأي عنصر بالفهرس [0]، ونضيف عنصراً جديداً في النهاية بـ append()، ونمر على كل عنصر بـ for."
+                ],
+                code: "hotbar = [\"Pickaxe\", \"Torch\", \"Ladder\"]\nhotbar.append(\"Bucket\")\n\nprint(\"العنصر الأول:\", hotbar[0])\nprint(\"عدد الأدوات:\", len(hotbar))\n\nfor slot_index, tool in enumerate(hotbar):\n    print(f\"خانة {slot_index}: {tool}\")",
+                output: "العنصر الأول: Pickaxe\nعدد الأدوات: 4\nخانة 0: Pickaxe\nخانة 1: Torch\nخانة 2: Ladder\nخانة 3: Bucket"
+              },
+              {
+                title: "5.2 القواميس (Dictionaries): ربط كل مفتاح بقيمته",
+                paragraphs: [
+                  "القاموس يستخدم أقواساً معقوفة { } ويخزن أزواجاً بصيغة مفتاح: قيمة. الوصول يتم عبر اسم المفتاح مثل inventory[\"iron\"]."
+                ],
+                code: "chest_items = {\n    \"iron\": 18,\n    \"coal\": 32,\n    \"emerald\": 5\n}\n\nchest_items[\"emerald\"] += 3\nprint(\"الزمرد الآن:\", chest_items[\"emerald\"])\n\nfor resource, qty in chest_items.items():\n    print(f\"المورد: {resource} | الكمية: {qty}\")",
+                output: "الزمرد الآن: 8\nالمورد: iron | الكمية: 18\nالمورد: coal | الكمية: 32\nالمورد: emerald | الكمية: 8"
+              },
+              {
+                title: "5.3 الدوال (Functions): بناء آلة قابلة لإعادة الاستخدام بـ def و return",
+                paragraphs: [
+                  "نستخدم كلمة def لتعريف دالة تأخذ مدخلات (Parameters) وتُرجع نتيجة عبر return. هكذا لا نكرر نفس المعادلة في كل مكان."
+                ],
+                code: "def blocks_for_wall(length, height):\n    return length * height\n\nwall_a = blocks_for_wall(6, 3)\nwall_b = blocks_for_wall(10, 4)\n\nprint(\"بلوكات الجدار الأول:\", wall_a)\nprint(\"بلوكات الجدار الثاني:\", wall_b)\nprint(\"المجموع الكلي:\", wall_a + wall_b)",
+                output: "بلوكات الجدار الأول: 18\nبلوكات الجدار الثاني: 40\nالمجموع الكلي: 58"
+              }
+            ],
+            mistake: {
+              title: "أخطاء شائعة في القوائم والقواميس والدوال:",
+              text: "1) طلب فهرس خارج حدود القائمة مثل hotbar[10] في قائمة من 4 عناصر يسبب IndexError. 2) طلب مفتاح غير موجود في قاموس بـ d[\"key\"] مباشرة يسبب KeyError؛ يمكن استخدام d.get(\"key\", 0) للأمان. 3) نسيان return داخل دالة يفترض أن ترجع قيمة، فتكون النتيجة None."
+            },
+            summary: "الأساس الخامس مكتمل: القوائم [] تحفظ تسلسلاً مرتباً، القواميس {} تربط المفاتيح بالقيم، والدوال def تبني أدوات جاهزة تعيد استخدامها متى احتجت."
+          }
+        ],
+        labSection: {
+          kicker: "المختبر التطبيقي • 6 تحديات بمنطق ماين كرافت",
+          heading: "المختبر التطبيقي الشامل: اختبر فهمك للأساسيات الخمسة",
+          desc: "أكمل كل تحدٍ برمجي بمنطق ماين كرافت، ثم اضغط تحقق للتصحيح الفوري أو تلميح للمساعدة.",
+          scoreLabel: (done, total) => `التحديات المكتملة: ${done} / ${total}`,
+          checkBtn: "تحقق",
+          hintBtn: "تلميح",
+          resetBtn: "إعادة ضبط الكل",
+          challenges: [
+            {
+              id: "ch1",
+              badge: "التحدي 1 • الأساس 1 (الإخراج واللوحات)",
+              prompt: "أكمل أمر الطباعة لإظهار عبارة \"Redstone Ready\" على الشاشة:",
+              before: "print(",
+              after: ")",
+              placeholder: "اكتب النص بعلامتي تنصيص",
+              hint: "ضع النص داخل علامتي تنصيص مزدوجة \"Redstone Ready\".",
+              okMsg: "ممتاز! الإشارة خرجت على الشاشة بشكل صحيح.",
+              errMsg: "تحقق من كتابة \"Redstone Ready\" داخل علامتي تنصيص وبين القوسين.",
+              accept: (v) => v.replace(/\s+/g, " ").trim() === '"Redstone Ready"' || v.replace(/\s+/g, " ").trim() === "'Redstone Ready'"
+            },
+            {
+              id: "ch2",
+              badge: "التحدي 2 • الأساس 2 (صناديق الموارد)",
+              prompt: "خزّن العدد 64 في متغير باسم stack_size ثم اطبعه:",
+              before: "",
+              after: "\nprint(stack_size)",
+              placeholder: "stack_size = ...",
+              hint: "اكتب stack_size = 64",
+              okMsg: "رائع! تم تخزين 64 في الصندوق stack_size.",
+              errMsg: "اكتب stack_size = 64 بالضبط.",
+              accept: (v) => /^stack_size\s*=\s*64$/.test(v.trim())
+            },
+            {
+              id: "ch3",
+              badge: "التحدي 3 • الأساس 3 (باقي القسمة والمنطق)",
+              prompt: "معك 25 بلوكة وتوزعها على صفوف من 6 بلوكات؛ اكتب تعبير باقي القسمة لمعرفة المتبقي:",
+              before: "leftover = ",
+              after: "",
+              placeholder: "مثال: 10 % 3",
+              hint: "استخدم الرمز % بين 25 و 6.",
+              okMsg: "صحيح! 25 % 6 يساوي 1 بلوكة متبقية.",
+              errMsg: "اكتب 25 % 6 لحساب باقي القسمة.",
+              accept: (v) => /^25\s*%\s*6$/.test(v.trim())
+            },
+            {
+              id: "ch4",
+              badge: "التحدي 4 • الأساس 4 (البوابات الشرطية)",
+              prompt: "أكمل شرط if لفتح الباب عندما يكون power أكبر من أو يساوي 10:",
+              before: "if ",
+              after: ":\n    print(\"Door Open\")",
+              placeholder: "power >= 10",
+              hint: "اكتب power >= 10",
+              okMsg: "أحسنت! الشرط power >= 10 يفتح الباب عند بلوغ الطاقة 10 فأكثر.",
+              errMsg: "تأكد من كتابة power >= 10.",
+              accept: (v) => /^power\s*>=\s*10$/.test(v.trim())
+            },
+            {
+              id: "ch5",
+              badge: "التحدي 5 • الأساس 4 (الحلقات التكرارية)",
+              prompt: "أكمل دالة range لتكرار الحلقة 5 مرات (من 0 إلى 4):",
+              before: "for i in range(",
+              after: "):\n    print(i)",
+              placeholder: "5",
+              hint: "ضع الرقم 5 داخل range().",
+              okMsg: "ممتاز! range(5) يكرر 5 مرات.",
+              errMsg: "اكتب 5 داخل range().",
+              accept: (v) => v.trim() === "5"
+            },
+            {
+              id: "ch6",
+              badge: "التحدي 6 • الأساس 5 (القوائم والقواميس والدوال)",
+              prompt: "أكمل سطر الإرجاع داخل الدالة لإرجاع حاصل ضرب length في width:",
+              before: "def area(length, width):\n    ",
+              after: "",
+              placeholder: "return length * width",
+              hint: "اكتب return length * width",
+              okMsg: "رائع! الدالة الآن ترجع مساحة البناء length * width.",
+              errMsg: "اكتب return length * width.",
+              accept: (v) => /^return\s+length\s*\*\s*width$/.test(v.trim())
+            }
+          ]
+        }
+      },
+      en: {
+        dir: "ltr",
+        langBtnText: "التبديل إلى العربية",
+        badgeText: "MinPy Academy • 5 Core Python Basics with Minecraft Logic + Interactive Lab",
+        metaText: "Track: Core Foundations • 5 lessons from first block to systems using Minecraft logic",
+        title: "MinPy Academy: Python with Minecraft Logic — 5 Core Basics",
+        welcome: "From Minecraft Blocks & Redstone Circuits to Python Commands",
+        abstract:
+          "In Minecraft we build machines out of connected blocks and redstone wiring: we place a block, run a redstone line, connect a lever, lamp, or piston, store items in chests, and repeat rows until a bridge or tower is complete.\n\nPython works the exact same way: every command acts like a block or redstone component with a clear job, and wiring them in order runs a complete system.\n\nThis unit starts from the first core block and progresses through 5 lessons:\n\n• Lesson 1 (Basic 1 — Signal Block & Signs): sending your first output with print() and writing # notes without executing them.\n• Lesson 2 (Basic 2 — Resource Chests & Block Types): storing values in variables and distinguishing int, float, str, and bool.\n• Lesson 3 (Basic 3 — Redstone Wiring, Math & Inputs): arithmetic including // and %, logical operators (and, or, not), input(), and f-strings.\n• Lesson 4 (Basic 4 — Gates & Automated Loops): branching with if / elif / else and repeating builds with for and while.\n• Lesson 5 (Basic 5 — Hotbars, Inventories & Blueprints): working with lists, dictionaries, and reusable functions (def).\n\nEach lesson explains the idea clearly using Minecraft mechanics, traces execution step by step, and highlights common wiring mistakes.",
+        roadmap: [
+          { step: "Basic 01", name: "Signals & Signs" },
+          { step: "Basic 02", name: "Chests & Types" },
+          { step: "Basic 03", name: "Math, Logic & Input" },
+          { step: "Basic 04", name: "Gates & Loops" },
+          { step: "Basic 05", name: "Lists, Dicts & Def" }
+        ],
+        tocTitle: "Five Core Lessons & Interactive Lab Roadmap",
+        toc: [
+          { href: "#lesson-1", label: "Lesson 1: First Core Block — Signals & Signs (print() and # comments)" },
+          { href: "#lesson-2", label: "Lesson 2: Second Core Block — Storage Chests & Types (Variables & int / float / str / bool)" },
+          { href: "#lesson-3", label: "Lesson 3: Third Core Block — Redstone Math, Logic & Input (//, %, and/or/not, input(), f-strings)" },
+          { href: "#lesson-4", label: "Lesson 4: Fourth Core Block — Conditional Gates & Loops (if/elif/else, for, while)" },
+          { href: "#lesson-5", label: "Lesson 5: Fifth Core Block — Lists, Dictionaries & Functions (list, dict, def)" },
+          { href: "#lab-section", label: "Interactive Lab: 6 Minecraft-Logic Coding Challenges with Instant Check" }
+        ],
+        lessons: [
+          {
+            id: "lesson-1",
+            kicker: "Lesson 1 of 5 • Basic 1: Signal Block & Signs",
+            heading: "Lesson 1: First Core Block — Sending Signals & Placing Signs (print() and # Comments)",
+            intro: [
+              "In Minecraft, when you wire up a circuit, you want a clear signal or sign showing what happened. In Python, print() is the first core block: it displays text, numbers, or results on screen.",
+              "Python executes statements top to bottom, just like a redstone pulse traveling along a line from start to finish."
+            ],
+            analogy: {
+              title: "Minecraft Analogy: Wooden Signs Next to a Base Door",
+              lines: [
+                "In Minecraft, placing a sign on a wall or chest labels what is there so anyone passing by knows immediately.",
+                "In Python, print(\"North Station\") puts a message on screen. A # comment is like a note beside the wire for builders to read; Python skips it during execution."
+              ]
+            },
+            subsections: [
+              {
+                title: "1.1 Top-to-Bottom Execution Like a Redstone Line",
+                paragraphs: [
+                  "Python reads your code line by line from top to bottom. Order matters: put setup steps before steps that depend on them."
+                ],
+                bullets: [
+                  "Line 1 runs first, then line 2, then line 3.",
+                  "Lines starting with # are comments and do not run as code.",
+                  "Python is case-sensitive: write print in lowercase."
+                ]
+              },
+              {
+                title: "1.2 Printing Text, Numbers, and Expressions with print()",
+                paragraphs: [
+                  "Wrap text in quotes like \"Ready to build!\" so Python treats it as a string. Numbers like 64 or expressions like 32 + 32 can be passed directly."
+                ],
+                code: "# Note: this comment is ignored by Python\nprint(\"Welcome to the build base!\")\nprint(\"Blocks in a full stack:\")\nprint(64)\nprint(32 + 32)",
+                output: "Welcome to the build base!\nBlocks in a full stack:\n64\n64",
+                trace: [
+                  "Line 1: Starts with #, so Python skips it.",
+                  "Line 2: Prints \"Welcome to the build base!\".",
+                  "Line 3: Prints \"Blocks in a full stack:\".",
+                  "Line 4: Prints 64.",
+                  "Line 5: Evaluates 32 + 32 to 64 and prints 64."
+                ]
+              },
+              {
+                title: "1.3 Multiple Items, sep, and end",
+                paragraphs: [
+                  "Separate multiple items inside print() with commas. Use sep to customize the separator and end to control what comes at the end of the line."
+                ],
+                code: "print(\"Planks:\", 16, \"blocks\")\nprint(\"X=10\", \"Y=64\", \"Z=-20\", sep=\" | \")\nprint(\"Wiring redstone\", end=\" -> \")\nprint(\"Piston ready!\")",
+                output: "Planks: 16 blocks\nX=10 | Y=64 | Z=-20\nWiring redstone -> Piston ready!"
+              }
+            ],
+            mistake: {
+              title: "Common Mistakes in Basic 1:",
+              text: "1) Writing Print with a capital P. 2) Forgetting quotes around text like print(Hello), which makes Python look for a variable named Hello. 3) Missing a closing parenthesis ) or quote."
+            },
+            summary: "Basic 1 complete: code runs top to bottom like a redstone pulse, # adds comments, and print() outputs text and values."
+          },
+          {
+            id: "lesson-2",
+            kicker: "Lesson 2 of 5 • Basic 2: Resource Chests & Block Types",
+            heading: "Lesson 2: Second Core Block — Storage Chests & Types (Variables & int / float / str / bool)",
+            intro: [
+              "In Minecraft, you store items in named chests so you can retrieve or update them later. In Python, a variable stores a value under a clear name.",
+              "Just as different blocks behave differently, Python has core types: int (integers), float (decimals), str (strings), and bool (True / False)."
+            ],
+            analogy: {
+              title: "Minecraft Analogy: Labeled Chests in a Storage Room",
+              lines: [
+                "Writing torches = 10 stores 10 in a slot labeled torches.",
+                "The = sign assigns the value on the right to the name on the left. Reassigning replaces the stored value."
+              ]
+            },
+            subsections: [
+              {
+                title: "2.1 Naming Variables and Updating Values",
+                paragraphs: [
+                  "Use descriptive snake_case names starting with a letter or underscore, never starting with a digit."
+                ],
+                bullets: [
+                  "Valid: chest_1, torch_count. Invalid: 1chest, torch count.",
+                  "Avoid reserved keywords like print, if, True.",
+                  "Update with += to add directly to an existing numeric value."
+                ],
+                code: "torches = 10\nprint(\"Initial torches:\", torches)\ntorches = torches + 6\nprint(\"After adding 6:\", torches)\ntorches += 4\nprint(\"Total now:\", torches)",
+                output: "Initial torches: 10\nAfter adding 6: 16\nTotal now: 20",
+                trace: [
+                  "Line 1: Stores 10 in torches.",
+                  "Line 3: Computes 10 + 6 = 16 and stores 16 in torches.",
+                  "Line 5: Adds 4 using += to reach 20."
+                ]
+              },
+              {
+                title: "2.2 Four Core Types and Type Conversion",
+                paragraphs: [
+                  "Converting between types with int(), float(), str(), and bool() prevents unexpected behavior like joining \"32\" + \"32\" into \"3232\"."
+                ],
+                table: {
+                  headers: ["Type", "Keyword", "Minecraft Example", "Conversion"],
+                  rows: [
+                    ["Integer", "int", "Full block count: 64, -5", "int(\"64\") -> 64"],
+                    ["Float", "float", "Decimal value: 1.5, 0.25", "float(\"1.5\") -> 1.5"],
+                    ["String", "str", "Item name or text: \"Diamond Pickaxe\"", "str(64) -> \"64\""],
+                    ["Boolean", "bool", "Signal state: True or False", "bool(1) -> True"]
+                  ]
+                },
+                code: "stack_a = \"32\"\nstack_b = \"32\"\nprint(\"String join:\", stack_a + stack_b)\ntotal_blocks = int(stack_a) + int(stack_b)\nprint(\"Numeric sum:\", total_blocks)\nprint(\"Type:\", type(total_blocks))",
+                output: "String join: 3232\nNumeric sum: 64\nType: <class 'int'>"
+              },
+              {
+                title: "2.3 Zero-Based Indexing, Slicing, and String Methods",
+                paragraphs: [
+                  "Strings are indexed starting at 0, and negative indices count from the end (-1 is the last character). Slicing [start:stop] stops before stop."
+                ],
+                code: "item = \"  redstone_torch  \"\nclean_item = item.strip()\nprint(\"Clean:\", clean_item)\nprint(\"Length:\", len(clean_item))\nprint(\"First [0]:\", clean_item[0])\nprint(\"Last [-1]:\", clean_item[-1])\nprint(\"Slice [0:8]:\", clean_item[0:8])\nprint(\"Upper:\", clean_item.upper())\nprint(\"Replace:\", clean_item.replace(\"torch\", \"block\"))",
+                output: "Clean: redstone_torch\nLength: 14\nFirst [0]: r\nLast [-1]: h\nSlice [0:8]: redstone\nUpper: REDSTONE_TORCH\nReplace: redstone_block"
+              }
+            ],
+            mistake: {
+              title: "Common Mistakes in Basic 2:",
+              text: "1) Adding a string and an int directly with + without conversion. 2) Assuming slice end index 8 is included in [0:8]. 3) Expecting upper() or replace() to mutate the original string without assigning the result."
+            },
+            summary: "Basic 2 complete: variables store data via =, core types are int, float, str, and bool, and strings are 0-indexed and sliceable."
+          },
+          {
+            id: "lesson-3",
+            kicker: "Lesson 3 of 5 • Basic 3: Redstone Math, Logic & Input",
+            heading: "Lesson 3: Third Core Block — Redstone Math, Logic & Input (//, %, and/or/not, input(), f-strings)",
+            intro: [
+              "Redstone circuits connect switches, comparators, and mechanisms. In Python, math operators compute numbers, comparison and logical operators test conditions, input() reads user text, and f-strings format messages cleanly."
+            ],
+            analogy: {
+              title: "Minecraft Analogy: Dividing Blocks into Rows (// and %)",
+              lines: [
+                "Suppose you have 50 stone blocks and build rows of 6 blocks each.",
+                "50 // 6 gives 8 full rows (floor division), and 50 % 6 gives 2 leftover blocks (modulo / remainder)."
+              ]
+            },
+            subsections: [
+              {
+                title: "3.1 Arithmetic Operators and Precedence",
+                paragraphs: [
+                  "Parentheses run first, then **, then *, /, //, %, and finally + and -."
+                ],
+                table: {
+                  headers: ["Operation", "Symbol", "Example", "Result", "Role"],
+                  rows: [
+                    ["Addition", "+", "12 + 8", "20", "Adds numbers or concatenates strings"],
+                    ["Subtraction", "-", "20 - 7", "13", "Subtracts numbers"],
+                    ["Multiplication", "*", "6 * 4", "24", "Multiplies numbers or repeats strings"],
+                    ["True Division", "/", "10 / 4", "2.5", "Always returns a float"],
+                    ["Floor Division", "//", "10 // 4", "2", "Drops fractional part"],
+                    ["Modulo", "%", "10 % 4", "2", "Remainder; useful for even checks (n % 2 == 0)"],
+                    ["Exponent", "**", "2 ** 4", "16", "Power operation"]
+                  ]
+                },
+                code: "stones = 50\nrow_size = 6\nfull_rows = stones // row_size\nremaining_stones = stones % row_size\nprint(\"Full rows:\", full_rows)\nprint(\"Leftover blocks:\", remaining_stones)\nprint(\"Is 12 even?\", 12 % 2 == 0)",
+                output: "Full rows: 8\nLeftover blocks: 2\nIs 12 even? True"
+              },
+              {
+                title: "3.2 Comparisons and Logic (and, or, not)",
+                paragraphs: [
+                  "Combine comparisons (==, !=, >, <, >=, <=) with and, or, and not just like logic gates."
+                ],
+                bullets: [
+                  "and is True only when both sides are True.",
+                  "or is True when at least one side is True.",
+                  "not flips a boolean value."
+                ],
+                code: "has_key = True\npower_on = True\nprint(\"Open vault?\", has_key and power_on)\nis_night = False\nis_storming = True\nclose_shutters = is_night or is_storming\nprint(\"Close shutters?\", close_shutters)\nprint(\"Inverted:\", not close_shutters)",
+                output: "Open vault? True\nClose shutters? True\nInverted: False"
+              },
+              {
+                title: "3.3 Reading Input with input() and Formatting with f-strings",
+                paragraphs: [
+                  "input() always returns a str, so convert with int() or float() before math. Use f\"...{var}...\" for clean string interpolation."
+                ],
+                code: "raw_input = \"4\"\ncolumns = int(raw_input)\nblocks_per_col = 16\ntotal = columns * blocks_per_col\nmessage = f\"Building {columns} columns needs {total} blocks.\"\nprint(message)",
+                output: "Building 4 columns needs 64 blocks."
+              }
+            ],
+            mistake: {
+              title: "Common Mistakes in Basic 3:",
+              text: "1) Using = instead of == in comparisons. 2) Doing arithmetic on un-converted strings from input(). 3) Mixing up and and or."
+            },
+            summary: "Basic 3 complete: // and % handle exact division and remainders, comparisons + and/or/not handle logic, and input() + f-strings handle interaction and formatting."
+          },
+          {
+            id: "lesson-4",
+            kicker: "Lesson 4 of 5 • Basic 4: Conditional Gates & Loops",
+            heading: "Lesson 4: Fourth Core Block — Conditional Gates & Loops (if/elif/else, for, while)",
+            intro: [
+              "Conditional statements (if, elif, else) route execution based on conditions, while loops (for and while) repeat actions automatically without manual repetition."
+            ],
+            analogy: {
+              title: "Minecraft Analogy: Security Gate & Automatic Block Placer",
+              lines: [
+                "A gate can open only when power >= 10, show low power for 5..9, or stay closed otherwise.",
+                "A for loop fits a known count (like range(5)), while a while loop runs while a condition stays True."
+              ]
+            },
+            subsections: [
+              {
+                title: "4.1 if / elif / else and Indentation",
+                paragraphs: [
+                  "Indentation defines which statements belong to each branch. Only the first matching branch runs."
+                ],
+                code: "power_level = 12\nif power_level >= 15:\n    print(\"Circuit at peak power!\")\nelif power_level >= 10:\n    print(\"Gate open and stable.\")\nelse:\n    print(\"Gate closed; add power.\")",
+                output: "Gate open and stable.",
+                trace: [
+                  "power_level >= 15 is False.",
+                  "elif power_level >= 10 is True -> prints \"Gate open and stable.\".",
+                  "else branch is skipped."
+                ]
+              },
+              {
+                title: "4.2 for Loops and range()",
+                paragraphs: [
+                  "range(n) generates integers from 0 up to n - 1; range(start, stop) starts at start and stops before stop."
+                ],
+                code: "for step in range(1, 5):\n    print(f\"Placing block #{step} in row\")\nprint(\"Row complete!\")",
+                output: "Placing block #1 in row\nPlacing block #2 in row\nPlacing block #3 in row\nPlacing block #4 in row\nRow complete!"
+              },
+              {
+                title: "4.3 while Loops",
+                paragraphs: [
+                  "Always update the loop condition variable inside while so the loop terminates."
+                ],
+                code: "fuel = 3\nwhile fuel > 0:\n    print(f\"Furnace running... fuel left: {fuel}\")\n    fuel -= 1\nprint(\"Out of fuel; furnace stopped.\")",
+                output: "Furnace running... fuel left: 3\nFurnace running... fuel left: 2\nFurnace running... fuel left: 1\nOut of fuel; furnace stopped."
+              }
+            ],
+            mistake: {
+              title: "Common Mistakes in Basic 4:",
+              text: "1) Forgetting colons : after if, elif, else, for, or while headers. 2) Misaligned indentation. 3) Infinite while loops when the condition never becomes False."
+            },
+            summary: "Basic 4 complete: if/elif/else controls branching via indentation, and for/while automate repetition."
+          },
+          {
+            id: "lesson-5",
+            kicker: "Lesson 5 of 5 • Basic 5: Lists, Dictionaries & Functions",
+            heading: "Lesson 5: Fifth Core Block — Lists, Dictionaries & Functions (list, dict, def)",
+            intro: [
+              "Lists store ordered sequences, dictionaries map keys to values, and functions (def) package reusable logic with parameters and return values."
+            ],
+            analogy: {
+              title: "Minecraft Analogy: Hotbar, Inventory Map & Reusable Blueprint",
+              lines: [
+                "A list is like an ordered hotbar where items sit at 0-based positions and can be appended.",
+                "A dictionary maps each item name to its count, like \"iron\": 18.",
+                "A function defined with def is like a reusable blueprint you call whenever you need that calculation."
+              ]
+            },
+            subsections: [
+              {
+                title: "5.1 Lists: Ordered Collections",
+                paragraphs: [
+                  "Create lists with [], access items by index, append items with .append(), and iterate with for."
+                ],
+                code: "hotbar = [\"Pickaxe\", \"Torch\", \"Ladder\"]\nhotbar.append(\"Bucket\")\nprint(\"First item:\", hotbar[0])\nprint(\"Total items:\", len(hotbar))\nfor slot_index, tool in enumerate(hotbar):\n    print(f\"Slot {slot_index}: {tool}\")",
+                output: "First item: Pickaxe\nTotal items: 4\nSlot 0: Pickaxe\nSlot 1: Torch\nSlot 2: Ladder\nSlot 3: Bucket"
+              },
+              {
+                title: "5.2 Dictionaries: Key-Value Pairs",
+                paragraphs: [
+                  "Dictionaries store key: value pairs inside {} for direct lookup by key."
+                ],
+                code: "chest_items = {\n    \"iron\": 18,\n    \"coal\": 32,\n    \"emerald\": 5\n}\nchest_items[\"emerald\"] += 3\nprint(\"Emeralds now:\", chest_items[\"emerald\"])\nfor resource, qty in chest_items.items():\n    print(f\"{resource}: {qty}\")",
+                output: "Emeralds now: 8\niron: 18\ncoal: 32\nemerald: 8"
+              },
+              {
+                title: "5.3 Functions: def and return",
+                paragraphs: [
+                  "Define reusable functions with def name(params): and return results back to the caller."
+                ],
+                code: "def blocks_for_wall(length, height):\n    return length * height\n\nwall_a = blocks_for_wall(6, 3)\nwall_b = blocks_for_wall(10, 4)\nprint(\"Wall A blocks:\", wall_a)\nprint(\"Wall B blocks:\", wall_b)\nprint(\"Combined total:\", wall_a + wall_b)",
+                output: "Wall A blocks: 18\nWall B blocks: 40\nCombined total: 58"
+              }
+            ],
+            mistake: {
+              title: "Common Mistakes in Basic 5:",
+              text: "1) Indexing past the end of a list (IndexError). 2) Reading a missing dictionary key without checking or using .get() (KeyError). 3) Forgetting return when a function needs to send a value back."
+            },
+            summary: "Basic 5 complete: lists hold ordered items, dictionaries map keys to values, and functions encapsulate reusable logic."
+          }
+        ],
+        labSection: {
+          kicker: "Interactive Lab • 6 Minecraft-Logic Challenges",
+          heading: "Comprehensive Lab: Test Your 5 Core Basics",
+          desc: "Complete each Minecraft-logic challenge and click Check for instant validation or Hint for guidance.",
+          scoreLabel: (done, total) => `Completed Challenges: ${done} / ${total}`,
+          checkBtn: "Check",
+          hintBtn: "Hint",
+          resetBtn: "Reset All",
+          challenges: [
+            {
+              id: "ch1",
+              badge: "Challenge 1 • Basic 1 (Output & Signs)",
+              prompt: "Complete the print call to display \"Redstone Ready\":",
+              before: "print(",
+              after: ")",
+              placeholder: "Quoted string",
+              hint: "Wrap \"Redstone Ready\" in quotation marks.",
+              okMsg: "Great! \"Redstone Ready\" is printed cleanly.",
+              errMsg: "Write \"Redstone Ready\" inside quotation marks.",
+              accept: (v) => v.replace(/\s+/g, " ").trim() === '"Redstone Ready"' || v.replace(/\s+/g, " ").trim() === "'Redstone Ready'"
+            },
+            {
+              id: "ch2",
+              badge: "Challenge 2 • Basic 2 (Storage Chests)",
+              prompt: "Store 64 in a variable named stack_size:",
+              before: "",
+              after: "\nprint(stack_size)",
+              placeholder: "stack_size = ...",
+              hint: "Write stack_size = 64",
+              okMsg: "Nice! stack_size now holds 64.",
+              errMsg: "Write stack_size = 64.",
+              accept: (v) => /^stack_size\s*=\s*64$/.test(v.trim())
+            },
+            {
+              id: "ch3",
+              badge: "Challenge 3 • Basic 3 (Modulo & Logic)",
+              prompt: "Write the modulo expression for 25 blocks divided into groups of 6:",
+              before: "leftover = ",
+              after: "",
+              placeholder: "e.g. 10 % 3",
+              hint: "Use % between 25 and 6.",
+              okMsg: "Correct! 25 % 6 equals 1.",
+              errMsg: "Write 25 % 6.",
+              accept: (v) => /^25\s*%\s*6$/.test(v.trim())
+            },
+            {
+              id: "ch4",
+              badge: "Challenge 4 • Basic 4 (Conditional Gates)",
+              prompt: "Complete the if condition when power is greater than or equal to 10:",
+              before: "if ",
+              after: ":\n    print(\"Door Open\")",
+              placeholder: "power >= 10",
+              hint: "Write power >= 10",
+              okMsg: "Well done! power >= 10 opens the door.",
+              errMsg: "Write power >= 10.",
+              accept: (v) => /^power\s*>=\s*10$/.test(v.trim())
+            },
+            {
+              id: "ch5",
+              badge: "Challenge 5 • Basic 4 (Loops)",
+              prompt: "Complete range() to loop 5 times (0 through 4):",
+              before: "for i in range(",
+              after: "):\n    print(i)",
+              placeholder: "5",
+              hint: "Put 5 inside range().",
+              okMsg: "Spot on! range(5) runs 5 iterations.",
+              errMsg: "Enter 5 inside range().",
+              accept: (v) => v.trim() === "5"
+            },
+            {
+              id: "ch6",
+              badge: "Challenge 6 • Basic 5 (Functions)",
+              prompt: "Complete the return line to return length multiplied by width:",
+              before: "def area(length, width):\n    ",
+              after: "",
+              placeholder: "return length * width",
+              hint: "Write return length * width",
+              okMsg: "Great! The function returns length * width.",
+              errMsg: "Write return length * width.",
+              accept: (v) => /^return\s+length\s*\*\s*width$/.test(v.trim())
+            }
+          ]
+        }
+      }
+    };
+
+    const wrapper = document.getElementById("minpy-unit-wrapper");
+    let currentLang = "ar";
+    const completedSet = new Set();
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderLesson(lesson) {
+      const subsHtml = lesson.subsections
+        .map((sub) => {
+          const bulletsHtml = sub.bullets
+            ? `<ul class="minpy-list">${sub.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+            : "";
+
+          const tableHtml = sub.table
+            ? `<div class="minpy-table-wrap"><table class="minpy-table"><thead><tr>${sub.table.headers
+                .map((h) => `<th>${escapeHtml(h)}</th>`)
+                .join("")}</tr></thead><tbody>${sub.table.rows
+                .map((r) => `<tr>${r.map((c) => `<td>${escapeHtml(c)}</td>`).join("")}</tr>`)
+                .join("")}</tbody></table></div>`
+            : "";
+
+          const codeHtml = sub.code ? `<pre>${escapeHtml(sub.code)}</pre>` : "";
+          const outputHtml = sub.output
+            ? `<div class="minpy-output"><span class="minpy-output-label">OUTPUT</span>${escapeHtml(
+                sub.output
+              ).replace(/\n/g, "<br>")}</div>`
+            : "";
+
+          const traceHtml = sub.trace
+            ? `<div class="minpy-trace"><span class="minpy-trace-title">TRACE</span>${sub.trace
+                .map((t) => `<div class="minpy-trace-step">${escapeHtml(t)}</div>`)
+                .join("")}</div>`
+            : "";
+
+          return `
+            <h3 class="minpy-h3">${escapeHtml(sub.title)}</h3>
+            ${sub.paragraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+            ${bulletsHtml}
+            ${tableHtml}
+            ${codeHtml}
+            ${outputHtml}
+            ${traceHtml}
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="minpy-section" id="${escapeHtml(lesson.id)}">
+          <span class="minpy-kicker">${escapeHtml(lesson.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(lesson.heading)}</h2>
+          ${lesson.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join("")}
+          <div class="minpy-analogy">
+            <span class="minpy-analogy-title">${escapeHtml(lesson.analogy.title)}</span>
+            ${lesson.analogy.lines.map((l) => `<p>${escapeHtml(l)}</p>`).join("")}
+          </div>
+          ${subsHtml}
+          <div class="minpy-mistake">
+            <span class="minpy-mistake-title">${escapeHtml(lesson.mistake.title)}</span>
+            <p>${escapeHtml(lesson.mistake.text)}</p>
+          </div>
+          <div class="minpy-summary">
+            <span class="minpy-summary-title">SUMMARY</span>
+            <p>${escapeHtml(lesson.summary)}</p>
+          </div>
+        </section>
+      `;
+    }
+
+    function renderLab(lab) {
+      const total = lab.challenges.length;
+      const done = completedSet.size;
+      const pct = Math.round((done / total) * 100);
+
+      const cardsHtml = lab.challenges
+        .map((ch) => {
+          const isDone = completedSet.has(ch.id);
+          return `
+            <div class="minpy-lab-card" id="card-${escapeHtml(ch.id)}">
+              <div class="minpy-lab-header">
+                <span class="minpy-lab-badge">${escapeHtml(ch.badge)}</span>
+                <span class="minpy-lab-score">${isDone ? "✓" : "•"}</span>
+              </div>
+              <p>${escapeHtml(ch.prompt)}</p>
+              <div class="code-box">
+                ${escapeHtml(ch.before).replace(/\n/g, "<br>")}
+                <input type="text" class="quiz-input" id="input-${escapeHtml(
+                  ch.id
+                )}" placeholder="${escapeHtml(ch.placeholder)}" size="26" />
+                ${escapeHtml(ch.after).replace(/\n/g, "<br>")}
+              </div>
+              <div class="minpy-btn-row">
+                <button type="button" class="run-btn" data-check="${escapeHtml(ch.id)}">${escapeHtml(
+            lab.checkBtn
+          )}</button>
+                <button type="button" class="minpy-sec-btn" data-hint="${escapeHtml(ch.id)}">${escapeHtml(
+            lab.hintBtn
+          )}</button>
+              </div>
+              <div class="feedback" id="fb-${escapeHtml(ch.id)}"></div>
+            </div>
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="minpy-section" id="lab-section">
+          <span class="minpy-kicker">${escapeHtml(lab.kicker)}</span>
+          <h2 class="minpy-h2">${escapeHtml(lab.heading)}</h2>
+          <p>${escapeHtml(lab.desc)}</p>
+          <div class="minpy-progress-wrap">
+            <span class="minpy-lab-score" id="minpy-score-text">${escapeHtml(lab.scoreLabel(done, total))}</span>
+            <div class="minpy-progress-track">
+              <div class="minpy-progress-fill" id="minpy-progress-fill" style="width:${pct}%"></div>
+            </div>
+            <button type="button" class="minpy-sec-btn" id="minpy-reset-all">${escapeHtml(lab.resetBtn)}</button>
+          </div>
+          ${cardsHtml}
+        </section>
+      `;
+    }
+
+    function render() {
+      const data = LECTURE_CONTENT[currentLang];
+      wrapper.setAttribute("dir", data.dir);
+
+      const roadmapHtml = data.roadmap
+        .map((r) => `<div class="minpy-pill"><strong>${escapeHtml(r.step)}</strong><span>${escapeHtml(r.name)}</span></div>`)
+        .join("");
+
+      const tocHtml = data.toc
+        .map((t) => `<a class="minpy-toc-link" href="${escapeHtml(t.href)}">${escapeHtml(t.label)}</a>`)
+        .join("");
+
+      const lessonsHtml = data.lessons.map(renderLesson).join("");
+      const labHtml = renderLab(data.labSection);
+
+      wrapper.innerHTML = `
+        <div class="minpy-top-bar">
+          <span class="tag">${escapeHtml(data.badgeText)}</span>
+          <span class="minpy-meta-info">${escapeHtml(data.metaText)}</span>
+          <button type="button" class="minpy-lang-btn" id="minpy-lang-toggle">${escapeHtml(data.langBtnText)}</button>
+        </div>
+        <h1>${escapeHtml(data.title)}</h1>
+        <div class="minpy-abstract">
+          <strong class="welcome-banner">${escapeHtml(data.welcome)}</strong>
+          ${escapeHtml(data.abstract)}
+        </div>
+        <div class="minpy-roadmap">${roadmapHtml}</div>
+        <div class="minpy-toc">
+          <div class="minpy-toc-title">${escapeHtml(data.tocTitle)}</div>
+          <div class="minpy-toc-grid">${tocHtml}</div>
+        </div>
+        ${lessonsHtml}
+        ${labHtml}
+      `;
+
+      bindEvents();
+    }
+
+    function bindEvents() {
+      const toggleBtn = document.getElementById("minpy-lang-toggle");
+      if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+          currentLang = currentLang === "ar" ? "en" : "ar";
+          render();
+        });
+      }
+
+      const data = LECTURE_CONTENT[currentLang];
+      const total = data.labSection.challenges.length;
+
+      data.labSection.challenges.forEach((ch) => {
+        const checkBtn = wrapper.querySelector(`[data-check="${ch.id}"]`);
+        const hintBtn = wrapper.querySelector(`[data-hint="${ch.id}"]`);
+        const inputEl = document.getElementById(`input-${ch.id}`);
+        const fbEl = document.getElementById(`fb-${ch.id}`);
+
+        if (checkBtn && inputEl && fbEl) {
+          checkBtn.addEventListener("click", () => {
+            const val = inputEl.value;
+            if (ch.accept(val)) {
+              completedSet.add(ch.id);
+              fbEl.className = "feedback ok";
+              fbEl.textContent = ch.okMsg;
+              updateProgress();
+            } else {
+              fbEl.className = "feedback err";
+              fbEl.textContent = ch.errMsg;
+            }
+          });
+        }
+
+        if (hintBtn && fbEl) {
+          hintBtn.addEventListener("click", () => {
+            fbEl.className = "feedback hint";
+            fbEl.textContent = ch.hint;
+          });
+        }
+      });
+
+      const resetBtn = document.getElementById("minpy-reset-all");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          completedSet.clear();
+          data.labSection.challenges.forEach((ch) => {
+            const inp = document.getElementById(`input-${ch.id}`);
+            const fb = document.getElementById(`fb-${ch.id}`);
+            if (inp) inp.value = "";
+            if (fb) {
+              fb.className = "feedback";
+              fb.textContent = "";
+            }
+          });
+          updateProgress();
+        });
+      }
+
+      function updateProgress() {
+        const done = completedSet.size;
+        const pct = Math.round((done / total) * 100);
+        const scoreEl = document.getElementById("minpy-score-text");
+        const fillEl = document.getElementById("minpy-progress-fill");
+        if (scoreEl) scoreEl.textContent = data.labSection.scoreLabel(done, total);
+        if (fillEl) fillEl.style.width = `${pct}%`;
+
+        data.labSection.challenges.forEach((ch) => {
+          const card = document.getElementById(`card-${ch.id}`);
+          const badge = card ? card.querySelector(".minpy-lab-score") : null;
+          if (badge) badge.textContent = completedSet.has(ch.id) ? "✓" : "•";
+        });
+      }
+    }
+
+    render();
+  })();
+</script>
